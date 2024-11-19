@@ -1,10 +1,10 @@
 class EndPoint {
-  static const String baseUrl = 'http://192.168.1.48:3000/users/';
+  static const String baseUrl = 'https://satars.onrender.com/admins/';
   static const String logIn = 'login';
-  static const String forgotPassword = 'forgotPass';
-  static const String sendCode = 'verifyOtp';
-  static const String changeForgottenPassword =
-      'resetPassword';
+  // static const String forgotPassword = 'forgotPass';
+  static const String sendOtp = 'userSendOtp';
+  static const String verifyOtp =
+      'userVerfiyOtp';
  
 
    

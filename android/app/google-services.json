@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "782758238451",
+    "firebase_url": "https://smart-accident-system-default-rtdb.firebaseio.com",
+    "project_id": "smart-accident-system",
+    "storage_bucket": "smart-accident-system.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782758238451:android:60259ef88c96a70636bf86",
+        "android_client_info": {
+          "package_name": "com.example.admin_panel_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAevzjss4WUBVoBo3oiivM9avt27pjJcbk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782758238451:android:7baedf8abf78f64936bf86",
+        "android_client_info": {
+          "package_name": "com.example.user_accident"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAevzjss4WUBVoBo3oiivM9avt27pjJcbk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

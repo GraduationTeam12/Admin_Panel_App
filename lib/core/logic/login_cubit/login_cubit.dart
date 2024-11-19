@@ -14,7 +14,7 @@ class LoginCubit extends Cubit<LoginState> {
   final AuthRepository authRepo;
   TextEditingController signInEmail = TextEditingController();
   TextEditingController signInpassword = TextEditingController();
-  TextEditingController loginKey = TextEditingController();
+  GlobalKey<FormState> loginKey = GlobalKey();
 
   LoginModel? loginModel;
 

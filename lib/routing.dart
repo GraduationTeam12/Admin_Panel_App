@@ -4,6 +4,7 @@ import 'package:admin_panel_app/constants/pages_name.dart';
 import 'package:admin_panel_app/core/api/dio_consumer.dart';
 import 'package:admin_panel_app/core/data/repo/auth_repo.dart';
 import 'package:admin_panel_app/core/logic/login_cubit/login_cubit.dart';
+import 'package:admin_panel_app/presentation/dash_board/dash_board.dart';
 import 'package:admin_panel_app/presentation/dash_board/login_page.dart';
 import 'package:admin_panel_app/presentation/screens/home_screen.dart';
 import 'package:dio/dio.dart';
@@ -22,8 +23,8 @@ class AppRouter {
                   child: const LoginPage(),
                 ));
 
-      case homeScreen:
-        return MaterialPageRoute(builder: (context)=> const HomeScreen());
+      case dashBoardScreen:
+        return MaterialPageRoute(builder: (context)=> const DashBoard());
     }
   }
 }

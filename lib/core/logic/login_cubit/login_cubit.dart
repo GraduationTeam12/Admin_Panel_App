@@ -24,14 +24,15 @@ class LoginCubit extends Cubit<LoginState> {
     final result = await authRepo.login(
         email: signInEmail.text, password: signInpassword.text);
 
-    result.fold((l) => emit(LoginErrorState(errMsg: l)), (r) async {
+    result.fold((l) => emit(LoginErrorState(errMsg: l)),
+     (r) async {
       Map<String, dynamic> decodedToken = JwtDecoder.decode(r.token);
       await CacheHelper().saveData(key: ApiKeys.token, value: r.token);
       await CacheHelper()
           .saveData(key: ApiKeys.id, value: decodedToken[ApiKeys.id]);
 
       loginModel = r;
-      emit(LoginSuccessState(message: r.message));
+      emit(LoginSuccessState(message: r.msg));
     });
   }
 }

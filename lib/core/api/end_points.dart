@@ -16,6 +16,6 @@ class ApiKeys {
   static const String password = 'password';
   static const String confirmPassword = 'passwordConfirm';
   static const String code = 'otp';
-  static const String message = 'message';
+  static const String message = 'msg';
   static const String token = 'token';
 }

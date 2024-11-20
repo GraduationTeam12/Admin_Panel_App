@@ -8,7 +8,23 @@ class ErrorModel{
   factory ErrorModel.fromJson(Map jsonData) {
     return ErrorModel(
       // status: jsonData['status'],
-      errorMessage: jsonData['message'],
+      errorMessage: jsonData['msg'],
     );
+  }
+}
+
+class ErrorResponse {
+  final String errorMessage;
+
+  ErrorResponse({required this.errorMessage});
+
+  
+  factory ErrorResponse.fromJson(Map<String, dynamic> jsonData) {
+     
+    var errorsList = (jsonData['errors'] as List)
+        .map((error) => ErrorModel.fromJson(error))
+        .toList();
+
+    return ErrorResponse(errorMessage: errorsList[0].errorMessage);
   }
 }

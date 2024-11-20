@@ -47,6 +47,7 @@ class ActiveDarwerItem extends StatelessWidget {
           width: 200,
           decoration: const ShapeDecoration(
                 color: Colors.amber,
+                shadows: [BoxShadow(color: Colors.black26,blurRadius: 4,offset: Offset(0, 4))],
                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15)))
               ),
           child: ListTile(

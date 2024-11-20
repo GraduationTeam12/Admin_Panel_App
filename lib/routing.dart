@@ -7,6 +7,7 @@ import 'package:admin_panel_app/core/logic/login_cubit/login_cubit.dart';
 import 'package:admin_panel_app/presentation/dash_board/dash_board.dart';
 import 'package:admin_panel_app/presentation/dash_board/login_page.dart';
 import 'package:admin_panel_app/presentation/screens/home_screen.dart';
+import 'package:admin_panel_app/presentation/screens/splash_screen.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,6 +26,9 @@ class AppRouter {
 
       case dashBoardScreen:
         return MaterialPageRoute(builder: (context)=> const DashBoard());
+
+      case splashScreen:
+        return MaterialPageRoute(builder: (context)=> const SplashScreen());
     }
   }
 }

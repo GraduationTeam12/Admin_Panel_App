@@ -83,5 +83,15 @@ class Assets {
   /// assets/images/auth_images/bro_survey.svg
   static const String imagesAuthImagesBroSurvey = "assets/images/auth_images/bro_survey.svg";
 
+
+/// Assets for imagesAuthImagesIconHospital
+  /// assets/images/auth_images/icon_hospital_sidebar.svg
+  static const String imagesAuthImagesIconHospital = "assets/images/auth_images/icon_hospital_sidebar.svg";
+
+
+/// Assets for imagesAuthImagesBroSurvey
+  /// assets/images/auth_images/icon_owner_sidebar.svg
+  static const String imagesAuthImagesIconOwner = "assets/images/auth_images/icon_owner_sidebar.svg";
+
 }
 

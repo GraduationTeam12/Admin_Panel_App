@@ -15,7 +15,9 @@ class DesktopDashboard extends StatelessWidget {
     'Reports',
     "Notifictions",
     "Support",
-    "Survey"
+    "Survey",
+    "Add Owner",
+    "Add hospital"
   ];
 
   @override

@@ -65,5 +65,23 @@ class Assets {
   /// Assets for imagesAuthImagesSupportDrawer
   /// assets/images/auth_images/support_drawer.svg
   static const String imagesAuthImagesSupportDrawer = "assets/images/auth_images/support_drawer.svg";
+
+  /// Assets for imagesAuthImagesPersonImg
+  /// assets/images/auth_images/person_image.svg
+  static const String imagesAuthImagesPersonImg = "assets/images/auth_images/person_image.svg";
+
+  /// Assets for imagesAuthImagesNotificationsHeader
+  /// assets/images/auth_images/notifcations.svg
+  static const String imagesAuthImagesNotificationsHeader = "assets/images/auth_images/notifcations.svg";
+
+/// Assets for imagesAuthImagesNotificationsHeader
+  /// assets/images/auth_images/clarity_form-line.svg
+  static const String imagesAuthImagesClarityFormLineHeader = "assets/images/auth_images/clarity_form-line.svg";
+
+
+/// Assets for imagesAuthImagesBroSurvey
+  /// assets/images/auth_images/bro_survey.svg
+  static const String imagesAuthImagesBroSurvey = "assets/images/auth_images/bro_survey.svg";
+
 }
 

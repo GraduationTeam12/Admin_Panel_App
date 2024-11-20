@@ -2,9 +2,10 @@ import 'package:admin_panel_app/core/api/api_consumer.dart';
 import 'package:admin_panel_app/core/api/end_points.dart';
 import 'package:admin_panel_app/core/data/model/login_model.dart';
 import 'package:admin_panel_app/core/error/exceptions.dart';
+import 'package:admin_panel_app/core/error/exceptions_response.dart';
 import 'package:dartz/dartz.dart';
 
-class AuthRepository{
+class AuthRepository {
   final ApiConsumer apiConsumer;
 
   AuthRepository({required this.apiConsumer});
@@ -21,7 +22,8 @@ class AuthRepository{
       return Right(LoginModel.fromJson(response));
     } on ServerException catch (error) {
       return Left(error.errorModel.errorMessage);
+    } on ServerExceptionResponse catch (error) {
+      return Left(error.errorResponse.errorMessage);
     }
   }
-
 }

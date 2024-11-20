@@ -34,7 +34,7 @@ class _LoginFormState extends State<LoginForm> {
             margin: const EdgeInsets.only(bottom: 680, left: 160, right: 160),
           ));
 
-          // Navigator.pushReplacementNamed(context, homeScreen);
+          Navigator.pushReplacementNamed(context, dashBoardScreen);
         }
 
         if (state is LoginErrorState) {

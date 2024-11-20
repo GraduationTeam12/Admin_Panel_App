@@ -1,3 +1,4 @@
+import 'package:admin_panel_app/presentation/widgets/custom_drawer.dart';
 import 'package:flutter/material.dart';
 
 class DesktopDashboard extends StatelessWidget {
@@ -5,6 +6,10 @@ class DesktopDashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Row(
+      children: [
+        Expanded(child: CustomDrawer())
+      ],
+    );
   }
 }

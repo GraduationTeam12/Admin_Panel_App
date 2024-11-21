@@ -2,6 +2,7 @@
 
 import 'package:admin_panel_app/core/logic/navigation_cubit/navigation_cubit.dart';
 import 'package:admin_panel_app/presentation/dash_board/add_owner.dart';
+import 'package:admin_panel_app/presentation/dash_board/overview.dart';
 import 'package:admin_panel_app/presentation/widgets/add_owner_body.dart';
 import 'package:admin_panel_app/presentation/widgets/confirming_info.dart';
 import 'package:admin_panel_app/presentation/widgets/custom_drawer.dart';
@@ -52,7 +53,7 @@ class DesktopDashboard extends StatelessWidget {
                             MediaQuery.sizeOf(context).height * .11,
                         width: MediaQuery.of(context).size.width,
                         color: const Color.fromRGBO(217, 217, 217, 0.7),
-                        child: pageIndex == 4
+                        child:pageIndex==0?const Overview(): pageIndex == 4
                             ? const SurveyPage()
                             : pageIndex == 5
                                 ? const AddOwnerBody()

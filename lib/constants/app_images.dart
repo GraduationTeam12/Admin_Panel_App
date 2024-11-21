@@ -93,5 +93,20 @@ class Assets {
   /// assets/images/auth_images/icon_owner_sidebar.svg
   static const String imagesAuthImagesIconOwner = "assets/images/auth_images/icon_owner_sidebar.svg";
 
+  
+/// Assets for imagesAuthImagesOwnerCounterDiagram
+  /// assets/images/auth_images/owner_counter_diagram.svg
+  static const String imagesAuthImagesOwnerCounterDiagram = "assets/images/auth_images/owner_counter_diagram.svg";
+
+
+/// Assets for imagesAuthImagesHospitalCounterDiagram
+  /// assets/images/auth_images/diagram_hospital.svg
+  static const String imagesAuthImagesHospitalCounterDiagram = "assets/images/auth_images/diagram_hospital.svg";
+
+
+/// Assets for imagesAuthImagesFireStationCounterDiagram
+  /// assets/images/auth_images/diagram_fire_station.svg
+  static const String imagesAuthImagesFireStationCounterDiagram = "assets/images/auth_images/diagram_fire_station.svg";
+
 }
 

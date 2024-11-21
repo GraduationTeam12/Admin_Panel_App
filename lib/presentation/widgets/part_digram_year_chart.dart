@@ -1,0 +1,37 @@
+import 'package:flutter/material.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
+
+class PartDiagramYearChart extends StatelessWidget {
+  const PartDiagramYearChart(
+      {super.key, required this.title, required this.percent, required this.myColor});
+  final String title;
+  final double percent;
+  final Color myColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return CircularPercentIndicator(
+      radius: 50.0,
+      lineWidth: 10.0,
+      animation: true,
+      percent: percent,
+      center: Text(
+        "${percent * 100}%",
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
+      ),
+      header: Text(
+        title,
+        style: TextStyle(
+            fontSize: 19,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+            fontFamily: "Inter"),
+      ),
+      backgroundWidth: 5,
+      animationDuration: 2000,
+      circularStrokeCap: CircularStrokeCap.round,
+      progressColor: myColor,
+      backgroundColor: const Color.fromRGBO(0, 0, 0, 0.2),
+    );
+  }
+}

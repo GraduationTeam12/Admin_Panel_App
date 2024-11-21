@@ -1,9 +1,7 @@
 import 'package:admin_panel_app/constants/app_images.dart';
 import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
-import 'package:admin_panel_app/core/logic/navigation_cubit/navigation_cubit.dart';
 import 'package:admin_panel_app/presentation/widgets/drawer_item_listview.dart';
-import 'package:admin_panel_app/presentation/widgets/settings_and_contact_us.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -114,6 +112,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.only(left: 15),
+ 
               child: isActiveAddButton == true
                   ? Row(
                       children: [
@@ -164,6 +163,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         },
                       ),
                     ),
+
             ),
           ),
           const SliverToBoxAdapter(

@@ -1,4 +1,5 @@
 import 'package:admin_panel_app/constants/app_images.dart';
+import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -17,16 +18,35 @@ class SurveyPage extends StatelessWidget {
             children: [
               const SizedBox(height: 30,),
               // SizedBox(height: MediaQuery.sizeOf(context).height*0.02,),
-               const SizedBox(
+                 SizedBox(
                 // height:  MediaQuery.sizeOf(context).height*0.20,
-                 child:  Text(
-                   "You have the authority as an admin to create and send a periodic survey to all customers to ensure their satisfaction with our service",
-                   style: TextStyle(
-                    fontSize: 35,
-                      //  fontSize: 210*( MediaQuery.sizeOf(context).height*0.25)/MediaQuery.sizeOf(context).width,
-                       fontWeight: FontWeight.w400,
-                       color: Color.fromRGBO(61, 100, 152, 1)),
-                   textAlign: TextAlign.center,
+                 child:  Column(
+                   children: [
+                     FittedBox(
+                       child: Text(
+                         "You have the authority as an admin to create and send a periodic survey",
+                         style: AppStyle.styleRegular35(context),
+                          // TextStyle(
+                          // fontSize: 35,
+                          //   //  fontSize: 210*( MediaQuery.sizeOf(context).height*0.25)/MediaQuery.sizeOf(context).width,
+                          //    fontWeight: FontWeight.w400,
+                          //    color: Color.fromRGBO(61, 100, 152, 1)),
+                        //  textAlign: TextAlign.center,
+                       ),
+                     ),
+                      FittedBox(
+                        child: Text(
+                         "  survey to all customers to ensure their satisfaction with our service    ",
+                         style: AppStyle.styleRegular35(context),
+                          // TextStyle(
+                          // fontSize: 35,
+                          //   //  fontSize: 210*( MediaQuery.sizeOf(context).height*0.25)/MediaQuery.sizeOf(context).width,
+                          //    fontWeight: FontWeight.w400,
+                          //    color: Color.fromRGBO(61, 100, 152, 1)),
+                         textAlign: TextAlign.center,
+                                             ),
+                      ),
+                   ],
                  ),
                ),
                 

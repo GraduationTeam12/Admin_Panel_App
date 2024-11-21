@@ -1,8 +1,8 @@
 import 'package:admin_panel_app/constants/app_images.dart';
 import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
+import 'package:admin_panel_app/constants/pages_name.dart';
 import 'package:admin_panel_app/presentation/widgets/drawer_item_listview.dart';
-import 'package:admin_panel_app/presentation/widgets/settings_and_contact_us.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -22,8 +22,11 @@ class CustomDrawer extends StatelessWidget {
                 child: Row(
                   children: [
                     Image.asset(Assets.imagesAuthImagesLogooooo),
-
-                    Text("SATARS", style: AppStyle.styleRegular25(context).copyWith(fontSize: 30),)
+                    Text(
+                      "SATARS",
+                      style: AppStyle.styleRegular25(context)
+                          .copyWith(fontSize: 30),
+                    )
                   ],
                 )),
           ),
@@ -104,7 +107,11 @@ class CustomDrawer extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(left: 15),
               child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushReplacementNamed(
+                      context, addOwnerScreen
+                    );
+                  },
                   child: Align(
                       alignment: Alignment.centerLeft,
                       child:

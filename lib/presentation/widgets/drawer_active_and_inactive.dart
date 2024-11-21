@@ -1,5 +1,4 @@
 import 'package:admin_panel_app/constants/app_style.dart';
-import 'package:admin_panel_app/constants/colors.dart';
 import 'package:admin_panel_app/presentation/models/drawer_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

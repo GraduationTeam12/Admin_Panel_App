@@ -16,7 +16,8 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * .11,
+      height: 70,
+      // height: MediaQuery.of(context).size.height * .11,
       decoration: const ShapeDecoration(
           shape: RoundedRectangleBorder(),
           color: Colors.white,
@@ -41,7 +42,7 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
           const Spacer(),
           SvgPicture.asset(
             Assets.imagesAuthImagesNotificationsHeader,
-            height: MediaQuery.of(context).size.height * .06,
+            // height: MediaQuery.of(context).size.height * .06,
           ),
           const SizedBox(
             width: 25,
@@ -52,15 +53,17 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
             },
             child: SvgPicture.asset(
               Assets.imagesAuthImagesClarityFormLineHeader,
-              height: MediaQuery.of(context).size.height * .06,
+              // height: MediaQuery.of(context).size.height * .06,
             ),
           ),
           const SizedBox(
             width: 10,
           ),
           Container(
-            height: MediaQuery.of(context).size.height * .08,
-            width: MediaQuery.of(context).size.height * .08,
+            // height: MediaQuery.of(context).size.height * .08,
+            // width: MediaQuery.of(context).size.height * .08,
+            width: 50,
+            height: 50,
             decoration: const BoxDecoration(shape: BoxShape.circle, boxShadow: [
               BoxShadow(
                   color: Color.fromRGBO(0, 0, 0, 0.25),

@@ -113,18 +113,18 @@ class _CustomDrawerState extends State<CustomDrawer> {
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.only(left: 15),
- 
               child: isActiveAddButton == true
                   ? Row(
                       children: [
                         InkWell(
-                              onTap: (){
-                                //go to overview
-                                context.read<NavigationCubit>().navigateTo(0);
-                                isActiveAddButton = false;
-                            setState(() {});
-                                },
-                              child: SvgPicture.asset(Assets.imagesAuthImagesAddButton)),
+                            onTap: () {
+                              //go to overview
+                              context.read<NavigationCubit>().navigateTo(0);
+                              isActiveAddButton = false;
+                              setState(() {});
+                            },
+                            child: SvgPicture.asset(
+                                Assets.imagesAuthImagesAddButton)),
                         InkWell(
                           onTap: () {
                             //go to owner page
@@ -156,7 +156,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         builder: (context, indexPage) {
                           return Align(
                               alignment: Alignment.centerLeft,
-                              child: SvgPicture.asset(indexPage == 5
+                              child: SvgPicture.asset(indexPage == 5 ||
+                                      indexPage == 7 ||
+                                      indexPage == 8 ||
+                                      indexPage == 9 ||
+                                      indexPage == 10 ||
+                                      indexPage == 11
                                   ? Assets.imagesAuthImagesIconOwner
                                   : indexPage == 6
                                       ? Assets.imagesAuthImagesIconHospital
@@ -164,7 +169,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         },
                       ),
                     ),
-
             ),
           ),
           const SliverToBoxAdapter(

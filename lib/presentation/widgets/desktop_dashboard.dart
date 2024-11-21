@@ -40,26 +40,30 @@ class DesktopDashboard extends StatelessWidget {
           flex: 4,
           child: BlocBuilder<NavigationCubit, int>(
             builder: (context, pageIndex) {
-              return Column(
-                children: [
-                  HeaderDesktop(
-                    title: _pagesTitle[pageIndex],
+              return CustomScrollView(
+                slivers: [SliverToBoxAdapter(
+                  child: Column(
+                    children: [
+                      HeaderDesktop(
+                        title: _pagesTitle[pageIndex],
+                      ),
+                      Container(
+                        height: MediaQuery.sizeOf(context).height -
+                            MediaQuery.sizeOf(context).height * .11,
+                        width: MediaQuery.of(context).size.width,
+                        color: const Color.fromRGBO(217, 217, 217, 0.7),
+                        child: pageIndex == 4
+                            ? const SurveyPage()
+                            : pageIndex == 5
+                                ? const AddOwnerBody()
+                                : pageIndex == 7
+                                    ? DesktopOtpOwner()
+                                    : pageIndex == 8? GetInformationBody() : pageIndex == 9? SelectingNumOfBoard() : pageIndex == 10? ConfirmingInfo() : Center(child: Text(_pagesTitle[pageIndex])),
+                      )
+                    ],
                   ),
-                  Container(
-                    height: MediaQuery.sizeOf(context).height -
-                        MediaQuery.sizeOf(context).height * .11,
-                    width: MediaQuery.of(context).size.width,
-                    color: const Color.fromRGBO(217, 217, 217, 0.7),
-                    child: pageIndex == 4
-                        ? const SurveyPage()
-                        : pageIndex == 5
-                            ? const AddOwnerBody()
-                            : pageIndex == 7
-                                ? DesktopOtpOwner()
-                                : pageIndex == 8? GetInformationBody() : pageIndex == 9? SelectingNumOfBoard() : pageIndex == 10? ConfirmingInfo() : Center(child: Text(_pagesTitle[pageIndex])),
-                  )
-                ],
-              );
+                ),
+      ]);
             },
           ),
         )

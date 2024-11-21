@@ -1,14 +1,20 @@
 import 'package:admin_panel_app/constants/app_images.dart';
 import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
-import 'package:admin_panel_app/constants/pages_name.dart';
 import 'package:admin_panel_app/presentation/widgets/drawer_item_listview.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class CustomDrawer extends StatelessWidget {
+class CustomDrawer extends StatefulWidget {
   const CustomDrawer({super.key});
 
+  @override
+  State<CustomDrawer> createState() => _CustomDrawerState();
+}
+
+class _CustomDrawerState extends State<CustomDrawer> {
+  bool isActiveAddButton = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -106,16 +112,58 @@ class CustomDrawer extends StatelessWidget {
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.only(left: 15),
-              child: GestureDetector(
-                  onTap: () {
-                    Navigator.pushReplacementNamed(
-                      context, addOwnerScreen
-                    );
-                  },
-                  child: Align(
-                      alignment: Alignment.centerLeft,
-                      child:
-                          SvgPicture.asset(Assets.imagesAuthImagesAddButton))),
+ 
+              child: isActiveAddButton == true
+                  ? Row(
+                      children: [
+                        InkWell(
+                              onTap: (){
+                                //go to overview
+                                context.read<NavigationCubit>().navigateTo(0);
+                                isActiveAddButton = false;
+                            setState(() {});
+                                },
+                              child: SvgPicture.asset(Assets.imagesAuthImagesAddButton)),
+                        InkWell(
+                          onTap: () {
+                            //go to owner page
+                            context.read<NavigationCubit>().navigateTo(5);
+                            isActiveAddButton = false;
+                            setState(() {});
+                          },
+                          child: SvgPicture.asset(
+                              Assets.imagesAuthImagesIconOwner),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            //go to owner page
+                            context.read<NavigationCubit>().navigateTo(6);
+                            isActiveAddButton = false;
+                            setState(() {});
+                          },
+                          child: SvgPicture.asset(
+                              Assets.imagesAuthImagesIconHospital),
+                        )
+                      ],
+                    )
+                  : InkWell(
+                      onTap: () {
+                        isActiveAddButton = true;
+                        setState(() {});
+                      },
+                      child: BlocBuilder<NavigationCubit, int>(
+                        builder: (context, indexPage) {
+                          return Align(
+                              alignment: Alignment.centerLeft,
+                              child: SvgPicture.asset(indexPage == 5
+                                  ? Assets.imagesAuthImagesIconOwner
+                                  : indexPage == 6
+                                      ? Assets.imagesAuthImagesIconHospital
+                                      : Assets.imagesAuthImagesAddButton));
+                        },
+                      ),
+                    ),
+
             ),
           ),
           const SliverToBoxAdapter(

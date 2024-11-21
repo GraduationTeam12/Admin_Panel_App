@@ -4,8 +4,7 @@ import 'package:admin_panel_app/constants/pages_name.dart';
 import 'package:admin_panel_app/core/api/dio_consumer.dart';
 import 'package:admin_panel_app/core/data/repo/auth_repo.dart';
 import 'package:admin_panel_app/core/logic/login_cubit/login_cubit.dart';
-import 'package:admin_panel_app/presentation/dash_board/add_owner.dart';
-import 'package:admin_panel_app/presentation/dash_board/confirm_info.dart';
+import 'package:admin_panel_app/core/logic/navigation_cubit/navigation_cubit.dart';
 import 'package:admin_panel_app/presentation/dash_board/dash_board.dart';
 import 'package:admin_panel_app/presentation/dash_board/login_page.dart';
 import 'package:admin_panel_app/presentation/dash_board/number_of_board.dart';
@@ -23,13 +22,16 @@ class AppRouter {
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
                   create: (context) => LoginCubit(
-                    AuthRepository(apiConsumer: DioConsumer(dio: Dio()))
-                  ),
+                      AuthRepository(apiConsumer: DioConsumer(dio: Dio()))),
                   child: const LoginPage(),
                 ));
 
       case dashBoardScreen:
-        return MaterialPageRoute(builder: (context)=> const DashBoard());
+        return MaterialPageRoute(
+            builder: (context) => BlocProvider(
+                  create: (context) => NavigationCubit(),
+                  child: const DashBoard(),
+                ));
 
       case addOwnerScreen:
         return MaterialPageRoute(builder: (context)=> const AddOwner());
@@ -47,7 +49,7 @@ class AppRouter {
         return MaterialPageRoute(builder: (context)=> const ConfirmInfo());
 
       case splashScreen:
-        return MaterialPageRoute(builder: (context)=> const SplashScreen());
+        return MaterialPageRoute(builder: (context) => const SplashScreen());
     }
   }
 }

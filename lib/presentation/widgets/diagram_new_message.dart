@@ -15,10 +15,10 @@ class DiagramNewMessage extends StatelessWidget {
             BoxShadow(
                 color: Colors.black26, blurRadius: 4, offset: Offset(0, 4))
           ]),
-      child: Column(
+      child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
+          Padding(
             padding:  EdgeInsets.only(
               left: 15,
               top: 15
@@ -32,10 +32,10 @@ class DiagramNewMessage extends StatelessWidget {
                   fontFamily: "Inter"),
             ),
           ),
-          const SizedBox(
+          SizedBox(
             height: 10,
           ),
-          const Padding(
+          Padding(
             padding:  EdgeInsets.only(
               
               left: 15,
@@ -49,11 +49,11 @@ class DiagramNewMessage extends StatelessWidget {
                   fontFamily: "Inter"),
             ),
           ),
-          const SizedBox(
+          SizedBox(
             height: 20,
           ),
-          const Divider(),
-          const SizedBox(
+          Divider(),
+          SizedBox(
             height: 20,
           ),
         //  Padding(

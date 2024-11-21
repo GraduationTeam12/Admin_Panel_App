@@ -1,10 +1,10 @@
-import 'package:admin_panel_app/constants/app_style.dart';
+
 import 'package:admin_panel_app/presentation/widgets/custom_container.dart';
 import 'package:admin_panel_app/presentation/widgets/otp_form.dart';
 import 'package:flutter/material.dart';
 
-class DesktopOtpOwner extends StatelessWidget {
-  const DesktopOtpOwner({super.key});
+class OtpOwner extends StatelessWidget {
+  const OtpOwner({super.key});
 
   @override
   Widget build(BuildContext context) {

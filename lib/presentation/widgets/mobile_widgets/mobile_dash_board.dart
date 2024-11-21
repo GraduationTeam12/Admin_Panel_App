@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TabletAddOwner extends StatelessWidget {
-  const TabletAddOwner({super.key});
+class MobileDashBoard extends StatelessWidget {
+  const MobileDashBoard({super.key});
 
   @override
   Widget build(BuildContext context) {

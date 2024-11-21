@@ -17,11 +17,11 @@ class PartDiagramYearChart extends StatelessWidget {
       percent: percent,
       center: Text(
         "${percent * 100}%",
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
+        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
       ),
       header: Text(
         title,
-        style: TextStyle(
+        style: const TextStyle(
             fontSize: 19,
             fontWeight: FontWeight.w400,
             color: Colors.black,

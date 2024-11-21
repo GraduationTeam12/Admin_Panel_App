@@ -1,8 +1,10 @@
 import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
 import 'package:admin_panel_app/constants/pages_name.dart';
+import 'package:admin_panel_app/core/logic/navigation_cubit/navigation_cubit.dart';
 import 'package:admin_panel_app/presentation/widgets/add_owner_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pinput.dart';
 
 class OtpForm extends StatefulWidget {
@@ -110,11 +112,13 @@ class _OtpFormState extends State<OtpForm> {
               height: 47,
               child: ElevatedButton(
                 onPressed: () {
-                  setState(() {
-                    index == 1 ? index++ : null;
+                  context.read<NavigationCubit>().navigateTo(8);
+                  // setState(() {
+                  //   index == 1 ? index++ : null;
 
-                    Navigator.pushReplacementNamed(context, infoOwnerScreen);
-                  });
+                  //   Navigator.pushReplacementNamed(context, infoOwnerScreen);
+                  // });
+
                   // if (!BlocProvider.of<LoginCubit>(context)
                   //     .loginKey
                   //     .currentState!

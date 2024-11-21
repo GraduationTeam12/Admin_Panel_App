@@ -12,9 +12,9 @@ class DesktopAddOwner extends StatelessWidget {
     return Row(
 
       children:  [
-          Expanded(
-            flex: 1,
-            child: CustomDrawer()),
+          // Expanded(
+          //   flex: 1,
+          //   child: CustomDrawer()),
 
             Expanded(
                flex: 4,

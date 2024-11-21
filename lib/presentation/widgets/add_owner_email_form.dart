@@ -1,8 +1,10 @@
 import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
 import 'package:admin_panel_app/constants/pages_name.dart';
+import 'package:admin_panel_app/core/logic/navigation_cubit/navigation_cubit.dart';
 import 'package:admin_panel_app/presentation/widgets/add_owner_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddOwnerEmailForm extends StatefulWidget {
   const AddOwnerEmailForm({
@@ -105,11 +107,13 @@ class _AddOwnerEmailFormState extends State<AddOwnerEmailForm> {
               height: 47,
               child: ElevatedButton(
                 onPressed: () {
-                  setState(() {
-                    index == 0 ? index++ : null;
+                  context.read<NavigationCubit>().navigateTo(7);
+                  // setState(() {
+                  //   index == 0 ? index++ : null;
 
-                    Navigator.pushReplacementNamed(context, otpOwnerScreen);
-                  });
+                  //   Navigator.pushReplacementNamed(context, otpOwnerScreen);
+                  // });
+                  
                   // if (!BlocProvider.of<LoginCubit>(context)
                   //     .loginKey
                   //     .currentState!

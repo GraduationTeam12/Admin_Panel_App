@@ -21,7 +21,7 @@ class _DashBoardState extends State<DashBoard> {
       body: AdaptiveLayout(
           mobileLayout: (context) => const MobileDashBoard(),
           tabletLayout: (context) => const TabletDashBoard(),
-          desktopLayout: (context) =>  DesktopDashboard()),
+          desktopLayout: (context) =>   DesktopDashboard()),
     );
   }
 }

@@ -17,16 +17,17 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height * .11,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-              color: Colors.black.withOpacity(0.2),
+      decoration: const ShapeDecoration(
+          shape: RoundedRectangleBorder(),
+          color: Colors.white,
+          shadows: [
+            BoxShadow(
+              color: Color(0x3F000000),
+              spreadRadius: 0,
+              offset: Offset(0, 4),
               blurRadius: 4,
-              offset: const Offset(0, 4),
-              spreadRadius: 0),
-        ],
-      ),
+            )
+          ]),
       child: Row(
         children: [
           const SizedBox(
@@ -34,7 +35,7 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
           ),
           Text(
             widget.title,
-            style:const TextStyle(
+            style: const TextStyle(
                 fontSize: 27, fontWeight: FontWeight.w600, color: Colors.black),
           ),
           const Spacer(),
@@ -46,7 +47,7 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
             width: 25,
           ),
           GestureDetector(
-            onTap: (){
+            onTap: () {
               context.read<NavigationCubit>().navigateTo(4);
             },
             child: SvgPicture.asset(

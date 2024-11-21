@@ -11,89 +11,86 @@ class ConfirmingInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        color: const Color.fromARGB(255, 232, 226, 226),
-        child: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: Column(
-                children: [
-                  Container(
-                    width: double.infinity,
-                    decoration: const ShapeDecoration(
-                        shape: RoundedRectangleBorder(),
-                        color: Colors.white,
-                        shadows: [
-                          BoxShadow(
-                            color: Color(0x3F000000),
-                            spreadRadius: 0,
-                            offset: Offset(0, 4),
-                            blurRadius: 4,
-                          )
-                        ]),
-                    child: Text(
-                      "   Owner",
-                      style: AppStyle.styleSemiBold25(context)
-                          .copyWith(fontSize: 35, color: Colors.black),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  CustomContainer(
+      body:
+          //  Container(
+          //   color: const Color.fromARGB(255, 232, 226, 226),
+          //   child: CustomScrollView(
+          //     slivers: [
+          //       SliverToBoxAdapter(
+          //         child: Column(
+          //           children: [
+          //             Container(
+          //               width: double.infinity,
+          //               decoration: const ShapeDecoration(
+          //                   shape: RoundedRectangleBorder(),
+          //                   color: Colors.white,
+          //                   shadows: [
+          //                     BoxShadow(
+          //                       color: Color(0x3F000000),
+          //                       spreadRadius: 0,
+          //                       offset: Offset(0, 4),
+          //                       blurRadius: 4,
+          //                     )
+          //                   ]),
+          //               child: Text(
+          //                 "   Owner",
+          //                 style: AppStyle.styleSemiBold25(context)
+          //                     .copyWith(fontSize: 35, color: Colors.black),
+          //               ),
+          //             ),
+          //             const SizedBox(
+          //               height: 30,
+          //             ),
+          Container(
+            color: const Color.fromARGB(255, 232, 226, 226),
+            child: CustomContainer(
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 50),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          AddOwnerBar(index: index),
-                          const SizedBox(
-                            height: 50,
+            padding: const EdgeInsets.only(top: 50),
+            child: CustomScrollView(
+              slivers: [SliverToBoxAdapter(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    AddOwnerBar(index: index),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    Text(
+                      "Confirm The Information",
+                      style: AppStyle.styleBold25(context).copyWith(
+                          fontSize: 37,
+                          fontFamily: 'Roboto',
+                          color: MyColors.premiumColor),
+                    ),
+                    const SizedBox(
+                      height: 100,
+                    ),
+                    SizedBox(
+                      width: 380,
+                      height: 47,
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: MyColors.premiumColor,
+                          elevation: 6,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
                           ),
-                          Text(
-                            "Confirm The Information",
-                            style: AppStyle.styleBold25(context).copyWith(
-                                fontSize: 37,
-                                fontFamily: 'Roboto',
-                                color: MyColors.premiumColor),
-                          ),
-                          const SizedBox(
-                            height: 100,
-                          ),
-                          SizedBox(
-                            width: 380,
-                            height: 47,
-                            child: ElevatedButton(
-                              onPressed: () {
-                               
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: MyColors.premiumColor,
-                                elevation: 6,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                              ),
-                              child: Text(
-                                "Continue",
-                                style: AppStyle.styleRegular25(context)
-                                    .copyWith(
-                                        fontSize: 25,
-                                        fontFamily: 'Inter',
-                                        color: Colors.white),
-                              ),
-                            ),
-                          ),
-                        ],
+                        ),
+                        child: Text(
+                          "Continue",
+                          style: AppStyle.styleRegular25(context).copyWith(
+                              fontSize: 25, fontFamily: 'Inter', color: Colors.white),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            )
-          ],
-        ),
-      ),
+            ]),
+                    ),
+                  ),
+          ),
     );
   }
 }

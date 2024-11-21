@@ -1,8 +1,10 @@
 import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
 import 'package:admin_panel_app/constants/pages_name.dart';
+import 'package:admin_panel_app/core/logic/navigation_cubit/navigation_cubit.dart';
 import 'package:admin_panel_app/presentation/widgets/add_owner_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SelectingNumOfBoardField extends StatefulWidget {
   const SelectingNumOfBoardField({super.key});
@@ -105,11 +107,13 @@ class _SelectingNumOfBoardFieldState extends State<SelectingNumOfBoardField> {
               height: 47,
               child: ElevatedButton(
                 onPressed: () {
-                  setState(() {
-                    index == 3 ? index++ : null;
 
-                     Navigator.pushReplacementNamed(context, confirmOwnerScreen);
-                  });
+                  context.read<NavigationCubit>().navigateTo(10);
+                  // setState(() {
+                  //   index == 3 ? index++ : null;
+
+                  //    Navigator.pushReplacementNamed(context, confirmOwnerScreen);
+                  // });
                   // if (!BlocProvider.of<LoginCubit>(context)
                   //     .loginKey
                   //     .currentState!

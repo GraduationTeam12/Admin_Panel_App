@@ -5,12 +5,23 @@ import 'package:admin_panel_app/core/api/dio_consumer.dart';
 import 'package:admin_panel_app/core/data/repo/auth_repo.dart';
 import 'package:admin_panel_app/core/logic/login_cubit/login_cubit.dart';
 import 'package:admin_panel_app/core/logic/navigation_cubit/navigation_cubit.dart';
+import 'package:admin_panel_app/presentation/dash_board/add_owner.dart';
+import 'package:admin_panel_app/presentation/dash_board/confirm_info.dart';
 import 'package:admin_panel_app/presentation/dash_board/dash_board.dart';
 import 'package:admin_panel_app/presentation/dash_board/login_page.dart';
 import 'package:admin_panel_app/presentation/dash_board/number_of_board.dart';
 import 'package:admin_panel_app/presentation/dash_board/otp_owner.dart';
 import 'package:admin_panel_app/presentation/dash_board/user_information.dart';
 import 'package:admin_panel_app/presentation/screens/splash_screen.dart';
+import 'package:admin_panel_app/presentation/widgets/confirming_info.dart';
+import 'package:admin_panel_app/presentation/widgets/desktop_information.dart';
+import 'package:admin_panel_app/presentation/widgets/desktop_otp.dart';
+import 'package:admin_panel_app/presentation/widgets/desktop_otp_owner.dart';
+import 'package:admin_panel_app/presentation/widgets/get_information_body.dart';
+import 'package:admin_panel_app/presentation/widgets/info_fields.dart';
+import 'package:admin_panel_app/presentation/widgets/otp_form.dart';
+import 'package:admin_panel_app/presentation/widgets/selecting_num_of_board.dart';
+import 'package:admin_panel_app/presentation/widgets/selecting_num_of_board_field.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,16 +48,16 @@ class AppRouter {
         return MaterialPageRoute(builder: (context)=> const AddOwner());
 
       case otpOwnerScreen:
-        return MaterialPageRoute(builder: (context)=> const OtpOwner());
+        return MaterialPageRoute(builder: (context)=> const DesktopOtp());
 
       case infoOwnerScreen:
-        return MaterialPageRoute(builder: (context)=> const UserInformation());
+        return MaterialPageRoute(builder: (context)=> const GetInformationBody());
 
       case numOfBoardOwnerScreen:
-        return MaterialPageRoute(builder: (context)=> const NumberOfBoard());
+        return MaterialPageRoute(builder: (context)=> const SelectingNumOfBoard());
 
       case confirmOwnerScreen:
-        return MaterialPageRoute(builder: (context)=> const ConfirmInfo());
+        return MaterialPageRoute(builder: (context)=> const ConfirmingInfo());
 
       case splashScreen:
         return MaterialPageRoute(builder: (context) => const SplashScreen());

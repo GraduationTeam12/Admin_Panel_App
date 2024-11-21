@@ -1,4 +1,3 @@
-import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/presentation/widgets/custom_container.dart';
 import 'package:admin_panel_app/presentation/widgets/selecting_num_of_board_field.dart';
 import 'package:flutter/material.dart';

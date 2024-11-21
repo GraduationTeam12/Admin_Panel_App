@@ -70,7 +70,7 @@ class _AddOwnerBarState extends State<AddOwnerBar> {
                       color: MyColors.premiumColor,
                     ),
                     child: widget.index > 0
-                        ? Icon(
+                        ? const Icon(
                             Icons.check,
                             color: Colors.white,
                           )
@@ -134,10 +134,10 @@ class _AddOwnerBarState extends State<AddOwnerBar> {
                     decoration: ShapeDecoration(
                       shape: const OvalBorder(),
                       color:
-                          widget.index > 0 ? MyColors.premiumColor : Color(0xFFD9D9D9),
+                          widget.index > 0 ? MyColors.premiumColor : const Color(0xFFD9D9D9),
                     ),
                     child: widget.index > 1
-                        ? Icon(
+                        ? const Icon(
                             Icons.check,
                             color: Colors.white,
                           )
@@ -201,7 +201,7 @@ class _AddOwnerBarState extends State<AddOwnerBar> {
                     decoration: ShapeDecoration(
                       shape: const OvalBorder(),
                       color:
-                          widget.index > 1 ? MyColors.premiumColor : Color(0xFFD9D9D9),
+                          widget.index > 1 ? MyColors.premiumColor : const Color(0xFFD9D9D9),
                     ),
                     child: widget.index > 2
                         ? const Icon(

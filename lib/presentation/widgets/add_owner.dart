@@ -1,16 +1,11 @@
-import 'package:admin_panel_app/constants/app_style.dart';
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 import 'package:admin_panel_app/presentation/widgets/add_owner_email_form.dart';
 import 'package:admin_panel_app/presentation/widgets/custom_container.dart';
 import 'package:flutter/material.dart';
 
-class AddOwnerBody extends StatefulWidget {
-  const AddOwnerBody({super.key});
+class AddOwner extends StatelessWidget {
+  const AddOwner({super.key});
 
-  @override
-  State<AddOwnerBody> createState() => _AddOwnerBodyState();
-}
-
-class _AddOwnerBodyState extends State<AddOwnerBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

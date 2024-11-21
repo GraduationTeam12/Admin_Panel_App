@@ -1,10 +1,9 @@
-import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/presentation/widgets/custom_container.dart';
 import 'package:admin_panel_app/presentation/widgets/info_fields.dart';
 import 'package:flutter/material.dart';
 
-class GetInformationBody extends StatelessWidget {
-  const GetInformationBody({super.key});
+class UserInformation extends StatelessWidget {
+  const UserInformation({super.key});
 
   @override
   Widget build(BuildContext context) {

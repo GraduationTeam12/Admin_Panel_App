@@ -1,7 +1,7 @@
 import 'package:admin_panel_app/presentation/widgets/adaptive_layout.dart';
 import 'package:admin_panel_app/presentation/widgets/desktop_dashboard.dart';
-import 'package:admin_panel_app/presentation/widgets/mobile_dashboard.dart';
-import 'package:admin_panel_app/presentation/widgets/tablet_dashboard.dart';
+import 'package:admin_panel_app/presentation/widgets/mobile_widgets/mobile_dash_board.dart';
+import 'package:admin_panel_app/presentation/widgets/tablet_widgets/tablet_dash_board.dart';
 import 'package:flutter/material.dart';
  
 

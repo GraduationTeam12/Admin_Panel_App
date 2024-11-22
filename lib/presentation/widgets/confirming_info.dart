@@ -2,6 +2,7 @@ import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
 import 'package:admin_panel_app/presentation/widgets/add_owner_bar.dart';
 import 'package:admin_panel_app/presentation/widgets/custom_container.dart';
+import 'package:admin_panel_app/presentation/widgets/dialog_owner.dart';
 import 'package:flutter/material.dart';
 
 class ConfirmingInfo extends StatelessWidget {
@@ -69,7 +70,9 @@ class ConfirmingInfo extends StatelessWidget {
                       width: 380,
                       height: 47,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          showOwnerFormDialog(context);
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: MyColors.premiumColor,
                           elevation: 6,

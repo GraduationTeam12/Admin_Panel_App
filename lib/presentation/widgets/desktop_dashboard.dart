@@ -2,6 +2,7 @@
 
 import 'package:admin_panel_app/core/logic/navigation_cubit/navigation_cubit.dart';
 import 'package:admin_panel_app/presentation/dash_board/overview.dart';
+import 'package:admin_panel_app/presentation/widgets/add_hospital.dart';
 import 'package:admin_panel_app/presentation/widgets/confirming_info.dart';
 import 'package:admin_panel_app/presentation/widgets/custom_drawer.dart';
 import 'package:admin_panel_app/presentation/widgets/add_owner.dart';
@@ -57,17 +58,20 @@ class DesktopDashboard extends StatelessWidget {
                                 ? const SurveyPage()
                                 : pageIndex == 5
                                     ? const AddOwner()
-                                    : pageIndex == 7
-                                        ? const OtpOwner()
-                                        : pageIndex == 8
-                                            ? const UserInformation()
-                                            : pageIndex == 9
-                                                ? const SelectingNumOfBoard()
-                                                : pageIndex == 10
-                                                    ? const ConfirmingInfo()
-                                                    : Center(
-                                                        child: Text(_pagesTitle[
-                                                            pageIndex])),
+                                    : pageIndex == 6
+                                        ? const AddHospital()
+                                        : pageIndex == 7
+                                            ? const OtpOwner()
+                                            : pageIndex == 8
+                                                ? const UserInformation()
+                                                : pageIndex == 9
+                                                    ? const SelectingNumOfBoard()
+                                                    : pageIndex == 10
+                                                        ? const ConfirmingInfo()
+                                                        : Center(
+                                                            child: Text(
+                                                                _pagesTitle[
+                                                                    pageIndex])),
                       )
                     ],
                   ),

@@ -20,7 +20,7 @@ class DesktopDashboard extends StatelessWidget {
   final List<String> _pagesTitle = [
     "Overview",
     'Reports',
-    "Notifictions",
+    "Notifications",
     "Support",
     "Survey",
     "Add Owner",

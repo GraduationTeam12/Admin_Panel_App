@@ -50,13 +50,13 @@ class ActiveDarwerItem extends StatelessWidget {
                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15)))
               ),
           child: ListTile(
-            leading: SvgPicture.asset(drawerItemModel.image),
+            leading: SvgPicture.asset(drawerItemModel.imageActive),
             title: FittedBox(
               alignment: AlignmentDirectional.centerStart,
               fit: BoxFit.scaleDown,
               child: Text(
                 drawerItemModel.title,
-                style: AppStyle.styleRegular25(context)
+                style: AppStyle.styleRegular25W(context)
               ),
             ),
             // trailing: Container(

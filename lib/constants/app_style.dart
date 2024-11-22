@@ -90,6 +90,14 @@ abstract class AppStyle {
       fontWeight: FontWeight.w400,
     );
   }
+     static TextStyle styleRegular25W(BuildContext context) {
+    return TextStyle(
+      color:  Colors.white,
+      fontSize: getResponsiveFontSize(context , fontSize: 25),
+      fontFamily: 'Roboto',
+      fontWeight: FontWeight.w400,
+    );
+  }
 
   static TextStyle styleRegular40(BuildContext context) {
     return TextStyle(

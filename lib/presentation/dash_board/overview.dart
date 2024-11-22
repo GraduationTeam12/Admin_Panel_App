@@ -4,6 +4,7 @@ import 'package:admin_panel_app/presentation/widgets/diagram_custom.dart';
 import 'package:admin_panel_app/presentation/widgets/diagram_new_message.dart';
 import 'package:admin_panel_app/presentation/widgets/diagram_new_user.dart';
 import 'package:admin_panel_app/presentation/widgets/diagram_years_dash.dart';
+import 'package:admin_panel_app/presentation/widgets/stacked_column_chart.dart';
 import 'package:flutter/material.dart';
 
 class Overview extends StatefulWidget {
@@ -20,27 +21,28 @@ class _OverviewState extends State<Overview> {
       child: Container(
         width: MediaQuery.sizeOf(context).width,
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        child: Column(
+        child: const Column(
           children: [
           
-               const Row(
+                Row(
                 children: [
-                  Expanded(child: DiagramCustom(title: "Owners", number: 4600, subTitle: "Owner",img: Assets.imagesAuthImagesOwnerCounterDiagram,myColor: Color.fromRGBO(18, 183, 106, 1),)),
-                  Expanded(child: DiagramCustom(title: "Hospitals", number: 9000, subTitle: "Hospital",img: Assets.imagesAuthImagesHospitalCounterDiagram,myColor: Color.fromRGBO(61, 100, 152, 1),)),
+                  Expanded(child: DiagramCustom(title: "Owners", number: 4600, subTitle: "Owner",img: Assets.imagesAuthImagesBlueChart,myColor: Color.fromRGBO(61, 100, 152, 1),)),
+                  Expanded(child: DiagramCustom(title: "Hospitals", number: 9000, subTitle: "Hospital",img: Assets.imagesAuthImagesGreenChart,myColor: Color.fromRGBO(18, 183, 106, 1),)),
                   Expanded(child: DiagramCustom(title: "Fire Station", number: 700, subTitle: "Fire Station",img: Assets.imagesAuthImagesFireStationCounterDiagram,myColor: Color.fromRGBO(255, 168, 0, 1),))
                 ],
               ),
       
               Row(
                 children: [
-                  const Expanded(flex:11,child: DiagramYearsDash()),
-                  const Expanded(flex:7,child: DiagramNewMessage()),
-                  const Expanded(flex:7,child: DiagramNewUser()),
-                  const Expanded(flex:4,child: DiagramAnalytic())
+                   Expanded(flex:11,child: DiagramYearsDash()),
+                   Expanded(flex:7,child: DiagramNewMessage()),
+                   Expanded(flex:6,child: DiagramNewUser()),
+                   Expanded(flex:5,child: DiagramAnalytic())
       
                 ],
-              )
-            
+              ),
+
+            StackedColumnChart()
           ],
         ),
       ),

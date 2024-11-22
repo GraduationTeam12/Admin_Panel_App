@@ -56,8 +56,7 @@ class DiagramNewUser extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-                PartDiagramYearChart(title: "Daily", percent: 0.62, myColor: Color.fromRGBO(255, 180, 65, 1)),
-              PartDiagramYearChart(title: "Weekly", percent: 0.7, myColor: Color.fromRGBO(61, 100, 152, 1)),
+              PartDiagramYearChart(title: "Daily", percent: 0.63, myColor: Color.fromRGBO(61, 100, 152, 1)),
             ],
           ),
           

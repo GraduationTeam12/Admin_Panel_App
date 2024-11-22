@@ -113,5 +113,38 @@ class Assets {
   /// assets/images/auth_images/message.svg
   static const String imagesAuthImagesMessage = "assets/images/auth_images/message.svg";
 
+
+
+/// Assets for imagesAuthImagesBlueChart
+  /// assets/images/auth_images/blue_chart (1).svg
+  static const String imagesAuthImagesBlueChart = "assets/images/auth_images/blue_chart (1).svg";
+
+
+/// Assets for imagesAuthImagesGreenChart
+  /// assets/images/auth_images/green_chart (2).svg
+  static const String imagesAuthImagesGreenChart = "assets/images/auth_images/green_chart (2).svg";
+
+
+/// Assets for imagesAuthImagesSupportW
+  /// assets/images/auth_images/support_w.svg
+  static const String imagesAuthImagesSupportW = "assets/images/auth_images/support_w.svg";
+
+
+/// Assets for imagesAuthImagesReportW
+  /// assets/images/auth_images/report_w.svg
+  static const String imagesAuthImagesReportW= "assets/images/auth_images/report_w.svg";
+
+  
+/// Assets for imagesAuthImagesHomeW
+  /// assets/images/auth_images/home_w.svg
+  static const String imagesAuthImagesHomeW = "assets/images/auth_images/home_w.svg";
+
+
+/// Assets for imagesAuthImagesNotificationW
+  /// assets/images/auth_images/Notification_w.svg
+  static const String imagesAuthImagesNotificationW= "assets/images/auth_images/Notification_w.svg";
+
+
+
 }
 

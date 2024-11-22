@@ -1,6 +1,8 @@
 import 'package:admin_panel_app/constants/app_images.dart';
+import 'package:admin_panel_app/presentation/widgets/diagram_analytic.dart';
 import 'package:admin_panel_app/presentation/widgets/diagram_custom.dart';
 import 'package:admin_panel_app/presentation/widgets/diagram_new_message.dart';
+import 'package:admin_panel_app/presentation/widgets/diagram_new_user.dart';
 import 'package:admin_panel_app/presentation/widgets/diagram_years_dash.dart';
 import 'package:flutter/material.dart';
 
@@ -33,8 +35,8 @@ class _OverviewState extends State<Overview> {
                 children: [
                   const Expanded(flex:11,child: DiagramYearsDash()),
                   const Expanded(flex:7,child: DiagramNewMessage()),
-                  Expanded(flex:7,child: Container()),
-                  Expanded(flex:4,child: Container())
+                  const Expanded(flex:7,child: DiagramNewUser()),
+                  const Expanded(flex:4,child: DiagramAnalytic())
       
                 ],
               )

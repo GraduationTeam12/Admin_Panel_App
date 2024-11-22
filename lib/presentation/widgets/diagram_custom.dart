@@ -53,14 +53,20 @@ class _DiagramCustomState extends State<DiagramCustom> {
                     color: Color.fromRGBO(142, 147, 166, 1),
                     fontFamily: "Inter"),
               ),
-              Text(
-                widget.number.toString(),
+              TweenAnimationBuilder<double>(
+            tween: Tween<double>(begin: 0, end: widget.number.toDouble()),
+            duration: const Duration(milliseconds: 2000),
+            builder: (context, animatedNumber, child) {
+              return Text(
+                animatedNumber.toInt().toString(),
                 style: TextStyle(
                     fontSize: 35,
                     fontWeight: FontWeight.w600,
                     color: widget.myColor,
                     fontFamily: "Inter"),
-              ),
+              );
+            },
+          ),
               Text(
                 widget.subTitle,
                 style: const TextStyle(

@@ -108,5 +108,10 @@ class Assets {
   /// assets/images/auth_images/diagram_fire_station.svg
   static const String imagesAuthImagesFireStationCounterDiagram = "assets/images/auth_images/diagram_fire_station.svg";
 
+
+/// Assets for imagesAuthImagesMessage
+  /// assets/images/auth_images/message.svg
+  static const String imagesAuthImagesMessage = "assets/images/auth_images/message.svg";
+
 }
 

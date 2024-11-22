@@ -1,12 +1,12 @@
-import 'package:admin_panel_app/presentation/widgets/linear_progress_box.dart';
+import 'package:admin_panel_app/presentation/widgets/part_digram_year_chart.dart';
 import 'package:flutter/material.dart';
 
-class DiagramNewMessage extends StatelessWidget {
-  const DiagramNewMessage({super.key});
+class DiagramNewUser extends StatelessWidget {
+  const DiagramNewUser({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return  Container(
       height: 310,
       margin: const EdgeInsets.only(bottom: 10, left: 10),
       decoration: BoxDecoration(
@@ -25,7 +25,7 @@ class DiagramNewMessage extends StatelessWidget {
               top: 15
             ),
             child: Text(
-              "NEW MESSAGES",
+              "NEW User",
               style:  TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w700,
@@ -42,7 +42,7 @@ class DiagramNewMessage extends StatelessWidget {
               left: 15,
             ),
             child: Text(
-              "85",
+              "21",
               style:  TextStyle(
                   fontSize: 38,
                   fontWeight: FontWeight.w400,
@@ -53,19 +53,17 @@ class DiagramNewMessage extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          Divider(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+                PartDiagramYearChart(title: "Daily", percent: 0.62, myColor: Color.fromRGBO(255, 180, 65, 1)),
+              PartDiagramYearChart(title: "Weekly", percent: 0.7, myColor: Color.fromRGBO(61, 100, 152, 1)),
+            ],
+          ),
           
-        LinearProgressBox(progress: 0.7,),
-       Padding(
-           padding:  EdgeInsets.only(
-              left: 20,
-            ),         child: Text(
-                  'Response Rate',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400,color: Colors.black),
-                ),
-       ),
         ],
       ),
     );
+  
   }
 }

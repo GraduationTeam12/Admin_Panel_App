@@ -61,7 +61,7 @@ class _DiagramYearsDashState extends State<DiagramYearsDash> {
             children: [
             Expanded(child: PartDiagramYearChart(title: "Owners", percent: 0.7,myColor: Color.fromRGBO(61, 100, 152, 1),)),
             
-            Expanded(child: PartDiagramYearChart(title: "Emergency", percent: 0.9,myColor: Color.fromRGBO(18, 183, 106, 1),)),
+            Expanded(child: PartDiagramYearChart(title: "Hospital", percent: 0.9,myColor: Color.fromRGBO(18, 183, 106, 1),)),
             
             Expanded(child: PartDiagramYearChart(title: "Fire station", percent: 0.6,myColor: Color.fromRGBO(255, 168, 0, 1),)),
             ],

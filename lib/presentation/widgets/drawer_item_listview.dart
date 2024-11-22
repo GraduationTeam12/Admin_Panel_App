@@ -15,14 +15,14 @@ class DrawerItemListview extends StatefulWidget {
 class _DrawerItemListviewState extends State<DrawerItemListview> {
   final List<DrawerItemModel> items = [
     const DrawerItemModel(
-        title: "Overview", image: Assets.imagesAuthImagesOverviewDrawer),
+        title: "Overview", image: Assets.imagesAuthImagesOverviewDrawer, imageActive: Assets.imagesAuthImagesHomeW),
     const DrawerItemModel(
-        title: "Reports", image: Assets.imagesAuthImagesReportsDrawer),
+        title: "Reports", image: Assets.imagesAuthImagesReportsDrawer,imageActive:Assets.imagesAuthImagesReportW),
     const DrawerItemModel(
         title: "Notification",
-        image: Assets.imagesAuthImagesNotificationDrawer),
+        image: Assets.imagesAuthImagesNotificationDrawer, imageActive: Assets.imagesAuthImagesNotificationW),
     const DrawerItemModel(
-        title: "Support", image: Assets.imagesAuthImagesSupportDrawer)
+        title: "Support", image: Assets.imagesAuthImagesSupportDrawer, imageActive: Assets.imagesAuthImagesSupportW)
   ];
 
   // int activeIndex = 0;

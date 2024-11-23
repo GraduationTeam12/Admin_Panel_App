@@ -1,5 +1,6 @@
 import 'package:admin_panel_app/constants/app_images.dart';
 import 'package:admin_panel_app/core/logic/navigation_cubit/navigation_cubit.dart';
+import 'package:admin_panel_app/presentation/widgets/dialog_info_admin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -59,22 +60,28 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
           const SizedBox(
             width: 10,
           ),
-          Container(
-            // height: MediaQuery.of(context).size.height * .08,
-            // width: MediaQuery.of(context).size.height * .08,
-            width: 50,
-            height: 50,
-            decoration: const BoxDecoration(shape: BoxShape.circle, boxShadow: [
-              BoxShadow(
-                  color: Color.fromRGBO(0, 0, 0, 0.25),
-                  blurRadius: 4,
-                  offset: Offset(0, 4))
-            ]),
-            child: ClipOval(
-                child: Image.asset(
-              "assets/images/auth_images/person_image.jpeg",
-              fit: BoxFit.cover,
-            )),
+          GestureDetector(
+            onTap: () {
+              showInfoAdminDialog(context,"Ahmed Ayman","Ahmedayman992@gmail.com");
+            },
+            child: Container(
+              // height: MediaQuery.of(context).size.height * .08,
+              // width: MediaQuery.of(context).size.height * .08,
+              width: 50,
+              height: 50,
+              decoration:
+                  const BoxDecoration(shape: BoxShape.circle, boxShadow: [
+                BoxShadow(
+                    color: Color.fromRGBO(0, 0, 0, 0.25),
+                    blurRadius: 4,
+                    offset: Offset(0, 4))
+              ]),
+              child: ClipOval(
+                  child: Image.asset(
+                "assets/images/auth_images/person_image.jpeg",
+                fit: BoxFit.cover,
+              )),
+            ),
           ),
           const SizedBox(
             width: 40,

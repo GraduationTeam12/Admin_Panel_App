@@ -74,17 +74,44 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
             shrinkWrap: true,
             itemCount: items.length,
             itemBuilder: (context, index) {
-              return Container(
-                child: Column(
-                  children: [
-                    SingleChildScrollView(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          SizedBox(
-                            width: 100,
+              return Column(
+                children: [
+                  SingleChildScrollView(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        SizedBox(
+                          width: 100,
+                          child: TextFormField(
+                            initialValue: items[0].name,
+                            style: AppStyle.styleRegular16(context)
+                                .copyWith(color: Colors.black),
+                            keyboardType: TextInputType.text,
+                            textInputAction: TextInputAction.done,
+                            decoration: const InputDecoration(
+                              prefixIconConstraints: BoxConstraints(
+                                minWidth: 0,
+                                minHeight: 0,
+                              ),
+                              enabled: false,
+                              // isDense: true,
+              
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide.none),
+                              //
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none),
+                            ),
+                          ),
+                        ),
+                        // const SizedBox(
+                        //   width: 30,
+                        // ),
+                        Expanded(
+                          child: SizedBox(
+                            width: 200,
                             child: TextFormField(
-                              initialValue: items[0].name,
+                              initialValue: items[0].email,
                               style: AppStyle.styleRegular16(context)
                                   .copyWith(color: Colors.black),
                               keyboardType: TextInputType.text,
@@ -96,361 +123,332 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
                                 ),
                                 enabled: false,
                                 // isDense: true,
-
+              
                                 border: OutlineInputBorder(
                                     borderSide: BorderSide.none),
-                                //
+              
                                 focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.white)),
+                              ),
+                            ),
+                          ),
+                        ),
+                        // const SizedBox(
+                        //   width: 30,
+                        // ),
+                        Expanded(
+                          child: SizedBox(
+                            width: 250,
+                            child: TextFormField(
+                              initialValue: items[0].location,
+                              style: AppStyle.styleRegular16(context)
+                                  .copyWith(color: Colors.black),
+                              keyboardType: TextInputType.text,
+                              textInputAction: TextInputAction.done,
+                              decoration: const InputDecoration(
+                                prefixIconConstraints: BoxConstraints(
+                                  minWidth: 0,
+                                  minHeight: 0,
+                                ),
+                                enabled: false,
+                                // isDense: true,
+              
+                                border: OutlineInputBorder(
                                     borderSide: BorderSide.none),
+              
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.white)),
                               ),
                             ),
                           ),
-                          // const SizedBox(
-                          //   width: 30,
-                          // ),
-                          Expanded(
-                            child: SizedBox(
-                              width: 200,
-                              child: TextFormField(
-                                initialValue: items[0].email,
-                                style: AppStyle.styleRegular16(context)
-                                    .copyWith(color: Colors.black),
-                                keyboardType: TextInputType.text,
-                                textInputAction: TextInputAction.done,
-                                decoration: const InputDecoration(
-                                  prefixIconConstraints: BoxConstraints(
-                                    minWidth: 0,
-                                    minHeight: 0,
-                                  ),
-                                  enabled: false,
-                                  // isDense: true,
-
-                                  border: OutlineInputBorder(
-                                      borderSide: BorderSide.none),
-
-                                  focusedBorder: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.white)),
+                        ),
+                        // const SizedBox(
+                        //   width: 30,
+                        // ),
+                        Expanded(
+                          child: SizedBox(
+                            width: 100,
+                            child: TextFormField(
+                              initialValue: items[0].board,
+                              style: AppStyle.styleRegular16(context)
+                                  .copyWith(color: Colors.black),
+                              keyboardType: TextInputType.text,
+                              textInputAction: TextInputAction.done,
+                              decoration: const InputDecoration(
+                                prefixIconConstraints: BoxConstraints(
+                                  minWidth: 0,
+                                  minHeight: 0,
                                 ),
+                                enabled: false,
+                                // isDense: true,
+              
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide.none),
+              
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.white)),
                               ),
                             ),
                           ),
-                          // const SizedBox(
-                          //   width: 30,
-                          // ),
-                          Expanded(
-                            child: SizedBox(
-                              width: 250,
-                              child: TextFormField(
-                                initialValue: items[0].location,
-                                style: AppStyle.styleRegular16(context)
-                                    .copyWith(color: Colors.black),
-                                keyboardType: TextInputType.text,
-                                textInputAction: TextInputAction.done,
-                                decoration: const InputDecoration(
-                                  prefixIconConstraints: BoxConstraints(
-                                    minWidth: 0,
-                                    minHeight: 0,
-                                  ),
-                                  enabled: false,
-                                  // isDense: true,
-
-                                  border: OutlineInputBorder(
-                                      borderSide: BorderSide.none),
-
-                                  focusedBorder: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.white)),
+                        ),
+                        // const SizedBox(
+                        //   width: 30,
+                        // ),
+                        Expanded(
+                          child: SizedBox(
+                            width: 150,
+                            child: TextFormField(
+                              initialValue: items[0].phone,
+                              style: AppStyle.styleRegular16(context)
+                                  .copyWith(color: Colors.black),
+                              keyboardType: TextInputType.text,
+                              textInputAction: TextInputAction.done,
+                              decoration: const InputDecoration(
+                                prefixIconConstraints: BoxConstraints(
+                                  minWidth: 0,
+                                  minHeight: 0,
                                 ),
+                                enabled: false,
+                                // isDense: true,
+              
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide.none),
+              
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.white)),
                               ),
                             ),
                           ),
-                          // const SizedBox(
-                          //   width: 30,
-                          // ),
-                          Expanded(
-                            child: SizedBox(
-                              width: 100,
-                              child: TextFormField(
-                                initialValue: items[0].board,
-                                style: AppStyle.styleRegular16(context)
-                                    .copyWith(color: Colors.black),
-                                keyboardType: TextInputType.text,
-                                textInputAction: TextInputAction.done,
-                                decoration: const InputDecoration(
-                                  prefixIconConstraints: BoxConstraints(
-                                    minWidth: 0,
-                                    minHeight: 0,
-                                  ),
-                                  enabled: false,
-                                  // isDense: true,
-
-                                  border: OutlineInputBorder(
-                                      borderSide: BorderSide.none),
-
-                                  focusedBorder: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.white)),
+                        ),
+                        // const SizedBox(
+                        //   width: 30,
+                        // ),
+                        Expanded(
+                          child: SizedBox(
+                            width: 200,
+                            child: TextFormField(
+                              initialValue: items[0].id,
+                              style: AppStyle.styleRegular16(context)
+                                  .copyWith(color: Colors.black),
+                              keyboardType: TextInputType.text,
+                              textInputAction: TextInputAction.done,
+                              decoration: const InputDecoration(
+                                prefixIconConstraints: BoxConstraints(
+                                  minWidth: 0,
+                                  minHeight: 0,
                                 ),
+                                enabled: false,
+                                // isDense: true,
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide.none),
+              
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.white)),
                               ),
                             ),
                           ),
-                          // const SizedBox(
-                          //   width: 30,
-                          // ),
-                          Expanded(
-                            child: SizedBox(
-                              width: 150,
-                              child: TextFormField(
-                                initialValue: items[0].phone,
-                                style: AppStyle.styleRegular16(context)
-                                    .copyWith(color: Colors.black),
-                                keyboardType: TextInputType.text,
-                                textInputAction: TextInputAction.done,
-                                decoration: const InputDecoration(
-                                  prefixIconConstraints: BoxConstraints(
-                                    minWidth: 0,
-                                    minHeight: 0,
-                                  ),
-                                  enabled: false,
-                                  // isDense: true,
-
-                                  border: OutlineInputBorder(
-                                      borderSide: BorderSide.none),
-
-                                  focusedBorder: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.white)),
-                                ),
+                        ),
+                        // const SizedBox(
+                        //   width: 30,
+                        // ),
+                        Row(
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                showReportOwnerFormDialog(
+                                    context,
+                                    items[index].name,
+                                    items[index].email,
+                                    items[index].location,
+                                    items[index].phone,
+                                    items[index].id,
+                                    items[index].board);
+                              },
+                              child: Container(
+                                width: 30,
+                                height: 30,
+                                decoration: ShapeDecoration(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(5),
+                                        side: const BorderSide(
+                                            color: MyColors.premiumColor,
+                                            width: 0.3)),
+                                    color: Colors.white),
+                                child: const Center(
+                                    child: Icon(Icons.visibility,
+                                        color: MyColors.premiumColor)),
                               ),
                             ),
-                          ),
-                          // const SizedBox(
-                          //   width: 30,
-                          // ),
-                          Expanded(
-                            child: SizedBox(
-                              width: 200,
-                              child: TextFormField(
-                                initialValue: items[0].id,
-                                style: AppStyle.styleRegular16(context)
-                                    .copyWith(color: Colors.black),
-                                keyboardType: TextInputType.text,
-                                textInputAction: TextInputAction.done,
-                                decoration: const InputDecoration(
-                                  prefixIconConstraints: BoxConstraints(
-                                    minWidth: 0,
-                                    minHeight: 0,
-                                  ),
-                                  enabled: false,
-                                  // isDense: true,
-                                  border: OutlineInputBorder(
-                                      borderSide: BorderSide.none),
-
-                                  focusedBorder: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.white)),
-                                ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                context.read<NavigationCubit>().navigateTo(13);
+                              },
+                              child: Container(
+                                width: 30,
+                                height: 30,
+                                decoration: ShapeDecoration(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(5),
+                                        side: const BorderSide(
+                                            color: Colors.amber, width: 0.3)),
+                                    color: Colors.white),
+                                child: const Center(
+                                    child: Icon(Icons.edit,
+                                        color: Colors.amber)),
                               ),
                             ),
-                          ),
-                          // const SizedBox(
-                          //   width: 30,
-                          // ),
-                          Row(
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  showReportOwnerFormDialog(
-                                      context,
-                                      items[index].name,
-                                      items[index].email,
-                                      items[index].location,
-                                      items[index].phone,
-                                      items[index].id,
-                                      items[index].board);
-                                },
-                                child: Container(
-                                  width: 30,
-                                  height: 30,
-                                  decoration: ShapeDecoration(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          side: const BorderSide(
-                                              color: MyColors.premiumColor,
-                                              width: 0.3)),
-                                      color: Colors.white),
-                                  child: const Center(
-                                      child: Icon(Icons.visibility,
-                                          color: MyColors.premiumColor)),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  context.read<NavigationCubit>().navigateTo(13);
-                                },
-                                child: Container(
-                                  width: 30,
-                                  height: 30,
-                                  decoration: ShapeDecoration(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          side: const BorderSide(
-                                              color: Colors.amber, width: 0.3)),
-                                      color: Colors.white),
-                                  child: const Center(
-                                      child: Icon(Icons.edit,
-                                          color: Colors.amber)),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return AlertDialog(
-                                          scrollable: true,
-                                          backgroundColor: Colors.white,
-                                          title: Column(
-                                            children: [
-                                              Text(
-                                                "Are you sure , You want to delete this account?",
-                                                style: AppStyle.styleBold20(
-                                                        context)
-                                                    .copyWith(
-                                                        fontSize: 20,
-                                                        color: MyColors
-                                                            .premiumColor),
-                                              ),
-                                              const SizedBox(
-                                                height: 16,
-                                              ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  InkWell(
-                                                    onTap: () {
-                                                      Navigator.pop(context);
-                                                    },
-                                                    child: Container(
-                                                      width: 50,
-                                                      height: 30,
-                                                      decoration:
-                                                          ShapeDecoration(
-                                                        shape:
-                                                            RoundedRectangleBorder(
-                                                          side:
-                                                              const BorderSide(
-                                                                  color: Colors
-                                                                      .amber,
-                                                                  width: 0.3),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(8),
-                                                        ),
-                                                        color: Colors.white,
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        scrollable: true,
+                                        backgroundColor: Colors.white,
+                                        title: Column(
+                                          children: [
+                                            Text(
+                                              "Are you sure , You want to delete this account?",
+                                              style: AppStyle.styleBold20(
+                                                      context)
+                                                  .copyWith(
+                                                      fontSize: 20,
+                                                      color: MyColors
+                                                          .premiumColor),
+                                            ),
+                                            const SizedBox(
+                                              height: 16,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                InkWell(
+                                                  onTap: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: Container(
+                                                    width: 50,
+                                                    height: 30,
+                                                    decoration:
+                                                        ShapeDecoration(
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                        side:
+                                                            const BorderSide(
+                                                                color: Colors
+                                                                    .amber,
+                                                                width: 0.3),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8),
                                                       ),
-                                                      child: Center(
-                                                        child: Text(
-                                                          "No",
-                                                          style: AppStyle
-                                                                  .styleBold20(
-                                                                      context)
-                                                              .copyWith(
-                                                                  fontSize: 18,
-                                                                  color: Colors
-                                                                      .black),
-                                                        ),
+                                                      color: Colors.white,
+                                                    ),
+                                                    child: Center(
+                                                      child: Text(
+                                                        "No",
+                                                        style: AppStyle
+                                                                .styleBold20(
+                                                                    context)
+                                                            .copyWith(
+                                                                fontSize: 18,
+                                                                color: Colors
+                                                                    .black),
                                                       ),
                                                     ),
                                                   ),
-                                                  const SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  InkWell(
-                                                    onTap: () {
-                                                      setState(() {
-                                                        items.remove(
-                                                            items[index]);
-                                                      });
-
-                                                      Navigator.pop(context);
-                                                    },
-                                                    child: Container(
-                                                      width: 50,
-                                                      height: 30,
-                                                      decoration:
-                                                          ShapeDecoration(
-                                                        shape:
-                                                            RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(8),
-                                                        ),
-                                                        color: MyColors
-                                                            .premiumColor,
+                                                ),
+                                                const SizedBox(
+                                                  width: 10,
+                                                ),
+                                                InkWell(
+                                                  onTap: () {
+                                                    setState(() {
+                                                      items.remove(
+                                                          items[index]);
+                                                    });
+              
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: Container(
+                                                    width: 50,
+                                                    height: 30,
+                                                    decoration:
+                                                        ShapeDecoration(
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8),
                                                       ),
-                                                      child: Center(
-                                                        child: Text(
-                                                          "Yes",
-                                                          style: AppStyle
-                                                                  .styleBold20(
-                                                                      context)
-                                                              .copyWith(
-                                                                  fontSize: 18,
-                                                                  color: Colors
-                                                                      .white),
-                                                        ),
+                                                      color: MyColors
+                                                          .premiumColor,
+                                                    ),
+                                                    child: Center(
+                                                      child: Text(
+                                                        "Yes",
+                                                        style: AppStyle
+                                                                .styleBold20(
+                                                                    context)
+                                                            .copyWith(
+                                                                fontSize: 18,
+                                                                color: Colors
+                                                                    .white),
                                                       ),
                                                     ),
                                                   ),
-                                                ],
-                                              )
-                                            ],
-                                          ),
-                                        );
-                                      });
-                                },
-                                child: Container(
-                                  width: 30,
-                                  height: 30,
-                                  decoration: ShapeDecoration(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          side: const BorderSide(
-                                              color: Colors.red, width: 0.3)),
-                                      color: Colors.white),
-                                  child: const Center(
-                                      child: Icon(Icons.delete,
-                                          color: Colors.red)),
-                                ),
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      );
+                                    });
+                              },
+                              child: Container(
+                                width: 30,
+                                height: 30,
+                                decoration: ShapeDecoration(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(5),
+                                        side: const BorderSide(
+                                            color: Colors.red, width: 0.3)),
+                                    color: Colors.white),
+                                child: const Center(
+                                    child: Icon(Icons.delete,
+                                        color: Colors.red)),
                               ),
-                              const SizedBox(
-                                width: 20,
-                              )
-                            ],
-                          )
-                        ],
-                      ),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            )
+                          ],
+                        )
+                      ],
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Divider(
-                        height: 0,
-                      ),
-                    )
-                  ],
-                ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Divider(
+                      height: 0,
+                    ),
+                  )
+                ],
               );
             }),
       ),

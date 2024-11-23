@@ -4,6 +4,7 @@ import 'package:admin_panel_app/core/logic/navigation_cubit/navigation_cubit.dar
 import 'package:admin_panel_app/presentation/dash_board/hospital_report.dart';
 import 'package:admin_panel_app/presentation/dash_board/overview.dart';
 import 'package:admin_panel_app/presentation/dash_board/owner_reports.dart';
+import 'package:admin_panel_app/presentation/dash_board/support_page.dart';
 import 'package:admin_panel_app/presentation/widgets/add_hospital.dart';
 import 'package:admin_panel_app/presentation/widgets/confirming_info.dart';
 import 'package:admin_panel_app/presentation/widgets/custom_drawer.dart';
@@ -62,31 +63,32 @@ class DesktopDashboard extends StatelessWidget {
                             ? const Overview()
                             : pageIndex == 1
                                 ? OwnerReports()
-                                : pageIndex == 4
-                                    ? const SurveyPage()
-                                    : pageIndex == 5
-                                        ? const AddOwner()
-                                        : pageIndex == 6
-                                            ? const AddHospital()
-                                            : pageIndex == 7
-                                                ? const OtpOwner()
-                                                : pageIndex == 8
-                                                    ? const UserInformation()
-                                                    : pageIndex == 9
-                                                        ? const SelectingNumOfBoard()
-                                                        : pageIndex == 10
-                                                            ? const ConfirmingInfo()
-                                                            : pageIndex == 11
-                                                                ? OwnerReports()
+                                : pageIndex == 3
+                                    ? const SupportPage()
+                                    : pageIndex == 4
+                                        ? const SurveyPage()
+                                        : pageIndex == 5
+                                            ? const AddOwner()
+                                            : pageIndex == 6
+                                                ? const AddHospital()
+                                                : pageIndex == 7
+                                                    ? const OtpOwner()
+                                                    : pageIndex == 8
+                                                        ? const UserInformation()
+                                                        : pageIndex == 9
+                                                            ? const SelectingNumOfBoard()
+                                                            : pageIndex == 10
+                                                                ? const ConfirmingInfo()
                                                                 : pageIndex ==
-                                                                        12
-                                                                    ? HospitalReport()
+                                                                        11
+                                                                    ? OwnerReports()
                                                                     : pageIndex ==
-                                                                            13
-                                                                        ? const ReportOwnerEditingInformation()
-                                                                        : Center(
-                                                                            child:
-                                                                                Text(_pagesTitle[pageIndex])),
+                                                                            12
+                                                                        ? HospitalReport()
+                                                                        : pageIndex ==
+                                                                                13
+                                                                            ? const ReportOwnerEditingInformation()
+                                                                            : Center(child: Text(_pagesTitle[pageIndex])),
                       )
                     ],
                   ),

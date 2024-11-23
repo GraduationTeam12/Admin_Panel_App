@@ -28,7 +28,7 @@ class _OverviewState extends State<Overview> {
                 children: [
                   Expanded(child: DiagramCustom(title: "Owners", number: 4600, subTitle: "Owner",img: Assets.imagesAuthImagesBlueChart,myColor: Color.fromRGBO(61, 100, 152, 1),)),
                   Expanded(child: DiagramCustom(title: "Hospitals", number: 9000, subTitle: "Hospital",img: Assets.imagesAuthImagesGreenChart,myColor: Color.fromRGBO(18, 183, 106, 1),)),
-                  Expanded(child: DiagramCustom(title: "Fire Station", number: 700, subTitle: "Fire Station",img: Assets.imagesAuthImagesFireStationCounterDiagram,myColor: Color.fromRGBO(255, 168, 0, 1),))
+                  Expanded(child: DiagramCustom(title: "Fire Station", number: 700, subTitle: "Fire Station",img: Assets.imagesAuthImagesDiagramFireStation,myColor: Color.fromRGBO(255, 168, 0, 1),))
                 ],
               ),
       

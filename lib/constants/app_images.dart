@@ -6,13 +6,49 @@ class Assets {
   /// assets/images/auth_images/add_button.svg
   static const String imagesAuthImagesAddButton = "assets/images/auth_images/add_button.svg";
 
+  /// Assets for imagesAuthImagesBlueChart (1)
+  /// assets/images/auth_images/blue_chart (1).svg
+  static const String imagesAuthImagesBlueChart   = "assets/images/auth_images/blue_chart (1).svg";
+
+  /// Assets for imagesAuthImagesBroSurvey
+  /// assets/images/auth_images/bro_survey.svg
+  static const String imagesAuthImagesBroSurvey = "assets/images/auth_images/bro_survey.svg";
+
+  /// Assets for imagesAuthImagesClarityFormLine
+  /// assets/images/auth_images/clarity_form-line.svg
+  static const String imagesAuthImagesClarityFormLine = "assets/images/auth_images/clarity_form-line.svg";
+
   /// Assets for imagesAuthImagesContactUsDrawer
   /// assets/images/auth_images/contact_us_drawer.svg
   static const String imagesAuthImagesContactUsDrawer = "assets/images/auth_images/contact_us_drawer.svg";
 
+  /// Assets for imagesAuthImagesDiagramFireStation
+  /// assets/images/auth_images/diagram_fire_station.svg
+  static const String imagesAuthImagesDiagramFireStation = "assets/images/auth_images/diagram_fire_station.svg";
+
+  /// Assets for imagesAuthImagesDiagramHospital
+  /// assets/images/auth_images/diagram_hospital.svg
+  static const String imagesAuthImagesDiagramHospital = "assets/images/auth_images/diagram_hospital.svg";
+
+  /// Assets for imagesAuthImagesGreenChart (2)
+  /// assets/images/auth_images/green_chart (2).svg
+  static const String imagesAuthImagesGreenChart   = "assets/images/auth_images/green_chart (2).svg";
+
   /// Assets for imagesAuthImagesHomePic
   /// assets/images/auth_images/home_pic.svg
   static const String imagesAuthImagesHomePic = "assets/images/auth_images/home_pic.svg";
+
+  /// Assets for imagesAuthImagesHomeW
+  /// assets/images/auth_images/home_w.svg
+  static const String imagesAuthImagesHomeW = "assets/images/auth_images/home_w.svg";
+
+  /// Assets for imagesAuthImagesIconHospitalSidebar
+  /// assets/images/auth_images/icon_hospital_sidebar.svg
+  static const String imagesAuthImagesIconHospitalSidebar = "assets/images/auth_images/icon_hospital_sidebar.svg";
+
+  /// Assets for imagesAuthImagesIconOwnerSidebar
+  /// assets/images/auth_images/icon_owner_sidebar.svg
+  static const String imagesAuthImagesIconOwnerSidebar = "assets/images/auth_images/icon_owner_sidebar.svg";
 
   /// Assets for imagesAuthImagesLineDrawer
   /// assets/images/auth_images/line_drawer.svg
@@ -25,6 +61,10 @@ class Assets {
   /// Assets for imagesAuthImagesLogo
   /// assets/images/auth_images/logo.png
   static const String imagesAuthImagesLogo = "assets/images/auth_images/logo.png";
+
+  /// Assets for imagesAuthImagesLogodesign
+  /// assets/images/auth_images/logodesign.png
+  static const String imagesAuthImagesLogodesign = "assets/images/auth_images/logodesign.png";
 
   /// Assets for imagesAuthImagesLogoo
   /// assets/images/auth_images/logoo.png
@@ -42,13 +82,49 @@ class Assets {
   /// assets/images/auth_images/logout_drawer.svg
   static const String imagesAuthImagesLogoutDrawer = "assets/images/auth_images/logout_drawer.svg";
 
+  /// Assets for imagesAuthImagesMessage
+  /// assets/images/auth_images/message.svg
+  static const String imagesAuthImagesMessage = "assets/images/auth_images/message.svg";
+
+  /// Assets for imagesAuthImagesNotifcations
+  /// assets/images/auth_images/notifcations.svg
+  static const String imagesAuthImagesNotifcations = "assets/images/auth_images/notifcations.svg";
+
   /// Assets for imagesAuthImagesNotificationDrawer
   /// assets/images/auth_images/notification_drawer.svg
   static const String imagesAuthImagesNotificationDrawer = "assets/images/auth_images/notification_drawer.svg";
 
+  /// Assets for imagesAuthImagesNotificationW
+  /// assets/images/auth_images/Notification_w.svg
+  static const String imagesAuthImagesNotificationW = "assets/images/auth_images/Notification_w.svg";
+
   /// Assets for imagesAuthImagesOverviewDrawer
   /// assets/images/auth_images/overview_drawer.svg
   static const String imagesAuthImagesOverviewDrawer = "assets/images/auth_images/overview_drawer.svg";
+
+  /// Assets for imagesAuthImagesOwnerCounterDiagram
+  /// assets/images/auth_images/owner_counter_diagram.svg
+  static const String imagesAuthImagesOwnerCounterDiagram = "assets/images/auth_images/owner_counter_diagram.svg";
+
+  /// Assets for imagesAuthImagesOwnerReportEditing
+  /// assets/images/auth_images/owner_report_editing.jpg
+  static const String imagesAuthImagesOwnerReportEditing = "assets/images/auth_images/owner_report_editing.jpg";
+
+  /// Assets for imagesAuthImagesPersonImage
+  /// assets/images/auth_images/person_image.jpeg
+  static const String imagesAuthImagesPersonImage = "assets/images/auth_images/person_image.jpeg";
+
+  /// Assets for imagesAuthImagesPersooon
+  /// assets/images/auth_images/persooon.svg
+  static const String imagesAuthImagesPersooon = "assets/images/auth_images/persooon.svg";
+
+  /// Assets for imagesAuthImagesReportEditing
+  /// assets/images/auth_images/report_editing.jpg
+   
+
+  /// Assets for imagesAuthImagesReportW
+  /// assets/images/auth_images/report_w.svg
+  static const String imagesAuthImagesReportW = "assets/images/auth_images/report_w.svg";
 
   /// Assets for imagesAuthImagesReportsDrawer
   /// assets/images/auth_images/reports_drawer.svg
@@ -66,85 +142,8 @@ class Assets {
   /// assets/images/auth_images/support_drawer.svg
   static const String imagesAuthImagesSupportDrawer = "assets/images/auth_images/support_drawer.svg";
 
-  /// Assets for imagesAuthImagesPersonImg
-  /// assets/images/auth_images/person_image.svg
-  static const String imagesAuthImagesPersonImg = "assets/images/auth_images/person_image.svg";
-
-  /// Assets for imagesAuthImagesNotificationsHeader
-  /// assets/images/auth_images/notifcations.svg
-  static const String imagesAuthImagesNotificationsHeader = "assets/images/auth_images/notifcations.svg";
-
-/// Assets for imagesAuthImagesNotificationsHeader
-  /// assets/images/auth_images/clarity_form-line.svg
-  static const String imagesAuthImagesClarityFormLineHeader = "assets/images/auth_images/clarity_form-line.svg";
-
-
-/// Assets for imagesAuthImagesBroSurvey
-  /// assets/images/auth_images/bro_survey.svg
-  static const String imagesAuthImagesBroSurvey = "assets/images/auth_images/bro_survey.svg";
-
-
-/// Assets for imagesAuthImagesIconHospital
-  /// assets/images/auth_images/icon_hospital_sidebar.svg
-  static const String imagesAuthImagesIconHospital = "assets/images/auth_images/icon_hospital_sidebar.svg";
-
-
-/// Assets for imagesAuthImagesBroSurvey
-  /// assets/images/auth_images/icon_owner_sidebar.svg
-  static const String imagesAuthImagesIconOwner = "assets/images/auth_images/icon_owner_sidebar.svg";
-
-  
-/// Assets for imagesAuthImagesOwnerCounterDiagram
-  /// assets/images/auth_images/owner_counter_diagram.svg
-  static const String imagesAuthImagesOwnerCounterDiagram = "assets/images/auth_images/owner_counter_diagram.svg";
-
-
-/// Assets for imagesAuthImagesHospitalCounterDiagram
-  /// assets/images/auth_images/diagram_hospital.svg
-  static const String imagesAuthImagesHospitalCounterDiagram = "assets/images/auth_images/diagram_hospital.svg";
-
-
-/// Assets for imagesAuthImagesFireStationCounterDiagram
-  /// assets/images/auth_images/diagram_fire_station.svg
-  static const String imagesAuthImagesFireStationCounterDiagram = "assets/images/auth_images/diagram_fire_station.svg";
-
-
-/// Assets for imagesAuthImagesMessage
-  /// assets/images/auth_images/message.svg
-  static const String imagesAuthImagesMessage = "assets/images/auth_images/message.svg";
-
-
-
-/// Assets for imagesAuthImagesBlueChart
-  /// assets/images/auth_images/blue_chart (1).svg
-  static const String imagesAuthImagesBlueChart = "assets/images/auth_images/blue_chart (1).svg";
-
-
-/// Assets for imagesAuthImagesGreenChart
-  /// assets/images/auth_images/green_chart (2).svg
-  static const String imagesAuthImagesGreenChart = "assets/images/auth_images/green_chart (2).svg";
-
-
-/// Assets for imagesAuthImagesSupportW
+  /// Assets for imagesAuthImagesSupportW
   /// assets/images/auth_images/support_w.svg
   static const String imagesAuthImagesSupportW = "assets/images/auth_images/support_w.svg";
-
-
-/// Assets for imagesAuthImagesReportW
-  /// assets/images/auth_images/report_w.svg
-  static const String imagesAuthImagesReportW= "assets/images/auth_images/report_w.svg";
-
-  
-/// Assets for imagesAuthImagesHomeW
-  /// assets/images/auth_images/home_w.svg
-  static const String imagesAuthImagesHomeW = "assets/images/auth_images/home_w.svg";
-
-
-/// Assets for imagesAuthImagesNotificationW
-  /// assets/images/auth_images/Notification_w.svg
-  static const String imagesAuthImagesNotificationW= "assets/images/auth_images/Notification_w.svg";
-
-
-
 }
 

@@ -1,7 +1,6 @@
 import 'package:admin_panel_app/constants/pages_name.dart';
 import 'package:admin_panel_app/core/cache/cache_helper.dart';
 import 'package:admin_panel_app/firebase_options.dart';
-import 'package:admin_panel_app/presentation/widgets/dialog_success_animation.dart';
 import 'package:admin_panel_app/routing.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';

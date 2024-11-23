@@ -58,7 +58,7 @@ class _DrawerItemListviewState extends State<DrawerItemListview> {
                         itemBuilder: (context, index) {
                              return Padding(
                                  padding: const EdgeInsets.only(top: 20),
-                                 child: GestureDetector(
+                                 child: InkWell(
                                     onTap: () {
                 
                                      setState(() {

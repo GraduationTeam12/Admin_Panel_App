@@ -11,37 +11,39 @@ class ReportOwnerEditingInformation extends StatelessWidget {
     return CustomContainer(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 90 , vertical: 30),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              width: 100,
-              height: 100,
-              clipBehavior: Clip.hardEdge,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                image: const DecorationImage(
-                  image: AssetImage(
-                      Assets.imagesAuthImagesOwnerReportEditing
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 100,
+                height: 100,
+                clipBehavior: Clip.hardEdge,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  image: const DecorationImage(
+                    image: AssetImage(
+                        Assets.imagesAuthImagesOwnerReportEditing
+                    ),
+                     fit: BoxFit.cover,
                   ),
-                   fit: BoxFit.cover,
+                  borderRadius: BorderRadius.circular(50),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Color(0x3F000000),
+                      spreadRadius: 0,
+                      offset: Offset(0, 4),
+                      blurRadius: 4,
+                    )
+                  ],
                 ),
-                borderRadius: BorderRadius.circular(50),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Color(0x3F000000),
-                    spreadRadius: 0,
-                    offset: Offset(0, 4),
-                    blurRadius: 4,
-                  )
-                ],
               ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const ReportInformationEditingFields()
-          ],
+              const SizedBox(
+                height: 20,
+              ),
+              const ReportInformationEditingFields()
+            ],
+          ),
         ),
       ),
     );

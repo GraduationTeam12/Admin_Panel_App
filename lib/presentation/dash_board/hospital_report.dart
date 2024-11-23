@@ -28,7 +28,7 @@ class HospitalReport extends StatelessWidget {
             selectedIndex: 1,
           ),
           ReportHospitalBar(reportModel: navBar[0]),
-          ReportsHospitalInfo()
+          const ReportsHospitalInfo()
         ],
       ),
     );

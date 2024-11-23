@@ -2,13 +2,25 @@
 class Assets {
   Assets._();
   
+  /// Assets for imagesAuthImages7042a84b3d6a7edb0157de0a7bf383dd2673a1beEllipse 11
+  /// assets/images/auth_images/7042a84b3d6a7edb0157de0a7bf383dd2673a1beEllipse 11.jpg
+  static const String imagesAuthImages7042a84b3d6a7edb0157de0a7bf383dd2673a1beEllipse  = "assets/images/auth_images/7042a84b3d6a7edb0157de0a7bf383dd2673a1beEllipse 11.jpg";
+
   /// Assets for imagesAuthImagesAddButton
   /// assets/images/auth_images/add_button.svg
   static const String imagesAuthImagesAddButton = "assets/images/auth_images/add_button.svg";
 
+  /// Assets for imagesAuthImagesAhmed
+  /// assets/images/auth_images/ahmed.jpg
+  static const String imagesAuthImagesAhmed = "assets/images/auth_images/ahmed.jpg";
+
+  /// Assets for imagesAuthImagesAnas
+  /// assets/images/auth_images/anas.jpg
+  static const String imagesAuthImagesAnas = "assets/images/auth_images/anas.jpg";
+
   /// Assets for imagesAuthImagesBlueChart (1)
   /// assets/images/auth_images/blue_chart (1).svg
-  static const String imagesAuthImagesBlueChart   = "assets/images/auth_images/blue_chart (1).svg";
+  static const String imagesAuthImagesBlueChart  = "assets/images/auth_images/blue_chart (1).svg";
 
   /// Assets for imagesAuthImagesBroSurvey
   /// assets/images/auth_images/bro_survey.svg
@@ -32,7 +44,7 @@ class Assets {
 
   /// Assets for imagesAuthImagesGreenChart (2)
   /// assets/images/auth_images/green_chart (2).svg
-  static const String imagesAuthImagesGreenChart   = "assets/images/auth_images/green_chart (2).svg";
+  static const String imagesAuthImagesGreenChart  = "assets/images/auth_images/green_chart (2).svg";
 
   /// Assets for imagesAuthImagesHomePic
   /// assets/images/auth_images/home_pic.svg
@@ -118,10 +130,6 @@ class Assets {
   /// assets/images/auth_images/persooon.svg
   static const String imagesAuthImagesPersooon = "assets/images/auth_images/persooon.svg";
 
-  /// Assets for imagesAuthImagesReportEditing
-  /// assets/images/auth_images/report_editing.jpg
-   
-
   /// Assets for imagesAuthImagesReportW
   /// assets/images/auth_images/report_w.svg
   static const String imagesAuthImagesReportW = "assets/images/auth_images/report_w.svg";
@@ -129,6 +137,18 @@ class Assets {
   /// Assets for imagesAuthImagesReportsDrawer
   /// assets/images/auth_images/reports_drawer.svg
   static const String imagesAuthImagesReportsDrawer = "assets/images/auth_images/reports_drawer.svg";
+
+  /// Assets for imagesAuthImagesSaad
+  /// assets/images/auth_images/saad.jpg
+  static const String imagesAuthImagesSaad = "assets/images/auth_images/saad.jpg";
+
+  /// Assets for imagesAuthImagesSalma
+  /// assets/images/auth_images/salma.jpg
+  static const String imagesAuthImagesSalma = "assets/images/auth_images/salma.jpg";
+
+  /// Assets for imagesAuthImagesSaly
+  /// assets/images/auth_images/saly.jpg
+  static const String imagesAuthImagesSaly = "assets/images/auth_images/saly.jpg";
 
   /// Assets for imagesAuthImagesSettingsDrawer
   /// assets/images/auth_images/settings_drawer.svg

@@ -54,7 +54,7 @@ class _InfoFieldsState extends State<InfoFields> {
                         Icons.person,
                         color: Colors.black,
                       ),
-                      labelText: "full name",
+                      labelText: "Full Name",
                       labelStyle: AppStyle.styleRegular16(context),
                       focusedErrorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),

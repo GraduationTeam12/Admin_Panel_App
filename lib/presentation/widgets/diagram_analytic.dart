@@ -19,9 +19,9 @@ class DiagramAnalytic extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 10, top: 10),
-            child: const Text(
+          const Padding(
+            padding: EdgeInsets.only(left: 10, top: 10),
+            child: Text(
               "Analytic",
               style: TextStyle(
                   fontSize: 22,

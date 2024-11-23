@@ -64,7 +64,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.only(left: 15),
-              child: GestureDetector(
+              child: InkWell(
                 onTap: () {},
                 child: Row(
                   children: [
@@ -89,7 +89,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.only(left: 15),
-              child: GestureDetector(
+              child: InkWell(
                 onTap: () {},
                 child: Row(
                   children: [
@@ -134,7 +134,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                             setState(() {});
                           },
                           child: SvgPicture.asset(
-                              Assets.imagesAuthImagesIconOwner),
+                              Assets.imagesAuthImagesIconOwnerSidebar),
                         ),
                         InkWell(
                           onTap: () {
@@ -144,7 +144,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                             setState(() {});
                           },
                           child: SvgPicture.asset(
-                              Assets.imagesAuthImagesIconHospital),
+                              Assets.imagesAuthImagesIconHospitalSidebar),
                         )
                       ],
                     )
@@ -161,11 +161,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
                                       indexPage == 7 ||
                                       indexPage == 8 ||
                                       indexPage == 9 ||
-                                      indexPage == 10 ||
-                                      indexPage == 11
-                                  ? Assets.imagesAuthImagesIconOwner
+                                      indexPage == 10  
+                                  ? Assets.imagesAuthImagesIconOwnerSidebar
                                   : indexPage == 6
-                                      ? Assets.imagesAuthImagesIconHospital
+                                      ? Assets.imagesAuthImagesIconHospitalSidebar
                                       : Assets.imagesAuthImagesAddButton));
                         },
                       ),

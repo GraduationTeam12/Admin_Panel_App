@@ -42,7 +42,7 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
           ),
           const Spacer(),
           SvgPicture.asset(
-            Assets.imagesAuthImagesNotificationsHeader,
+            Assets.imagesAuthImagesNotifcations,
             // height: MediaQuery.of(context).size.height * .06,
           ),
           const SizedBox(
@@ -53,7 +53,7 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
               context.read<NavigationCubit>().navigateTo(4);
             },
             child: SvgPicture.asset(
-              Assets.imagesAuthImagesClarityFormLineHeader,
+              Assets.imagesAuthImagesClarityFormLine,
               // height: MediaQuery.of(context).size.height * .06,
             ),
           ),

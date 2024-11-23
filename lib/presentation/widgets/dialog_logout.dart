@@ -1,55 +1,89 @@
 import 'package:flutter/material.dart';
 
-void showLogOutDialog(BuildContext context, String name, String email) {
+void showLogOutDialog(BuildContext context) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
       return Padding(
-        padding: const EdgeInsets.only(top: 55,),
+        padding: const EdgeInsets.only(
+          top: 55,
+        ),
         child: AlertDialog(
             scrollable: true,
-            alignment: Alignment.topRight,
             titlePadding: EdgeInsets.zero,
             backgroundColor: Colors.white,
-            content: Row(
+            content: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Container(
-                  // height: MediaQuery.of(context).size.height * .08,
-                  // width: MediaQuery.of(context).size.height * .08,
-                  width: 65,
-                  height: 65,
-                  decoration:
-                      const BoxDecoration(shape: BoxShape.circle, boxShadow: [
-                    BoxShadow(
-                        color: Color.fromRGBO(0, 0, 0, 0.25),
-                        blurRadius: 4,
-                        offset: Offset(0, 4))
-                  ]),
-                  child: ClipOval(
-                      child: Image.asset(
-                    "assets/images/auth_images/person_image.jpeg",
-                    fit: BoxFit.cover,
-                  )),
+                IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(Icons.close)),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  "Are you sure you want to log out?",
+                  style: TextStyle(
+                      fontSize: 25,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(
-                  width: 10,
+                  height: 25,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      name,
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 25,
-                          fontWeight: FontWeight.w400),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      style: ButtonStyle(
+                          shape: WidgetStatePropertyAll(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ),
+                          backgroundColor: const WidgetStatePropertyAll(
+                            Color.fromRGBO(61, 100, 152, 1),
+                          ),
+                          padding: const WidgetStatePropertyAll(EdgeInsets.only(
+                              right: 20, left: 20, top: 6, bottom: 6))),
+                      child: const Text(
+                        "NO",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25,
+                            fontWeight: FontWeight.w700),
+                      ),
                     ),
-                    Text(
-                      email,
-                      style: const TextStyle(
-                          color: Color.fromRGBO(92, 88, 88, 1),
-                          fontSize: 20,
-                          fontWeight: FontWeight.w400),
+                    const SizedBox(
+                      width: 30,
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      style: ButtonStyle(
+                          shape: WidgetStatePropertyAll(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ),
+                          side: const WidgetStatePropertyAll(
+                            BorderSide(
+                                color: Color.fromRGBO(255, 180, 65, 1),
+                                width: 2),
+                          ),
+                          padding: const WidgetStatePropertyAll(EdgeInsets.only(
+                              right: 20, left: 20, top: 6, bottom: 6))),
+                      child: const Text(
+                        "Exit",
+                        style: TextStyle(
+                            color: Color.fromRGBO(86, 86, 86, 1),
+                            fontSize: 25,
+                            fontWeight: FontWeight.w700),
+                      ),
                     )
                   ],
                 )

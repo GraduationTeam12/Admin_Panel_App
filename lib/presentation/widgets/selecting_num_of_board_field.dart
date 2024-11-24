@@ -107,7 +107,7 @@ class _SelectingNumOfBoardFieldState extends State<SelectingNumOfBoardField> {
               child: ElevatedButton(
                 onPressed: () {
 
-                  context.read<NavigationCubit>().navigateTo(10);
+                  context.read<NavigationCubit>().navigateTo(9);
                   // setState(() {
                   //   index == 3 ? index++ : null;
 

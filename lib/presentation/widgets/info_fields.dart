@@ -364,7 +364,7 @@ class _InfoFieldsState extends State<InfoFields> {
               height: 47,
               child: ElevatedButton(
                 onPressed: () {
-                  context.read<NavigationCubit>().navigateTo(9);
+                  context.read<NavigationCubit>().navigateTo(8);
                   // setState(() {
                   //   index == 2 ? index++ : null;
         

@@ -137,7 +137,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         InkWell(
                           onTap: () {
                             //go to owner page
-                            context.read<NavigationCubit>().navigateTo(5);
+                            context.read<NavigationCubit>().navigateTo(4);
                             isActiveAddButton = false;
                             setState(() {});
                           },
@@ -147,7 +147,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         InkWell(
                           onTap: () {
                             //go to owner page
-                            context.read<NavigationCubit>().navigateTo(6);
+                            context.read<NavigationCubit>().navigateTo(5);
                             isActiveAddButton = false;
                             setState(() {});
                           },
@@ -165,13 +165,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         builder: (context, indexPage) {
                           return Align(
                               alignment: Alignment.centerLeft,
-                              child: SvgPicture.asset(indexPage == 5 ||
+                              child: SvgPicture.asset(indexPage == 4 ||
+                                      indexPage == 6 ||
                                       indexPage == 7 ||
                                       indexPage == 8 ||
-                                      indexPage == 9 ||
-                                      indexPage == 10
+                                      indexPage == 9
                                   ? Assets.imagesAuthImagesIconOwnerSidebar
-                                  : indexPage == 6
+                                  : indexPage == 5
                                       ? Assets
                                           .imagesAuthImagesIconHospitalSidebar
                                       : Assets.imagesAuthImagesAddButton));

@@ -290,7 +290,7 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
                             ),
                             InkWell(
                               onTap: () {
-                                context.read<NavigationCubit>().navigateTo(13);
+                                context.read<NavigationCubit>().navigateTo(12);
                               },
                               child: Container(
                                 width: 30,

@@ -29,10 +29,12 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   amazon_cognito_identity_dart_2: ^3.7.0
+  contactus: ^1.2.3
   cupertino_icons: ^1.0.8
   dartz: ^0.10.1
   device_preview: ^1.2.0
   dio: ^5.7.0
+  enhanced_url_launcher_web: ^2.0.18
   firebase_auth: ^5.3.1
   firebase_core: ^3.6.0
   flutter:
@@ -47,6 +49,7 @@ dependencies:
   pinput: ^5.0.0
   shared_preferences: ^2.3.2
   syncfusion_flutter_charts: ^27.2.3
+  url_launcher: ^6.3.1
 
 dev_dependencies:
   flutter_lints: ^4.0.0

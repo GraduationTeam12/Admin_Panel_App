@@ -2,6 +2,7 @@ import 'package:admin_panel_app/constants/app_images.dart';
 import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
 import 'package:admin_panel_app/core/logic/navigation_cubit/navigation_cubit.dart';
+import 'package:admin_panel_app/presentation/widgets/dialog_contact_us.dart';
 import 'package:admin_panel_app/presentation/widgets/dialog_logout.dart';
 import 'package:admin_panel_app/presentation/widgets/drawer_item_listview.dart';
 import 'package:flutter/material.dart';
@@ -90,7 +91,14 @@ class _CustomDrawerState extends State<CustomDrawer> {
             child: Padding(
               padding: const EdgeInsets.only(left: 15),
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  showContactUsDialog(
+                      context,
+                    
+                      () {},
+                      "message...",
+                      );
+                },
                 child: Row(
                   children: [
                     SvgPicture.asset(Assets.imagesAuthImagesContactUsDrawer),
@@ -161,10 +169,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
                                       indexPage == 7 ||
                                       indexPage == 8 ||
                                       indexPage == 9 ||
-                                      indexPage == 10  
+                                      indexPage == 10
                                   ? Assets.imagesAuthImagesIconOwnerSidebar
                                   : indexPage == 6
-                                      ? Assets.imagesAuthImagesIconHospitalSidebar
+                                      ? Assets
+                                          .imagesAuthImagesIconHospitalSidebar
                                       : Assets.imagesAuthImagesAddButton));
                         },
                       ),

@@ -165,5 +165,21 @@ class Assets {
   /// Assets for imagesAuthImagesSupportW
   /// assets/images/auth_images/support_w.svg
   static const String imagesAuthImagesSupportW = "assets/images/auth_images/support_w.svg";
+
+  /// Assets for imagesAuthImagesFacebook
+  /// assets/images/auth_images/devicon_facebook.svg
+  static const String imagesAuthImagesFacebook = "assets/images/auth_images/devicon_facebook.svg";
+  
+  
+  /// Assets for imagesAuthImagesFacebook
+  /// assets/images/auth_images/mage_x.svg
+  static const String imagesAuthImagesX = "assets/images/auth_images/mage_x.svg";
+  
+  
+  /// Assets for imagesAuthImagesTiktok
+  /// assets/images/auth_images/hugeicons_tiktok.svg
+  static const String imagesAuthImagesTiktok = "assets/images/auth_images/hugeicons_tiktok.svg";
+  
+
 }
 

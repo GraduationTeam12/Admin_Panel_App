@@ -24,7 +24,6 @@ class DesktopDashboard extends StatelessWidget {
   final List<String> _pagesTitle = [
     "Overview",
     'Reports',
-    "Notifications",
     "Support",
     "Survey",
     "Add Owner",
@@ -38,6 +37,21 @@ class DesktopDashboard extends StatelessWidget {
     "Owner Information"
   ];
 
+  final List<Widget> _pageWidget = [
+    const Overview(),
+    OwnerReports(),
+    const SupportPage(),
+    const SurveyPage(),
+    const AddOwner(),
+    const AddHospital(),
+    const OtpOwner(),
+    const UserInformation(),
+    const SelectingNumOfBoard(),
+    const ConfirmingInfo(),
+    OwnerReports(),
+    HospitalReport(),
+    const ReportOwnerEditingInformation()
+  ];
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -59,36 +73,7 @@ class DesktopDashboard extends StatelessWidget {
                             MediaQuery.sizeOf(context).height * .11,
                         width: MediaQuery.of(context).size.width,
                         color: const Color.fromRGBO(217, 217, 217, 0.7),
-                        child: pageIndex == 0
-                            ? const Overview()
-                            : pageIndex == 1
-                                ? OwnerReports()
-                                : pageIndex == 3
-                                    ? const SupportPage()
-                                    : pageIndex == 4
-                                        ? const SurveyPage()
-                                        : pageIndex == 5
-                                            ? const AddOwner()
-                                            : pageIndex == 6
-                                                ? const AddHospital()
-                                                : pageIndex == 7
-                                                    ? const OtpOwner()
-                                                    : pageIndex == 8
-                                                        ? const UserInformation()
-                                                        : pageIndex == 9
-                                                            ? const SelectingNumOfBoard()
-                                                            : pageIndex == 10
-                                                                ? const ConfirmingInfo()
-                                                                : pageIndex ==
-                                                                        11
-                                                                    ? OwnerReports()
-                                                                    : pageIndex ==
-                                                                            12
-                                                                        ? HospitalReport()
-                                                                        : pageIndex ==
-                                                                                13
-                                                                            ? const ReportOwnerEditingInformation()
-                                                                            : Center(child: Text(_pagesTitle[pageIndex])),
+                        child: _pageWidget[pageIndex],
                       )
                     ],
                   ),

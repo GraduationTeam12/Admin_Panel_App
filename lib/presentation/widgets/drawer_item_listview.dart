@@ -19,9 +19,6 @@ class _DrawerItemListviewState extends State<DrawerItemListview> {
     const DrawerItemModel(
         title: "Reports", image: Assets.imagesAuthImagesReportsDrawer,imageActive:Assets.imagesAuthImagesReportW),
     const DrawerItemModel(
-        title: "Notification",
-        image: Assets.imagesAuthImagesNotificationDrawer, imageActive: Assets.imagesAuthImagesNotificationW),
-    const DrawerItemModel(
         title: "Support", image: Assets.imagesAuthImagesSupportDrawer, imageActive: Assets.imagesAuthImagesSupportW)
   ];
 

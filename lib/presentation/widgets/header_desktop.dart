@@ -50,7 +50,7 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
           ),
           GestureDetector(
             onTap: () {
-              context.read<NavigationCubit>().navigateTo(4);
+              context.read<NavigationCubit>().navigateTo(3);
             },
             child: SvgPicture.asset(
               Assets.imagesAuthImagesClarityFormLine,

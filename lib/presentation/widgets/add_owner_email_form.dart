@@ -106,7 +106,7 @@ class _AddOwnerEmailFormState extends State<AddOwnerEmailForm> {
               height: 47,
               child: ElevatedButton(
                 onPressed: () {
-                  context.read<NavigationCubit>().navigateTo(7);
+                  context.read<NavigationCubit>().navigateTo(6);
                   // setState(() {
                   //   index == 0 ? index++ : null;
 

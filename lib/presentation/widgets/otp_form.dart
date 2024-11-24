@@ -111,7 +111,7 @@ class _OtpFormState extends State<OtpForm> {
               height: 47,
               child: ElevatedButton(
                 onPressed: () {
-                  context.read<NavigationCubit>().navigateTo(8);
+                  context.read<NavigationCubit>().navigateTo(7);
                   // setState(() {
                   //   index == 1 ? index++ : null;
 

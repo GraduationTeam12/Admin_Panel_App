@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: Flutter Web App
+    env: static
+    buildCommand: |
+      # تحميل وتثبيت Flutter الإصدار 3.24.3
+      wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.24.3-stable.tar.xz
+      tar xf flutter_linux_3.24.3-stable.tar.xz
+      export PATH="$PATH:/flutter/bin"
+      
+      # التحقق من تثبيت Flutter
+      flutter doctor
+      
+      # بناء التطبيق
+      flutter build web
+    staticPublishPath: build/web

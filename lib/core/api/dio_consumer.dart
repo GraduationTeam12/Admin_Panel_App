@@ -26,12 +26,16 @@ class DioConsumer extends ApiConsumer {
     String path, {
     Object? data,
     Map<String, dynamic>? queryParameters,
+    Map<String, String>? headers,
+    
   }) async {
     try {
+      var options = Options(headers: headers);
       var res = await dio.delete(
         path,
         data: data,
         queryParameters: queryParameters,
+        options: options
       );
       return res.data;
     } on DioException catch (e) {
@@ -44,12 +48,15 @@ class DioConsumer extends ApiConsumer {
     String path, {
     Object? data,
     Map<String, dynamic>? queryParameters,
+    Map<String, String>? headers,
   }) async {
     try {
+      var options = Options(headers: headers);
       var res = await dio.get(
         path,
         data: data,
         queryParameters: queryParameters,
+        options: options
       );
       return res.data;
     } on DioException catch (e) {
@@ -62,12 +69,15 @@ class DioConsumer extends ApiConsumer {
     String path, {
     Object? data,
     Map<String, dynamic>? queryParameters,
+    Map<String, String>? headers,
   }) async {
     try {
+      var options = Options(headers: headers);
       var res = await dio.patch(
         path,
         data: data,
         queryParameters: queryParameters,
+        options: options
       );
       return res.data;
     } on DioException catch (e) {
@@ -80,12 +90,15 @@ class DioConsumer extends ApiConsumer {
     String path, {
     Object? data,
     Map<String, dynamic>? queryParameters,
+    Map<String, String>? headers,
   }) async {
     try {
+      var options = Options(headers: headers);
       var res = await dio.post(
         path,
         data: data,
         queryParameters: queryParameters,
+        options: options
       );
       return res.data;
     } on DioException catch (e) {
@@ -119,7 +132,7 @@ class DioConsumer extends ApiConsumer {
             throw NotFoundException(ErrorModel.fromJson(e.response!.data));
 
           case 409: //conflict
-            throw ConflictException(ErrorModel.fromJson(e.response!.data));
+            throw ServerException(ErrorModel.fromJson(e.response!.data));
 
           case 504:
             throw BadRequestException(ErrorModel.fromJson(e.response!.data));

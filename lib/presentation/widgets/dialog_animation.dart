@@ -75,21 +75,21 @@ void showLoadingDialog(BuildContext context) {
         color: const Color.fromARGB(255, 39, 76, 124).withOpacity(0.7),  
         borderRadius: BorderRadius.circular(25),
       ),
-      child: SingleChildScrollView(
+      child: const SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const SizedBox(height: 40),
-            Text(
-              "Creating Account",
-              style: AppStyle.styleBold20(context).copyWith(
-                color: Colors.white,
-                fontFamily: 'Inter',
-                fontSize: 25
-              ),
-            ),
-            const SizedBox(height: 40),
-            const ThreeDotsAnimation(),
+            SizedBox(height: 40),
+            // Text(
+            //   "Creating Account",
+            //   style: AppStyle.styleBold20(context).copyWith(
+            //     color: Colors.white,
+            //     fontFamily: 'Inter',
+            //     fontSize: 25
+            //   ),
+            // ),
+            SizedBox(height: 40),
+            ThreeDotsAnimation(),
           ],
         ),
       ),

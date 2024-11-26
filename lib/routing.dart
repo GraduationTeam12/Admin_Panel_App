@@ -3,7 +3,9 @@
 import 'package:admin_panel_app/constants/pages_name.dart';
 import 'package:admin_panel_app/core/api/dio_consumer.dart';
 import 'package:admin_panel_app/core/data/repo/auth_repo.dart';
+import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_cubit.dart';
 import 'package:admin_panel_app/core/logic/login_cubit/login_cubit.dart';
+import 'package:admin_panel_app/core/logic/logout_cubit/logout_cubit.dart';
 import 'package:admin_panel_app/core/logic/navigation_cubit/navigation_cubit.dart';
 import 'package:admin_panel_app/presentation/dash_board/dash_board.dart';
 import 'package:admin_panel_app/presentation/dash_board/login_page.dart';
@@ -25,8 +27,19 @@ class AppRouter {
 
       case dashBoardScreen:
         return MaterialPageRoute(
-            builder: (context) => BlocProvider(
-                  create: (context) => NavigationCubit(),
+            builder: (context) => MultiBlocProvider(
+                  providers: [
+                    // BlocProvider(
+                    //   create: (context) => NavigationCubit(),
+                    // ),
+                    BlocProvider(
+                      create: (context) =>  LogoutCubit(),
+                    ),
+
+                    BlocProvider(
+                      create: (context) =>  AddOwnerCubit(  AuthRepository(apiConsumer: DioConsumer(dio: Dio()))),
+                    ),
+                  ],
                   child: const DashBoard(),
                 ));
 

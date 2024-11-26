@@ -193,7 +193,7 @@ class _LoginFormState extends State<LoginForm> {
                       return;
                     } else {
                       BlocProvider.of<LoginCubit>(context).login();
-                      Navigator.pushReplacementNamed(context, dashBoardScreen);
+                      // Navigator.pushReplacementNamed(context, dashBoardScreen);
 
                     }
                   },

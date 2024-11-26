@@ -5,6 +5,8 @@ class EndPoint {
   static const String sendOtp = 'userSendOtp';
   static const String verifyOtp =
       'userVerfiyOtp';
+      static const String userData =
+      'userData';
  
 
    
@@ -15,7 +17,13 @@ class ApiKeys {
   static const String email = 'email';
   static const String password = 'password';
   static const String confirmPassword = 'passwordConfirm';
-  static const String code = 'otp';
+  static const String username = 'username';
+  static const String phone = 'phone';
+  static const String age = 'age';
+  static const String address = 'address';
+  static const String nationalId = 'nationalId';
+  static const String boardId = 'boardId';
+  static const String code = 'code';
   static const String message = 'msg';
   static const String token = 'token';
 }

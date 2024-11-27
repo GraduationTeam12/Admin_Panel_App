@@ -409,7 +409,7 @@ void showOwnerFormDialog(BuildContext context) {
                     height: 47,
                     child: ElevatedButton(
                       onPressed: () {
-                        BlocProvider.of<AddOwnerCubit>(context).getUserData();
+                        BlocProvider.of<AddOwnerCubit>(context).sendUserData();
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: MyColors.premiumColor,

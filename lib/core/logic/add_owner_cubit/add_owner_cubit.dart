@@ -43,15 +43,13 @@ class AddOwnerCubit extends Cubit<AddOwnerState> {
   TextEditingController nationalIdController = TextEditingController();
   TextEditingController boardIdController = TextEditingController();
 
-   
-
-  void getUserData() async {
+  void sendUserData() async {
     emit(AddUserLoading());
 
     int age = int.parse(ageController.text);
     int nationalId = int.parse(nationalIdController.text);
 
-    final res = await authRepository.getUserData(
+    final res = await authRepository.sendUserData(
         userEmailController.text,
         userNameController.text,
         phoneController.text,
@@ -61,5 +59,50 @@ class AddOwnerCubit extends Cubit<AddOwnerState> {
         boardIdController.text,
         token);
     res.fold((l) => emit(AddUserError(l)), (r) => emit(AddUserSuccess(r)));
+  }
+
+  void getAllOwners() async {
+    emit(GetAllOwnerLoading());
+
+    final res = await authRepository.getAllOwners(token);
+
+    res.fold(
+        (l) => emit(GetAllOwnerError(l)), (r) => emit(GetAllOwnerSuccess(r)));
+  }
+
+  void getUser(id) async {
+    emit(GetUserLoading());
+
+    final res = await authRepository.getUser(id, token);
+
+    res.fold((l) => emit(GetUserError(l)), (r) => emit(GetUserSuccess(r)));
+  }
+
+  void updateUser(Map<String, dynamic> updatedData, id) async {
+    emit(UpdateUserLoading());
+
+    final res = await authRepository.updateUser(updatedData, id, token);
+
+    res.fold(
+        (l) => emit(UpdateUserError(l)),
+        (r) => r.status == 'pending'
+            ? emit(UpdateUserEmailPending(r.msg))
+            : emit(UpdateUserSuccess(r.msg)));
+  }
+
+  void verifyUpdatedEmail(email, code, id) async {
+    emit(VerifyUpdatedEmailUserLoading());
+
+    final res = await authRepository.verifyUpdatedEmail(email, code, id, token);
+    res.fold((l) => emit(VerifyUpdatedEmailUserError(l)),
+        (r) => emit(VerifyUpdatedEmailUserSuccess(r)));
+  }
+
+  void deleteUser(id) async {
+    emit(DeleteUserLoading());
+
+    final res = await authRepository.deleteUser(id, token);
+
+    res.fold((l) => emit(DeleteUserError(l)), (r) => emit(DeleteUserSuccess(r)));
   }
 }

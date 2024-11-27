@@ -1,9 +1,14 @@
 import 'package:admin_panel_app/constants/pages_name.dart';
+import 'package:admin_panel_app/core/api/dio_consumer.dart';
 import 'package:admin_panel_app/core/api/end_points.dart';
 import 'package:admin_panel_app/core/cache/cache_helper.dart';
+import 'package:admin_panel_app/core/data/repo/auth_repo.dart';
+import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_cubit.dart';
+import 'package:admin_panel_app/core/logic/logout_cubit/logout_cubit.dart';
 import 'package:admin_panel_app/core/logic/navigation_cubit/navigation_cubit.dart';
 import 'package:admin_panel_app/firebase_options.dart';
 import 'package:admin_panel_app/routing.dart';
+import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -22,8 +27,19 @@ Future<void> main() async {
         ? HydratedStorage.webStorageDirectory
         : await getApplicationDocumentsDirectory(),
   );
-  runApp(BlocProvider(
-    create: (context) =>  NavigationCubit(),
+  runApp(MultiBlocProvider(
+    providers: [
+      BlocProvider(
+        create: (context) => NavigationCubit(),
+      ),
+      BlocProvider(
+        create: (context) =>  AddOwnerCubit(AuthRepository(apiConsumer: DioConsumer(dio: Dio()))),
+      ),
+
+        BlocProvider(
+                      create: (context) =>  LogoutCubit(),
+                    ),
+    ],
     child: MyApp(
       appRouter: AppRouter(),
     ),

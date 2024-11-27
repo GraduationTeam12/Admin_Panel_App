@@ -1,6 +1,9 @@
 import 'package:admin_panel_app/core/api/api_consumer.dart';
 import 'package:admin_panel_app/core/api/end_points.dart';
+import 'package:admin_panel_app/core/data/model/all_owners_model.dart';
 import 'package:admin_panel_app/core/data/model/login_model.dart';
+import 'package:admin_panel_app/core/data/model/update_user_model.dart';
+import 'package:admin_panel_app/core/data/model/user_model.dart';
 import 'package:admin_panel_app/core/error/exceptions.dart';
 import 'package:admin_panel_app/core/error/exceptions_response.dart';
 import 'package:dartz/dartz.dart';
@@ -60,7 +63,7 @@ class AuthRepository {
     }
   }
 
-  Future<Either<String, String>> getUserData(
+  Future<Either<String, String>> sendUserData(
     String email,
     String username,
     String phone,
@@ -93,4 +96,108 @@ class AuthRepository {
       return Left(e.toString());
     }
   }
+
+
+  Future<Either<String, List<Users>>> getAllOwners(
+        dynamic token) async {
+    try {
+      final response = await apiConsumer.get(
+        EndPoint.users,
+       
+        headers: {'Authorization': 'Bearer $token'},
+      );
+
+      final List<Users> users = (response['data'] as List)
+        .map((user) => Users.fromJson(user))
+        .toList();
+      return Right(users);
+    } on ServerException catch (error) {
+      return Left(error.errorModel.errorMessage);
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+
+  Future<Either<String, List<UserModel>>> getUser(
+    String id,
+    dynamic token,
+) async {
+  try {
+    final response = await apiConsumer.get(
+      EndPoint.getUser(id),
+      headers: {'Authorization': 'Bearer $token'},
+    );
+
+     
+    if (response['data'] is List) {
+      final List<UserModel> users = (response['data'] as List)
+          .map((userJson) => UserModel.fromJson(userJson))
+          .toList();
+      return Right(users);
+    } else {
+      return Left('Invalid data format: ${response['data']}');
+    }
+  } on ServerException catch (error) {
+    return Left(error.errorModel.errorMessage);
+  } catch (e) {
+    return Left('Unexpected error: ${e.toString()}');
+  }
+}
+
+
+Future<Either<String, UpdateUserModel>> updateUser(
+   Map<String, dynamic> updatedData,
+    String id,
+    dynamic token,
+) async {
+  try {
+    final response = await apiConsumer.put(
+      EndPoint.updateUser(id),
+      data:  updatedData,
+      headers: {'Authorization': 'Bearer $token'},
+    );
+
+     return Right(UpdateUserModel.fromJson(response));
+     
+  } on ServerException catch (error) {
+    return Left(error.errorModel.errorMessage);
+  } catch (e) {
+    return Left(e.toString());
+  }
+}
+
+
+Future<Either<String, String>> verifyUpdatedEmail(
+      String email, String code,String id , dynamic token) async {
+    try {
+      final response = await apiConsumer.post(
+        EndPoint.verifyUpdatedEmailUser(id),
+        data: {'newEmail': email, ApiKeys.code: code},
+        headers: {'Authorization': 'Bearer $token'},
+      );
+      return Right(response[ApiKeys.message]);
+    } on ServerException catch (error) {
+      return Left(error.errorModel.errorMessage);
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+
+  Future<Either<String, String>> deleteUser(
+     String id , dynamic token) async {
+    try {
+      final response = await apiConsumer.delete(
+        EndPoint.deleteUser(id),
+        headers: {'Authorization': 'Bearer $token'},
+      );
+      return Right(response[ApiKeys.message]);
+    } on ServerException catch (error) {
+      return Left(error.errorModel.errorMessage);
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
 }

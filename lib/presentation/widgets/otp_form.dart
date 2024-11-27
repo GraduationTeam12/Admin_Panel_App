@@ -134,7 +134,7 @@ class _OtpFormState extends State<OtpForm> {
                       ),
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return "Please enter 4 digit code to reset your password";
+                          return "Please enter 4 digit code to you";
                         }
                         return null;
                       },

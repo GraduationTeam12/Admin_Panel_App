@@ -1,14 +1,62 @@
 import 'package:admin_panel_app/constants/app_images.dart';
 import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
+import 'package:admin_panel_app/core/api/end_points.dart';
+import 'package:admin_panel_app/core/cache/cache_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html;
 
+import 'dart:convert'; // لتحويل JSON
+import 'package:http/http.dart' as http; // مكتبة HTTP
+
+void sendEmail(
+    String name, String email, String subject, String message,BuildContext context) async {
+  final url = Uri.parse("https://api.emailjs.com/api/v1.0/email/send");
+
+  const String serviceId = "service_nh1b3vb";
+  const String templateId = "template_hb3l35q";
+  const String userId = "ELFIa2fG24VBtdyRK";
+
+  try {
+    final response = await http.post(
+      url,
+      headers: {
+        "Content-Type": "application/json", // نوع المحتوى
+      },
+      body: jsonEncode({
+        // تحويل الجسم إلى JSON
+        "service_id": serviceId,
+        "template_id": templateId,
+        "user_id": userId,
+        "template_params": {
+          "to_name": "doaa",
+          "from_name": name,
+          "reply_to": email,
+          "message": message,
+          "subject_data": subject,
+        },
+      }),
+    );
+
+    // تحقق من الاستجابة
+    if (response.statusCode == 200) {
+      print("Email sent successfully!");
+      Navigator.pop(context);
+    } else {
+      print("Failed to send email. Status code: ${response.statusCode}");
+      print("Response body: ${response.body}");
+    }
+  } catch (e) {
+    print("Error occurred: $e");
+  }
+}
+
 void showContactUsDialog(
-    BuildContext context, VoidCallback callback, String? initialMessage) {
-  
+    BuildContext context) {
+  TextEditingController messageController =
+      TextEditingController();
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -35,7 +83,7 @@ void showContactUsDialog(
                 height: 50,
               ),
               const Text(
-                "Contact With Admin",
+                "Contact With technical support",
                 style: TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.w500,
@@ -67,7 +115,8 @@ void showContactUsDialog(
                                   width: 1))),
                       child: TextFormField(
                         maxLines: null,
-                        initialValue: initialMessage,
+                        controller: messageController,
+                        
                         style: AppStyle.styleRegular16(context)
                             .copyWith(color: Colors.black),
                         keyboardType: TextInputType.text,
@@ -79,7 +128,7 @@ void showContactUsDialog(
                               minWidth: 0,
                               minHeight: 0,
                             ),
-                            hintText: "message...",
+                            hintText: "Message...",
                             hintStyle: const TextStyle(
                                 fontSize: 15,
                                 color: Color.fromRGBO(92, 88, 88, 1),
@@ -102,9 +151,11 @@ void showContactUsDialog(
                 width: 500,
                 height: 55,
                 child: ElevatedButton(
-                  onPressed: () {
-                    callback();
-                    Navigator.pop(context);
+                  onPressed: () async {
+                      final emailId = CacheHelper().getData(key: ApiKeys.id);
+
+                    sendEmail("admin app (SATARS)", emailId, "Please I want a solution to the problem", messageController.text.trim(),context);
+                    
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: MyColors.premiumColor,
@@ -162,17 +213,20 @@ void showContactUsDialog(
                 children: [
                   InkWell(
                       onTap: () {
-                        
                         html.window.open('https://www.twitter.com/', '_blank');
                       },
                       child: SvgPicture.asset(Assets.imagesAuthImagesX)),
-                  const SizedBox(width: 20,),
+                  const SizedBox(
+                    width: 20,
+                  ),
                   InkWell(
                       onTap: () {
                         html.window.open('https://www.tiktok.com/', '_blank');
                       },
                       child: SvgPicture.asset(Assets.imagesAuthImagesTiktok)),
-                  const SizedBox(width: 20,),
+                  const SizedBox(
+                    width: 20,
+                  ),
                   InkWell(
                       onTap: () {
                         html.window.open('https://www.facebook.com/', '_blank');

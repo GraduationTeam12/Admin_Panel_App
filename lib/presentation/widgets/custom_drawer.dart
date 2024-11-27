@@ -93,10 +93,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               child: InkWell(
                 onTap: () {
                   showContactUsDialog(
-                      context,
-                    
-                      () {},
-                      "message...",
+                      context
                       );
                 },
                 child: Row(

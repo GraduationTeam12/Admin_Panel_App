@@ -1,11 +1,15 @@
+import 'package:admin_panel_app/core/api/end_points.dart';
+import 'package:admin_panel_app/core/cache/cache_helper.dart';
 import 'package:flutter/material.dart';
 
-void showInfoAdminDialog(BuildContext context, String name, String email) {
+void showInfoAdminDialog(BuildContext context) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
       return Padding(
-        padding: const EdgeInsets.only(top: 55,),
+        padding: const EdgeInsets.only(
+          top: 55,
+        ),
         child: AlertDialog(
             scrollable: true,
             alignment: Alignment.topRight,
@@ -37,19 +41,36 @@ void showInfoAdminDialog(BuildContext context, String name, String email) {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      name,
-                      style: const TextStyle(
+                    const Text(
+                      "Ahmed Ayman",
+                      style:  TextStyle(
                           color: Colors.black,
                           fontSize: 25,
                           fontWeight: FontWeight.w400),
                     ),
-                    Text(
-                      email,
-                      style: const TextStyle(
-                          color: Color.fromRGBO(92, 88, 88, 1),
-                          fontSize: 20,
-                          fontWeight: FontWeight.w400),
+                    FutureBuilder<String>(
+                      future: Future.value(
+                          CacheHelper().getData(key: ApiKeys.id)),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const SizedBox();
+                        } else if (snapshot.hasError) {
+                          return Center(
+                              child: Text('Error: ${snapshot.error}'));
+                        } else if (!snapshot.hasData ||
+                            snapshot.data!.isEmpty) {
+                          return const Center(child: Text('No id Found'));
+                        } else {
+                          return Center(
+                            child: Text(
+                              snapshot.data!,
+                              style:const TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                          );
+                        }
+                      },
                     )
                   ],
                 )

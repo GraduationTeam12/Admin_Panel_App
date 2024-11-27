@@ -62,7 +62,7 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
           ),
           GestureDetector(
             onTap: () {
-              showInfoAdminDialog(context,"Ahmed Ayman","Ahmedayman992@gmail.com");
+              showInfoAdminDialog(context);
             },
             child: Container(
               // height: MediaQuery.of(context).size.height * .08,

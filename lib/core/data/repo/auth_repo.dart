@@ -27,7 +27,7 @@ class AuthRepository {
       return Left(error.errorModel.errorMessage);
     } on ServerExceptionResponse catch (error) {
       return Left(error.errorResponse.errorMessage);
-    }catch (e) {
+    } catch (e) {
       return Left(e.toString());
     }
   }
@@ -92,24 +92,21 @@ class AuthRepository {
       return Left(error.errorModel.errorMessage);
     } on ServerExceptionResponse catch (error) {
       return Left(error.errorResponse.errorMessage);
-    }catch (e) {
+    } catch (e) {
       return Left(e.toString());
     }
   }
 
-
-  Future<Either<String, List<Users>>> getAllOwners(
-        dynamic token) async {
+  Future<Either<String, List<Users>>> getAllOwners(dynamic token) async {
     try {
       final response = await apiConsumer.get(
         EndPoint.users,
-       
         headers: {'Authorization': 'Bearer $token'},
       );
 
       final List<Users> users = (response['data'] as List)
-        .map((user) => Users.fromJson(user))
-        .toList();
+          .map((user) => Users.fromJson(user))
+          .toList();
       return Right(users);
     } on ServerException catch (error) {
       return Left(error.errorModel.errorMessage);
@@ -118,58 +115,53 @@ class AuthRepository {
     }
   }
 
-
   Future<Either<String, List<UserModel>>> getUser(
     String id,
     dynamic token,
-) async {
-  try {
-    final response = await apiConsumer.get(
-      EndPoint.getUser(id),
-      headers: {'Authorization': 'Bearer $token'},
-    );
+  ) async {
+    try {
+      final response = await apiConsumer.get(
+        EndPoint.getUser(id),
+        headers: {'Authorization': 'Bearer $token'},
+      );
 
-     
-    if (response['data'] is List) {
-      final List<UserModel> users = (response['data'] as List)
-          .map((userJson) => UserModel.fromJson(userJson))
-          .toList();
-      return Right(users);
-    } else {
-      return Left('Invalid data format: ${response['data']}');
+      if (response['data'] is List) {
+        final List<UserModel> users = (response['data'] as List)
+            .map((userJson) => UserModel.fromJson(userJson))
+            .toList();
+        return Right(users);
+      } else {
+        return Left('Invalid data format: ${response['data']}');
+      }
+    } on ServerException catch (error) {
+      return Left(error.errorModel.errorMessage);
+    } catch (e) {
+      return Left('Unexpected error: ${e.toString()}');
     }
-  } on ServerException catch (error) {
-    return Left(error.errorModel.errorMessage);
-  } catch (e) {
-    return Left('Unexpected error: ${e.toString()}');
   }
-}
 
-
-Future<Either<String, UpdateUserModel>> updateUser(
-   Map<String, dynamic> updatedData,
+  Future<Either<String, UpdateUserModel>> updateUser(
+    Map<String, dynamic> updatedData,
     String id,
     dynamic token,
-) async {
-  try {
-    final response = await apiConsumer.put(
-      EndPoint.updateUser(id),
-      data:  updatedData,
-      headers: {'Authorization': 'Bearer $token'},
-    );
+  ) async {
+    try {
+      final response = await apiConsumer.put(
+        EndPoint.updateUser(id),
+        data: updatedData,
+        headers: {'Authorization': 'Bearer $token'},
+      );
 
-     return Right(UpdateUserModel.fromJson(response));
-     
-  } on ServerException catch (error) {
-    return Left(error.errorModel.errorMessage);
-  } catch (e) {
-    return Left(e.toString());
+      return Right(UpdateUserModel.fromJson(response));
+    } on ServerException catch (error) {
+      return Left(error.errorModel.errorMessage);
+    } catch (e) {
+      return Left(e.toString());
+    }
   }
-}
 
-
-Future<Either<String, String>> verifyUpdatedEmail(
-      String email, String code,String id , dynamic token) async {
+  Future<Either<String, String>> verifyUpdatedEmail(
+      String email, String code, String id, dynamic token) async {
     try {
       final response = await apiConsumer.post(
         EndPoint.verifyUpdatedEmailUser(id),
@@ -184,9 +176,7 @@ Future<Either<String, String>> verifyUpdatedEmail(
     }
   }
 
-
-  Future<Either<String, String>> deleteUser(
-     String id , dynamic token) async {
+  Future<Either<String, String>> deleteUser(String id, dynamic token) async {
     try {
       final response = await apiConsumer.delete(
         EndPoint.deleteUser(id),
@@ -199,5 +189,4 @@ Future<Either<String, String>> verifyUpdatedEmail(
       return Left(e.toString());
     }
   }
-
 }

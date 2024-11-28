@@ -94,7 +94,13 @@ class _ReportInformationEditingFieldsState
 
         if (state is UpdateUserSuccess) {
           Navigator.pop(context);
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> DesktopDashboard( widget: OwnerReports(),)));
+          
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => DesktopDashboard(
+                        widget: OwnerReports(),
+                      )));
           // context.read<NavigationCubit>().navigateTo(10);
           String message = state.message;
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(

@@ -11,8 +11,8 @@ import 'dart:html' as html;
 import 'dart:convert'; // لتحويل JSON
 import 'package:http/http.dart' as http; // مكتبة HTTP
 
-void sendEmail(
-    String name, String email, String subject, String message,BuildContext context) async {
+void sendEmail(String name, String email, String subject, String message,
+    BuildContext context) async {
   final url = Uri.parse("https://api.emailjs.com/api/v1.0/email/send");
 
   const String serviceId = "service_nh1b3vb";
@@ -53,10 +53,8 @@ void sendEmail(
   }
 }
 
-void showContactUsDialog(
-    BuildContext context) {
-  TextEditingController messageController =
-      TextEditingController();
+void showContactUsDialog(BuildContext context) {
+  TextEditingController messageController = TextEditingController();
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -81,7 +79,6 @@ void showContactUsDialog(
               ),
               const SizedBox(
                 height: 50,
-                
               ),
               const Text(
                 "Contact With technical support",
@@ -117,7 +114,6 @@ void showContactUsDialog(
                       child: TextFormField(
                         maxLines: null,
                         controller: messageController,
-                        
                         style: AppStyle.styleRegular16(context)
                             .copyWith(color: Colors.black),
                         keyboardType: TextInputType.text,
@@ -153,10 +149,14 @@ void showContactUsDialog(
                 height: 55,
                 child: ElevatedButton(
                   onPressed: () async {
-                      final emailId = CacheHelper().getData(key: ApiKeys.id);
+                    final emailId = CacheHelper().getData(key: ApiKeys.id);
 
-                    sendEmail("admin app (SATARS)", emailId, "Please I want a solution to the problem", messageController.text.trim(),context);
-                    
+                    sendEmail(
+                        "admin app (SATARS)",
+                        emailId,
+                        "Please I want a solution to the problem",
+                        messageController.text.trim(),
+                        context);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: MyColors.premiumColor,

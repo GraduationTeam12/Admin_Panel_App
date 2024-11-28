@@ -10,6 +10,7 @@ import 'package:admin_panel_app/presentation/widgets/report_information_editing_
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+ 
 
 class ReportOwnerEditingInformation extends StatefulWidget {
   const ReportOwnerEditingInformation({super.key, required this.id});
@@ -85,14 +86,7 @@ class _ReportOwnerEditingInformationState
               );
             }
 
-            if (state is GetUserError) {
-              Navigator.pop(context);
-              //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              // content: Text(message),
-              // behavior: SnackBarBehavior.floating,
-              // margin:
-              //     const EdgeInsets.only(bottom: 680, left: 160, right: 160)));
-            }
+           
 
             userNameController.text = user[0].username;
             emailController.text = user[0].email;

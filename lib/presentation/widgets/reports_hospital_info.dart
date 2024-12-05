@@ -36,9 +36,9 @@ class _ReportsHospitalInfoState extends State<ReportsHospitalInfo> {
           });
         }
         if (state is DeleteEmergencySuccess) {
-          Navigator.pop(context);
+          // Navigator.pop(context);
           //  context.go(dashBoardScreen);
-          Navigator.pushReplacementNamed(context, dashBoardScreen);
+           Navigator.pushReplacementNamed(context, dashBoardScreen);
           String message = state.message;
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(message),
@@ -46,6 +46,7 @@ class _ReportsHospitalInfoState extends State<ReportsHospitalInfo> {
               margin:
                   const EdgeInsets.only(bottom: 680, left: 160, right: 160)));
 
+          
           // BlocProvider.of<AddOwnerAndHospitalCubit>(context)
           //     .getAllEmergencies();
 

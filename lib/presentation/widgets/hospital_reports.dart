@@ -56,7 +56,7 @@ class _HospitalReportsState extends State<HospitalReports> {
                 .getAllEmergencies();
       
             Navigator.pop(context);
-          } else if (state is DeleteUserError) {
+          } else if (state is DeleteEmergencyError) {
             Navigator.pop(context);
             String message = state.errMessage;
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(

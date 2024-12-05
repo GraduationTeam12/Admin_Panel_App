@@ -1,7 +1,7 @@
 import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
-import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_cubit.dart';
-import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_state.dart';
+import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_cubit.dart';
+import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_state.dart';
 import 'package:admin_panel_app/core/logic/navigation_cubit/navigation_cubit.dart';
 import 'package:admin_panel_app/presentation/widgets/add_owner_bar.dart';
 import 'package:admin_panel_app/presentation/widgets/dialog_animation.dart';
@@ -20,7 +20,7 @@ class _OtpFormState extends State<OtpForm> {
   int index = 1;
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AddOwnerCubit, AddOwnerState>(
+    return BlocConsumer<AddOwnerAndHospitalCubit, AddOwnerAndHospitalState>(
       listener: (context, state) {
         if (state is VerifyCodeLoading) {
           showLoadingDialog(context);
@@ -76,7 +76,7 @@ class _OtpFormState extends State<OtpForm> {
                             fontFamily: 'Roboto'),
                         children: <TextSpan>[
                       TextSpan(
-                          text: BlocProvider.of<AddOwnerCubit>(context).emailController.text,
+                          text: BlocProvider.of<AddOwnerAndHospitalCubit>(context).emailController.text,
                           style: AppStyle.styleRegular17(context).copyWith(
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
@@ -88,11 +88,11 @@ class _OtpFormState extends State<OtpForm> {
               height: 20,
             ),
             Form(
-                key: BlocProvider.of<AddOwnerCubit>(context).verifyOtpKey,
+                key: BlocProvider.of<AddOwnerAndHospitalCubit>(context).verifyOtpKey,
                 child: Column(
                   children: [
                     Pinput(
-                      controller: BlocProvider.of<AddOwnerCubit>(context)
+                      controller: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
                           .codeController,
                       submittedPinTheme: PinTheme(
                         margin: const EdgeInsets.symmetric(horizontal: 7),
@@ -147,13 +147,13 @@ class _OtpFormState extends State<OtpForm> {
                       height: 47,
                       child: ElevatedButton(
                         onPressed: () {
-                          if (!BlocProvider.of<AddOwnerCubit>(context)
+                          if (!BlocProvider.of<AddOwnerAndHospitalCubit>(context)
                               .verifyOtpKey
                               .currentState!
                               .validate()) {
                             return;
                           } else {
-                            BlocProvider.of<AddOwnerCubit>(context)
+                            BlocProvider.of<AddOwnerAndHospitalCubit>(context)
                                 .verifyCode();
                           }
                         },

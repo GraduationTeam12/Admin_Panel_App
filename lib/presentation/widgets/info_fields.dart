@@ -2,7 +2,7 @@
 
 import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
-import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_cubit.dart';
+import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_cubit.dart';
 import 'package:admin_panel_app/core/logic/navigation_cubit/navigation_cubit.dart';
 import 'package:admin_panel_app/presentation/widgets/add_owner_bar.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +58,7 @@ class InfoFieldsState extends State<InfoFields> {
                     SizedBox(
                       width: 340,
                       child: TextFormField(
-                        controller: BlocProvider.of<AddOwnerCubit>(context)
+                        controller: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
                             .userNameController,
                         style: AppStyle.styleRegular16(context)
                             .copyWith(color: Colors.black),
@@ -116,7 +116,7 @@ class InfoFieldsState extends State<InfoFields> {
                     SizedBox(
                       width: 340,
                       child: TextFormField(
-                        controller: BlocProvider.of<AddOwnerCubit>(context)
+                        controller: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
                             .ageController,
                         style: AppStyle.styleRegular16(context)
                             .copyWith(color: Colors.black),
@@ -183,7 +183,7 @@ class InfoFieldsState extends State<InfoFields> {
                             .copyWith(color: Colors.black),
                         keyboardType: TextInputType.text,
                         textInputAction: TextInputAction.done,
-                        controller: BlocProvider.of<AddOwnerCubit>(context)
+                        controller: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
                             .userEmailController,
                         //     BlocProvider.of<LoginCubit>(context).signInEmail,
                         decoration: InputDecoration(
@@ -236,7 +236,7 @@ class InfoFieldsState extends State<InfoFields> {
                     SizedBox(
                       width: 340,
                       child: TextFormField(
-                        controller: BlocProvider.of<AddOwnerCubit>(context)
+                        controller: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
                             .phoneController,
                         style: AppStyle.styleRegular16(context)
                             .copyWith(color: Colors.black),
@@ -302,7 +302,7 @@ class InfoFieldsState extends State<InfoFields> {
                             .copyWith(color: Colors.black),
                         keyboardType: TextInputType.text,
                         textInputAction: TextInputAction.done,
-                        controller: BlocProvider.of<AddOwnerCubit>(context)
+                        controller: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
                             .addressController,
                         //     BlocProvider.of<LoginCubit>(context).signInEmail,
                         decoration: InputDecoration(
@@ -359,7 +359,7 @@ class InfoFieldsState extends State<InfoFields> {
                             .copyWith(color: Colors.black),
                         keyboardType: TextInputType.text,
                         textInputAction: TextInputAction.done,
-                        controller: BlocProvider.of<AddOwnerCubit>(context)
+                        controller: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
                             .nationalIdController,
                         //     BlocProvider.of<LoginCubit>(context).signInEmail,
                         decoration: InputDecoration(

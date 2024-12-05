@@ -1,46 +1,45 @@
 import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
 import 'package:admin_panel_app/constants/pages_name.dart';
-import 'package:admin_panel_app/core/api/dio_consumer.dart';
-import 'package:admin_panel_app/core/api/end_points.dart';
-import 'package:admin_panel_app/core/data/repo/auth_repo.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_cubit.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_state.dart';
-import 'package:admin_panel_app/presentation/dash_board/owner_reports.dart';
+import 'package:admin_panel_app/presentation/dash_board/hospital_report.dart';
 import 'package:admin_panel_app/presentation/widgets/dialog_animation.dart';
-import 'package:admin_panel_app/presentation/widgets/update_email_otp.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ReportInformationEditingFields extends StatefulWidget {
-  const ReportInformationEditingFields({
+class ReportHospitalInformationEditingFields extends StatefulWidget {
+  const ReportHospitalInformationEditingFields({
     super.key,
     required this.id,
-    required this.userNameCotroller,
-    required this.ageCotroller,
+    required this.typeCotroller,
+    required this.nameCotroller,
+    required this.numberCotroller,
     required this.emailCotroller,
-    required this.nationalIdCotroller,
     required this.addressCotroller,
     required this.phoneCotroller,
+    required this.latitudeCotroller,
+    required this.longitudeCotroller,
   });
 
   final String id;
-  final TextEditingController userNameCotroller;
-  final TextEditingController ageCotroller;
+  final TextEditingController typeCotroller;
+  final TextEditingController nameCotroller;
+  final TextEditingController numberCotroller;
   final TextEditingController emailCotroller;
-  final TextEditingController nationalIdCotroller;
   final TextEditingController addressCotroller;
   final TextEditingController phoneCotroller;
+  final TextEditingController latitudeCotroller;
+  final TextEditingController longitudeCotroller;
 
   @override
-  State<ReportInformationEditingFields> createState() =>
-      _ReportInformationEditingFieldsState();
+  State<ReportHospitalInformationEditingFields> createState() =>
+      _ReportHospitalInformationEditingFieldsState();
 }
 
-class _ReportInformationEditingFieldsState
-    extends State<ReportInformationEditingFields> {
-  GlobalKey<FormState> formKey = GlobalKey();
+class _ReportHospitalInformationEditingFieldsState
+    extends State<ReportHospitalInformationEditingFields> {
+  GlobalKey<FormState> formEditingKey = GlobalKey();
 
   late Map<String, String> originalData;
 
@@ -48,35 +47,44 @@ class _ReportInformationEditingFieldsState
   void initState() {
     super.initState();
     originalData = {
-      ApiKeys.username: widget.userNameCotroller.text,
-      ApiKeys.age: widget.ageCotroller.text,
-      ApiKeys.email: widget.emailCotroller.text,
-      ApiKeys.nationalId: widget.nationalIdCotroller.text,
-      ApiKeys.address: widget.addressCotroller.text,
-      ApiKeys.phone: widget.phoneCotroller.text,
+      'type': widget.typeCotroller.text,
+      'name': widget.nameCotroller.text,
+      'number': widget.numberCotroller.text,
+      'email': widget.emailCotroller.text,
+      'address': widget.addressCotroller.text,
+      'phone': widget.phoneCotroller.text,
+      'latitude': widget.latitudeCotroller.text,
+      'longitude': widget.longitudeCotroller.text,
     };
   }
 
-  Map<String, String> getUpdatedData() {
+  Map<String, String> getTheUpdatedData() {
     Map<String, String> updatedData = {};
 
-    if (widget.userNameCotroller.text != originalData[ApiKeys.username]) {
-      updatedData[ApiKeys.username] = widget.userNameCotroller.text;
+    if (widget.typeCotroller.text != originalData['type']) {
+      updatedData['type'] = widget.typeCotroller.text;
     }
-    if (widget.ageCotroller.text != originalData[ApiKeys.age]) {
-      updatedData[ApiKeys.age] = widget.ageCotroller.text;
+
+    if (widget.nameCotroller.text != originalData['name']) {
+      updatedData['name'] = widget.nameCotroller.text;
     }
-    if (widget.emailCotroller.text != originalData[ApiKeys.email]) {
-      updatedData[ApiKeys.email] = widget.emailCotroller.text;
+    if (widget.numberCotroller.text != originalData['number']) {
+      updatedData['number'] = widget.numberCotroller.text;
     }
-    if (widget.nationalIdCotroller.text != originalData[ApiKeys.nationalId]) {
-      updatedData[ApiKeys.nationalId] = widget.nationalIdCotroller.text;
+    if (widget.emailCotroller.text != originalData['email']) {
+      updatedData['email'] = widget.emailCotroller.text;
     }
-    if (widget.addressCotroller.text != originalData[ApiKeys.address]) {
-      updatedData[ApiKeys.address] = widget.addressCotroller.text;
+    if (widget.latitudeCotroller.text != originalData['latitude']) {
+      updatedData['latitude'] = widget.latitudeCotroller.text;
     }
-    if (widget.phoneCotroller.text != originalData[ApiKeys.phone]) {
-      updatedData[ApiKeys.phone] = widget.phoneCotroller.text;
+    if (widget.longitudeCotroller.text != originalData['longitude']) {
+      updatedData['longitude'] = widget.longitudeCotroller.text;
+    }
+    if (widget.addressCotroller.text != originalData['address']) {
+      updatedData['address'] = widget.addressCotroller.text;
+    }
+    if (widget.phoneCotroller.text != originalData['phone']) {
+      updatedData['phone'] = widget.phoneCotroller.text;
     }
 
     return updatedData;
@@ -86,17 +94,15 @@ class _ReportInformationEditingFieldsState
   Widget build(BuildContext context) {
     return BlocConsumer<AddOwnerAndHospitalCubit, AddOwnerAndHospitalState>(
       listener: (context, state) {
-        if (state is UpdateUserLoading) {
+        if (state is UpdateEmergencyLoading) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             showLoadingDialog(context);
           });
         }
 
-        if (state is UpdateUserSuccess) {
+        if (state is UpdateEmergencySuccess) {
           Navigator.pop(context);
-
-          Navigator.pushReplacementNamed(context, dashBoardScreen , arguments: OwnerReports());
-          // context.read<NavigationCubit>().navigateTo(10);
+          Navigator.pushReplacementNamed(context, dashBoardScreen , arguments: HospitalReport());   
           String message = state.message;
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(message),
@@ -106,30 +112,7 @@ class _ReportInformationEditingFieldsState
           ));
         }
 
-        if (state is UpdateUserEmailPending) {
-          final updatedData = getUpdatedData();
-          Navigator.pop(context);
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => BlocProvider(
-                        create: (context) => AddOwnerAndHospitalCubit(AuthRepository(
-                            apiConsumer: DioConsumer(dio: Dio()))),
-                        child: OtpUpdatedEmail(
-                          emailText: updatedData[ApiKeys.email]!,
-                          id: widget.id,
-                        ),
-                      )));
-          String message = state.message;
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(message),
-            duration: const Duration(seconds: 5),
-            behavior: SnackBarBehavior.floating,
-            margin: const EdgeInsets.only(bottom: 680, left: 160, right: 160),
-          ));
-        }
-
-        if (state is UpdateUserError) {
+        if (state is UpdateEmergencyError) {
           Navigator.pop(context);
           String message = state.errMessage;
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -143,7 +126,7 @@ class _ReportInformationEditingFieldsState
         return Column(
           children: [
             Form(
-                key: formKey,
+                key: formEditingKey,
                 child: Column(
                   children: [
                     Row(
@@ -153,7 +136,7 @@ class _ReportInformationEditingFieldsState
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Full Name",
+                              "Type",
                               style: AppStyle.styleRegular16(context),
                             ),
                             const SizedBox(
@@ -167,13 +150,146 @@ class _ReportInformationEditingFieldsState
                                     .copyWith(color: Colors.black),
                                 keyboardType: TextInputType.text,
                                 textInputAction: TextInputAction.done,
-                                controller: widget.userNameCotroller,
+                                controller: widget.typeCotroller,
                                 //     BlocProvider.of<LoginCubit>(context).signInEmail,
                                 decoration: InputDecoration(
                                   errorStyle: AppStyle.styleRegular16(context)
                                       .copyWith(color: Colors.red),
                                   prefixIcon: const Icon(
-                                    Icons.person,
+                                    Icons.merge_type,
+                                    color: Colors.black,
+                                  ),
+
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                    borderSide: const BorderSide(
+                                        width: 2, color: MyColors.premiumColor),
+                                  ),
+                                  floatingLabelStyle:
+                                      AppStyle.styleRegular16(context).copyWith(
+                                    color: MyColors.premiumColor,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                  contentPadding: const EdgeInsets.all(8),
+                                  // enabledBorder: buildBorder(),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                    borderSide: const BorderSide(
+                                        width: 2, color: MyColors.premiumColor),
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                    borderSide: const BorderSide(
+                                        width: 1, color: Colors.white),
+                                  ),
+                                ),
+                                validator: (type) {
+                                  if (type!.isEmpty) {
+                                    return "Please enter the emergency type";
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          width: 30,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Phone",
+                              style: AppStyle.styleRegular16(context),
+                            ),
+                            const SizedBox(
+                              height: 8,
+                            ),
+                            SizedBox(
+                              width: 340,
+                              child: TextFormField(
+                                // initialValue: "20",
+                                style: AppStyle.styleRegular16(context)
+                                    .copyWith(color: Colors.black),
+                                keyboardType: TextInputType.number,
+                                textInputAction: TextInputAction.done,
+                                controller: widget.phoneCotroller,
+                                //     BlocProvider.of<LoginCubit>(context).signInEmail,
+                                decoration: InputDecoration(
+                                  errorStyle: AppStyle.styleRegular16(context)
+                                      .copyWith(color: Colors.red),
+                                  prefixIcon: const Icon(
+                                    Icons.phone_iphone,
+                                    color: Colors.black,
+                                  ),
+
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                    borderSide: const BorderSide(
+                                        width: 2, color: MyColors.premiumColor),
+                                  ),
+                                  floatingLabelStyle:
+                                      AppStyle.styleRegular16(context).copyWith(
+                                    color: MyColors.premiumColor,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                  contentPadding: const EdgeInsets.all(8),
+                                  // enabledBorder: buildBorder(),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                    borderSide: const BorderSide(
+                                        width: 2, color: MyColors.premiumColor),
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                    borderSide: const BorderSide(
+                                        width: 1, color: Colors.white),
+                                  ),
+                                ),
+                                validator: (phone) {
+                                  if (phone!.isEmpty) {
+                                    return "Please enter the emergency phone number";
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Hospital Name",
+                              style: AppStyle.styleRegular16(context),
+                            ),
+                            const SizedBox(
+                              height: 8,
+                            ),
+                            SizedBox(
+                              width: 340,
+                              child: TextFormField(
+                                // initialValue: "Ahmed Samy",
+                                style: AppStyle.styleRegular16(context)
+                                    .copyWith(color: Colors.black),
+                                keyboardType: TextInputType.text,
+                                textInputAction: TextInputAction.done,
+                                controller: widget.nameCotroller,
+                                //     BlocProvider.of<LoginCubit>(context).signInEmail,
+                                decoration: InputDecoration(
+                                  errorStyle: AppStyle.styleRegular16(context)
+                                      .copyWith(color: Colors.red),
+                                  prefixIcon: const Icon(
+                                    Icons.local_hospital,
                                     color: Colors.black,
                                   ),
 
@@ -202,7 +318,7 @@ class _ReportInformationEditingFieldsState
                                 ),
                                 validator: (name) {
                                   if (name!.isEmpty) {
-                                    return "Please enter your full name";
+                                    return "Please enter the emergency name";
                                   }
                                   return null;
                                 },
@@ -217,7 +333,7 @@ class _ReportInformationEditingFieldsState
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Age",
+                              "Id Number",
                               style: AppStyle.styleRegular16(context),
                             ),
                             const SizedBox(
@@ -231,13 +347,13 @@ class _ReportInformationEditingFieldsState
                                     .copyWith(color: Colors.black),
                                 keyboardType: TextInputType.number,
                                 textInputAction: TextInputAction.done,
-                                controller: widget.ageCotroller,
+                                controller: widget.numberCotroller,
                                 //     BlocProvider.of<LoginCubit>(context).signInEmail,
                                 decoration: InputDecoration(
                                   errorStyle: AppStyle.styleRegular16(context)
                                       .copyWith(color: Colors.red),
                                   prefixIcon: const Icon(
-                                    Icons.numbers_outlined,
+                                    Icons.credit_card,
                                     color: Colors.black,
                                   ),
 
@@ -264,9 +380,9 @@ class _ReportInformationEditingFieldsState
                                         width: 1, color: Colors.white),
                                   ),
                                 ),
-                                validator: (age) {
-                                  if (age!.isEmpty) {
-                                    return "Please enter your Age";
+                                validator: (number) {
+                                  if (number!.isEmpty) {
+                                    return "Please enter the emergency id number";
                                   }
                                   return null;
                                 },
@@ -335,12 +451,10 @@ class _ReportInformationEditingFieldsState
                                 ),
                                 validator: (email) {
                                   if (email!.isEmpty) {
-                                    return "Please enter your email";
+                                    return "Please enter the emergency email";
                                   }
                                   return null;
                                 },
-
-                                onChanged: (value) {},
                               ),
                             ),
                           ],
@@ -352,7 +466,7 @@ class _ReportInformationEditingFieldsState
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Id",
+                              "Address",
                               style: AppStyle.styleRegular16(context),
                             ),
                             const SizedBox(
@@ -366,13 +480,13 @@ class _ReportInformationEditingFieldsState
                                     .copyWith(color: Colors.black),
                                 keyboardType: TextInputType.number,
                                 textInputAction: TextInputAction.done,
-                                controller: widget.nationalIdCotroller,
+                                controller: widget.addressCotroller,
                                 //     BlocProvider.of<LoginCubit>(context).signInEmail,
                                 decoration: InputDecoration(
                                   errorStyle: AppStyle.styleRegular16(context)
                                       .copyWith(color: Colors.red),
                                   prefixIcon: const Icon(
-                                    Icons.credit_card,
+                                    Icons.place_outlined,
                                     color: Colors.black,
                                   ),
 
@@ -401,7 +515,7 @@ class _ReportInformationEditingFieldsState
                                 ),
                                 validator: (id) {
                                   if (id!.isEmpty) {
-                                    return "Please enter your id";
+                                    return "Please enter the emergency address";
                                   }
                                   return null;
                                 },
@@ -421,7 +535,7 @@ class _ReportInformationEditingFieldsState
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Location",
+                              "Latitude",
                               style: AppStyle.styleRegular16(context),
                             ),
                             const SizedBox(
@@ -435,7 +549,7 @@ class _ReportInformationEditingFieldsState
                                     .copyWith(color: Colors.black),
                                 keyboardType: TextInputType.text,
                                 textInputAction: TextInputAction.done,
-                                controller: widget.addressCotroller,
+                                controller: widget.latitudeCotroller,
                                 //     BlocProvider.of<LoginCubit>(context).signInEmail,
                                 decoration: InputDecoration(
                                   errorStyle: AppStyle.styleRegular16(context)
@@ -468,9 +582,9 @@ class _ReportInformationEditingFieldsState
                                         width: 1, color: Colors.white),
                                   ),
                                 ),
-                                validator: (location) {
-                                  if (location!.isEmpty) {
-                                    return "Please enter your Location";
+                                validator: (latitude) {
+                                  if (latitude!.isEmpty) {
+                                    return "Please enter the emergency latitude";
                                   }
                                   return null;
                                 },
@@ -485,7 +599,7 @@ class _ReportInformationEditingFieldsState
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Phone Number",
+                              "Longitude",
                               style: AppStyle.styleRegular16(context),
                             ),
                             const SizedBox(
@@ -499,13 +613,13 @@ class _ReportInformationEditingFieldsState
                                     .copyWith(color: Colors.black),
                                 keyboardType: TextInputType.text,
                                 textInputAction: TextInputAction.done,
-                                controller: widget.phoneCotroller,
+                                controller: widget.longitudeCotroller,
                                 //     BlocProvider.of<LoginCubit>(context).signInEmail,
                                 decoration: InputDecoration(
                                   errorStyle: AppStyle.styleRegular16(context)
                                       .copyWith(color: Colors.red),
                                   prefixIcon: const Icon(
-                                    Icons.phone_iphone,
+                                    Icons.location_on,
                                     color: Colors.black,
                                   ),
 
@@ -532,9 +646,9 @@ class _ReportInformationEditingFieldsState
                                         width: 1, color: Colors.white),
                                   ),
                                 ),
-                                validator: (phone) {
-                                  if (phone!.isEmpty) {
-                                    return "Please enter the phone number";
+                                validator: (longitude) {
+                                  if (longitude!.isEmpty) {
+                                    return "Please enter the emergency longitude";
                                   }
                                   return null;
                                 },
@@ -552,13 +666,13 @@ class _ReportInformationEditingFieldsState
                       height: 47,
                       child: ElevatedButton(
                         onPressed: () {
-                          if (!formKey.currentState!.validate()) {
+                          if (!formEditingKey.currentState!.validate()) {
                             return;
                           } else {
-                            final updatedData = getUpdatedData();
+                            final updatedData = getTheUpdatedData();
                             if (updatedData.isNotEmpty) {
                               BlocProvider.of<AddOwnerAndHospitalCubit>(context)
-                                  .updateUser(updatedData, widget.id);
+                                  .updateEmergency(updatedData, widget.id);
                             } else {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(

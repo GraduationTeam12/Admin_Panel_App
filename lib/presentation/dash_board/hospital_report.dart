@@ -13,23 +13,26 @@ class HospitalReport extends StatelessWidget {
       name: "Name",
       email: 'E-mail',
       id: 'Id',
-      firperson: 'FirPerson',
+      address: 'Address',
       longitude: 'Longitude',
       latitude: 'Latitude',
     )
   ];
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          const ReportsHospitalChart(),
-          const SelectingOwnerOrHospital(
-            selectedIndex: 1,
-          ),
-          ReportHospitalBar(reportModel: navBar[0]),
-          const ReportsHospitalInfo()
-        ],
+    return Scaffold(
+        backgroundColor:  const Color.fromRGBO(217, 217, 217, 0.7),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const ReportsHospitalChart(),
+            const SelectingOwnerOrHospital(
+              selectedIndex: 1,
+            ),
+            ReportHospitalBar(reportModel: navBar[0]),
+            const ReportsHospitalInfo()
+          ],
+        ),
       ),
     );
   }

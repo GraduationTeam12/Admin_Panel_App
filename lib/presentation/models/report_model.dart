@@ -6,7 +6,7 @@ class ReportModel {
   final String? location;
   final String? board;
   final String? phone;
-  final String? firperson;
+  final String? address;
   final String? longitude;
   final String? latitude;
   
@@ -17,7 +17,7 @@ class ReportModel {
     this.location,
     this.board,
     this.phone,
-    this.firperson,
+    this.address,
     this.longitude,
     this.latitude,
   });

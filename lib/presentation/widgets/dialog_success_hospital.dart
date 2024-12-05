@@ -6,14 +6,14 @@ import 'package:admin_panel_app/core/logic/navigation_cubit/navigation_cubit.dar
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CheckAnimation extends StatefulWidget {
-  const CheckAnimation({super.key});
+class CheckSuccessAnimation extends StatefulWidget {
+  const CheckSuccessAnimation({super.key});
 
   @override
-  _CheckAnimationState createState() => _CheckAnimationState();
+  _CheckSuccessAnimationState createState() => _CheckSuccessAnimationState();
 }
 
-class _CheckAnimationState extends State<CheckAnimation> {
+class _CheckSuccessAnimationState extends State<CheckSuccessAnimation> {
   double _containerSize = 50;
   bool _animateCheck = false;
   bool _isDialogOpen = true;
@@ -82,8 +82,9 @@ class _CheckAnimationState extends State<CheckAnimation> {
   }
 }
 
-void showCheckDialog(BuildContext context) {
+void showHospitalCheckDialog(BuildContext context) {
   showDialog(
+    
     context: context,
      barrierDismissible: false,
     builder: (context) => BlocProvider.value(
@@ -105,7 +106,7 @@ void showCheckDialog(BuildContext context) {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       const SizedBox(height: 40),
-                      const SizedBox(height: 60, child: CheckAnimation()),
+                      const SizedBox(height: 60, child: CheckSuccessAnimation()),
                       const SizedBox(height: 40),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -140,7 +141,7 @@ void showCheckDialog(BuildContext context) {
                       TextButton(
                           onPressed: () {
                             Navigator.pop(context);
-                            context.read<NavigationCubit>().navigateTo(10);
+                            context.read<NavigationCubit>().navigateTo(11);
                           },
                           child: Text(
                             "Done",

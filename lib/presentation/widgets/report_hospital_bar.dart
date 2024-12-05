@@ -38,7 +38,7 @@ class ReportHospitalBar extends StatelessWidget {
       
               SizedBox(width: MediaQuery.sizeOf(context).width*0.11,),
       
-            Text(reportModel.firperson ?? '' , style: AppStyle.styleBold17(context).copyWith(color: const Color(0xFF5C5858)),),
+            Text(reportModel.address ?? '' , style: AppStyle.styleBold17(context).copyWith(color: const Color(0xFF5C5858)),),
       
               SizedBox(width: MediaQuery.sizeOf(context).width*0.08,),
       

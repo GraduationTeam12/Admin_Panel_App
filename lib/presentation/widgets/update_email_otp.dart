@@ -1,7 +1,7 @@
 import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
-import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_cubit.dart';
-import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_state.dart';
+import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_cubit.dart';
+import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_state.dart';
 import 'package:admin_panel_app/presentation/widgets/custom_container.dart';
 import 'package:admin_panel_app/presentation/widgets/otp_form.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +35,7 @@ class _OtpUpdatedEmailState extends State<OtpUpdatedEmail> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  BlocConsumer<AddOwnerCubit, AddOwnerState>(
+                  BlocConsumer<AddOwnerAndHospitalCubit, AddOwnerAndHospitalState>(
                     listener: (context, state) {
                       if (state is VerifyUpdatedEmailUserLoading) {
                         // WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -190,7 +190,7 @@ class _OtpUpdatedEmailState extends State<OtpUpdatedEmail> {
                                         if (!formKey.currentState!.validate()) {
                                           return;
                                         } else {
-                                          BlocProvider.of<AddOwnerCubit>(
+                                          BlocProvider.of<AddOwnerAndHospitalCubit>(
                                                   context)
                                               .verifyUpdatedEmail(
                                                   widget.emailText,

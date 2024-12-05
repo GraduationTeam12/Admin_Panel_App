@@ -1,6 +1,8 @@
 import 'package:admin_panel_app/core/api/api_consumer.dart';
 import 'package:admin_panel_app/core/api/end_points.dart';
+import 'package:admin_panel_app/core/data/model/all_emergencies_model.dart';
 import 'package:admin_panel_app/core/data/model/all_owners_model.dart';
+import 'package:admin_panel_app/core/data/model/emergency_model.dart';
 import 'package:admin_panel_app/core/data/model/login_model.dart';
 import 'package:admin_panel_app/core/data/model/update_user_model.dart';
 import 'package:admin_panel_app/core/data/model/user_model.dart';
@@ -189,4 +191,123 @@ class AuthRepository {
       return Left(e.toString());
     }
   }
+
+  Future<Either<String, String>> addHospital(
+      String type,
+      String name,
+      String phone,
+      String address,
+      String number,
+      String latitude,
+      String longitude,
+      String password,
+      String email,
+      dynamic token) async {
+    try {
+      final response = await apiConsumer.post(
+        EndPoint.addHospital,
+        data: {
+          'type': type,
+          'name': name,
+          'email': email,
+          'phone': phone,
+          'address': address,
+          'number': number,
+          'latitude': latitude,
+          'longitude': longitude,
+          'password': password,
+        },
+        headers: {'Authorization': 'Bearer $token'},
+      );
+      return Right(response[ApiKeys.message]);
+    } on ServerException catch (error) {
+      return Left(error.errorModel.errorMessage);
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+
+
+  Future<Either<String, List<AllEmergenciesModel>>> getAllEmergencies(dynamic token) async {
+    try {
+      final response = await apiConsumer.get(
+        EndPoint.getAllEmergencies,
+        headers: {'Authorization': 'Bearer $token'},
+      );
+
+      final List<AllEmergenciesModel> emergencies = (response['data'] as List)
+          .map((emergency) => AllEmergenciesModel.fromJson(emergency))
+          .toList();
+      return Right(emergencies);
+    } on ServerException catch (error) {
+      return Left(error.errorModel.errorMessage);
+    }on ServerExceptionResponse catch (error) {
+      return Left(error.errorResponse.errorMessage);
+    }catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+  Future<Either<String, List<EmergencyModel>>> getEmergency(
+    String id,
+    dynamic token,
+  ) async {
+    try {
+      final response = await apiConsumer.get(
+        EndPoint.getEmergency(id),
+        headers: {'Authorization': 'Bearer $token'},
+      );
+
+      if (response['data'] is List) {
+        final List<EmergencyModel> emegency = (response['data'] as List)
+            .map((emergencyJson) => EmergencyModel.fromJson(emergencyJson))
+            .toList();
+        return Right(emegency);
+      } else {
+        return Left('Invalid data format: ${response['data']}');
+      }
+    } on ServerException catch (error) {
+      return Left(error.errorModel.errorMessage);
+    } catch (e) {
+      return Left('Unexpected error: ${e.toString()}');
+    }
+  }
+
+
+  Future<Either<String, String>> deleteEmergency(String id, dynamic token) async {
+    try {
+      final response = await apiConsumer.delete(
+        EndPoint.deleteEmergency(id),
+        headers: {'Authorization': 'Bearer $token'},
+      );
+      return Right(response[ApiKeys.message]);
+    } on ServerException catch (error) {
+      return Left(error.errorModel.errorMessage);
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+
+    Future<Either<String, String>> updateEmergency(
+    Map<String, dynamic> updatedData,
+    String id,
+    dynamic token,
+  ) async {
+    try {
+      final response = await apiConsumer.put(
+        EndPoint.deleteEmergency(id),
+        data: updatedData,
+        headers: {'Authorization': 'Bearer $token'},
+      );
+
+      return Right(response[ApiKeys.message]);
+    } on ServerException catch (error) {
+      return Left(error.errorModel.errorMessage);
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
 }

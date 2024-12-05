@@ -42,8 +42,7 @@ class _SelectingOwnerOrHospitalState extends State<SelectingOwnerOrHospital> {
           children: [
             InkWell(
                 onTap: () {
-                 context.read<NavigationCubit>().navigateTo(10);
-                 
+                  context.read<NavigationCubit>().navigateTo(10);
                 },
                 child: Text(
                   "Owner",
@@ -61,7 +60,9 @@ class _SelectingOwnerOrHospitalState extends State<SelectingOwnerOrHospital> {
             // ),
             InkWell(
                 onTap: () {
-                   context.read<NavigationCubit>().navigateTo(11);
+                    context.read<NavigationCubit>().navigateTo(11);
+                  // Navigator.pushNamed(context, hospialReportsScreen);
+                  // context.go(hospialReportsScreen);
                 },
                 child: Text(
                   "Hospital",

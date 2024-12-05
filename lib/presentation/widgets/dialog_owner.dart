@@ -1,7 +1,7 @@
 import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
-import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_cubit.dart';
-import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_state.dart';
+import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_cubit.dart';
+import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_state.dart';
 import 'package:admin_panel_app/core/logic/navigation_cubit/navigation_cubit.dart';
 import 'package:admin_panel_app/presentation/widgets/dialog_animation.dart';
 import 'package:admin_panel_app/presentation/widgets/dialog_success_animation.dart';
@@ -17,8 +17,8 @@ void showOwnerFormDialog(BuildContext context) {
     context: context,
     builder: (BuildContext dialogContext) {
       return BlocProvider.value(
-        value: BlocProvider.of<AddOwnerCubit>(context),
-        child: BlocConsumer<AddOwnerCubit, AddOwnerState>(
+        value: BlocProvider.of<AddOwnerAndHospitalCubit>(context),
+        child: BlocConsumer<AddOwnerAndHospitalCubit, AddOwnerAndHospitalState>(
           listener: (context, state) {
             if (state is AddUserLoading) {
               // Navigator.pop(context);
@@ -87,7 +87,7 @@ void showOwnerFormDialog(BuildContext context) {
                           height: 8,
                         ),
                         TextFormField(
-                          initialValue: BlocProvider.of<AddOwnerCubit>(context)
+                          initialValue: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
                               .userNameController
                               .text,
                           style: AppStyle.styleRegular16(context)
@@ -133,7 +133,7 @@ void showOwnerFormDialog(BuildContext context) {
                           height: 8,
                         ),
                         TextFormField(
-                          initialValue: BlocProvider.of<AddOwnerCubit>(context)
+                          initialValue: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
                               .userEmailController
                               .text,
                           style: AppStyle.styleRegular16(context)
@@ -179,7 +179,7 @@ void showOwnerFormDialog(BuildContext context) {
                           height: 8,
                         ),
                         TextFormField(
-                          initialValue: BlocProvider.of<AddOwnerCubit>(context)
+                          initialValue: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
                               .addressController
                               .text,
                           style: AppStyle.styleRegular16(context)
@@ -225,7 +225,7 @@ void showOwnerFormDialog(BuildContext context) {
                           height: 8,
                         ),
                         TextFormField(
-                          initialValue: BlocProvider.of<AddOwnerCubit>(context)
+                          initialValue: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
                               .ageController
                               .text,
                           style: AppStyle.styleRegular16(context)
@@ -271,7 +271,7 @@ void showOwnerFormDialog(BuildContext context) {
                           height: 8,
                         ),
                         TextFormField(
-                          initialValue: BlocProvider.of<AddOwnerCubit>(context)
+                          initialValue: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
                               .phoneController
                               .text,
                           style: AppStyle.styleRegular16(context)
@@ -317,7 +317,7 @@ void showOwnerFormDialog(BuildContext context) {
                           height: 8,
                         ),
                         TextFormField(
-                          initialValue: BlocProvider.of<AddOwnerCubit>(context)
+                          initialValue: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
                               .nationalIdController
                               .text,
                           style: AppStyle.styleRegular16(context)
@@ -363,7 +363,7 @@ void showOwnerFormDialog(BuildContext context) {
                           height: 8,
                         ),
                         TextFormField(
-                          initialValue: BlocProvider.of<AddOwnerCubit>(context)
+                          initialValue: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
                               .boardIdController
                               .text,
                           style: AppStyle.styleRegular16(context)
@@ -409,7 +409,7 @@ void showOwnerFormDialog(BuildContext context) {
                     height: 47,
                     child: ElevatedButton(
                       onPressed: () {
-                        BlocProvider.of<AddOwnerCubit>(context).sendUserData();
+                        BlocProvider.of<AddOwnerAndHospitalCubit>(context).sendUserData();
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: MyColors.premiumColor,

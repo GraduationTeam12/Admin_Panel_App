@@ -3,8 +3,8 @@ import 'package:admin_panel_app/constants/colors.dart';
 import 'package:admin_panel_app/core/api/dio_consumer.dart';
 import 'package:admin_panel_app/core/data/model/all_owners_model.dart';
 import 'package:admin_panel_app/core/data/repo/auth_repo.dart';
-import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_cubit.dart';
-import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_state.dart';
+import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_cubit.dart';
+import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_state.dart';
 import 'package:admin_panel_app/presentation/widgets/dialog_animation.dart';
 import 'package:admin_panel_app/presentation/widgets/report_dialog_owner.dart';
 import 'package:admin_panel_app/presentation/widgets/report_owner_editing_information.dart';
@@ -23,13 +23,13 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
   List<Users> users = [];
   @override
   void initState() {
-    BlocProvider.of<AddOwnerCubit>(context).getAllOwners();
+    BlocProvider.of<AddOwnerAndHospitalCubit>(context).getAllOwners();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AddOwnerCubit, AddOwnerState>(
+    return BlocListener<AddOwnerAndHospitalCubit, AddOwnerAndHospitalState>(
       listener: (context, state) {
         if (state is DeleteUserLoading) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -56,7 +56,7 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
                   const EdgeInsets.only(bottom: 680, left: 160, right: 160)));
         }
       },
-      child: BlocBuilder<AddOwnerCubit, AddOwnerState>(
+      child: BlocBuilder<AddOwnerAndHospitalCubit, AddOwnerAndHospitalState>(
         builder: (context, state) {
           if (state is GetAllOwnerLoading) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -75,15 +75,7 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
 
           //
 
-          return users.isEmpty
-              ? Center(
-                  child: Text(
-                    "No owners found in the system",
-                    style: AppStyle.styleSemiBold25(context)
-                        .copyWith(fontSize: 30, color: MyColors.premiumColor),
-                  ),
-                )
-              : Padding(
+          return  Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: Container(
@@ -347,7 +339,7 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
                                                   builder: (context) =>
                                                       BlocProvider(
                                                     create: (context) =>
-                                                        AddOwnerCubit(
+                                                        AddOwnerAndHospitalCubit(
                                                             AuthRepository(
                                                                 apiConsumer:
                                                                     DioConsumer(
@@ -387,7 +379,7 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
                                                 builder: (context) {
                                                   return BlocProvider.value(
                                                     value: BlocProvider.of<
-                                                        AddOwnerCubit>(context),
+                                                        AddOwnerAndHospitalCubit>(context),
                                                     child: AlertDialog(
                                                       scrollable: true,
                                                       backgroundColor:
@@ -458,7 +450,7 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
                                                                   Navigator.pop(
                                                                       context);
                                                                   BlocProvider.of<
-                                                                              AddOwnerCubit>(
+                                                                              AddOwnerAndHospitalCubit>(
                                                                           context)
                                                                       .deleteUser(
                                                                           users[index]

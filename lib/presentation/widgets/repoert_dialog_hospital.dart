@@ -4,9 +4,14 @@ import 'package:flutter/material.dart';
 
 void showReportHospitalFormDialog(
   BuildContext context,
+  String type,
   String name,
   String email,
   String idNumber,
+  String phone,
+  String address,
+  String longitude,
+  String latitude,
 ) {
   // final _formKey = GlobalKey<FormState>();
 
@@ -33,11 +38,14 @@ void showReportHospitalFormDialog(
                     blurRadius: 4,
                   )
                 ]),
-            child: Center(
-              child: Text(
-                'Information',
-                style: AppStyle.styleSemiBold25(context)
-                    .copyWith(color: MyColors.premiumColor),
+            child: SizedBox(
+              width: 500,
+              child: Center(
+                child: Text(
+                  'Information',
+                  style: AppStyle.styleSemiBold25(context)
+                      .copyWith(color: MyColors.premiumColor),
+                ),
               ),
             )),
         content: Column(
@@ -48,6 +56,52 @@ void showReportHospitalFormDialog(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+
+                  Text(
+                    "Type",
+                    style: AppStyle.styleRegular16(context),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  TextFormField(
+                    initialValue: type,
+                    style: AppStyle.styleRegular16(context)
+                        .copyWith(color: Colors.black),
+                    keyboardType: TextInputType.text,
+                    textInputAction: TextInputAction.done,
+                    decoration: InputDecoration(
+                      errorStyle: AppStyle.styleRegular16(context)
+                          .copyWith(color: Colors.red),
+                      prefixIconConstraints: const BoxConstraints(
+                        minWidth: 0,
+                        minHeight: 0,
+                      ),
+                      prefixIcon: const Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.merge_type,
+                            color: Colors.black,
+                          ),
+                          SizedBox(width: 4),
+                        ],
+                      ),
+                      isDense: true,
+                      enabledBorder: const UnderlineInputBorder(
+                        borderSide:
+                            BorderSide(color: MyColors.premiumColor, width: 1),
+                      ),
+                      focusedBorder: const UnderlineInputBorder(
+                        borderSide:
+                            BorderSide(color: MyColors.premiumColor, width: 1),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+
                   Text(
                     "Hospital Name",
                     style: AppStyle.styleRegular16(context),
@@ -137,40 +191,7 @@ void showReportHospitalFormDialog(
                     height: 8,
                   ),
                  
-                  // TextFormField(
-                  //   initialValue: location,
-                  //   style: AppStyle.styleRegular16(context)
-                  //       .copyWith(color: Colors.black),
-                  //   keyboardType: TextInputType.text,
-                  //   textInputAction: TextInputAction.done,
-                  //   decoration: InputDecoration(
-                  //     errorStyle: AppStyle.styleRegular16(context)
-                  //         .copyWith(color: Colors.red),
-                  //     prefixIconConstraints: const BoxConstraints(
-                  //       minWidth: 0,
-                  //       minHeight: 0,
-                  //     ),
-                  //     prefixIcon: const Row(
-                  //       mainAxisSize: MainAxisSize.min,
-                  //       children: [
-                  //         Icon(
-                  //           Icons.location_on,
-                  //           color: Colors.black,
-                  //         ),
-                  //         SizedBox(width: 4),
-                  //       ],
-                  //     ),
-                  //     isDense: true,
-                  //     enabledBorder: const UnderlineInputBorder(
-                  //       borderSide:
-                  //           BorderSide(color: MyColors.premiumColor, width: 1),
-                  //     ),
-                  //     focusedBorder: const UnderlineInputBorder(
-                  //       borderSide:
-                  //           BorderSide(color: MyColors.premiumColor, width: 1),
-                  //     ),
-                  //   ),
-                  // ),
+                   
                   const SizedBox(
                     height: 8,
                   ),
@@ -215,11 +236,191 @@ void showReportHospitalFormDialog(
                       ),
                     ),
                   ),
+
+                  Text(
+                    "Address",
+                    style: AppStyle.styleRegular16(context),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  TextFormField(
+                    initialValue: address,
+                    style: AppStyle.styleRegular16(context)
+                        .copyWith(color: Colors.black),
+                    keyboardType: TextInputType.text,
+                    textInputAction: TextInputAction.done,
+                    decoration: InputDecoration(
+                      errorStyle: AppStyle.styleRegular16(context)
+                          .copyWith(color: Colors.red),
+                      prefixIconConstraints: const BoxConstraints(
+                        minWidth: 0,
+                        minHeight: 0,
+                      ),
+                      prefixIcon: const Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.place,
+                            color: Colors.black,
+                          ),
+                          SizedBox(width: 4),
+                        ],
+                      ),
+                      isDense: true,
+                      enabledBorder: const UnderlineInputBorder(
+                        borderSide:
+                            BorderSide(color: MyColors.premiumColor, width: 1),
+                      ),
+                      focusedBorder: const UnderlineInputBorder(
+                        borderSide:
+                            BorderSide(color: MyColors.premiumColor, width: 1),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+
+
+                  Text(
+                    "Phone",
+                    style: AppStyle.styleRegular16(context),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  TextFormField(
+                    initialValue: phone,
+                    style: AppStyle.styleRegular16(context)
+                        .copyWith(color: Colors.black),
+                    keyboardType: TextInputType.text,
+                    textInputAction: TextInputAction.done,
+                    decoration: InputDecoration(
+                      errorStyle: AppStyle.styleRegular16(context)
+                          .copyWith(color: Colors.red),
+                      prefixIconConstraints: const BoxConstraints(
+                        minWidth: 0,
+                        minHeight: 0,
+                      ),
+                      prefixIcon: const Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.phone_iphone,
+                            color: Colors.black,
+                          ),
+                          SizedBox(width: 4),
+                        ],
+                      ),
+                      isDense: true,
+                      enabledBorder: const UnderlineInputBorder(
+                        borderSide:
+                            BorderSide(color: MyColors.premiumColor, width: 1),
+                      ),
+                      focusedBorder: const UnderlineInputBorder(
+                        borderSide:
+                            BorderSide(color: MyColors.premiumColor, width: 1),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+
+
+                  Text(
+                    "Longitude",
+                    style: AppStyle.styleRegular16(context),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  TextFormField(
+                    initialValue: longitude,
+                    style: AppStyle.styleRegular16(context)
+                        .copyWith(color: Colors.black),
+                    keyboardType: TextInputType.text,
+                    textInputAction: TextInputAction.done,
+                    decoration: InputDecoration(
+                      errorStyle: AppStyle.styleRegular16(context)
+                          .copyWith(color: Colors.red),
+                      prefixIconConstraints: const BoxConstraints(
+                        minWidth: 0,
+                        minHeight: 0,
+                      ),
+                      prefixIcon: const Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.location_on,
+                            color: Colors.black,
+                          ),
+                          SizedBox(width: 4),
+                        ],
+                      ),
+                      isDense: true,
+                      enabledBorder: const UnderlineInputBorder(
+                        borderSide:
+                            BorderSide(color: MyColors.premiumColor, width: 1),
+                      ),
+                      focusedBorder: const UnderlineInputBorder(
+                        borderSide:
+                            BorderSide(color: MyColors.premiumColor, width: 1),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+
+                  Text(
+                    "Latitude",
+                    style: AppStyle.styleRegular16(context),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  TextFormField(
+                    initialValue: latitude,
+                    style: AppStyle.styleRegular16(context)
+                        .copyWith(color: Colors.black),
+                    keyboardType: TextInputType.text,
+                    textInputAction: TextInputAction.done,
+                    decoration: InputDecoration(
+                      errorStyle: AppStyle.styleRegular16(context)
+                          .copyWith(color: Colors.red),
+                      prefixIconConstraints: const BoxConstraints(
+                        minWidth: 0,
+                        minHeight: 0,
+                      ),
+                      prefixIcon: const Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.location_on,
+                            color: Colors.black,
+                          ),
+                          SizedBox(width: 4),
+                        ],
+                      ),
+                      isDense: true,
+                      enabledBorder: const UnderlineInputBorder(
+                        borderSide:
+                            BorderSide(color: MyColors.premiumColor, width: 1),
+                      ),
+                      focusedBorder: const UnderlineInputBorder(
+                        borderSide:
+                            BorderSide(color: MyColors.premiumColor, width: 1),
+                      ),
+                    ),
+                  ),
+                   
                 ],
               ),
             ),
             const SizedBox(
-              height: 100,
+              height: 20,
             ),
           ],
         ),

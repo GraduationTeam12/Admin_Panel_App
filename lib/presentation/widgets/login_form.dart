@@ -35,6 +35,8 @@ class _LoginFormState extends State<LoginForm> {
           ));
 
           Navigator.pushReplacementNamed(context, dashBoardScreen);
+          
+           
         }
 
         if (state is LoginErrorState) {
@@ -194,7 +196,6 @@ class _LoginFormState extends State<LoginForm> {
                     } else {
                       BlocProvider.of<LoginCubit>(context).login();
                       // Navigator.pushReplacementNamed(context, dashBoardScreen);
-
                     }
                   },
                   style: ElevatedButton.styleFrom(

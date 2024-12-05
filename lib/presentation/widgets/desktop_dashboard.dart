@@ -23,6 +23,7 @@ class DesktopDashboard extends StatelessWidget {
   });
 
   final Widget? widget;
+  
   final List<String> _pagesTitle = [
     "Overview",
     'Reports',
@@ -56,7 +57,9 @@ class DesktopDashboard extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
+
       backgroundColor:   const Color.fromRGBO(217, 217, 217, 0.7),
       body: Row(
         children: [

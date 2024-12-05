@@ -25,6 +25,7 @@ class AppRouter {
       case dashBoardScreen:
         return MaterialPageRoute(
             builder: (context) => const DashBoard());
+            
 
       case splashScreen:
         return MaterialPageRoute(builder: (context) => const SplashScreen());

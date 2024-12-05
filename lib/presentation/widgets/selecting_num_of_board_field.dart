@@ -1,6 +1,6 @@
 import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
-import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_cubit.dart';
+import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_cubit.dart';
 import 'package:admin_panel_app/core/logic/navigation_cubit/navigation_cubit.dart';
 import 'package:admin_panel_app/presentation/widgets/add_owner_bar.dart';
 import 'package:flutter/material.dart';
@@ -64,7 +64,7 @@ class SelectingNumOfBoardFieldState extends State<SelectingNumOfBoardField> {
                             .copyWith(color: Colors.black),
                         keyboardType: TextInputType.number,
                         textInputAction: TextInputAction.done,
-                        controller: BlocProvider.of<AddOwnerCubit>(context)
+                        controller: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
                             .boardIdController,
                         //     BlocProvider.of<LoginCubit>(context).signInEmail,
                         decoration: InputDecoration(

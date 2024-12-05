@@ -2,8 +2,8 @@ import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/core/api/dio_consumer.dart';
 import 'package:admin_panel_app/core/data/model/user_model.dart';
 import 'package:admin_panel_app/core/data/repo/auth_repo.dart';
-import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_cubit.dart';
-import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_state.dart';
+import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_cubit.dart';
+import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_state.dart';
 import 'package:admin_panel_app/presentation/widgets/custom_container.dart';
 import 'package:admin_panel_app/presentation/widgets/dialog_animation.dart';
 import 'package:admin_panel_app/presentation/widgets/report_information_editing_fields.dart';
@@ -44,7 +44,7 @@ class _ReportOwnerEditingInformationState
     phoneController = TextEditingController();
     nationalIdController = TextEditingController();
 
-    BlocProvider.of<AddOwnerCubit>(context).getUser(widget.id);
+    BlocProvider.of<AddOwnerAndHospitalCubit>(context).getUser(widget.id);
   }
 
   @override
@@ -63,7 +63,7 @@ class _ReportOwnerEditingInformationState
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(217, 217, 217, 0.7),
-      body: BlocBuilder<AddOwnerCubit, AddOwnerState>(
+      body: BlocBuilder<AddOwnerAndHospitalCubit, AddOwnerAndHospitalState>(
         builder: (context, state) {
           if (state is GetUserLoading) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -128,7 +128,7 @@ class _ReportOwnerEditingInformationState
                         height: 20,
                       ),
                       BlocProvider(
-                        create: (context) => AddOwnerCubit(AuthRepository(
+                        create: (context) => AddOwnerAndHospitalCubit(AuthRepository(
                             apiConsumer: DioConsumer(dio: Dio()))),
                         child: ReportInformationEditingFields(
                           id: widget.id,

@@ -13,30 +13,32 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-   @override
-     void initState() {
+  @override
+  void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 2), () {
-      Navigator.pushReplacementNamed(context, loginPageScreen);
+       Navigator.pushReplacementNamed(context, loginPageScreen);
     });
   }
+
+
+
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      body:Container(
+    return Scaffold(
+      body: Container(
         height: MediaQuery.sizeOf(context).height,
         width: MediaQuery.sizeOf(context).width,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Color.fromRGBO(61, 100, 152, 1), // rgba(61,100,152,1)
-                Color.fromRGBO(250, 250, 250, 1), // rgba(250,250,250,1)
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color.fromRGBO(61, 100, 152, 1), // rgba(61,100,152,1)
+              Color.fromRGBO(250, 250, 250, 1), // rgba(250,250,250,1)
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
           ),
-      
+        ),
         child: Lottie.asset(AppFlow.flowSplashScreen, repeat: false),
       ),
     );

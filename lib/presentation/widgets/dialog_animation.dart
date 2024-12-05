@@ -65,7 +65,7 @@ class _ThreeDotsAnimationState extends State<ThreeDotsAnimation>
 void showLoadingDialog(BuildContext context) {
   showDialog(
   context: context,
-  // barrierDismissible: false,
+   barrierDismissible: false,
   builder: (context) => Dialog(
     backgroundColor: Colors.transparent,
     child: Container(

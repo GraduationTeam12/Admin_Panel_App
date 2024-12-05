@@ -36,10 +36,15 @@ void showReportOwnerFormDialog(
                   )
                 ]),
             child: Center(
-              child: Text(
-                'Information',
-                style: AppStyle.styleSemiBold25(context)
-                    .copyWith(color: MyColors.premiumColor),
+              child: SizedBox(
+                width: 500,
+                child: Center(
+                  child: Text(
+                    'Information',
+                    style: AppStyle.styleSemiBold25(context)
+                        .copyWith(color: MyColors.premiumColor),
+                  ),
+                ),
               ),
             )),
         content: Column(

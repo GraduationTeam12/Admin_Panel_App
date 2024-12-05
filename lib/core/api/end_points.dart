@@ -1,12 +1,16 @@
 class EndPoint {
-  static const String baseUrl = 'https://satars.onrender.com/admins/';
-  static const String logIn = 'login';
-  static const String sendOtp = 'userSendOtp';
-  static const String verifyOtp = 'userVerfiyOtp';
-  static const String userData = 'userData';
-  static const String users = 'users';
-  static const String user = 'user/';
-  static const String verifiedEmail = 'verfiedUpdate/';
+  static const String baseUrl = 'https://satars.onrender.com/';
+  static const String logIn = 'admins/login';
+  static const String sendOtp = 'admins/userSendOtp';
+  static const String verifyOtp = 'admins/userVerfiyOtp';
+  static const String userData = 'admins/userData';
+  static const String users = 'admins/users';
+  static const String user = 'admins/user/';
+  static const String verifiedEmail = 'admins/verfiedUpdate/';
+  static const String addHospital = 'adminsEmergency/emergencySignup';
+  static const String getAllEmergencies = 'adminsEmergency/emergency';
+  static const String getSpecificEmergency = 'adminsEmergency/emergency/';
+  static const String deleteEmergencyy = 'adminsEmergency/emergency/';
 
   static String getUser(id) {
     return "$user$id";
@@ -22,6 +26,14 @@ class EndPoint {
 
   static String deleteUser(id) {
     return "$user$id";
+  }
+
+  static String getEmergency(id) {
+    return "$getSpecificEmergency$id";
+  }
+
+  static String deleteEmergency(id) {
+    return "$deleteEmergencyy$id";
   }
 }
 

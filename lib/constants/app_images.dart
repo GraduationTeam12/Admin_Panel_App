@@ -26,6 +26,10 @@ class Assets {
   /// assets/images/auth_images/bro_survey.svg
   static const String imagesAuthImagesBroSurvey = "assets/images/auth_images/bro_survey.svg";
 
+  /// Assets for imagesAuthImagesChartIcon
+  /// assets/images/auth_images/chart_icon.svg
+  static const String imagesAuthImagesChartIcon = "assets/images/auth_images/chart_icon.svg";
+
   /// Assets for imagesAuthImagesClarityFormLine
   /// assets/images/auth_images/clarity_form-line.svg
   static const String imagesAuthImagesClarityFormLine = "assets/images/auth_images/clarity_form-line.svg";
@@ -33,6 +37,10 @@ class Assets {
   /// Assets for imagesAuthImagesContactUsDrawer
   /// assets/images/auth_images/contact_us_drawer.svg
   static const String imagesAuthImagesContactUsDrawer = "assets/images/auth_images/contact_us_drawer.svg";
+
+  /// Assets for imagesAuthImagesDeviconFacebook
+  /// assets/images/auth_images/devicon_facebook.svg
+  static const String imagesAuthImagesDeviconFacebook = "assets/images/auth_images/devicon_facebook.svg";
 
   /// Assets for imagesAuthImagesDiagramFireStation
   /// assets/images/auth_images/diagram_fire_station.svg
@@ -53,6 +61,10 @@ class Assets {
   /// Assets for imagesAuthImagesHomeW
   /// assets/images/auth_images/home_w.svg
   static const String imagesAuthImagesHomeW = "assets/images/auth_images/home_w.svg";
+
+  /// Assets for imagesAuthImagesHugeiconsTiktok
+  /// assets/images/auth_images/hugeicons_tiktok.svg
+  static const String imagesAuthImagesHugeiconsTiktok = "assets/images/auth_images/hugeicons_tiktok.svg";
 
   /// Assets for imagesAuthImagesIconHospitalSidebar
   /// assets/images/auth_images/icon_hospital_sidebar.svg
@@ -93,6 +105,10 @@ class Assets {
   /// Assets for imagesAuthImagesLogoutDrawer
   /// assets/images/auth_images/logout_drawer.svg
   static const String imagesAuthImagesLogoutDrawer = "assets/images/auth_images/logout_drawer.svg";
+
+  /// Assets for imagesAuthImagesMageX
+  /// assets/images/auth_images/mage_x.svg
+  static const String imagesAuthImagesMageX = "assets/images/auth_images/mage_x.svg";
 
   /// Assets for imagesAuthImagesMessage
   /// assets/images/auth_images/message.svg
@@ -165,21 +181,5 @@ class Assets {
   /// Assets for imagesAuthImagesSupportW
   /// assets/images/auth_images/support_w.svg
   static const String imagesAuthImagesSupportW = "assets/images/auth_images/support_w.svg";
-
-  /// Assets for imagesAuthImagesFacebook
-  /// assets/images/auth_images/devicon_facebook.svg
-  static const String imagesAuthImagesFacebook = "assets/images/auth_images/devicon_facebook.svg";
-  
-  
-  /// Assets for imagesAuthImagesFacebook
-  /// assets/images/auth_images/mage_x.svg
-  static const String imagesAuthImagesX = "assets/images/auth_images/mage_x.svg";
-  
-  
-  /// Assets for imagesAuthImagesTiktok
-  /// assets/images/auth_images/hugeicons_tiktok.svg
-  static const String imagesAuthImagesTiktok = "assets/images/auth_images/hugeicons_tiktok.svg";
-  
-
 }
 

@@ -6,10 +6,11 @@ import 'package:admin_panel_app/core/cache/cache_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 // ignore: avoid_web_libraries_in_flutter
-import 'dart:html' as html;
-
+// import 'package:flutter/foundation.dart' show kIsWeb;
+// import 'dart:html' as html;
 import 'dart:convert'; // لتحويل JSON
-import 'package:http/http.dart' as http; // مكتبة HTTP
+import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart'; // مكتبة HTTP
 
 void sendEmail(String name, String email, String subject, String message,
     BuildContext context) async {
@@ -51,6 +52,18 @@ void sendEmail(String name, String email, String subject, String message,
   } catch (e) {
     print("Error occurred: $e");
   }
+
+  
+}
+
+void openUrl(String url) async {
+    // تشغيل على التليفون
+    final Uri uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    } else {
+      print('Could not launch $url');
+    }
 }
 
 void showContactUsDialog(BuildContext context) {
@@ -214,25 +227,25 @@ void showContactUsDialog(BuildContext context) {
                 children: [
                   InkWell(
                       onTap: () {
-                        html.window.open('https://www.twitter.com/', '_blank');
+                        openUrl('https://www.twitter.com/');
                       },
-                      child: SvgPicture.asset(Assets.imagesAuthImagesX)),
+                      child: SvgPicture.asset(Assets.imagesAuthImagesMageX)),
                   const SizedBox(
                     width: 20,
                   ),
                   InkWell(
                       onTap: () {
-                        html.window.open('https://www.tiktok.com/', '_blank');
+                       openUrl('https://www.tiktok.com/');
                       },
-                      child: SvgPicture.asset(Assets.imagesAuthImagesTiktok)),
+                      child: SvgPicture.asset(Assets.imagesAuthImagesHugeiconsTiktok)),
                   const SizedBox(
                     width: 20,
                   ),
                   InkWell(
                       onTap: () {
-                        html.window.open('https://www.facebook.com/', '_blank');
+                      openUrl('https://www.facebook.com/');
                       },
-                      child: SvgPicture.asset(Assets.imagesAuthImagesFacebook))
+                      child: SvgPicture.asset(Assets.imagesAuthImagesDeviconFacebook))
                 ],
               )
             ],

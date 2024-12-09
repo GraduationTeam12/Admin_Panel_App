@@ -9,11 +9,10 @@ class ReportOwnerBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10 ,vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: Container(
         height: 70,
         padding: const EdgeInsets.only(
-         
           left: 15,
         ),
         decoration: BoxDecoration(
@@ -23,34 +22,137 @@ class ReportOwnerBar extends StatelessWidget {
               BoxShadow(
                   color: Colors.black26, blurRadius: 4, offset: Offset(0, 4))
             ]),
-        child: Row(
-          // mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Text(reportModel.name , style: AppStyle.styleBold17(context).copyWith(color: const Color(0xFF5C5858)),),
-      
-              SizedBox(width: MediaQuery.sizeOf(context).width*0.0363,),
-      
-            Text(reportModel.email , style: AppStyle.styleBold17(context).copyWith(color: const Color(0xFF5C5858)),),
-      
-              SizedBox(width: MediaQuery.sizeOf(context).width*0.106,),
-      
-            Text(reportModel.location ?? ''  , style: AppStyle.styleBold17(context).copyWith(color: const Color(0xFF5C5858)),),
-      
-              SizedBox(width: MediaQuery.sizeOf(context).width*0.09,),
-      
-            Text(reportModel.board ?? '' , style: AppStyle.styleBold17(context).copyWith(color: const Color(0xFF5C5858)),),
-      
-              SizedBox(width: MediaQuery.sizeOf(context).width*0.103,),
-      
-            Text(reportModel.phone ?? '' , style: AppStyle.styleBold17(context).copyWith(color: const Color(0xFF5C5858)),),
-      
-              SizedBox(width: MediaQuery.sizeOf(context).width*0.101,),
-      
-            Text(reportModel.id , style: AppStyle.styleBold17(context).copyWith(color: const Color(0xFF5C5858)),),
-      
-              // SizedBox(width: 30,),
-          ],
-        ),
+        child: MediaQuery.sizeOf(context).width < 800
+            ? ListView.builder(
+              scrollDirection: Axis.horizontal,
+                itemCount: 1,
+                itemBuilder: (context, index) {
+                  return Row(
+                    // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        reportModel.name,
+                        style: AppStyle.styleBold17(context)
+                            .copyWith(color: const Color(0xFF5C5858)),
+                      ),
+
+                      const SizedBox(
+                        width:  60,
+                      ),
+
+                      Text(
+                        reportModel.email,
+                        style: AppStyle.styleBold17(context)
+                            .copyWith(color: const Color(0xFF5C5858)),
+                      ),
+
+                      const SizedBox(
+                        width: 150
+                      ),
+
+                      Text(
+                        reportModel.location ?? '',
+                        style: AppStyle.styleBold17(context)
+                            .copyWith(color: const Color(0xFF5C5858)),
+                      ),
+
+                      const SizedBox(
+                        width: 60
+                      ),
+
+                      Text(
+                        reportModel.board ?? '',
+                        style: AppStyle.styleBold17(context)
+                            .copyWith(color: const Color(0xFF5C5858)),
+                      ),
+
+                      const SizedBox(
+                        width: 40
+                      ),
+
+                      Text(
+                        reportModel.phone ?? '',
+                        style: AppStyle.styleBold17(context)
+                            .copyWith(color: const Color(0xFF5C5858)),
+                      ),
+
+                      const SizedBox(
+                        width: 40
+                      ),
+
+                      Text(
+                        reportModel.id,
+                        style: AppStyle.styleBold17(context)
+                            .copyWith(color: const Color(0xFF5C5858)),
+                      ),
+
+                      const SizedBox(width: 30,),
+                    ],
+                  );
+                },
+              )
+            : Row(
+                // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(
+                    reportModel.name,
+                    style: AppStyle.styleBold17(context)
+                        .copyWith(color: const Color(0xFF5C5858)),
+                  ),
+
+                  SizedBox(
+                    width: MediaQuery.sizeOf(context).width * 0.0363,
+                  ),
+
+                  Text(
+                    reportModel.email,
+                    style: AppStyle.styleBold17(context)
+                        .copyWith(color: const Color(0xFF5C5858)),
+                  ),
+
+                  SizedBox(
+                    width: MediaQuery.sizeOf(context).width * 0.106,
+                  ),
+
+                  Text(
+                    reportModel.location ?? '',
+                    style: AppStyle.styleBold17(context)
+                        .copyWith(color: const Color(0xFF5C5858)),
+                  ),
+
+                  SizedBox(
+                    width: MediaQuery.sizeOf(context).width * 0.09,
+                  ),
+
+                  Text(
+                    reportModel.board ?? '',
+                    style: AppStyle.styleBold17(context)
+                        .copyWith(color: const Color(0xFF5C5858)),
+                  ),
+
+                  SizedBox(
+                    width: MediaQuery.sizeOf(context).width * 0.103,
+                  ),
+
+                  Text(
+                    reportModel.phone ?? '',
+                    style: AppStyle.styleBold17(context)
+                        .copyWith(color: const Color(0xFF5C5858)),
+                  ),
+
+                  SizedBox(
+                    width: MediaQuery.sizeOf(context).width * 0.101,
+                  ),
+
+                  Text(
+                    reportModel.id,
+                    style: AppStyle.styleBold17(context)
+                        .copyWith(color: const Color(0xFF5C5858)),
+                  ),
+
+                  // SizedBox(width: 30,),
+                ],
+              ),
       ),
     );
   }

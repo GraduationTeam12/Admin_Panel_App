@@ -13,13 +13,29 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
-  // final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+  //  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //   key: scaffoldKey,
+      // appBar: MediaQuery.of(context).size.width < 800
+      //     ? AppBar(
+      //         elevation: 0,
+      //         backgroundColor: Colors.white,
+      //         shadowColor: Colors.white,
+      //         surfaceTintColor: Colors.white,
+      //         title: const HeaderDesktop(title: ''),
+      //         leading: IconButton(
+      //             onPressed: () {
+      //               scaffoldKey.currentState!.openDrawer();
+      //             },
+      //             icon: const Icon(Icons.menu , size: 35,)),
+      //       )
+      //     : null,
+      // drawer: MediaQuery.of(context).size.width < 800 ? const CustomDrawer() : null,
       backgroundColor: const Color(0xFFF7F9FA),
       body: AdaptiveLayout(
-          mobileLayout: (context) => const MobileDashBoard(),
+          mobileLayout: (context) =>   MobileDashBoard(),
           tabletLayout: (context) => const TabletDashBoard(),
           desktopLayout: (context) =>   DesktopDashboard()),
     );

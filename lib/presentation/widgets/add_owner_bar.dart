@@ -34,7 +34,10 @@ class _AddOwnerBarState extends State<AddOwnerBar> {
                 Text(
                   items[0].number,
                   style: AppStyle.styleRegular25(context)
-                      .copyWith(fontFamily: 'Inter', color: Colors.black),
+                      .copyWith(fontFamily: 'Inter', color: Colors.black ,
+                      fontSize:  MediaQuery.sizeOf(context).width < 800 ? 13 :  null
+                       
+                      ),
                 ),
                 const SizedBox(
                   width: 5,
@@ -43,23 +46,25 @@ class _AddOwnerBarState extends State<AddOwnerBar> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      items[0].title,
+                      MediaQuery.sizeOf(context).width < 800 ?  'Email' : items[0].title,
                       style: AppStyle.styleRegular16(context).copyWith(
                           fontFamily: 'Roboto',
                           color: MyColors.premiumColor,
-                          fontSize: 15),
+                          fontSize:   MediaQuery.sizeOf(context).width < 800 ? 10 :  15),
                     ),
                     Text(
-                      items[0].subtitle,
+                      MediaQuery.sizeOf(context).width < 800 ?  'Address' : items[0].subtitle,
                       style: AppStyle.styleRegular16(context).copyWith(
-                          fontFamily: 'Roboto', color: MyColors.premiumColor),
+                          fontFamily: 'Roboto', color: MyColors.premiumColor,
+                          fontSize:  MediaQuery.sizeOf(context).width < 800 ? 10 :  15
+                          ),
                     ),
                   ],
                 ),
               ],
             ),
             SizedBox(
-              width: MediaQuery.of(context).size.width * 0.15,
+              width: MediaQuery.sizeOf(context).width < 800 ? MediaQuery.of(context).size.width * 0.23 : MediaQuery.of(context).size.width * 0.15,
               child: Row(
                 children: [
                   Container(
@@ -98,7 +103,10 @@ class _AddOwnerBarState extends State<AddOwnerBar> {
                 Text(
                   items[1].number,
                   style: AppStyle.styleRegular25(context)
-                      .copyWith(fontFamily: 'Inter', color: Colors.black),
+                      .copyWith(fontFamily: 'Inter', color: Colors.black,
+                      fontSize:  MediaQuery.sizeOf(context).width < 800 ? 13 :  null
+                      ),
+                      
                 ),
                 const SizedBox(
                   width: 5,
@@ -109,7 +117,7 @@ class _AddOwnerBarState extends State<AddOwnerBar> {
                     Text(
                       items[1].title,
                       style: AppStyle.styleRegular16(context)
-                          .copyWith(fontFamily: 'Roboto', fontSize: 15,
+                          .copyWith(fontFamily: 'Roboto', fontSize:  MediaQuery.sizeOf(context).width < 800 ? 10 :  15,
                           color: widget.index >=1 ? MyColors.premiumColor : null
                           ),
                     ),
@@ -117,7 +125,8 @@ class _AddOwnerBarState extends State<AddOwnerBar> {
                       items[1].subtitle,
                       style: AppStyle.styleRegular16(context).copyWith(
                         fontFamily: 'Roboto',
-                        color: widget.index >=1 ? MyColors.premiumColor : null
+                        color: widget.index >=1 ? MyColors.premiumColor : null,
+                        fontSize:   MediaQuery.sizeOf(context).width < 800 ? 10 :  15
                       ),
                     ),
                   ],
@@ -125,7 +134,7 @@ class _AddOwnerBarState extends State<AddOwnerBar> {
               ],
             ),
             SizedBox(
-              width: MediaQuery.of(context).size.width *0.15,
+              width:  MediaQuery.sizeOf(context).width < 800 ?  MediaQuery.of(context).size.width * 0.23  : MediaQuery.of(context).size.width * 0.15,
               child: Row(
                 children: [
                   Container(
@@ -165,7 +174,9 @@ class _AddOwnerBarState extends State<AddOwnerBar> {
                 Text(
                   items[2].number,
                   style: AppStyle.styleRegular25(context)
-                      .copyWith(fontFamily: 'Inter', color: Colors.black),
+                      .copyWith(fontFamily: 'Inter', color: Colors.black,
+                      fontSize:  MediaQuery.sizeOf(context).width < 800 ? 13 :  null
+                      ),
                 ),
                 const SizedBox(
                   width: 5,
@@ -176,7 +187,7 @@ class _AddOwnerBarState extends State<AddOwnerBar> {
                     Text(
                       items[2].title,
                       style: AppStyle.styleRegular16(context)
-                          .copyWith(fontFamily: 'Roboto', fontSize: 15,
+                          .copyWith(fontFamily: 'Roboto', fontSize:  MediaQuery.sizeOf(context).width < 800 ? 10 :  15,
                           color: widget.index >=2 ? MyColors.premiumColor : null
                           ),
                     ),
@@ -184,6 +195,7 @@ class _AddOwnerBarState extends State<AddOwnerBar> {
                       items[2].subtitle,
                       style: AppStyle.styleRegular16(context).copyWith(
                         fontFamily: 'Roboto',
+                        fontSize:  MediaQuery.sizeOf(context).width < 800 ? 10 :  15,
                         color: widget.index >=2 ? MyColors.premiumColor : null
                       ),
                     ),
@@ -192,7 +204,7 @@ class _AddOwnerBarState extends State<AddOwnerBar> {
               ],
             ),
             SizedBox(
-              width: MediaQuery.of(context).size.width * 0.15,
+              width:  MediaQuery.sizeOf(context).width < 800 ?  MediaQuery.of(context).size.width * 0.23 : MediaQuery.of(context).size.width * 0.15,
               child: Row(
                 children: [
                   Container(
@@ -232,7 +244,9 @@ class _AddOwnerBarState extends State<AddOwnerBar> {
                 Text(
                   items[3].number,
                   style: AppStyle.styleRegular25(context)
-                      .copyWith(fontFamily: 'Inter', color: Colors.black,),
+                      .copyWith(fontFamily: 'Inter', color: Colors.black,
+                      fontSize:  MediaQuery.sizeOf(context).width < 800 ? 13 :  null
+                      ),
                 ),
                 const SizedBox(
                   width: 5,
@@ -243,7 +257,7 @@ class _AddOwnerBarState extends State<AddOwnerBar> {
                     Text(
                       items[3].title,
                       style: AppStyle.styleRegular16(context)
-                          .copyWith(fontFamily: 'Roboto', fontSize: 15,
+                          .copyWith(fontFamily: 'Roboto', fontSize:  MediaQuery.sizeOf(context).width < 800 ? 10 :  15,
                           color: widget.index >=3 ? MyColors.premiumColor : null
                           ),
                     ),
@@ -251,6 +265,7 @@ class _AddOwnerBarState extends State<AddOwnerBar> {
                       items[3].subtitle,
                       style: AppStyle.styleRegular16(context).copyWith(
                         fontFamily: 'Roboto',
+                        fontSize:  MediaQuery.sizeOf(context).width < 800 ? 10 :  15,
                         color: widget.index >=3 ? MyColors.premiumColor : null
                       ),
                     ),

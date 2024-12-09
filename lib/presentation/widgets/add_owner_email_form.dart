@@ -53,18 +53,24 @@ class AddOwnerEmailFormState extends State<AddOwnerEmailForm> {
             Text(
               "Add Owner to System",
               style: AppStyle.styleBold25(context).copyWith(
-                  fontSize: 47,
+                  fontSize:  MediaQuery.of(context).size.width < 800 ? 26 : 47,
                   fontFamily: 'Roboto',
                   color: MyColors.premiumColor),
             ),
             const SizedBox(
               height: 8,
             ),
+
+            MediaQuery.sizeOf(context).width < 800 ? Text('Make sure to write the required information and all the agreed-upon details , Please enter Valid Email', 
+            style: AppStyle.styleRegular17(context)
+                  .copyWith(fontSize: 17, fontFamily: 'Roboto'),
+            ) :
             Text(
               "Make sure to write the required information and all the",
               style: AppStyle.styleRegular17(context)
                   .copyWith(fontSize: 17, fontFamily: 'Roboto'),
             ),
+              MediaQuery.sizeOf(context).width < 800 ? const Text('') :
             Text(
               " agreed-upon details , Please enter Valid Email ",
               style: AppStyle.styleRegular17(context).copyWith(

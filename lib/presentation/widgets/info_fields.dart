@@ -43,14 +43,391 @@ class InfoFieldsState extends State<InfoFields> {
         Text(
           "Add Owner to System",
           style: AppStyle.styleBold25(context).copyWith(
-              fontSize: 37, fontFamily: 'Roboto', color: MyColors.premiumColor),
+              fontSize: MediaQuery.sizeOf(context).width < 800 ? 27 : 37, fontFamily: 'Roboto', color: MyColors.premiumColor),
         ),
         const SizedBox(
           height: 20,
         ),
         Form(
             key: userInformationKey,
-            child: Column(
+            child:
+            MediaQuery.sizeOf(context).width < 800 ?  
+            Column(
+              children: [
+                  SizedBox(
+                      width: 340,
+                      child: TextFormField(
+                        controller: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                            .userNameController,
+                        style: AppStyle.styleRegular16(context)
+                            .copyWith(color: Colors.black),
+                        keyboardType: TextInputType.text,
+                        textInputAction: TextInputAction.done,
+                        // controller:
+                        //     BlocProvider.of<LoginCubit>(context).signInEmail,
+                        decoration: InputDecoration(
+                          errorStyle: AppStyle.styleRegular16(context)
+                              .copyWith(color: Colors.red),
+                          prefixIcon: const Icon(
+                            Icons.person,
+                            color: Colors.black,
+                          ),
+                          labelText: "Full Name",
+                          labelStyle: AppStyle.styleRegular16(context),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: const BorderSide(
+                                width: 2, color: MyColors.premiumColor),
+                          ),
+                          floatingLabelStyle:
+                              AppStyle.styleRegular16(context).copyWith(
+                            color: MyColors.premiumColor,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          contentPadding: const EdgeInsets.all(8),
+                          // enabledBorder: buildBorder(),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: const BorderSide(
+                                width: 2, color: MyColors.premiumColor),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide:
+                                const BorderSide(width: 1, color: Colors.white),
+                          ),
+                        ),
+                        validator: (name) {
+                          if (name!.isEmpty) {
+                            return "Please enter your full name";
+                          }
+                          return null;
+                        },
+
+                        onSaved: (value) {
+                          userName = value!;
+                        },
+                      ),
+                    ),
+
+                    const SizedBox(height: 30,),
+
+                    SizedBox(
+                      width: 340,
+                      child: TextFormField(
+                        controller: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                            .ageController,
+                        style: AppStyle.styleRegular16(context)
+                            .copyWith(color: Colors.black),
+                        keyboardType: TextInputType.number,
+                        textInputAction: TextInputAction.done,
+                        // controller:
+                        //     BlocProvider.of<LoginCubit>(context).signInEmail,
+                        decoration: InputDecoration(
+                          errorStyle: AppStyle.styleRegular16(context)
+                              .copyWith(color: Colors.red),
+                          prefixIcon: const Icon(
+                            Icons.numbers_outlined,
+                            color: Colors.black,
+                          ),
+                          labelText: "Age",
+                          labelStyle: AppStyle.styleRegular16(context),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: const BorderSide(
+                                width: 2, color: MyColors.premiumColor),
+                          ),
+                          floatingLabelStyle:
+                              AppStyle.styleRegular16(context).copyWith(
+                            color: MyColors.premiumColor,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          contentPadding: const EdgeInsets.all(8),
+                          // enabledBorder: buildBorder(),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: const BorderSide(
+                                width: 2, color: MyColors.premiumColor),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide:
+                                const BorderSide(width: 1, color: Colors.white),
+                          ),
+                        ),
+                        validator: (age) {
+                          if (age!.isEmpty) {
+                            return "Please enter your Age";
+                          }
+                          return null;
+                        },
+
+                        onSaved: (value) {
+                          age = value!;
+                        },
+                      ),
+                    ),
+
+                    const SizedBox(height: 30,),
+
+                    SizedBox(
+                      width: 340,
+                      child: TextFormField(
+                        style: AppStyle.styleRegular16(context)
+                            .copyWith(color: Colors.black),
+                        keyboardType: TextInputType.text,
+                        textInputAction: TextInputAction.done,
+                        controller: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                            .userEmailController,
+                        //     BlocProvider.of<LoginCubit>(context).signInEmail,
+                        decoration: InputDecoration(
+                          errorStyle: AppStyle.styleRegular16(context)
+                              .copyWith(color: Colors.red),
+                          prefixIcon: const Icon(
+                            Icons.email_outlined,
+                            color: Colors.black,
+                          ),
+                          labelText: "E-mail",
+                          labelStyle: AppStyle.styleRegular16(context),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: const BorderSide(
+                                width: 2, color: MyColors.premiumColor),
+                          ),
+                          floatingLabelStyle:
+                              AppStyle.styleRegular16(context).copyWith(
+                            color: MyColors.premiumColor,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          contentPadding: const EdgeInsets.all(8),
+                          // enabledBorder: buildBorder(),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: const BorderSide(
+                                width: 2, color: MyColors.premiumColor),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide:
+                                const BorderSide(width: 1, color: Colors.white),
+                          ),
+                        ),
+                        validator: (email) {
+                          if (email!.isEmpty) {
+                            return "Please enter your email";
+                          }
+                          return null;
+                        },
+
+                        onSaved: (value) {
+                          email = value!;
+                        },
+                      ),
+                    ),
+                    const SizedBox(height: 30,),
+
+                      SizedBox(
+                      width: 340,
+                      child: TextFormField(
+                        controller: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                            .phoneController,
+                        style: AppStyle.styleRegular16(context)
+                            .copyWith(color: Colors.black),
+                        keyboardType: TextInputType.number,
+                        textInputAction: TextInputAction.done,
+                        // controller:
+                        //     BlocProvider.of<LoginCubit>(context).signInEmail,
+                        decoration: InputDecoration(
+                          errorStyle: AppStyle.styleRegular16(context)
+                              .copyWith(color: Colors.red),
+                          prefixIcon: const Icon(
+                            Icons.phone_iphone,
+                            color: Colors.black,
+                          ),
+                          labelText: "Phone Number",
+                          labelStyle: AppStyle.styleRegular16(context),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: const BorderSide(
+                                width: 2, color: MyColors.premiumColor),
+                          ),
+                          floatingLabelStyle:
+                              AppStyle.styleRegular16(context).copyWith(
+                            color: MyColors.premiumColor,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          contentPadding: const EdgeInsets.all(8),
+                          // enabledBorder: buildBorder(),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: const BorderSide(
+                                width: 2, color: MyColors.premiumColor),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide:
+                                const BorderSide(width: 1, color: Colors.white),
+                          ),
+                        ),
+                        validator: (phone) {
+                          if (phone!.isEmpty) {
+                            return "Please enter your phone number";
+                          }
+                          return null;
+                        },
+                        onSaved: (value) {
+                          phoneNumber = value!;
+                        },
+                      ),
+                    ),
+
+                    const SizedBox(height: 30,),
+
+                      SizedBox(
+                      width: 340,
+                      child: TextFormField(
+                        style: AppStyle.styleRegular16(context)
+                            .copyWith(color: Colors.black),
+                        keyboardType: TextInputType.text,
+                        textInputAction: TextInputAction.done,
+                        controller: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                            .addressController,
+                        //     BlocProvider.of<LoginCubit>(context).signInEmail,
+                        decoration: InputDecoration(
+                          errorStyle: AppStyle.styleRegular16(context)
+                              .copyWith(color: Colors.red),
+                          prefixIcon: const Icon(
+                            Icons.location_on,
+                            color: Colors.black,
+                          ),
+                          labelText: "Location",
+                          labelStyle: AppStyle.styleRegular16(context),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: const BorderSide(
+                                width: 2, color: MyColors.premiumColor),
+                          ),
+                          floatingLabelStyle:
+                              AppStyle.styleRegular16(context).copyWith(
+                            color: MyColors.premiumColor,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          contentPadding: const EdgeInsets.all(8),
+                          // enabledBorder: buildBorder(),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: const BorderSide(
+                                width: 2, color: MyColors.premiumColor),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide:
+                                const BorderSide(width: 1, color: Colors.white),
+                          ),
+                        ),
+                        validator: (location) {
+                          if (location!.isEmpty) {
+                            return "Please enter your Location";
+                          }
+                          return null;
+                        },
+
+                        onSaved: (value) {
+                          location = value!;
+                        },
+                      ),
+                    ),
+
+                    const SizedBox(height: 30,),
+
+                      SizedBox(
+                      width: 340,
+                      child: TextFormField(
+                        style: AppStyle.styleRegular16(context)
+                            .copyWith(color: Colors.black),
+                        keyboardType: TextInputType.text,
+                        textInputAction: TextInputAction.done,
+                        controller: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                            .nationalIdController,
+                        //     BlocProvider.of<LoginCubit>(context).signInEmail,
+                        decoration: InputDecoration(
+                          errorStyle: AppStyle.styleRegular16(context)
+                              .copyWith(color: Colors.red),
+                          prefixIcon: const Icon(
+                            Icons.credit_card,
+                            color: Colors.black,
+                          ),
+                          labelText: "Id",
+                          labelStyle: AppStyle.styleRegular16(context),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: const BorderSide(
+                                width: 2, color: MyColors.premiumColor),
+                          ),
+                          floatingLabelStyle:
+                              AppStyle.styleRegular16(context).copyWith(
+                            color: MyColors.premiumColor,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          contentPadding: const EdgeInsets.all(8),
+                          // enabledBorder: buildBorder(),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: const BorderSide(
+                                width: 2, color: MyColors.premiumColor),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide:
+                                const BorderSide(width: 1, color: Colors.white),
+                          ),
+                        ),
+                        validator: (id) {
+                          if (id!.isEmpty) {
+                            return "Please enter your Id";
+                          }
+                          return null;
+                        },
+
+                        onSaved: (value) {
+                          nationalId = value!;
+                        },
+                      ),
+                    ),
+
+                    const SizedBox(height: 30,),
+
+                      SizedBox(
+                  width: 380,
+                  height: 47,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (!userInformationKey.currentState!.validate()) {
+                        return;
+                      } else {
+                        context.read<NavigationCubit>().navigateTo(8);
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: MyColors.premiumColor,
+                      elevation: 6,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                    child: Text(
+                      "Continue",
+                      style: AppStyle.styleRegular25(context).copyWith(
+                          fontSize: 25,
+                          fontFamily: 'Inter',
+                          color: Colors.white),
+                    ),
+                  ),
+                ),
+              ],
+            )
+            :
+             Column(
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

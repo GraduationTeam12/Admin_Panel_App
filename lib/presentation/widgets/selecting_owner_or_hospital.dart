@@ -23,7 +23,133 @@ class _SelectingOwnerOrHospitalState extends State<SelectingOwnerOrHospital> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Container(
+      child: MediaQuery.sizeOf(context).width < 800? Column(
+        children: [
+          Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 5,
+                    offset: const Offset(0, 3),
+                  ),
+                ],
+              ),
+              child: Material(
+                borderRadius: BorderRadius.circular(15),
+                color: Colors.white,
+                child: TextFormField(
+                  style: AppStyle.styleRegular16(context)
+                      .copyWith(color: Colors.black),
+                  keyboardType: TextInputType.text,
+                  textInputAction: TextInputAction.done,
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(
+                      Icons.search,
+                      color: Colors.black,
+                    ),
+                    hintText: "Search",
+                    hintStyle: AppStyle.styleRegular16(context),
+                    contentPadding: const EdgeInsets.all(8),
+                    enabledBorder:
+                        const OutlineInputBorder(borderSide: BorderSide.none),
+                    focusedBorder:
+                        const OutlineInputBorder(borderSide: BorderSide.none),
+                  ),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 10,),
+            Container(
+              height: 60,
+        padding: const EdgeInsets.only(
+          // top: 15,
+          // bottom: 15,
+          left: 10,
+        ),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(15),
+            boxShadow: const [
+              BoxShadow(
+                  color: Colors.black26, blurRadius: 4, offset: Offset(0, 4))
+            ]),
+              child: Row(
+                       
+                        children: [
+              InkWell(
+                  onTap: () {
+                    context.read<NavigationCubit>().navigateTo(10);
+                  },
+                  child: Text(
+                    "Owner",
+                    style: AppStyle.styleBold25(context).copyWith(
+                        fontFamily: 'Roboto',
+                        color: widget.selectedIndex == 0
+                            ? Colors.black
+                            : const Color(0xFF5C5858),
+                        fontWeight: widget.selectedIndex == 0
+                            ? FontWeight.w700
+                            : FontWeight.w400),
+                  )),
+              const SizedBox(
+                width: 20,
+              ),
+              InkWell(
+                  onTap: () {
+                      context.read<NavigationCubit>().navigateTo(11);
+                    // Navigator.pushNamed(context, hospialReportsScreen);
+                    // context.go(hospialReportsScreen);
+                  },
+                  child: Text(
+                    "Hospital",
+                    style: AppStyle.styleBold25(context).copyWith(
+                        fontFamily: 'Roboto',
+                        color: widget.selectedIndex == 1
+                            ? Colors.black
+                            : const Color(0xFF5C5858),
+                        fontWeight: widget.selectedIndex == 1
+                            ? FontWeight.w700
+                            : FontWeight.w400),
+                  )),
+
+                    const Spacer(),
+
+                  
+                      GestureDetector(
+              onTap: () {},
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.download,
+                    size: 16,
+                    color: Color(0xFF5C5858),
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    "Download",
+                    style: AppStyle.styleRegular16(context)
+                        .copyWith(fontFamily: "Roboto"),
+                  )
+                ],
+              ),
+            ),
+
+              const SizedBox(width: 15,),
+                   ]),
+            ),
+
+          
+
+            
+        ],
+      ) : Container(
         height: 70,
         padding: const EdgeInsets.only(
           // top: 15,

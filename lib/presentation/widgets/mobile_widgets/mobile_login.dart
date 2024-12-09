@@ -1,3 +1,4 @@
+import 'package:admin_panel_app/presentation/widgets/desktop_login.dart';
 import 'package:flutter/material.dart';
 
 class MobileLogin extends StatelessWidget {
@@ -5,6 +6,6 @@ class MobileLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const DesktopLogin();
   }
 }

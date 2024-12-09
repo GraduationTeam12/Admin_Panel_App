@@ -56,12 +56,14 @@ class ConfirmingInfo extends StatelessWidget {
                     const SizedBox(
                       height: 50,
                     ),
-                    Text(
-                      "Confirm The Information",
-                      style: AppStyle.styleBold25(context).copyWith(
-                          fontSize: 37,
-                          fontFamily: 'Roboto',
-                          color: MyColors.premiumColor),
+                    FittedBox(
+                      child: Text(
+                        "Confirm The Information",
+                        style: AppStyle.styleBold25(context).copyWith(
+                            fontSize: 37,
+                            fontFamily: 'Roboto',
+                            color: MyColors.premiumColor),
+                      ),
                     ),
                     const SizedBox(
                       height: 100,

@@ -26,7 +26,7 @@ class OwnerReports extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const ReportsOwnerChart(),
+            MediaQuery.sizeOf(context).width < 800 ? const Text('') : const ReportsOwnerChart(),
             const SelectingOwnerOrHospital(
               selectedIndex: 0,
             ),

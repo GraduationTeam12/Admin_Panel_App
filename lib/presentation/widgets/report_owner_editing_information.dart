@@ -98,7 +98,7 @@ class _ReportOwnerEditingInformationState
             return CustomContainer(
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 90, vertical: 30),
+                      EdgeInsets.symmetric(horizontal: MediaQuery.sizeOf(context).width < 800 ? 0 : 90, vertical: 30),
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

@@ -9,6 +9,8 @@ class DesktopLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final screenWidth = MediaQuery.sizeOf(context).width;
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -27,8 +29,7 @@ class DesktopLogin extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 65),
               child: Container(
-                width: 400,
-                
+                 width: screenWidth < 800 ? 380 : 400,
                 decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(25)),
                     color: Color(0xFFFFFFFF)),
@@ -45,8 +46,8 @@ class DesktopLogin extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(
-                                68.0, 30, 68.0, 0),
+                            padding:
+                                const EdgeInsets.fromLTRB(68.0, 30, 68.0, 0),
                             child: SvgPicture.asset(
                               Assets.imagesAuthImagesLogin,
                             ),

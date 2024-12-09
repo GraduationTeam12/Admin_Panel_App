@@ -30,27 +30,29 @@ class SelectingNumOfBoardFieldState extends State<SelectingNumOfBoardField> {
             Text(
               "Select Number of Board",
               style: AppStyle.styleBold25(context).copyWith(
-                  fontSize: 40,
+                  fontSize: MediaQuery.sizeOf(context).width < 800? 27 : 40,
                   fontFamily: 'Roboto',
                   color: MyColors.premiumColor),
             ),
             const SizedBox(
               height: 8,
             ),
-            Text(
-              "Please select the board number and complete the",
-              style: AppStyle.styleRegular17(context)
-                  .copyWith(fontSize: 17, fontFamily: 'Roboto'),
+            FittedBox(
+              child: Text(
+                "Please select the board number and complete the",
+                style: AppStyle.styleRegular17(context)
+                    .copyWith(fontSize: 17, fontFamily: 'Roboto'),
+              ),
             ),
             Text(
               " required information ",
               style: AppStyle.styleRegular17(context).copyWith(
-                fontSize: 17,
+                fontSize: MediaQuery.sizeOf(context).width < 800 ? 15 : 17,
                 fontFamily: 'Roboto',
               ),
             ),
-            const SizedBox(
-              height: 20,
+              SizedBox(
+              height: MediaQuery.sizeOf(context).width < 800 ? 80 :  20,
             ),
             Form(
                 key: formKey,

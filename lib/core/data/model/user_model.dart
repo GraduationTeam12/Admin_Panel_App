@@ -24,7 +24,7 @@ class UserModel {
       username: json['username'],
       email: json['email'],
       phone: json['phone'],
-      age: json['age'],
+      age: json['age'].toString(),
       address: json['address'],
       nationalId: json['nationalId'].toString(),
       boardId: json['boardId'],

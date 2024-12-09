@@ -19,14 +19,14 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
     return Container(
       height: 70,
       // height: MediaQuery.of(context).size.height * .11,
-      decoration: const ShapeDecoration(
-          shape: RoundedRectangleBorder(),
+      decoration:   ShapeDecoration(
+          shape: const RoundedRectangleBorder(),
           color: Colors.white,
-          shadows: [
-            BoxShadow(
-              color: Color(0x3F000000),
+           shadows: [
+             BoxShadow(
+               color: MediaQuery.sizeOf(context).width < 800? Colors.white : const Color(0x3F000000),
               spreadRadius: 0,
-              offset: Offset(0, 4),
+              offset: const Offset(0, 4),
               blurRadius: 4,
             )
           ]),
@@ -35,7 +35,7 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
           const SizedBox(
             width: 30,
           ),
-          Text(
+            Text(
             widget.title,
             style: const TextStyle(
                 fontSize: 27, fontWeight: FontWeight.w600, color: Colors.black),
@@ -83,8 +83,8 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
               )),
             ),
           ),
-          const SizedBox(
-            width: 40,
+            SizedBox(
+            width: MediaQuery.sizeOf(context).width < 800? 0 :  40,
           ),
         ],
       ),

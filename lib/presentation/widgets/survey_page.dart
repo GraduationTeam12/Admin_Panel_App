@@ -10,66 +10,95 @@ class SurveyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding:const EdgeInsets.symmetric(horizontal: 150),
-      child: CustomScrollView(
-        slivers: [SliverToBoxAdapter(
+      padding: MediaQuery.sizeOf(context).width < 800
+          ? const EdgeInsets.symmetric(horizontal: 20)
+          : const EdgeInsets.symmetric(horizontal: 150),
+      child: CustomScrollView(slivers: [
+        SliverToBoxAdapter(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 30,),
+              const SizedBox(
+                height: 30,
+              ),
               // SizedBox(height: MediaQuery.sizeOf(context).height*0.02,),
-                 SizedBox(
-                // height:  MediaQuery.sizeOf(context).height*0.20,
-                 child:  Column(
-                   children: [
-                     FittedBox(
-                       child: Text(
-                         "You have the authority as an admin to create and send a periodic survey",
-                         style: AppStyle.styleRegular35(context),
-                          // TextStyle(
-                          // fontSize: 35,
-                          //   //  fontSize: 210*( MediaQuery.sizeOf(context).height*0.25)/MediaQuery.sizeOf(context).width,
-                          //    fontWeight: FontWeight.w400,
-                          //    color: Color.fromRGBO(61, 100, 152, 1)),
-                        //  textAlign: TextAlign.center,
-                       ),
-                     ),
-                      FittedBox(
-                        child: Text(
-                         "  survey to all customers to ensure their satisfaction with our service    ",
-                         style: AppStyle.styleRegular35(context),
-                          // TextStyle(
-                          // fontSize: 35,
-                          //   //  fontSize: 210*( MediaQuery.sizeOf(context).height*0.25)/MediaQuery.sizeOf(context).width,
-                          //    fontWeight: FontWeight.w400,
-                          //    color: Color.fromRGBO(61, 100, 152, 1)),
-                         textAlign: TextAlign.center,
-                                             ),
-                      ),
-                   ],
-                 ),
-               ),
-                
               SizedBox(
-                height: 300 ,
-                width: 300,
-                // height: MediaQuery.sizeOf(context).height*0.5,width: MediaQuery.sizeOf(context).width*0.3,
-                child: SvgPicture.asset(Assets.imagesAuthImagesBroSurvey)),
+                // height:  MediaQuery.sizeOf(context).height*0.20,
+                child: MediaQuery.sizeOf(context).width < 800
+                    ? Center(
+                        child: Column(
+                          children: [
+                            Text(
+                              'You have the authority as an',
+                              style: AppStyle.styleRegular35(context),
+                            ),
+
+                            FittedBox(child: Text('admin to create and send' ,   style: AppStyle.styleRegular35(context),)),
+
+                            FittedBox(child: Text('a periodic survey to all' ,   style: AppStyle.styleRegular35(context),)),
+
+                            FittedBox(child: Text('customers to ensure their',   style: AppStyle.styleRegular35(context),)),
+
+                            FittedBox(child: Text(' satisfaction with our service',   style: AppStyle.styleRegular35(context),))
+                          ],
+                        ),
+                      )
+                    : Column(
+                        children: [
+                          FittedBox(
+                            child: Text(
+                              "You have the authority as an admin to create and send a periodic survey",
+                              style: AppStyle.styleRegular35(context),
+                              // TextStyle(
+                              // fontSize: 35,
+                              //   //  fontSize: 210*( MediaQuery.sizeOf(context).height*0.25)/MediaQuery.sizeOf(context).width,
+                              //    fontWeight: FontWeight.w400,
+                              //    color: Color.fromRGBO(61, 100, 152, 1)),
+                              //  textAlign: TextAlign.center,
+                            ),
+                          ),
+                          FittedBox(
+                            child: Text(
+                              "  survey to all customers to ensure their satisfaction with our service    ",
+                              style: AppStyle.styleRegular35(context),
+                              // TextStyle(
+                              // fontSize: 35,
+                              //   //  fontSize: 210*( MediaQuery.sizeOf(context).height*0.25)/MediaQuery.sizeOf(context).width,
+                              //    fontWeight: FontWeight.w400,
+                              //    color: Color.fromRGBO(61, 100, 152, 1)),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ],
+                      ),
+              ),
+
+              SizedBox(
+                  height: 300,
+                  width: 300,
+                  // height: MediaQuery.sizeOf(context).height*0.5,width: MediaQuery.sizeOf(context).width*0.3,
+                  child: SvgPicture.asset(Assets.imagesAuthImagesBroSurvey)),
               // SizedBox(height: MediaQuery.sizeOf(context).height*0.02,),
-              const SizedBox(height: 40,),
+              const SizedBox(
+                height: 40,
+              ),
               Container(
-                height: 47 ,
-                width: 400,
-              // height: MediaQuery.sizeOf(context).height*0.08,
-              //   width: MediaQuery.sizeOf(context).width*0.3,
-                alignment: Alignment.center,
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                decoration: BoxDecoration(
-                  color: MyColors.premiumColor,
-                  borderRadius: BorderRadius.circular(20)
-                ),
-                child: const Text("Get Now",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w400,fontSize: 22),)),
-              
+                  height: 47,
+                  width: 400,
+                  // height: MediaQuery.sizeOf(context).height*0.08,
+                  //   width: MediaQuery.sizeOf(context).width*0.3,
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  decoration: BoxDecoration(
+                      color: MyColors.premiumColor,
+                      borderRadius: BorderRadius.circular(20)),
+                  child: const Text(
+                    "Get Now",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 22),
+                  )),
             ],
           ),
         ),

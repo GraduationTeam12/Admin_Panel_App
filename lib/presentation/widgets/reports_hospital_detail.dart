@@ -7,7 +7,7 @@ class ReportsHospitalDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return   Padding(
-      padding: const EdgeInsets.only(left: 20),
+      padding: MediaQuery.sizeOf(context).width < 800 ? EdgeInsets.zero : const EdgeInsets.only(left: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -24,7 +24,7 @@ class ReportsHospitalDetail extends StatelessWidget {
             height: 35,
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(

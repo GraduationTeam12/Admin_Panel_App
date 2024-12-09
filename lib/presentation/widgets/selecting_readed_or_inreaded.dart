@@ -129,7 +129,7 @@ class _SelectingReadedOrInreadedState extends State<SelectingReadedOrInreaded> {
               child: selectedIndex == 0
                   ? Container(
                       height: 100,
-                      padding: const EdgeInsets.only(
+                      padding: MediaQuery.sizeOf(context).width < 800 ? EdgeInsets.zero : const EdgeInsets.only(
                         top: 15,
                         bottom: 15,
                         left: 15,
@@ -147,8 +147,8 @@ class _SelectingReadedOrInreadedState extends State<SelectingReadedOrInreaded> {
                       ),
                       child: ListTile(
                         leading: Container(
-                          width: 50,
-                          height: 50,
+                          width: MediaQuery.sizeOf(context).width < 800 ? 60 : 50,
+                          height: MediaQuery.sizeOf(context).width < 800 ? 60 : 50,
                           clipBehavior: Clip.hardEdge,
                           decoration: BoxDecoration(
                             color: Colors.white,
@@ -208,7 +208,7 @@ class _SelectingReadedOrInreadedState extends State<SelectingReadedOrInreaded> {
                     )
                   : readed.isEmpty? null : Container(
                       height: 100,
-                      padding: const EdgeInsets.only(
+                      padding:  MediaQuery.sizeOf(context).width < 800 ? EdgeInsets.zero : const EdgeInsets.only(
                         top: 15,
                         bottom: 15,
                         left: 15,
@@ -226,8 +226,8 @@ class _SelectingReadedOrInreadedState extends State<SelectingReadedOrInreaded> {
                       ),
                       child: ListTile(
                         leading: Container(
-                          width: 50,
-                          height: 50,
+                          width: MediaQuery.sizeOf(context).width < 800 ? 60 : 50,
+                          height: MediaQuery.sizeOf(context).width < 800 ? 60 : 50,
                           clipBehavior: Clip.hardEdge,
                           decoration: BoxDecoration(
                             color: Colors.white,

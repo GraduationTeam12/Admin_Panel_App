@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
       ),
       onGenerateRoute: appRouter.generationRoute,
       initialRoute: token == null ? splashScreen : dashBoardScreen,
-      //  home:  const CheckAnimation(),
+      // home:  const ConfirmingInfo(),
     );
   }
 }

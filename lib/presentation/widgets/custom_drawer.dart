@@ -25,6 +25,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
       color: Colors.white,
       child: CustomScrollView(
         slivers: [
+
+          SliverToBoxAdapter(
+            child: SizedBox(height: MediaQuery.sizeOf(context).width < 800 ? 50 : 0,),
+          ),
           SliverToBoxAdapter(
             child: Align(
                 alignment: AlignmentDirectional.centerStart,

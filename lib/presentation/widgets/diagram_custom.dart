@@ -37,13 +37,15 @@ class _DiagramCustomState extends State<DiagramCustom> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                widget.title,
-                style: const TextStyle(
-                    fontSize: 23,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.black,
-                    fontFamily: "Inter"),
+              FittedBox(
+                child: Text(
+                  widget.title,
+                  style: const TextStyle(
+                      fontSize: 23,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.black,
+                      fontFamily: "Inter"),
+                ),
               ),
               const Text(
                 "Analytic This Mount",
@@ -67,13 +69,15 @@ class _DiagramCustomState extends State<DiagramCustom> {
               );
             },
           ),
-              Text(
-                widget.subTitle,
-                style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                    color: Color.fromRGBO(142, 147, 166, 1),
-                    fontFamily: "Inter"),
+              FittedBox(
+                child: Text(
+                  widget.subTitle,
+                  style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                      color: Color.fromRGBO(142, 147, 166, 1),
+                      fontFamily: "Inter"),
+                ),
               ),
             ],
           ),
@@ -81,7 +85,7 @@ class _DiagramCustomState extends State<DiagramCustom> {
               right: 0,
               top: 10,
               child:
-                  SvgPicture.asset(widget.img,width: MediaQuery.sizeOf(context).width/7,))
+                  SvgPicture.asset(widget.img,width: MediaQuery.sizeOf(context).width <800 ? null : MediaQuery.sizeOf(context).width/7,))
         ],
       ),
     );

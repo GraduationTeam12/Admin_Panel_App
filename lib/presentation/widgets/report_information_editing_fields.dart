@@ -40,7 +40,7 @@ class ReportInformationEditingFields extends StatefulWidget {
 
 class _ReportInformationEditingFieldsState
     extends State<ReportInformationEditingFields> {
-  GlobalKey<FormState> formKey = GlobalKey();
+  GlobalKey<FormState> formKeyyy = GlobalKey();
 
   late Map<String, String> originalData;
 
@@ -150,7 +150,7 @@ class _ReportInformationEditingFieldsState
           
           children: [
             Form(
-                key: formKey,
+                key: formKeyyy,
                 child: MediaQuery.sizeOf(context).width < 800
                     ? SingleChildScrollView(
                       child: Column(
@@ -517,7 +517,7 @@ class _ReportInformationEditingFieldsState
                               height: 47,
                               child: ElevatedButton(
                                 onPressed: () {
-                                  if (!formKey.currentState!.validate()) {
+                                  if (!formKeyyy.currentState!.validate()) {
                                     return;
                                   } else {
                                     final updatedData = getUpdatedData();
@@ -1006,7 +1006,7 @@ class _ReportInformationEditingFieldsState
                             height: 47,
                             child: ElevatedButton(
                               onPressed: () {
-                                if (!formKey.currentState!.validate()) {
+                                if (!formKeyyy.currentState!.validate()) {
                                   return;
                                 } else {
                                   final updatedData = getUpdatedData();

@@ -1,8 +1,6 @@
 import 'package:admin_panel_app/constants/app_images.dart';
 import 'package:admin_panel_app/core/logic/navigation_cubit/navigation_cubit.dart';
-import 'package:admin_panel_app/presentation/dash_board/hospital_report.dart';
 import 'package:admin_panel_app/presentation/dash_board/overview.dart';
-import 'package:admin_panel_app/presentation/dash_board/owner_reports.dart';
 import 'package:admin_panel_app/presentation/dash_board/support_page.dart';
 import 'package:admin_panel_app/presentation/widgets/add_hospital.dart';
 import 'package:admin_panel_app/presentation/widgets/add_owner.dart';
@@ -10,7 +8,9 @@ import 'package:admin_panel_app/presentation/widgets/confirming_info.dart';
 import 'package:admin_panel_app/presentation/widgets/custom_drawer.dart';
 import 'package:admin_panel_app/presentation/widgets/header_desktop.dart';
 import 'package:admin_panel_app/presentation/widgets/mobile_widgets/hospital_chart_dialog.dart';
+import 'package:admin_panel_app/presentation/widgets/mobile_widgets/hospital_reports.dart';
 import 'package:admin_panel_app/presentation/widgets/mobile_widgets/owner_chart_dialog.dart';
+import 'package:admin_panel_app/presentation/widgets/mobile_widgets/reports_owner.dart';
 import 'package:admin_panel_app/presentation/widgets/otp_owner.dart';
 import 'package:admin_panel_app/presentation/widgets/selecting_num_of_board.dart';
 import 'package:admin_panel_app/presentation/widgets/survey_page.dart';
@@ -41,7 +41,7 @@ class MobileDashBoard extends StatelessWidget {
 
   final List<Widget> pageWidget = [
     const Overview(),
-    OwnerReports(),
+      OwnerReportsMobile(),
     const SupportPage(),
     const SurveyPage(),
     const AddOwner(),
@@ -50,8 +50,8 @@ class MobileDashBoard extends StatelessWidget {
     const UserInformation(),
     const SelectingNumOfBoard(),
     const ConfirmingInfo(),
-    OwnerReports(),
-    HospitalReport(),
+      OwnerReportsMobile(),
+    HospitalReportMobile(),
     // const ReportOwnerEditingInformation()
   ];
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();

@@ -63,17 +63,14 @@ class _ReportsHospitalInfoState extends State<ReportsHospitalInfo> {
       child: BlocBuilder<AddOwnerAndHospitalCubit, AddOwnerAndHospitalState>(
         builder: (context, state) {
           if (state is GetAllEmergenciesLoading) {
-            MediaQuery.sizeOf(context).width < 800
-                ? null
-                : WidgetsBinding.instance.addPostFrameCallback((_) {
-                    showLoadingDialog(context);
-                  });
+            // WidgetsBinding.instance.addPostFrameCallback((_) {
+            //   showLoadingDialog(context);
+            // });
+            
           }
 
           if (state is GetAllEmergenciesSuccess) {
-            MediaQuery.sizeOf(context).width < 800
-                ? null
-                : Navigator.pop(context);
+            // Navigator.pop(context);
             emergencies = state.emergencies;
           }
 
@@ -96,877 +93,394 @@ class _ReportsHospitalInfoState extends State<ReportsHospitalInfo> {
                     return Column(
                       children: [
                         SingleChildScrollView(
-                          child: MediaQuery.sizeOf(context).width < 800
-                              ? SizedBox(
-                                  height: 50,
-                                  child: ListView.builder(
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount: 1,
-                                    itemBuilder: (context, indexx) {
-                                      return Row(
-                                        // mainAxisAlignment:
-                                        //     MainAxisAlignment.spaceAround,
-                                        children: [
-                                          SizedBox(
-                                            width: 150,
-                                            child: TextFormField(
-                                              maxLines: null,
-                                              initialValue:
-                                                  emergencies[index].name,
-                                              style: AppStyle.styleRegular16(
-                                                      context)
-                                                  .copyWith(
-                                                      color: Colors.black),
-                                              keyboardType: TextInputType.text,
-                                              textInputAction:
-                                                  TextInputAction.done,
-                                              decoration: const InputDecoration(
-                                                prefixIconConstraints:
-                                                    BoxConstraints(
-                                                  minWidth: 0,
-                                                  minHeight: 0,
-                                                ),
-                                                enabled: false,
-                                                // isDense: true,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              SizedBox(
+                                width: 100,
+                                child: TextFormField(
+                                  maxLines: null,
+                                  initialValue: emergencies[index].name,
+                                  style: AppStyle.styleRegular16(context)
+                                      .copyWith(color: Colors.black),
+                                  keyboardType: TextInputType.text,
+                                  textInputAction: TextInputAction.done,
+                                  decoration: const InputDecoration(
+                                    prefixIconConstraints: BoxConstraints(
+                                      minWidth: 0,
+                                      minHeight: 0,
+                                    ),
+                                    enabled: false,
+                                    // isDense: true,
 
-                                                border: OutlineInputBorder(
-                                                    borderSide:
-                                                        BorderSide.none),
-                                                //
-                                                focusedBorder:
-                                                    OutlineInputBorder(
-                                                        borderSide:
-                                                            BorderSide.none),
-                                              ),
-                                            ),
-                                          ),
-                                          // const SizedBox(
-                                          //   width: 30,
-                                          // ),
-                                          SizedBox(
-                                            width: 300,
-                                            child: TextFormField(
-                                              maxLines: null,
-                                              initialValue:
-                                                  emergencies[index].email,
-                                              style: AppStyle.styleRegular16(
-                                                      context)
-                                                  .copyWith(
-                                                      color: Colors.black),
-                                              keyboardType:
-                                                  TextInputType.text,
-                                              textInputAction:
-                                                  TextInputAction.done,
-                                              decoration:
-                                                  const InputDecoration(
-                                                prefixIconConstraints:
-                                                    BoxConstraints(
-                                                  minWidth: 0,
-                                                  minHeight: 0,
-                                                ),
-                                                enabled: false,
-                                                // isDense: true,
-                                          
-                                                border: OutlineInputBorder(
-                                                    borderSide:
-                                                        BorderSide.none),
-                                          
-                                                focusedBorder:
-                                                    OutlineInputBorder(
-                                                        borderSide:
-                                                            BorderSide(
-                                                                color: Colors
-                                                                    .white)),
-                                              ),
-                                            ),
-                                          ),
-                                          // const SizedBox(
-                                          //   width: 30,
-                                          // ),
-                                          SizedBox(
-                                            width: 100,
-                                            child: TextFormField(
-                                              maxLines: null,
-                                              initialValue:
-                                                  emergencies[index].number,
-                                              style: AppStyle.styleRegular16(
-                                                      context)
-                                                  .copyWith(
-                                                      color: Colors.black),
-                                              keyboardType:
-                                                  TextInputType.text,
-                                              textInputAction:
-                                                  TextInputAction.done,
-                                              decoration:
-                                                  const InputDecoration(
-                                                prefixIconConstraints:
-                                                    BoxConstraints(
-                                                  minWidth: 0,
-                                                  minHeight: 0,
-                                                ),
-                                                enabled: false,
-                                                // isDense: true,
-                                          
-                                                border: OutlineInputBorder(
-                                                    borderSide:
-                                                        BorderSide.none),
-                                          
-                                                focusedBorder:
-                                                    OutlineInputBorder(
-                                                        borderSide:
-                                                            BorderSide(
-                                                                color: Colors
-                                                                    .white)),
-                                              ),
-                                            ),
-                                          ),
-                                          // const SizedBox(
-                                          //   width: 30,
-                                          // ),
-                                          SizedBox(
-                                            width: 150,
-                                            child: TextFormField(
-                                              maxLines: null,
-                                              initialValue:
-                                                  emergencies[index].address,
-                                              style: AppStyle.styleRegular16(
-                                                      context)
-                                                  .copyWith(
-                                                      color: Colors.black),
-                                              keyboardType:
-                                                  TextInputType.text,
-                                              textInputAction:
-                                                  TextInputAction.done,
-                                              decoration:
-                                                  const InputDecoration(
-                                                prefixIconConstraints:
-                                                    BoxConstraints(
-                                                  minWidth: 0,
-                                                  minHeight: 0,
-                                                ),
-                                                enabled: false,
-                                                // isDense: true,
-                                          
-                                                border: OutlineInputBorder(
-                                                    borderSide:
-                                                        BorderSide.none),
-                                          
-                                                focusedBorder:
-                                                    OutlineInputBorder(
-                                                        borderSide:
-                                                            BorderSide(
-                                                                color: Colors
-                                                                    .white)),
-                                              ),
-                                            ),
-                                          ),
-                                          // const SizedBox(
-                                          //   width: 30,
-                                          // ),
-                                          SizedBox(
-                                            width: 150,
-                                            child: TextFormField(
-                                              initialValue: emergencies[index]
-                                                  .longitude,
-                                              style: AppStyle.styleRegular16(
-                                                      context)
-                                                  .copyWith(
-                                                      color: Colors.black),
-                                              keyboardType:
-                                                  TextInputType.text,
-                                              textInputAction:
-                                                  TextInputAction.done,
-                                              decoration:
-                                                  const InputDecoration(
-                                                prefixIconConstraints:
-                                                    BoxConstraints(
-                                                  minWidth: 0,
-                                                  minHeight: 0,
-                                                ),
-                                                enabled: false,
-                                                // isDense: true,
-                                          
-                                                border: OutlineInputBorder(
-                                                    borderSide:
-                                                        BorderSide.none),
-                                          
-                                                focusedBorder:
-                                                    OutlineInputBorder(
-                                                        borderSide:
-                                                            BorderSide(
-                                                                color: Colors
-                                                                    .white)),
-                                              ),
-                                            ),
-                                          ),
-                                          // const SizedBox(
-                                          //   width: 30,
-                                          // ),
-                                          SizedBox(
-                                            width: 200,
-                                            child: TextFormField(
-                                              initialValue:
-                                                  emergencies[index].latitude,
-                                              style: AppStyle.styleRegular16(
-                                                      context)
-                                                  .copyWith(
-                                                      color: Colors.black),
-                                              keyboardType:
-                                                  TextInputType.text,
-                                              textInputAction:
-                                                  TextInputAction.done,
-                                              decoration:
-                                                  const InputDecoration(
-                                                prefixIconConstraints:
-                                                    BoxConstraints(
-                                                  minWidth: 0,
-                                                  minHeight: 0,
-                                                ),
-                                                enabled: false,
-                                                // isDense: true,
-                                                border: OutlineInputBorder(
-                                                    borderSide:
-                                                        BorderSide.none),
-                                          
-                                                focusedBorder:
-                                                    OutlineInputBorder(
-                                                        borderSide:
-                                                            BorderSide(
-                                                                color: Colors
-                                                                    .white)),
-                                              ),
-                                            ),
-                                          ),
-                                          // const SizedBox(
-                                          //   width: 30,
-                                          // ),
-                                          Row(
-                                            children: [
-                                              InkWell(
-                                                onTap: () {
-                                                  showReportHospitalFormDialog(
-                                                    context,
-                                                    emergencies[index].type,
-                                                    emergencies[index].name,
-                                                    emergencies[index].email,
-                                                    emergencies[index].number,
-                                                    emergencies[index].phone,
-                                                    emergencies[index].address,
-                                                    emergencies[index]
-                                                        .longitude,
-                                                    emergencies[index].latitude,
-                                                  );
-                                                },
-                                                child: Container(
-                                                  width: 30,
-                                                  height: 30,
-                                                  decoration: ShapeDecoration(
-                                                      shape: RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(5),
-                                                          side: const BorderSide(
-                                                              color: MyColors
-                                                                  .premiumColor,
-                                                              width: 0.3)),
-                                                      color: Colors.white),
-                                                  child: const Center(
-                                                      child: Icon(
-                                                          Icons.visibility,
-                                                          color: MyColors
-                                                              .premiumColor)),
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                width: 5,
-                                              ),
-                                              InkWell(
-                                                onTap: () {
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              ReportHospitalEditingInformation(
-                                                                id: emergencies[
-                                                                        index]
-                                                                    .id,
-                                                              )));
-                                                },
-                                                child: Container(
-                                                  width: 30,
-                                                  height: 30,
-                                                  decoration: ShapeDecoration(
-                                                      shape: RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(5),
-                                                          side:
-                                                              const BorderSide(
-                                                                  color: Colors
-                                                                      .amber,
-                                                                  width: 0.3)),
-                                                      color: Colors.white),
-                                                  child: const Center(
-                                                      child: Icon(Icons.edit,
-                                                          color: Colors.amber)),
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                width: 5,
-                                              ),
-                                              InkWell(
-                                                onTap: () {
-                                                  showDialog(
-                                                      context: context,
-                                                      builder: (context) {
-                                                        return AlertDialog(
-                                                          scrollable: true,
-                                                          backgroundColor:
-                                                              Colors.white,
-                                                          title: Column(
-                                                            children: [
-                                                              Text(
-                                                                "Are you sure , You want to delete this account?",
-                                                                style: AppStyle
-                                                                        .styleBold20(
-                                                                            context)
-                                                                    .copyWith(
-                                                                        fontSize:
-                                                                            20,
-                                                                        color: MyColors
-                                                                            .premiumColor),
-                                                              ),
-                                                              const SizedBox(
-                                                                height: 16,
-                                                              ),
-                                                              Row(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .center,
-                                                                children: [
-                                                                  InkWell(
-                                                                    onTap: () {
-                                                                      Navigator.pop(
-                                                                          context);
-                                                                    },
-                                                                    child:
-                                                                        Container(
-                                                                      width: 50,
-                                                                      height:
-                                                                          30,
-                                                                      decoration:
-                                                                          ShapeDecoration(
-                                                                        shape:
-                                                                            RoundedRectangleBorder(
-                                                                          side: const BorderSide(
-                                                                              color: Colors.amber,
-                                                                              width: 0.3),
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(8),
-                                                                        ),
-                                                                        color: Colors
-                                                                            .white,
-                                                                      ),
-                                                                      child:
-                                                                          Center(
-                                                                        child:
-                                                                            Text(
-                                                                          "No",
-                                                                          style: AppStyle.styleBold20(context).copyWith(
-                                                                              fontSize: 18,
-                                                                              color: Colors.black),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  const SizedBox(
-                                                                    width: 10,
-                                                                  ),
+                                    border: OutlineInputBorder(
+                                        borderSide: BorderSide.none),
+                                    //
+                                    focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide.none),
+                                  ),
+                                ),
+                              ),
+                              // const SizedBox(
+                              //   width: 30,
+                              // ),
+                              Expanded(
+                                child: SizedBox(
+                                  width: 200,
+                                  child: TextFormField(
+                                    maxLines: null,
+                                    initialValue: emergencies[index].email,
+                                    style: AppStyle.styleRegular16(context)
+                                        .copyWith(color: Colors.black),
+                                    keyboardType: TextInputType.text,
+                                    textInputAction: TextInputAction.done,
+                                    decoration: const InputDecoration(
+                                      prefixIconConstraints: BoxConstraints(
+                                        minWidth: 0,
+                                        minHeight: 0,
+                                      ),
+                                      enabled: false,
+                                      // isDense: true,
 
-                                                                  /////////////////////////////
-                                                                  InkWell(
-                                                                    onTap: () {
-                                                                      Navigator.pop(
-                                                                          context);
+                                      border: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
 
-                                                                      BlocProvider.of<AddOwnerAndHospitalCubit>(
-                                                                              context)
-                                                                          .deleteEmergency(
-                                                                              emergencies[index].id);
-                                                                    },
-                                                                    child:
-                                                                        Container(
-                                                                      width: 50,
-                                                                      height:
-                                                                          30,
-                                                                      decoration:
-                                                                          ShapeDecoration(
-                                                                        shape:
-                                                                            RoundedRectangleBorder(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(8),
-                                                                        ),
-                                                                        color: MyColors
-                                                                            .premiumColor,
-                                                                      ),
-                                                                      child:
-                                                                          Center(
-                                                                        child:
-                                                                            Text(
-                                                                          "Yes",
-                                                                          style: AppStyle.styleBold20(context).copyWith(
-                                                                              fontSize: 18,
-                                                                              color: Colors.white),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              )
-                                                            ],
-                                                          ),
-                                                        );
-                                                      });
-                                                },
-                                                child: Container(
-                                                  width: 30,
-                                                  height: 30,
-                                                  decoration: ShapeDecoration(
-                                                      shape: RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(5),
-                                                          side:
-                                                              const BorderSide(
-                                                                  color: Colors
-                                                                      .red,
-                                                                  width: 0.3)),
-                                                      color: Colors.white),
-                                                  child: const Center(
-                                                      child: Icon(Icons.delete,
-                                                          color: Colors.red)),
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                width: 20,
-                                              )
-                                            ],
-                                          )
-                                        ],
+                                      focusedBorder: OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.white)),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              // const SizedBox(
+                              //   width: 30,
+                              // ),
+                              Expanded(
+                                child: SizedBox(
+                                  width: 250,
+                                  child: TextFormField(
+                                    initialValue: emergencies[index].number,
+                                    style: AppStyle.styleRegular16(context)
+                                        .copyWith(color: Colors.black),
+                                    keyboardType: TextInputType.text,
+                                    textInputAction: TextInputAction.done,
+                                    decoration: const InputDecoration(
+                                      prefixIconConstraints: BoxConstraints(
+                                        minWidth: 0,
+                                        minHeight: 0,
+                                      ),
+                                      enabled: false,
+                                      // isDense: true,
+
+                                      border: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+
+                                      focusedBorder: OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.white)),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              // const SizedBox(
+                              //   width: 30,
+                              // ),
+                              Expanded(
+                                child: SizedBox(
+                                  width: 100,
+                                  child: TextFormField(
+                                    initialValue: emergencies[index].address,
+                                    style: AppStyle.styleRegular16(context)
+                                        .copyWith(color: Colors.black),
+                                    keyboardType: TextInputType.text,
+                                    textInputAction: TextInputAction.done,
+                                    decoration: const InputDecoration(
+                                      prefixIconConstraints: BoxConstraints(
+                                        minWidth: 0,
+                                        minHeight: 0,
+                                      ),
+                                      enabled: false,
+                                      // isDense: true,
+
+                                      border: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+
+                                      focusedBorder: OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.white)),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              // const SizedBox(
+                              //   width: 30,
+                              // ),
+                              Expanded(
+                                child: SizedBox(
+                                  width: 150,
+                                  child: TextFormField(
+                                    initialValue: emergencies[index].longitude,
+                                    style: AppStyle.styleRegular16(context)
+                                        .copyWith(color: Colors.black),
+                                    keyboardType: TextInputType.text,
+                                    textInputAction: TextInputAction.done,
+                                    decoration: const InputDecoration(
+                                      prefixIconConstraints: BoxConstraints(
+                                        minWidth: 0,
+                                        minHeight: 0,
+                                      ),
+                                      enabled: false,
+                                      // isDense: true,
+
+                                      border: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+
+                                      focusedBorder: OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.white)),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              // const SizedBox(
+                              //   width: 30,
+                              // ),
+                              Expanded(
+                                child: SizedBox(
+                                  width: 200,
+                                  child: TextFormField(
+                                    initialValue: emergencies[index].latitude,
+                                    style: AppStyle.styleRegular16(context)
+                                        .copyWith(color: Colors.black),
+                                    keyboardType: TextInputType.text,
+                                    textInputAction: TextInputAction.done,
+                                    decoration: const InputDecoration(
+                                      prefixIconConstraints: BoxConstraints(
+                                        minWidth: 0,
+                                        minHeight: 0,
+                                      ),
+                                      enabled: false,
+                                      // isDense: true,
+                                      border: OutlineInputBorder(
+                                          borderSide: BorderSide.none),
+
+                                      focusedBorder: OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.white)),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              // const SizedBox(
+                              //   width: 30,
+                              // ),
+                              Row(
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      showReportHospitalFormDialog(
+                                        context,
+                                        emergencies[index].type,
+                                        emergencies[index].name,
+                                        emergencies[index].email,
+                                        emergencies[index].number,
+                                        emergencies[index].phone,
+                                        emergencies[index].address,
+                                        emergencies[index].longitude,
+                                        emergencies[index].latitude,
                                       );
                                     },
+                                    child: Container(
+                                      width: 30,
+                                      height: 30,
+                                      decoration: ShapeDecoration(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              side: const BorderSide(
+                                                  color: MyColors.premiumColor,
+                                                  width: 0.3)),
+                                          color: Colors.white),
+                                      child: const Center(
+                                          child: Icon(Icons.visibility,
+                                              color: MyColors.premiumColor)),
+                                    ),
                                   ),
-                                )
-                              : Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    SizedBox(
-                                      width: 100,
-                                      child: TextFormField(
-                                        maxLines: null,
-                                        initialValue: emergencies[index].name,
-                                        style: AppStyle.styleRegular16(context)
-                                            .copyWith(color: Colors.black),
-                                        keyboardType: TextInputType.text,
-                                        textInputAction: TextInputAction.done,
-                                        decoration: const InputDecoration(
-                                          prefixIconConstraints: BoxConstraints(
-                                            minWidth: 0,
-                                            minHeight: 0,
-                                          ),
-                                          enabled: false,
-                                          // isDense: true,
-
-                                          border: OutlineInputBorder(
-                                              borderSide: BorderSide.none),
-                                          //
-                                          focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide.none),
-                                        ),
-                                      ),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  ReportHospitalEditingInformation(
+                                                    id: emergencies[index].id,
+                                                  )));
+                                    },
+                                    child: Container(
+                                      width: 30,
+                                      height: 30,
+                                      decoration: ShapeDecoration(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              side: const BorderSide(
+                                                  color: Colors.amber,
+                                                  width: 0.3)),
+                                          color: Colors.white),
+                                      child: const Center(
+                                          child: Icon(Icons.edit,
+                                              color: Colors.amber)),
                                     ),
-                                    // const SizedBox(
-                                    //   width: 30,
-                                    // ),
-                                    Expanded(
-                                      child: SizedBox(
-                                        width: 200,
-                                        child: TextFormField(
-                                          maxLines: null,
-                                          initialValue:
-                                              emergencies[index].email,
-                                          style:
-                                              AppStyle.styleRegular16(context)
-                                                  .copyWith(
-                                                      color: Colors.black),
-                                          keyboardType: TextInputType.text,
-                                          textInputAction: TextInputAction.done,
-                                          decoration: const InputDecoration(
-                                            prefixIconConstraints:
-                                                BoxConstraints(
-                                              minWidth: 0,
-                                              minHeight: 0,
-                                            ),
-                                            enabled: false,
-                                            // isDense: true,
-
-                                            border: OutlineInputBorder(
-                                                borderSide: BorderSide.none),
-
-                                            focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: Colors.white)),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    // const SizedBox(
-                                    //   width: 30,
-                                    // ),
-                                    Expanded(
-                                      child: SizedBox(
-                                        width: 250,
-                                        child: TextFormField(
-                                          initialValue:
-                                              emergencies[index].number,
-                                          style:
-                                              AppStyle.styleRegular16(context)
-                                                  .copyWith(
-                                                      color: Colors.black),
-                                          keyboardType: TextInputType.text,
-                                          textInputAction: TextInputAction.done,
-                                          decoration: const InputDecoration(
-                                            prefixIconConstraints:
-                                                BoxConstraints(
-                                              minWidth: 0,
-                                              minHeight: 0,
-                                            ),
-                                            enabled: false,
-                                            // isDense: true,
-
-                                            border: OutlineInputBorder(
-                                                borderSide: BorderSide.none),
-
-                                            focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: Colors.white)),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    // const SizedBox(
-                                    //   width: 30,
-                                    // ),
-                                    Expanded(
-                                      child: SizedBox(
-                                        width: 100,
-                                        child: TextFormField(
-                                          initialValue:
-                                              emergencies[index].address,
-                                          style:
-                                              AppStyle.styleRegular16(context)
-                                                  .copyWith(
-                                                      color: Colors.black),
-                                          keyboardType: TextInputType.text,
-                                          textInputAction: TextInputAction.done,
-                                          decoration: const InputDecoration(
-                                            prefixIconConstraints:
-                                                BoxConstraints(
-                                              minWidth: 0,
-                                              minHeight: 0,
-                                            ),
-                                            enabled: false,
-                                            // isDense: true,
-
-                                            border: OutlineInputBorder(
-                                                borderSide: BorderSide.none),
-
-                                            focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: Colors.white)),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    // const SizedBox(
-                                    //   width: 30,
-                                    // ),
-                                    Expanded(
-                                      child: SizedBox(
-                                        width: 150,
-                                        child: TextFormField(
-                                          initialValue:
-                                              emergencies[index].longitude,
-                                          style:
-                                              AppStyle.styleRegular16(context)
-                                                  .copyWith(
-                                                      color: Colors.black),
-                                          keyboardType: TextInputType.text,
-                                          textInputAction: TextInputAction.done,
-                                          decoration: const InputDecoration(
-                                            prefixIconConstraints:
-                                                BoxConstraints(
-                                              minWidth: 0,
-                                              minHeight: 0,
-                                            ),
-                                            enabled: false,
-                                            // isDense: true,
-
-                                            border: OutlineInputBorder(
-                                                borderSide: BorderSide.none),
-
-                                            focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: Colors.white)),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    // const SizedBox(
-                                    //   width: 30,
-                                    // ),
-                                    Expanded(
-                                      child: SizedBox(
-                                        width: 200,
-                                        child: TextFormField(
-                                          initialValue:
-                                              emergencies[index].latitude,
-                                          style:
-                                              AppStyle.styleRegular16(context)
-                                                  .copyWith(
-                                                      color: Colors.black),
-                                          keyboardType: TextInputType.text,
-                                          textInputAction: TextInputAction.done,
-                                          decoration: const InputDecoration(
-                                            prefixIconConstraints:
-                                                BoxConstraints(
-                                              minWidth: 0,
-                                              minHeight: 0,
-                                            ),
-                                            enabled: false,
-                                            // isDense: true,
-                                            border: OutlineInputBorder(
-                                                borderSide: BorderSide.none),
-
-                                            focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: Colors.white)),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    // const SizedBox(
-                                    //   width: 30,
-                                    // ),
-                                    Row(
-                                      children: [
-                                        InkWell(
-                                          onTap: () {
-                                            showReportHospitalFormDialog(
-                                              context,
-                                              emergencies[index].type,
-                                              emergencies[index].name,
-                                              emergencies[index].email,
-                                              emergencies[index].number,
-                                              emergencies[index].phone,
-                                              emergencies[index].address,
-                                              emergencies[index].longitude,
-                                              emergencies[index].latitude,
-                                            );
-                                          },
-                                          child: Container(
-                                            width: 30,
-                                            height: 30,
-                                            decoration: ShapeDecoration(
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                    side: const BorderSide(
-                                                        color: MyColors
-                                                            .premiumColor,
-                                                        width: 0.3)),
-                                                color: Colors.white),
-                                            child: const Center(
-                                                child: Icon(Icons.visibility,
-                                                    color:
-                                                        MyColors.premiumColor)),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 5,
-                                        ),
-                                        InkWell(
-                                          onTap: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        ReportHospitalEditingInformation(
-                                                          id: emergencies[index]
-                                                              .id,
-                                                        )));
-                                          },
-                                          child: Container(
-                                            width: 30,
-                                            height: 30,
-                                            decoration: ShapeDecoration(
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                    side: const BorderSide(
-                                                        color: Colors.amber,
-                                                        width: 0.3)),
-                                                color: Colors.white),
-                                            child: const Center(
-                                                child: Icon(Icons.edit,
-                                                    color: Colors.amber)),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 5,
-                                        ),
-                                        InkWell(
-                                          onTap: () {
-                                            showDialog(
-                                                context: context,
-                                                builder: (context) {
-                                                  return AlertDialog(
-                                                    scrollable: true,
-                                                    backgroundColor:
-                                                        Colors.white,
-                                                    title: Column(
-                                                      children: [
-                                                        Text(
-                                                          "Are you sure , You want to delete this account?",
-                                                          style: AppStyle
-                                                                  .styleBold20(
-                                                                      context)
-                                                              .copyWith(
-                                                                  fontSize: 20,
-                                                                  color: MyColors
-                                                                      .premiumColor),
-                                                        ),
-                                                        const SizedBox(
-                                                          height: 16,
-                                                        ),
-                                                        Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            InkWell(
-                                                              onTap: () {
-                                                                Navigator.pop(
-                                                                    context);
-                                                              },
-                                                              child: Container(
-                                                                width: 50,
-                                                                height: 30,
-                                                                decoration:
-                                                                    ShapeDecoration(
-                                                                  shape:
-                                                                      RoundedRectangleBorder(
-                                                                    side: const BorderSide(
-                                                                        color: Colors
-                                                                            .amber,
-                                                                        width:
-                                                                            0.3),
-                                                                    borderRadius:
-                                                                        BorderRadius
-                                                                            .circular(8),
-                                                                  ),
+                                  ),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return AlertDialog(
+                                              scrollable: true,
+                                              backgroundColor: Colors.white,
+                                              title: Column(
+                                                children: [
+                                                  Text(
+                                                    "Are you sure , You want to delete this account?",
+                                                    style: AppStyle.styleBold20(
+                                                            context)
+                                                        .copyWith(
+                                                            fontSize: 20,
+                                                            color: MyColors
+                                                                .premiumColor),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 16,
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      InkWell(
+                                                        onTap: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: Container(
+                                                          width: 50,
+                                                          height: 30,
+                                                          decoration:
+                                                              ShapeDecoration(
+                                                            shape:
+                                                                RoundedRectangleBorder(
+                                                              side: const BorderSide(
                                                                   color: Colors
-                                                                      .white,
-                                                                ),
-                                                                child: Center(
-                                                                  child: Text(
-                                                                    "No",
-                                                                    style: AppStyle.styleBold20(context).copyWith(
-                                                                        fontSize:
-                                                                            18,
-                                                                        color: Colors
-                                                                            .black),
-                                                                  ),
-                                                                ),
-                                                              ),
+                                                                      .amber,
+                                                                  width: 0.3),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8),
                                                             ),
-                                                            const SizedBox(
-                                                              width: 10,
+                                                            color: Colors.white,
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                              "No",
+                                                              style: AppStyle
+                                                                      .styleBold20(
+                                                                          context)
+                                                                  .copyWith(
+                                                                      fontSize:
+                                                                          18,
+                                                                      color: Colors
+                                                                          .black),
                                                             ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 10,
+                                                      ),
 
-                                                            /////////////////////////////
-                                                            InkWell(
-                                                              onTap: () {
-                                                                Navigator.pop(
-                                                                    context);
+                                                      /////////////////////////////
+                                                      InkWell(
+                                                        onTap: () {
+                                                          Navigator.pop(
+                                                              context);
 
-                                                                BlocProvider.of<
-                                                                            AddOwnerAndHospitalCubit>(
-                                                                        context)
-                                                                    .deleteEmergency(
-                                                                        emergencies[index]
-                                                                            .id);
-                                                              },
-                                                              child: Container(
-                                                                width: 50,
-                                                                height: 30,
-                                                                decoration:
-                                                                    ShapeDecoration(
-                                                                  shape:
-                                                                      RoundedRectangleBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius
-                                                                            .circular(8),
-                                                                  ),
-                                                                  color: MyColors
-                                                                      .premiumColor,
-                                                                ),
-                                                                child: Center(
-                                                                  child: Text(
-                                                                    "Yes",
-                                                                    style: AppStyle.styleBold20(context).copyWith(
-                                                                        fontSize:
-                                                                            18,
-                                                                        color: Colors
-                                                                            .white),
-                                                                  ),
-                                                                ),
-                                                              ),
+                                                          BlocProvider.of<
+                                                                      AddOwnerAndHospitalCubit>(
+                                                                  context)
+                                                              .deleteEmergency(
+                                                                  emergencies[
+                                                                          index]
+                                                                      .id);
+                                                        },
+                                                        child: Container(
+                                                          width: 50,
+                                                          height: 30,
+                                                          decoration:
+                                                              ShapeDecoration(
+                                                            shape:
+                                                                RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8),
                                                             ),
-                                                          ],
-                                                        )
-                                                      ],
-                                                    ),
-                                                  );
-                                                });
-                                          },
-                                          child: Container(
-                                            width: 30,
-                                            height: 30,
-                                            decoration: ShapeDecoration(
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                    side: const BorderSide(
-                                                        color: Colors.red,
-                                                        width: 0.3)),
-                                                color: Colors.white),
-                                            child: const Center(
-                                                child: Icon(Icons.delete,
-                                                    color: Colors.red)),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 20,
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                ),
+                                                            color: MyColors
+                                                                .premiumColor,
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                              "Yes",
+                                                              style: AppStyle
+                                                                      .styleBold20(
+                                                                          context)
+                                                                  .copyWith(
+                                                                      fontSize:
+                                                                          18,
+                                                                      color: Colors
+                                                                          .white),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            );
+                                          });
+                                    },
+                                    child: Container(
+                                      width: 30,
+                                      height: 30,
+                                      decoration: ShapeDecoration(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              side: const BorderSide(
+                                                  color: Colors.red,
+                                                  width: 0.3)),
+                                          color: Colors.white),
+                                      child: const Center(
+                                          child: Icon(Icons.delete,
+                                              color: Colors.red)),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 20,
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                         const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 10.0),

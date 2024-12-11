@@ -196,10 +196,12 @@ class _SelectingReadedOrInreadedState extends State<SelectingReadedOrInreaded> {
                                 backgroundColor: Colors.amber,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10))),
-                            child: Text(
-                              'Reply',
-                              style: AppStyle.styleRegular25(context).copyWith(
-                                color: Colors.white,
+                            child: FittedBox(
+                              child: Text(
+                                'Reply',
+                                style: AppStyle.styleRegular25(context).copyWith(
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
@@ -272,10 +274,12 @@ class _SelectingReadedOrInreadedState extends State<SelectingReadedOrInreaded> {
                                 backgroundColor: Colors.amber,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10))),
-                            child: Text(
-                              'See',
-                              style: AppStyle.styleRegular25(context).copyWith(
-                                color: Colors.white,
+                            child: FittedBox(
+                              child: Text(
+                                'See',
+                                style: AppStyle.styleRegular25(context).copyWith(
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),

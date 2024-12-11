@@ -19,7 +19,7 @@ class OtpUpdatedEmail extends StatefulWidget {
 }
 
 class _OtpUpdatedEmailState extends State<OtpUpdatedEmail> {
-  GlobalKey<FormState> formKey = GlobalKey();
+  final GlobalKey<FormState> _formKey = GlobalKey();
 
   TextEditingController otpController = TextEditingController();
   @override
@@ -121,7 +121,7 @@ class _OtpUpdatedEmailState extends State<OtpUpdatedEmail> {
                             height: 20,
                           ),
                           Form(
-                              key: formKey,
+                              key: _formKey,
                               child: Column(
                                 children: [
                                   Pinput(
@@ -187,7 +187,7 @@ class _OtpUpdatedEmailState extends State<OtpUpdatedEmail> {
                                     height: 47,
                                     child: ElevatedButton(
                                       onPressed: () {
-                                        if (!formKey.currentState!.validate()) {
+                                        if (!_formKey.currentState!.validate()) {
                                           return;
                                         } else {
                                           BlocProvider.of<AddOwnerAndHospitalCubit>(

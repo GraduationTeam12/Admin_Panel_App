@@ -1,12 +1,11 @@
 import 'package:admin_panel_app/presentation/models/report_model.dart';
+import 'package:admin_panel_app/presentation/widgets/mobile_widgets/owner_reports.dart';
 import 'package:admin_panel_app/presentation/widgets/report_owner_bar.dart';
-import 'package:admin_panel_app/presentation/widgets/report_owner_info.dart';
-import 'package:admin_panel_app/presentation/widgets/reports_owner_chart.dart';
 import 'package:admin_panel_app/presentation/widgets/selecting_owner_or_hospital.dart';
 import 'package:flutter/material.dart';
 
-class OwnerReports extends StatelessWidget {
-  OwnerReports({super.key});
+class OwnerReportsMobile extends StatelessWidget {
+  OwnerReportsMobile({super.key});
 
   final List<ReportModel> navBar = [
     ReportModel(
@@ -23,16 +22,18 @@ class OwnerReports extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor:  const Color.fromRGBO(217, 217, 217, 0.7),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const ReportsOwnerChart(),
-            const SelectingOwnerOrHospital(
-              selectedIndex: 0,
-            ),
-            ReportOwnerBar(reportModel: navBar[0]),
-            const ReportOwnerInfo(),
-          ],
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SelectingOwnerOrHospital(
+                selectedIndex: 0,
+              ),
+              ReportOwnerBar(reportModel: navBar[0]),
+              const ReportOwnerInfoMobile(),
+            ],
+          ),
         ),
       ),
     );

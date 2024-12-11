@@ -164,7 +164,7 @@ class _SelectingOwnerOrHospitalState extends State<SelectingOwnerOrHospital> {
                   color: Colors.black26, blurRadius: 4, offset: Offset(0, 4))
             ]),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          // mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             InkWell(
                 onTap: () {
@@ -181,9 +181,9 @@ class _SelectingOwnerOrHospitalState extends State<SelectingOwnerOrHospital> {
                           ? FontWeight.w700
                           : FontWeight.w400),
                 )),
-            // const SizedBox(
-            //   width: 20,
-            // ),
+            const SizedBox(
+              width: 20,
+            ),
             InkWell(
                 onTap: () {
                     context.read<NavigationCubit>().navigateTo(11);
@@ -201,8 +201,10 @@ class _SelectingOwnerOrHospitalState extends State<SelectingOwnerOrHospital> {
                           ? FontWeight.w700
                           : FontWeight.w400),
                 )),
-            const SizedBox(
-              width: 200,
+            const Expanded(
+              child: SizedBox(
+                width: 100,
+              ),
             ),
             Container(
               width: 480,
@@ -242,7 +244,7 @@ class _SelectingOwnerOrHospitalState extends State<SelectingOwnerOrHospital> {
               ),
             ),
 
-            // const SizedBox(width: 20,),
+            const Expanded(child: SizedBox(width: 20,)),
 
             GestureDetector(
               onTap: () {},
@@ -263,7 +265,11 @@ class _SelectingOwnerOrHospitalState extends State<SelectingOwnerOrHospital> {
                   )
                 ],
               ),
-            )
+            ),
+
+              const SizedBox(
+                width: 20,
+              ),
           ],
         ),
       ),

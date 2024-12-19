@@ -43,6 +43,7 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
           const Spacer(),
           SvgPicture.asset(
             Assets.imagesAuthImagesNotifcations,
+            height: MediaQuery.sizeOf(context).width < 800?34:36,
             // height: MediaQuery.of(context).size.height * .06,
           ),
           const SizedBox(
@@ -54,6 +55,7 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
             },
             child: SvgPicture.asset(
               Assets.imagesAuthImagesClarityFormLine,
+              height: MediaQuery.sizeOf(context).width < 800?34:36,
               // height: MediaQuery.of(context).size.height * .06,
             ),
           ),
@@ -69,6 +71,8 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
               // width: MediaQuery.of(context).size.height * .08,
               width: 50,
               height: 50,
+              margin: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
+
               decoration:
                   const BoxDecoration(shape: BoxShape.circle, boxShadow: [
                 BoxShadow(

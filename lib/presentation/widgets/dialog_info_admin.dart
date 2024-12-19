@@ -7,8 +7,8 @@ void showInfoAdminDialog(BuildContext context) {
     context: context,
     builder: (BuildContext context) {
       return Padding(
-        padding: const EdgeInsets.only(
-          top: 55,
+        padding:  EdgeInsets.only(
+          top: MediaQuery.of(context).size.width<1201?40:55,
         ),
         child: AlertDialog(
             scrollable: true,
@@ -20,8 +20,8 @@ void showInfoAdminDialog(BuildContext context) {
                 Container(
                   // height: MediaQuery.of(context).size.height * .08,
                   // width: MediaQuery.of(context).size.height * .08,
-                  width: 65,
-                  height: 65,
+                  width:MediaQuery.of(context).size.width<1201?50:65,
+                  height: MediaQuery.of(context).size.width<1201?50:65,
                   decoration:
                       const BoxDecoration(shape: BoxShape.circle, boxShadow: [
                     BoxShadow(
@@ -41,11 +41,11 @@ void showInfoAdminDialog(BuildContext context) {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                     Text(
                       "Ahmed Ayman",
                       style:  TextStyle(
-                          color: Colors.black,
-                          fontSize: 25,
+                          color:const Color.fromRGBO(0, 0, 0, 1),
+                          fontSize: MediaQuery.of(context).size.width<1201?22: 25,
                           fontWeight: FontWeight.w400),
                     ),
                     FutureBuilder<String>(
@@ -65,8 +65,8 @@ void showInfoAdminDialog(BuildContext context) {
                           return Center(
                             child: Text(
                               snapshot.data!,
-                              style:const TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontSize:MediaQuery.of(context).size.width<1201?18: 20, fontWeight: FontWeight.bold),
                             ),
                           );
                         }

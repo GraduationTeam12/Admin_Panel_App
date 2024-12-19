@@ -36,7 +36,7 @@ class _DashBoardState extends State<DashBoard> {
       backgroundColor: const Color(0xFFF7F9FA),
       body: AdaptiveLayout(
           mobileLayout: (context) =>   MobileDashBoard(),
-          tabletLayout: (context) => const TabletDashBoard(),
+          tabletLayout: (context) =>  TabletDashBoard(),
           desktopLayout: (context) =>   DesktopDashboard()),
     );
   }

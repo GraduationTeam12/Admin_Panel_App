@@ -70,10 +70,10 @@ class MobileDashBoard extends StatelessWidget {
                   onPressed: () {
                     scaffoldKey.currentState!.openDrawer();
                   },
-                  icon: const Icon(
-                    Icons.menu,
-                    size: 35,
-                  )),
+                  icon: SvgPicture.asset(
+                        Assets.imagesAuthImagesMenu,
+                        height: 25,
+                      )),
             )
           : null,
       drawer:

@@ -25,7 +25,7 @@ class _DiagramCustomState extends State<DiagramCustom> {
       margin:const EdgeInsets.only(bottom: 10,left: 10),
       padding: const EdgeInsets.only(top: 15, bottom: 15, left: 15,),
       height: MediaQuery.sizeOf(context).width<1201&&MediaQuery.sizeOf(context).width>800?300:null,
-      width: MediaQuery.of(context).size.width<1201&&MediaQuery.of(context).size.width>800?MediaQuery.of(context).size.width:355,
+      width: MediaQuery.of(context).size.width<1201&&MediaQuery.of(context).size.width>799?MediaQuery.of(context).size.width:355,
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),

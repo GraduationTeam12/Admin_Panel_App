@@ -111,7 +111,7 @@ abstract class AppStyle {
   static TextStyle styleRegular35(BuildContext context) {
     return TextStyle(
       color: const Color(0xFF3D6498),
-      fontSize: getResponsiveFontSize(context , fontSize: 35),
+      fontSize: getResponsiveFontSize(context , fontSize:MediaQuery.sizeOf(context).width < 800?30: 35),
       fontFamily: 'Roboto',
       fontWeight: FontWeight.w400,
     );

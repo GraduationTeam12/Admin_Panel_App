@@ -8,7 +8,7 @@ class LinearProgressBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width:  MediaQuery.sizeOf(context).width / 2 ,
+      width:  MediaQuery.sizeOf(context).width  ,
       padding: const EdgeInsets.only(left: 16,right: 16,bottom: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -19,7 +19,7 @@ class LinearProgressBox extends StatelessWidget {
             builder: (context, animatedProgress, child) {
               return   Container(
             margin: EdgeInsets.only(
-                left:MediaQuery.sizeOf(context).width>1200?MediaQuery.sizeOf(context).width / 6.2 * animatedProgress: MediaQuery.sizeOf(context).width / 2.2 * animatedProgress),
+                left:MediaQuery.sizeOf(context).width>1200?MediaQuery.sizeOf(context).width / 6.2 * animatedProgress:MediaQuery.sizeOf(context).width < 800?MediaQuery.sizeOf(context).width / 1.5 * animatedProgress: MediaQuery.sizeOf(context).width / 2.2 * animatedProgress),
             child: Stack(
               children: [
                 Container(

@@ -8,7 +8,7 @@ class StackedColumnChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 310,
+      height:MediaQuery.sizeOf(context).width<1201?400: 310,
       margin: const EdgeInsets.only(left: 10),
       padding: const EdgeInsets.only(
         top: 15,

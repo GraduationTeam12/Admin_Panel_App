@@ -181,5 +181,25 @@ class Assets {
   /// Assets for imagesAuthImagesSupportW
   /// assets/images/auth_images/support_w.svg
   static const String imagesAuthImagesSupportW = "assets/images/auth_images/support_w.svg";
+
+  /// Assets for imagesAuthImagesMenu
+  /// assets/images/auth_images/menu.svg
+  static const String imagesAuthImagesMenu = "assets/images/auth_images/menu.svg";
+
+
+  /// Assets for imagesAuthImagesOwnerGr
+  /// assets/images/auth_images/owner_gr.svg
+  static const String imagesAuthImagesOwnerGr = "assets/images/auth_images/owner_gr.svg";
+
+
+  /// Assets for imagesAuthImagesHospitalGr
+  /// assets/images/auth_images/hospital_gr.svg
+  static const String imagesAuthImagesHospitalGr = "assets/images/auth_images/hospital_gr.svg";
+
+
+  /// Assets for imagesAuthImagesFireGr
+  /// assets/images/auth_images/fire_gr.svg
+  static const String imagesAuthImagesFireGr = "assets/images/auth_images/fire_gr.svg";
+
 }
 

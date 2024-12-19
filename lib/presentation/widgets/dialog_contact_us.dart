@@ -80,14 +80,14 @@ void showContactUsDialog(BuildContext context) {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
+               SizedBox(
                 width: 500,
                 child: Text(
                   "You can contact technical support to find a solution for your issue",
                   style: TextStyle(
                       color: Colors.black,
-                      fontSize: 30,
-                      fontWeight: FontWeight.w600),
+                      fontSize: MediaQuery.of(context).size.width<1201?26:30,
+                      fontWeight:FontWeight.w600),
                 ),
               ),
               const SizedBox(

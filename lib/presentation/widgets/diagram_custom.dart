@@ -24,7 +24,8 @@ class _DiagramCustomState extends State<DiagramCustom> {
     return Container(
       margin:const EdgeInsets.only(bottom: 10,left: 10),
       padding: const EdgeInsets.only(top: 15, bottom: 15, left: 15,),
-      width: 355,
+      height: MediaQuery.sizeOf(context).width<1201&&MediaQuery.sizeOf(context).width>800?300:null,
+      width: MediaQuery.of(context).size.width<1201&&MediaQuery.of(context).size.width>800?MediaQuery.of(context).size.width:355,
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
@@ -82,10 +83,11 @@ class _DiagramCustomState extends State<DiagramCustom> {
             ],
           ),
           Positioned(
-              right: 0,
+              right:MediaQuery.sizeOf(context).width>800&&MediaQuery.sizeOf(context).width<1201?30: 10,
               top: 10,
+              left: MediaQuery.sizeOf(context).width>800&&MediaQuery.sizeOf(context).width<1201?30: null,
               child:
-                  SvgPicture.asset(widget.img,width: MediaQuery.sizeOf(context).width <800 ? null : MediaQuery.sizeOf(context).width/7,))
+                  SvgPicture.asset(widget.img,height:MediaQuery.sizeOf(context).width<1201&&MediaQuery.sizeOf(context).width>800?250:null,width: MediaQuery.sizeOf(context).width <800 ? null : MediaQuery.of(context).size.width<1201?MediaQuery.sizeOf(context).width*0.6: MediaQuery.sizeOf(context).width/7,))
         ],
       ),
     );

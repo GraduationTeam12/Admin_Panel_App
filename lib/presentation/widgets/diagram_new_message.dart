@@ -7,7 +7,7 @@ class DiagramNewMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 310,
+      height: 330,
       margin: const EdgeInsets.only(bottom: 10, left: 10),
       decoration: BoxDecoration(
           color: Colors.white,

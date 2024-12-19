@@ -18,7 +18,7 @@ class PartDiagramYearChart extends StatelessWidget {
             duration: const Duration(milliseconds: 2000),
             builder: (context, animatedPercent, child) {
               return CircularPercentIndicator(
-      radius: 50.0,
+      radius:MediaQuery.of(context).size.width<1201&&MediaQuery.of(context).size.width>850?62: 50.0,
       lineWidth: 10.0,
       animation: true,
       percent: percent,

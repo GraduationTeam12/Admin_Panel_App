@@ -1,5 +1,6 @@
 import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
+import 'package:admin_panel_app/constants/pages_name.dart';
 import 'package:admin_panel_app/core/data/model/all_owners_model.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_cubit.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_state.dart';
@@ -34,9 +35,9 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
           });
         }
         if (state is DeleteUserSuccess) {
-          Navigator.pop(context);
-          users.removeWhere((user) => user.id == users[0].id);
-
+          // Navigator.pop(context);
+          // users.removeWhere((user) => user.id == users[0].id);
+          Navigator.pushReplacementNamed(context, dashBoardScreen);
           String message = state.message;
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(message),

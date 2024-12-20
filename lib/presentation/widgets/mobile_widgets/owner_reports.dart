@@ -89,7 +89,7 @@ class _ReportOwnerInfoMobileState extends State<ReportOwnerInfoMobile> {
                           child: ListView.builder(
                               scrollDirection: Axis.horizontal,
                               itemCount: 1,
-                              itemBuilder: (context, index) {
+                              itemBuilder: (context, indexx) {
                                 return Row(
                                   // mainAxisAlignment:
                                   //     MainAxisAlignment.spaceAround,

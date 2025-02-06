@@ -66,7 +66,6 @@ class _ReportsHospitalInfoState extends State<ReportsHospitalInfo> {
             // WidgetsBinding.instance.addPostFrameCallback((_) {
             //   showLoadingDialog(context);
             // });
-            
           }
 
           if (state is GetAllEmergenciesSuccess) {
@@ -75,7 +74,10 @@ class _ReportsHospitalInfoState extends State<ReportsHospitalInfo> {
           }
 
           if (state is GetAllEmergenciesError) {
-            Navigator.pop(context);
+            // Navigator.pop(context);
+            String message = state.errMessage;
+
+            return Center(child: Text(message));
           }
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),

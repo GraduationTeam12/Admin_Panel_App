@@ -68,7 +68,7 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
           }
 
           if (state is GetAllOwnerError) {
-            Navigator.pop(context);
+            // Navigator.pop(context);
           }
 
           //

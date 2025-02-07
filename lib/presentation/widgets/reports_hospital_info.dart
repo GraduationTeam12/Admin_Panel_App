@@ -161,7 +161,8 @@ class _ReportsHospitalInfoState extends State<ReportsHospitalInfo> {
                                 child: SizedBox(
                                   width: 250,
                                   child: TextFormField(
-                                    initialValue: emergencies[index].number,
+                                    initialValue:
+                                        '${emergencies[index].number}',
                                     style: AppStyle.styleRegular16(context)
                                         .copyWith(color: Colors.black),
                                     keyboardType: TextInputType.text,
@@ -221,7 +222,8 @@ class _ReportsHospitalInfoState extends State<ReportsHospitalInfo> {
                                 child: SizedBox(
                                   width: 150,
                                   child: TextFormField(
-                                    initialValue: emergencies[index].longitude,
+                                    initialValue:
+                                        '${emergencies[index].longitude}',
                                     style: AppStyle.styleRegular16(context)
                                         .copyWith(color: Colors.black),
                                     keyboardType: TextInputType.text,
@@ -251,7 +253,8 @@ class _ReportsHospitalInfoState extends State<ReportsHospitalInfo> {
                                 child: SizedBox(
                                   width: 200,
                                   child: TextFormField(
-                                    initialValue: emergencies[index].latitude,
+                                    initialValue:
+                                        '${emergencies[index].latitude}',
                                     style: AppStyle.styleRegular16(context)
                                         .copyWith(color: Colors.black),
                                     keyboardType: TextInputType.text,

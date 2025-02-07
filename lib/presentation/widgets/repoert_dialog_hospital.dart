@@ -7,11 +7,11 @@ void showReportHospitalFormDialog(
   String type,
   String name,
   String email,
-  String idNumber,
+  int idNumber,
   String phone,
   String address,
-  String longitude,
-  String latitude,
+  double longitude,
+  double latitude,
 ) {
   // final _formKey = GlobalKey<FormState>();
 
@@ -203,7 +203,7 @@ void showReportHospitalFormDialog(
                     height: 8,
                   ),
                   TextFormField(
-                    initialValue: idNumber,
+                    initialValue: '$idNumber',
                     style: AppStyle.styleRegular16(context)
                         .copyWith(color: Colors.black),
                     keyboardType: TextInputType.number,
@@ -337,7 +337,7 @@ void showReportHospitalFormDialog(
                     height: 8,
                   ),
                   TextFormField(
-                    initialValue: longitude,
+                    initialValue: '$longitude',
                     style: AppStyle.styleRegular16(context)
                         .copyWith(color: Colors.black),
                     keyboardType: TextInputType.text,
@@ -382,7 +382,7 @@ void showReportHospitalFormDialog(
                     height: 8,
                   ),
                   TextFormField(
-                    initialValue: latitude,
+                    initialValue: '$latitude',
                     style: AppStyle.styleRegular16(context)
                         .copyWith(color: Colors.black),
                     keyboardType: TextInputType.text,

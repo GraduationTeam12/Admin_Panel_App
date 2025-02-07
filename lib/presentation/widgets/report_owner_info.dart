@@ -60,15 +60,21 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
             // WidgetsBinding.instance.addPostFrameCallback((_) {
             //   showLoadingDialog(context);
             // });
+
+             
           }
 
           if (state is GetAllOwnerSuccess) {
             // Navigator.pop(context);
             users = state.users;
+           
           }
 
           if (state is GetAllOwnerError) {
             // Navigator.pop(context);
+            String message = state.errMessage;
+
+            return Center(child: Text(message));
           }
 
           //
@@ -244,7 +250,7 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
                                   width: 200,
                                   child: TextFormField(
                                     initialValue:
-                                        users[index].nationalId.toString(),
+                                        users[index].nationalId,
                                     style: AppStyle.styleRegular16(context)
                                         .copyWith(color: Colors.black),
                                     keyboardType: TextInputType.text,
@@ -310,8 +316,9 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => ReportOwnerEditingInformation(
-                                                id: users[index].id),
+                                            builder: (context) =>
+                                                ReportOwnerEditingInformation(
+                                                    id: users[index].id),
                                           ));
                                     },
                                     child: Container(

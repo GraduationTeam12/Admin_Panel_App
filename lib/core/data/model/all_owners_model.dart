@@ -1,12 +1,12 @@
 class Users{
 
-   final String id;
+  final String id;
   final String username;
   final String email;
   final String phone;
   final String address;
   final String boardId;
-  final int nationalId;
+  final String nationalId;
 
   Users({
     required this.id,
@@ -21,7 +21,7 @@ class Users{
 
   factory Users.fromJson(Map<String, dynamic> json) {
     return Users(
-      id: json['id'],
+      id: json['_id'],
       username: json['username'],
       email: json['email'],
       phone: json['phone'],

@@ -87,12 +87,6 @@ class _ReportHospitalEditingInformationState
             //     ),
             //   );
             // }
-
-            if (state is GetEmergencySuccess) {
-              emergency = state.emergency;
-
-              Navigator.pop(context);
-            }
           },
           builder: (context, state) {
             return BlocBuilder<AddOwnerAndHospitalCubit,
@@ -102,6 +96,12 @@ class _ReportHospitalEditingInformationState
                   WidgetsBinding.instance.addPostFrameCallback((_) {
                     showLoadingDialog(context);
                   });
+                }
+
+                if (state is GetEmergencySuccess) {
+                  emergency = state.emergency;
+
+                  Navigator.pop(context);
                 }
 
                 // if (state is GetEmergencySuccess) {
@@ -122,10 +122,10 @@ class _ReportHospitalEditingInformationState
                 nameController.text = emergency[0].name;
                 emailController.text = emergency[0].email;
                 addressController.text = emergency[0].address;
-                numberController.text = emergency[0].number;
+                numberController.text = emergency[0].number.toString();
                 phoneController.text = emergency[0].phone;
-                longitudeController.text = emergency[0].longitude;
-                latitudeController.text = emergency[0].latitude;
+                longitudeController.text = emergency[0].longitude.toString();
+                latitudeController.text = emergency[0].latitude.toString();
 
                 return MediaQuery.sizeOf(context).width < 800
                     ? SingleChildScrollView(

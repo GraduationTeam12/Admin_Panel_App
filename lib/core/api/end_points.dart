@@ -1,16 +1,16 @@
 class EndPoint {
   static const String baseUrl = 'https://satars.onrender.com/';
-  static const String logIn = 'admins/login';
-  static const String sendOtp = 'admins/userSendOtp';
-  static const String verifyOtp = 'admins/userVerfiyOtp';
-  static const String userData = 'admins/userData';
-  static const String users = 'admins/users';
-  static const String user = 'admins/user/';
-  static const String verifiedEmail = 'admins/verfiedUpdate/';
-  static const String addHospital = 'adminsEmergency/emergencySignup';
-  static const String getAllEmergencies = 'adminsEmergency/emergency';
-  static const String getSpecificEmergency = 'adminsEmergency/emergency/';
-  static const String deleteEmergencyy = 'adminsEmergency/emergency/';
+  static const String logIn = 'api/v1/dashboard/admins/login';
+  static const String sendOtp = 'api/v1/dashboard/users/sendOtp';
+  static const String verifyOtp = 'api/v1/dashboard/users/verifyOtp';
+  static const String userData = 'api/v1/dashboard/users';
+  static const String users = 'api/v1/dashboard/users';
+  static const String user = 'api/v1/dashboard/users/';
+  static const String verifiedEmail = 'api/v1/dashboard/users/verifyUpdate/';
+  static const String addHospital = 'api/v1/dashboard/emergencies/modifyData';
+  static const String getAllEmergencies = 'api/v1/dashboard/emergencies/';
+  static const String getSpecificEmergency = 'api/v1/dashboard/emergencies/';
+  static const String deleteEmergencyy = 'api/v1/dashboard/emergencies/';
 
   static String getUser(id) {
     return "$user$id";

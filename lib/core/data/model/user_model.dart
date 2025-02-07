@@ -2,11 +2,11 @@ class UserModel {
   final String username;
   final String email;
   final String phone;
-  final String age;
+  final int age;
   final String address;
   final String nationalId;
   final String boardId;
-  final String avatarUrl;
+  final String? avatarUrl;
 
   UserModel({
     required this.username,
@@ -24,7 +24,7 @@ class UserModel {
       username: json['username'],
       email: json['email'],
       phone: json['phone'],
-      age: json['age'].toString(),
+      age: json['age'],
       address: json['address'],
       nationalId: json['nationalId'].toString(),
       boardId: json['boardId'],

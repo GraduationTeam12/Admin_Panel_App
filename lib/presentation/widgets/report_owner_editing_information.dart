@@ -112,7 +112,7 @@ class _ReportOwnerEditingInformationState
                             decoration: BoxDecoration(
                               color: Colors.white,
                               image: DecorationImage(
-                                image: NetworkImage(user[0].avatarUrl),
+                                image: user[0].avatarUrl == null ? const AssetImage('assets/images/auth_images/person_image.jpeg') : NetworkImage(user[0].avatarUrl!),
                                 fit: BoxFit.cover,
                               ),
                               borderRadius: BorderRadius.circular(50),
@@ -159,7 +159,7 @@ class _ReportOwnerEditingInformationState
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 image: DecorationImage(
-                                  image: NetworkImage(user[0].avatarUrl),
+                                  image: user[0].avatarUrl == null ? const AssetImage('assets/images/auth_images/person_image.jpeg') : NetworkImage(user[0].avatarUrl!),
                                   fit: BoxFit.cover,
                                 ),
                                 borderRadius: BorderRadius.circular(50),

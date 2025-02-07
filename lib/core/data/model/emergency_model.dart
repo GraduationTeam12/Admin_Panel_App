@@ -5,9 +5,9 @@ class EmergencyModel {
   final String email;
   final String phone;
   final String address;
-  final String number;
-  final String longitude;
-  final String latitude;
+  final int number;
+  final double longitude;
+  final double latitude;
   EmergencyModel({
     required this.type,
     required this.name,

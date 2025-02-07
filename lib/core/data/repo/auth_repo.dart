@@ -213,8 +213,10 @@ class AuthRepository {
           'phone': phone,
           'address': address,
           'number': number,
-          'latitude': latitude,
-          'longitude': longitude,
+          "location": {
+            "type": "Point",
+            "coordinates": [latitude, longitude]
+          },
           'password': password,
         },
         headers: {'Authorization': 'Bearer $token'},
@@ -227,9 +229,8 @@ class AuthRepository {
     }
   }
 
-
-
-  Future<Either<String, List<AllEmergenciesModel>>> getAllEmergencies(dynamic token) async {
+  Future<Either<String, List<AllEmergenciesModel>>> getAllEmergencies(
+      dynamic token) async {
     try {
       final response = await apiConsumer.get(
         EndPoint.getAllEmergencies,
@@ -242,9 +243,9 @@ class AuthRepository {
       return Right(emergencies);
     } on ServerException catch (error) {
       return Left(error.errorModel.errorMessage);
-    }on ServerExceptionResponse catch (error) {
+    } on ServerExceptionResponse catch (error) {
       return Left(error.errorResponse.errorMessage);
-    }catch (e) {
+    } catch (e) {
       return Left(e.toString());
     }
   }
@@ -274,8 +275,8 @@ class AuthRepository {
     }
   }
 
-
-  Future<Either<String, String>> deleteEmergency(String id, dynamic token) async {
+  Future<Either<String, String>> deleteEmergency(
+      String id, dynamic token) async {
     try {
       final response = await apiConsumer.delete(
         EndPoint.deleteEmergency(id),
@@ -289,8 +290,7 @@ class AuthRepository {
     }
   }
 
-
-    Future<Either<String, String>> updateEmergency(
+  Future<Either<String, String>> updateEmergency(
     Map<String, dynamic> updatedData,
     String id,
     dynamic token,
@@ -309,5 +309,4 @@ class AuthRepository {
       return Left(e.toString());
     }
   }
-
 }

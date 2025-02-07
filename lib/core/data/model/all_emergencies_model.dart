@@ -5,9 +5,9 @@ class AllEmergenciesModel {
   final String email;
   final String phone;
   final String address;
-  final String number;
-  final String latitude;
-  final String longitude;
+  final int number;
+  final double latitude;
+  final double longitude;
 
   AllEmergenciesModel({
     required this.id,
@@ -24,7 +24,7 @@ class AllEmergenciesModel {
 
   factory AllEmergenciesModel.fromJson(Map<String, dynamic> json) {
     return AllEmergenciesModel(
-      id: json['id'],
+      id: json['_id'],
       type: json['type'],
       name: json['name'],
       email: json['email'],

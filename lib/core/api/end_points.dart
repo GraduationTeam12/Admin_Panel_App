@@ -7,7 +7,7 @@ class EndPoint {
   static const String users = 'api/v1/dashboard/users';
   static const String user = 'api/v1/dashboard/users/';
   static const String verifiedEmail = 'api/v1/dashboard/users/verifyUpdate/';
-  static const String addHospital = 'api/v1/dashboard/emergencies/modifyData';
+  static const String addHospital = 'api/v1/dashboard/emergencies';
   static const String getAllEmergencies = 'api/v1/dashboard/emergencies/';
   static const String getSpecificEmergency = 'api/v1/dashboard/emergencies/';
   static const String deleteEmergencyy = 'api/v1/dashboard/emergencies/';

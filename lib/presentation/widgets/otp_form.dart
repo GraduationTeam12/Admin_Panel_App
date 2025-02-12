@@ -18,6 +18,8 @@ class OtpForm extends StatefulWidget {
 
 class _OtpFormState extends State<OtpForm> {
   int index = 1;
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AddOwnerAndHospitalCubit, AddOwnerAndHospitalState>(
@@ -76,7 +78,10 @@ class _OtpFormState extends State<OtpForm> {
                             fontFamily: 'Roboto'),
                         children: <TextSpan>[
                       TextSpan(
-                          text: BlocProvider.of<AddOwnerAndHospitalCubit>(context).emailController.text,
+                          text:
+                              BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                                  .emailController
+                                  .text,
                           style: AppStyle.styleRegular17(context).copyWith(
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
@@ -88,93 +93,71 @@ class _OtpFormState extends State<OtpForm> {
               height: 20,
             ),
             Form(
-                key: BlocProvider.of<AddOwnerAndHospitalCubit>(context).verifyOtpKey,
-                child: Column(
-                  children: [
-                    Pinput(
-                      controller: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
-                          .codeController,
-                      submittedPinTheme: PinTheme(
-                        margin: const EdgeInsets.symmetric(horizontal: 7),
-                        height: 70,
-                        width: 70,
-                        textStyle: AppStyle.styleRegular16(context)
-                            .copyWith(color: Colors.black,
-                            fontSize: 19,
-                            fontWeight: FontWeight.w600
-                            ),
-                        decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 225, 239, 247),
-                          borderRadius: BorderRadius.circular(15),
-                          boxShadow: makeShadowBox,
-                          border: Border.all(
-                              color: MyColors.premiumColor, width: 2),
-                        ),
+              key: _formKey,
+              child: Column(
+                children: [
+                  Pinput(
+                    controller:
+                        BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                            .codeController,
+                    onCompleted: (value) {
+                      // Validate form when pin is completed
+                      _formKey.currentState?.validate();
+                    },
+                    submittedPinTheme: PinTheme(
+                      margin: const EdgeInsets.symmetric(horizontal: 7),
+                      height: 70,
+                      width: 70,
+                      textStyle: AppStyle.styleRegular16(context).copyWith(
+                          color: Colors.black,
+                          fontSize: 19,
+                          fontWeight: FontWeight.w600),
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 225, 239, 247),
+                        borderRadius: BorderRadius.circular(15),
                       ),
-                      errorTextStyle: AppStyle.styleRegular16(context)
-                          .copyWith(color: Colors.red),
-                      length: 4,
-                      focusNode: FocusNode(),
-                      defaultPinTheme: PinTheme(
-                        margin: const EdgeInsets.symmetric(horizontal: 7),
-                        height: 70,
-                        width: 70,
-                        textStyle: AppStyle.styleRegular16(context)
-                            .copyWith(color: Colors.black,
-                            fontSize: 19,
-                            fontWeight: FontWeight.w600
-                            ),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(15),
-                          boxShadow: makeShadowBox,
-                          border: Border.all(
-                              color: MyColors.premiumColor, width: 2),
-                        ),
-                      ),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Please enter 4 digit code to you";
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter the verification code';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  SizedBox(
+                    width: 380,
+                    height: 47,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (!_formKey.currentState!.validate()) {
+                          return;
+                        } else {
+                          BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                              .verifyCode();
                         }
-                        return null;
                       },
-                    ),
-                    const SizedBox(
-                      height: 25,
-                    ),
-                    SizedBox(
-                      width: 380,
-                      height: 47,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          if (!BlocProvider.of<AddOwnerAndHospitalCubit>(context)
-                              .verifyOtpKey
-                              .currentState!
-                              .validate()) {
-                            return;
-                          } else {
-                            BlocProvider.of<AddOwnerAndHospitalCubit>(context)
-                                .verifyCode();
-                          }
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: MyColors.premiumColor,
-                          elevation: 6,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                        ),
-                        child: Text(
-                          "Continue",
-                          style: AppStyle.styleRegular25(context).copyWith(
-                              fontSize: 25,
-                              fontFamily: 'Inter',
-                              color: Colors.white),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: MyColors.premiumColor,
+                        elevation: 6,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
                         ),
                       ),
+                      child: Text(
+                        "Continue",
+                        style: AppStyle.styleRegular25(context).copyWith(
+                            fontSize: 25,
+                            fontFamily: 'Inter',
+                            color: Colors.white),
+                      ),
                     ),
-                  ],
-                ))
+                  ),
+                ],
+              ),
+            )
           ],
         );
       },

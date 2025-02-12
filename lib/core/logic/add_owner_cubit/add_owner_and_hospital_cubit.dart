@@ -11,10 +11,10 @@ class AddOwnerAndHospitalCubit extends Cubit<AddOwnerAndHospitalState> {
   final AuthRepository authRepository;
   TextEditingController emailController = TextEditingController();
 
-  GlobalKey<FormState> sendOtpKey = GlobalKey();
-  GlobalKey<FormState> verifyOtpKey = GlobalKey();
-  GlobalKey<FormState> getUserInfoKey = GlobalKey();
-  GlobalKey<FormState> getUserInfoKey2 = GlobalKey();
+  Key addOwnerSendOtpFormKey = UniqueKey();
+  Key addOwnerVerifyOtpFormKey = UniqueKey();
+  Key addOwnerUserInfoFormKey = UniqueKey();
+  Key addHospitalFormKey = UniqueKey();
   final token = CacheHelper().getData(key: ApiKeys.token);
 
   void sendCode() async {
@@ -58,7 +58,21 @@ class AddOwnerAndHospitalCubit extends Cubit<AddOwnerAndHospitalState> {
         nationalId,
         boardIdController.text,
         token);
-    res.fold((l) => emit(AddUserError(l)), (r) => emit(AddUserSuccess(r)));
+    res.fold((l) => emit(AddUserError(l)), (r) {
+      emit(AddUserSuccess(r));
+      clearOwnerFormFields();
+    });
+  }
+
+  void clearOwnerFormFields() {
+    emailController.clear();
+    userEmailController.clear();
+    userNameController.clear();
+    phoneController.clear();
+    ageController.clear();
+    addressController.clear();
+    nationalIdController.clear();
+    boardIdController.clear();
   }
 
   void getAllOwners() async {
@@ -107,7 +121,6 @@ class AddOwnerAndHospitalCubit extends Cubit<AddOwnerAndHospitalState> {
         (l) => emit(DeleteUserError(l)), (r) => emit(DeleteUserSuccess(r)));
   }
 
-  GlobalKey<FormState> hospitalKey = GlobalKey();
   TextEditingController hospitalEmailController = TextEditingController();
   TextEditingController hospitalNameController = TextEditingController();
   TextEditingController hospitalPhoneController = TextEditingController();
@@ -137,6 +150,18 @@ class AddOwnerAndHospitalCubit extends Cubit<AddOwnerAndHospitalState> {
         (l) => emit(AddHospitalError(l)), (r) => emit(AddHospitalSuccess(r)));
   }
 
+  void clearHospitalFormFields() {
+    hospitalNameController.clear();
+    hospitalEmailController.clear();
+    hospitalPhoneController.clear();
+    hospitalAddressController.clear();
+    hospitalNumberController.clear();
+    hospitalTypeController.clear();
+    hospitalLatitudeController.clear();
+    hospitalLongitudeController.clear();
+    hospitalPasswordController.clear();
+  }
+
   void getAllEmergencies() async {
     emit(GetAllEmergenciesLoading());
 
@@ -155,35 +180,28 @@ class AddOwnerAndHospitalCubit extends Cubit<AddOwnerAndHospitalState> {
         (l) => emit(GetEmergencyError(l)), (r) => emit(GetEmergencySuccess(r)));
   }
 
-  // void deleteEmergency(id) async {
-  //   emit(DeleteEmergencyLoading());
-
-  //   final res = await authRepository.deleteEmergency(id, token);
-
-  //   res.fold((l) => emit(DeleteEmergencyError(l)),
-  //       (r) => emit(DeleteEmergencySuccess(r)));
-  // }
   void deleteEmergency(id) async {
-  emit(DeleteEmergencyLoading());
-  final res = await authRepository.deleteEmergency(id, token);
-  
-  res.fold(
-    (error) {
-      debugPrint("Delete failed for id: $id. Error: $error");
-      emit(DeleteEmergencyError(error));
-    },
-    (message) {
-      debugPrint("Successfully deleted id: $id");
-      emit(DeleteEmergencySuccess(message));
-    },
-  );
-}
+    emit(DeleteEmergencyLoading());
+    final res = await authRepository.deleteEmergency(id, token);
+
+    res.fold(
+      (error) {
+        debugPrint("Delete failed for id: $id. Error: $error");
+        emit(DeleteEmergencyError(error));
+      },
+      (message) {
+        debugPrint("Successfully deleted id: $id");
+        emit(DeleteEmergencySuccess(message));
+      },
+    );
+  }
 
   void updateEmergency(Map<String, dynamic> updatedData, id) async {
     emit(UpdateEmergencyLoading());
 
     final res = await authRepository.updateEmergency(updatedData, id, token);
 
-    res.fold((l) => emit(UpdateEmergencyError(l)), (r)=> emit(UpdateEmergencySuccess(r)));
+    res.fold((l) => emit(UpdateEmergencyError(l)),
+        (r) => emit(UpdateEmergencySuccess(r)));
   }
 }

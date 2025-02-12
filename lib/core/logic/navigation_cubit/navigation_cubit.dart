@@ -1,6 +1,6 @@
-import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:bloc/bloc.dart';
 
-class NavigationCubit extends HydratedCubit<int> {
+class NavigationCubit extends Cubit<int> {
   NavigationCubit() : super(0); // Default to the first page
 
   void navigateTo(int pageIndex) {

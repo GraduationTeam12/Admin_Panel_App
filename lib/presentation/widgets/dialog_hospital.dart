@@ -515,6 +515,8 @@ void showHospitalFormDialog(BuildContext context) {
                     onPressed: () {
                       BlocProvider.of<AddOwnerAndHospitalCubit>(context)
                           .addHospital();
+                      BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                          .clearHospitalFormFields();
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: MyColors.premiumColor,

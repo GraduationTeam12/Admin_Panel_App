@@ -112,7 +112,8 @@ class _ReportInformationEditingFieldsState
         }
 
         if (state is UpdateUserEmailPending) {
-          final updatedData = getUpdatedData();
+          // final updatedData = getUpdatedData();
+          String email = state.email;
           Navigator.pop(context);
           Navigator.push(
               context,
@@ -122,7 +123,7 @@ class _ReportInformationEditingFieldsState
                             AuthRepository(
                                 apiConsumer: DioConsumer(dio: Dio()))),
                         child: OtpUpdatedEmail(
-                          emailText: updatedData[ApiKeys.email]!,
+                          emailText: email,
                           id: widget.id,
                         ),
                       )));

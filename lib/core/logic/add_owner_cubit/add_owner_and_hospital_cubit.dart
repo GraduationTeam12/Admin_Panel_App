@@ -85,8 +85,8 @@ class AddOwnerAndHospitalCubit extends Cubit<AddOwnerAndHospitalState> {
 
     res.fold(
         (l) => emit(UpdateUserError(l)),
-        (r) => r.status == 'pending'
-            ? emit(UpdateUserEmailPending(r.msg))
+        (r) => r.msg == 'OTP sent successfully to your email'
+            ? emit(UpdateUserEmailPending(r.msg , r.email ))
             : emit(UpdateUserSuccess(r.msg)));
   }
 

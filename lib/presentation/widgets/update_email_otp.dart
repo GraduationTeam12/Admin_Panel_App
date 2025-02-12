@@ -64,7 +64,7 @@ class _OtpUpdatedEmailState extends State<OtpUpdatedEmail> {
                       }
 
                       if (state is VerifyUpdatedEmailUserError) {
-                        Navigator.pop(context);
+                        // Navigator.pop(context);
                         String message = state.errMessage;
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text(message),

@@ -167,7 +167,7 @@ class AuthRepository {
     try {
       final response = await apiConsumer.post(
         EndPoint.verifyUpdatedEmailUser(id),
-        data: {'newEmail': email, ApiKeys.code: code},
+        data: {'email': email, ApiKeys.code: code},
         headers: {'Authorization': 'Bearer $token'},
       );
       return Right(response[ApiKeys.message]);

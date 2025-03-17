@@ -3,7 +3,7 @@ import 'package:admin_panel_app/constants/colors.dart';
 import 'package:admin_panel_app/constants/pages_name.dart';
 import 'package:admin_panel_app/core/api/dio_consumer.dart';
 import 'package:admin_panel_app/core/api/end_points.dart';
-import 'package:admin_panel_app/core/data/repo/auth_repo.dart';
+import 'package:admin_panel_app/core/data/repo/repo_implementation.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_cubit.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_state.dart';
 import 'package:admin_panel_app/presentation/dash_board/owner_reports.dart';
@@ -120,7 +120,7 @@ class _ReportInformationEditingFieldsState
               MaterialPageRoute(
                   builder: (context) => BlocProvider(
                         create: (context) => AddOwnerAndHospitalCubit(
-                            AuthRepository(
+                            RepositoryImplementation(
                                 apiConsumer: DioConsumer(dio: Dio()))),
                         child: OtpUpdatedEmail(
                           emailText: email,

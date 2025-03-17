@@ -1,6 +1,4 @@
 import 'package:admin_panel_app/constants/app_images.dart';
-import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_cubit.dart';
-import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_state.dart';
 import 'package:admin_panel_app/core/logic/navigation_cubit/navigation_cubit.dart';
 import 'package:admin_panel_app/presentation/dash_board/overview.dart';
 import 'package:admin_panel_app/presentation/dash_board/support_page.dart';
@@ -22,7 +20,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 class MobileDashBoard extends StatefulWidget {
-  MobileDashBoard({super.key, this.widget});
+  const MobileDashBoard({super.key, this.widget});
 
   final Widget? widget;
 

@@ -2,6 +2,7 @@ import 'package:admin_panel_app/core/api/api_consumer.dart';
 import 'package:admin_panel_app/core/api/end_points.dart';
 import 'package:admin_panel_app/core/data/model/all_emergencies_model.dart';
 import 'package:admin_panel_app/core/data/model/all_owners_model.dart';
+import 'package:admin_panel_app/core/data/model/analysis_model/analysis_model.dart';
 import 'package:admin_panel_app/core/data/model/emergency_model.dart';
 import 'package:admin_panel_app/core/data/model/login_model.dart';
 import 'package:admin_panel_app/core/data/model/update_user_model.dart';
@@ -10,10 +11,10 @@ import 'package:admin_panel_app/core/error/exceptions.dart';
 import 'package:admin_panel_app/core/error/exceptions_response.dart';
 import 'package:dartz/dartz.dart';
 
-class AuthRepository {
+class RepositoryImplementation {
   final ApiConsumer apiConsumer;
 
-  AuthRepository({required this.apiConsumer});
+  RepositoryImplementation({required this.apiConsumer});
 
   Future<Either<String, LoginModel>> login({
     required String email,
@@ -305,6 +306,18 @@ class AuthRepository {
       return Right(response[ApiKeys.message]);
     } on ServerException catch (error) {
       return Left(error.errorModel.errorMessage);
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+  Future<Either<String, AnalysisModel>> getAnalysis(String token) async {
+    try {
+      final response = await apiConsumer.get(
+        EndPoint.analysis,
+        headers: {'Authorization': 'Bearer $token'},
+      );
+      return Right(AnalysisModel.fromJson(response));
     } catch (e) {
       return Left(e.toString());
     }

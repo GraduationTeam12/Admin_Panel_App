@@ -1,8 +1,9 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:admin_panel_app/constants/app_flow.dart';
-import 'package:admin_panel_app/constants/pages_name.dart';
+import 'package:admin_panel_app/routing/app_router.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -17,11 +18,9 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 2), () {
-       Navigator.pushReplacementNamed(context, loginPageScreen);
+      GoRouter.of(context).pushReplacementNamed(AppRouter.loginPageScreen);
     });
   }
-
-
 
   @override
   Widget build(BuildContext context) {

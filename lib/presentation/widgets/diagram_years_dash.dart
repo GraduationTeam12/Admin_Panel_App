@@ -1,9 +1,11 @@
+import 'package:admin_panel_app/core/data/model/analysis_model/analysis_model.dart';
 import 'package:admin_panel_app/presentation/widgets/part_digram_year_chart.dart';
 import 'package:flutter/material.dart';
 
 class DiagramYearsDash extends StatefulWidget {
-  const DiagramYearsDash({super.key});
+  const DiagramYearsDash({super.key, required this.analysisModel});
 
+  final AnalysisModel? analysisModel;
   @override
   State<DiagramYearsDash> createState() => _DiagramYearsDashState();
 }
@@ -26,21 +28,21 @@ class _DiagramYearsDashState extends State<DiagramYearsDash> {
             BoxShadow(
                 color: Colors.black26, blurRadius: 4, offset: Offset(0, 4))
           ]),
-      child: const Column(
+      child:   Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             "Analytic",
-            style:  TextStyle(
+            style: TextStyle(
                 fontSize: 23,
                 fontWeight: FontWeight.w700,
                 color: Colors.black,
                 fontFamily: "Inter"),
           ),
-           SizedBox(
+          const SizedBox(
             height: 10,
           ),
-           Text(
+          const Text(
             "Analytic This Year",
             style: TextStyle(
                 fontSize: 16,
@@ -48,7 +50,7 @@ class _DiagramYearsDashState extends State<DiagramYearsDash> {
                 color: Color.fromRGBO(142, 147, 166, 1),
                 fontFamily: "Inter"),
           ),
-           Text(
+          const Text(
             "Conducting a survey on the increase in each category within the application this year, and this table shows the amount of that increase.",
             style: TextStyle(
                 fontSize: 15,
@@ -56,14 +58,31 @@ class _DiagramYearsDashState extends State<DiagramYearsDash> {
                 color: Color.fromRGBO(86, 86, 86, 1),
                 fontFamily: "Inter"),
           ),
-         SizedBox(height: 20,),
+          const SizedBox(
+            height: 20,
+          ),
+
+          widget.analysisModel == null ? const Center(child: CircularProgressIndicator(),) :
           Row(
             children: [
-            Expanded(child: PartDiagramYearChart(title: "Owners", percent: 0.7,myColor: Color.fromRGBO(61, 100, 152, 1),)),
-            
-            Expanded(child: PartDiagramYearChart(title: "Hospital", percent: 0.9,myColor: Color.fromRGBO(18, 183, 106, 1),)),
-            
-            Expanded(child: PartDiagramYearChart(title: "Fire station", percent: 0.6,myColor: Color.fromRGBO(255, 168, 0, 1),)),
+              Expanded(
+                  child: PartDiagramYearChart(
+                title: "Cranes",
+                percent: widget.analysisModel!.emergencies.cranes / 100,
+                myColor: const Color.fromRGBO(61, 100, 152, 1),
+              )),
+              Expanded(
+                  child: PartDiagramYearChart(
+                title: "Hospital",
+                percent: widget.analysisModel!.emergencies.hospitals / 100,
+                myColor: const Color.fromRGBO(18, 183, 106, 1),
+              )),
+                Expanded(
+                  child: PartDiagramYearChart(
+                title: "Fire station",
+                percent: widget.analysisModel!.emergencies.fireStations / 100,
+                myColor: const Color.fromRGBO(255, 168, 0, 1),
+              )),
             ],
           )
         ],

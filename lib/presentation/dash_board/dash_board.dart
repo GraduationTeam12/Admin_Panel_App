@@ -35,7 +35,7 @@ class _DashBoardState extends State<DashBoard> {
       // drawer: MediaQuery.of(context).size.width < 800 ? const CustomDrawer() : null,
       backgroundColor: const Color(0xFFF7F9FA),
       body: AdaptiveLayout(
-          mobileLayout: (context) =>   MobileDashBoard(),
+          mobileLayout: (context) =>   const MobileDashBoard(),
           tabletLayout: (context) =>  TabletDashBoard(),
           desktopLayout: (context) =>   DesktopDashboard()),
     );

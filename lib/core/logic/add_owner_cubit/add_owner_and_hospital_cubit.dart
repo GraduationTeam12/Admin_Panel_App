@@ -1,6 +1,6 @@
 import 'package:admin_panel_app/core/api/end_points.dart';
 import 'package:admin_panel_app/core/cache/cache_helper.dart';
-import 'package:admin_panel_app/core/data/repo/auth_repo.dart';
+import 'package:admin_panel_app/core/data/repo/repo_implementation.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class AddOwnerAndHospitalCubit extends Cubit<AddOwnerAndHospitalState> {
   AddOwnerAndHospitalCubit(this.authRepository) : super(AddOwnerInitial());
 
-  final AuthRepository authRepository;
+  final RepositoryImplementation authRepository;
   TextEditingController emailController = TextEditingController();
 
   GlobalKey<FormState> sendOtpKey = GlobalKey();

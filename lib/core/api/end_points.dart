@@ -11,6 +11,7 @@ class EndPoint {
   static const String getAllEmergencies = 'api/v1/dashboard/emergencies/';
   static const String getSpecificEmergency = 'api/v1/dashboard/emergencies/';
   static const String deleteEmergencyy = 'api/v1/dashboard/emergencies/';
+  static const String analysis = 'api/v1/dashboard/analysis/';
 
   static String getUser(id) {
     return "$user$id";

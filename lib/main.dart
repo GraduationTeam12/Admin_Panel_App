@@ -2,8 +2,9 @@ import 'package:admin_panel_app/constants/pages_name.dart';
 import 'package:admin_panel_app/core/api/dio_consumer.dart';
 import 'package:admin_panel_app/core/api/end_points.dart';
 import 'package:admin_panel_app/core/cache/cache_helper.dart';
-import 'package:admin_panel_app/core/data/repo/auth_repo.dart';
+import 'package:admin_panel_app/core/data/repo/repo_implementation.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_cubit.dart';
+import 'package:admin_panel_app/core/logic/analysis_cubit/analysis_cubit.dart';
 import 'package:admin_panel_app/core/logic/logout_cubit/logout_cubit.dart';
 import 'package:admin_panel_app/core/logic/navigation_cubit/navigation_cubit.dart';
 import 'package:admin_panel_app/firebase_options.dart';
@@ -34,7 +35,11 @@ Future<void> main() async {
       ),
       BlocProvider(
         create: (context) => AddOwnerAndHospitalCubit(
-            AuthRepository(apiConsumer: DioConsumer(dio: Dio()))),
+            RepositoryImplementation(apiConsumer: DioConsumer(dio: Dio()))),
+      ),
+      BlocProvider(
+        create: (context) => AnalysisCubit(
+            RepositoryImplementation(apiConsumer: DioConsumer(dio: Dio()))),
       ),
       BlocProvider(
         create: (context) => LogoutCubit(),

@@ -1,7 +1,7 @@
 import 'package:admin_panel_app/core/api/end_points.dart';
 import 'package:admin_panel_app/core/cache/cache_helper.dart';
 import 'package:admin_panel_app/core/data/model/login_model.dart';
-import 'package:admin_panel_app/core/data/repo/auth_repo.dart';
+import 'package:admin_panel_app/core/data/repo/repo_implementation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
@@ -11,7 +11,7 @@ part 'login_state.dart';
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this.authRepo) : super(LoginInitial());
 
-  final AuthRepository authRepo;
+  final RepositoryImplementation authRepo;
   TextEditingController signInEmail = TextEditingController();
   TextEditingController signInpassword = TextEditingController();
   GlobalKey<FormState> loginKey = GlobalKey();

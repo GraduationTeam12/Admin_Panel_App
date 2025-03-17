@@ -2,7 +2,7 @@
 
 import 'package:admin_panel_app/constants/pages_name.dart';
 import 'package:admin_panel_app/core/api/dio_consumer.dart';
-import 'package:admin_panel_app/core/data/repo/auth_repo.dart';
+import 'package:admin_panel_app/core/data/repo/repo_implementation.dart';
 import 'package:admin_panel_app/core/logic/login_cubit/login_cubit.dart';
 import 'package:admin_panel_app/presentation/dash_board/dash_board.dart';
 import 'package:admin_panel_app/presentation/dash_board/login_page.dart';
@@ -19,7 +19,7 @@ class AppRouter {
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
                   create: (context) => LoginCubit(
-                      AuthRepository(apiConsumer: DioConsumer(dio: Dio()))),
+                      RepositoryImplementation(apiConsumer: DioConsumer(dio: Dio()))),
                   child: const LoginPage(),
                 ));
 

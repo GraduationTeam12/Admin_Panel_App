@@ -1,10 +1,10 @@
-// ignore_for_file: library_private_types_in_public_api
+// ignore_for_file: library_private_types_in_public_api, deprecated_member_use
 
 import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
-import 'package:admin_panel_app/core/logic/navigation_cubit/navigation_cubit.dart';
+import 'package:admin_panel_app/routing/app_router.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class CheckAnimation extends StatefulWidget {
   const CheckAnimation({super.key});
@@ -84,78 +84,77 @@ class _CheckAnimationState extends State<CheckAnimation> {
 
 void showCheckDialog(BuildContext context) {
   showDialog(
-    context: context,
-     barrierDismissible: false,
-    builder: (context) => BlocProvider.value(
-      value: BlocProvider.of<NavigationCubit>(context),
-       
-      child: BlocBuilder<NavigationCubit, int>(
-        builder: (context, state) {
-          return Dialog(
-              backgroundColor: Colors.transparent,
-              child: Container(
-                width: 250,
-                height: 250,
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 39, 76, 124).withOpacity(0.7),
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return Dialog(
+          backgroundColor: Colors.transparent,
+          child: Container(
+            width: 250,
+            height: 250,
+            decoration: BoxDecoration(
+              color: const Color.fromARGB(255, 39, 76, 124).withOpacity(0.7),
+              borderRadius: BorderRadius.circular(25),
+            ),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(height: 40),
+                  const SizedBox(height: 60, child: CheckAnimation()),
+                  const SizedBox(height: 40),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const SizedBox(height: 40),
-                      const SizedBox(height: 60, child: CheckAnimation()),
-                      const SizedBox(height: 40),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: 15,
-                            height: 15,
-                            decoration: const ShapeDecoration(
-                                shape: OvalBorder(), color: Colors.white),
-                          ),
-                          const SizedBox(
-                            width: 18,
-                          ),
-                          Container(
-                            width: 15,
-                            height: 15,
-                            decoration: const ShapeDecoration(
-                                shape: OvalBorder(), color: Colors.white),
-                          ),
-                          const SizedBox(
-                            width: 18,
-                          ),
-                          Container(
-                            width: 15,
-                            height: 15,
-                            decoration: const ShapeDecoration(
-                                shape: OvalBorder(), color: Colors.white),
-                          ),
-                        ],
+                      Container(
+                        width: 15,
+                        height: 15,
+                        decoration: const ShapeDecoration(
+                            shape: OvalBorder(), color: Colors.white),
                       ),
-                      const SizedBox(height: 25),
-                      TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                            context.read<NavigationCubit>().navigateTo(10);
-                          },
-                          child: Text(
-                            "Done",
-                            style: AppStyle.styleBold20(context).copyWith(
-                                color: Colors.white,
-                                fontFamily: 'Inter',
-                                fontSize: 25),
-                          )),
+                      const SizedBox(
+                        width: 18,
+                      ),
+                      Container(
+                        width: 15,
+                        height: 15,
+                        decoration: const ShapeDecoration(
+                            shape: OvalBorder(), color: Colors.white),
+                      ),
+                      const SizedBox(
+                        width: 18,
+                      ),
+                      Container(
+                        width: 15,
+                        height: 15,
+                        decoration: const ShapeDecoration(
+                            shape: OvalBorder(), color: Colors.white),
+                      ),
                     ],
                   ),
-                ),
+                  const SizedBox(height: 25),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        //
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => OwnerReports()));
+
+                        GoRouter.of(context).pushReplacementNamed(AppRouter.ownerReports);
+                      },
+                      child: Text(
+                        "Done",
+                        style: AppStyle.styleBold20(context).copyWith(
+                            color: Colors.white,
+                            fontFamily: 'Inter',
+                            fontSize: 25),
+                      )),
+                ],
               ),
-            );
-        },
-      ),
-    ),
-  );
+            ),
+          ),
+        );
+      });
 }

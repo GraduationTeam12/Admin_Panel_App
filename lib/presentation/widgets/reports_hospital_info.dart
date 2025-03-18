@@ -1,14 +1,16 @@
 import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
-import 'package:admin_panel_app/constants/pages_name.dart';
 import 'package:admin_panel_app/core/data/model/all_emergencies_model.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_cubit.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_state.dart';
+import 'package:admin_panel_app/presentation/dash_board/hospital_report.dart';
 import 'package:admin_panel_app/presentation/widgets/dialog_animation.dart';
 import 'package:admin_panel_app/presentation/widgets/repoert_dialog_hospital.dart';
 import 'package:admin_panel_app/presentation/widgets/report_hospital_editing_information.dart';
+import 'package:admin_panel_app/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class ReportsHospitalInfo extends StatefulWidget {
   const ReportsHospitalInfo({super.key});
@@ -38,7 +40,10 @@ class _ReportsHospitalInfoState extends State<ReportsHospitalInfo> {
         if (state is DeleteEmergencySuccess) {
           // Navigator.pop(context);
           //  context.go(dashBoardScreen);
-          Navigator.pushReplacementNamed(context, dashBoardScreen);
+          // Navigator.pushReplacementNamed(context, dashBoardScreen);
+          GoRouter.of(context).pushNamed(AppRouter.hospitalReports);
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => HospitalReport()));
           String message = state.message;
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(message),

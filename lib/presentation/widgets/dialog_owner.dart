@@ -2,11 +2,12 @@ import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_cubit.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_state.dart';
-import 'package:admin_panel_app/core/logic/navigation_cubit/navigation_cubit.dart';
 import 'package:admin_panel_app/presentation/widgets/dialog_animation.dart';
 import 'package:admin_panel_app/presentation/widgets/dialog_success_animation.dart';
+import 'package:admin_panel_app/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 void showOwnerFormDialog(BuildContext context) {
   // final _formKey = GlobalKey<FormState>();
@@ -30,11 +31,14 @@ void showOwnerFormDialog(BuildContext context) {
               Navigator.pop(context);
               showCheckDialog(context);
               // context.read<NavigationCubit>().navigateTo(1);
+              GoRouter.of(context).pushReplacementNamed(AppRouter.ownerReports);
             }
 
             if (state is AddUserError) {
               Navigator.pop(context);
-              context.read<NavigationCubit>().navigateTo(7);
+              // context.read<NavigationCubit>().navigateTo(7);
+                // Navigator.push(context, MaterialPageRoute(builder: (context) => const UserInformation()));
+                GoRouter.of(context).pushReplacementNamed(AppRouter.userInfo);
               String message = state.errMessage;
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Text(message),

@@ -1,9 +1,11 @@
+import 'dart:developer';
+
 import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
-import 'package:admin_panel_app/constants/pages_name.dart';
 import 'package:admin_panel_app/core/data/model/all_owners_model.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_cubit.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_state.dart';
+import 'package:admin_panel_app/presentation/dash_board/owner_reports.dart';
 import 'package:admin_panel_app/presentation/widgets/dialog_animation.dart';
 import 'package:admin_panel_app/presentation/widgets/report_dialog_owner.dart';
 import 'package:admin_panel_app/presentation/widgets/report_owner_editing_information.dart';
@@ -37,7 +39,9 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
         if (state is DeleteUserSuccess) {
           // Navigator.pop(context);
           // users.removeWhere((user) => user.id == users[0].id);
-          Navigator.pushReplacementNamed(context, dashBoardScreen);
+          // Navigator.pushReplacementNamed(context, dashBoardScreen);
+          // GoRouter.of(context).pushReplacementNamed(AppRouter.ownerReports);
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => OwnerReports()));
           String message = state.message;
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(message),
@@ -60,14 +64,11 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
             // WidgetsBinding.instance.addPostFrameCallback((_) {
             //   showLoadingDialog(context);
             // });
-
-             
           }
 
           if (state is GetAllOwnerSuccess) {
             // Navigator.pop(context);
             users = state.users;
-           
           }
 
           if (state is GetAllOwnerError) {
@@ -249,8 +250,7 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
                                 child: SizedBox(
                                   width: 200,
                                   child: TextFormField(
-                                    initialValue:
-                                        users[index].nationalId,
+                                    initialValue: users[index].nationalId,
                                     style: AppStyle.styleRegular16(context)
                                         .copyWith(color: Colors.black),
                                     keyboardType: TextInputType.text,
@@ -309,6 +309,7 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
                                   ),
                                   InkWell(
                                     onTap: () {
+                                      log('yesssssss');
                                       // context
                                       //     .read<NavigationCubit>()
                                       //     .navigateTo(12);
@@ -320,6 +321,10 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
                                                 ReportOwnerEditingInformation(
                                                     id: users[index].id),
                                           ));
+
+                                      // GoRouter.of(context).pushReplacementNamed(
+                                      //     '${AppRouter.updateUserInfo}/$users[index].id',
+                                      //     extra: {'id': users[index].id});
                                     },
                                     child: Container(
                                       width: 30,

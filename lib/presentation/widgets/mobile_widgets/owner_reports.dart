@@ -1,14 +1,15 @@
 import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
-import 'package:admin_panel_app/constants/pages_name.dart';
 import 'package:admin_panel_app/core/data/model/all_owners_model.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_cubit.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_state.dart';
 import 'package:admin_panel_app/presentation/widgets/dialog_animation.dart';
 import 'package:admin_panel_app/presentation/widgets/report_dialog_owner.dart';
 import 'package:admin_panel_app/presentation/widgets/report_owner_editing_information.dart';
+import 'package:admin_panel_app/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class ReportOwnerInfoMobile extends StatefulWidget {
   const ReportOwnerInfoMobile({super.key});
@@ -37,7 +38,8 @@ class _ReportOwnerInfoMobileState extends State<ReportOwnerInfoMobile> {
         if (state is DeleteUserSuccess) {
           // Navigator.pop(context);
           // users.removeWhere((user) => user.id == users[0].id);
-          Navigator.pushReplacementNamed(context, dashBoardScreen);
+          // 
+          GoRouter.of(context).pushNamed(AppRouter.loginPageScreen);
           String message = state.message;
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(message),

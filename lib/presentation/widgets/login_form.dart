@@ -1,9 +1,12 @@
 import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
-import 'package:admin_panel_app/constants/pages_name.dart';
 import 'package:admin_panel_app/core/logic/login_cubit/login_cubit.dart';
+import 'package:admin_panel_app/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'dart:ui_web' as ui_web;
+import 'dart:html' as html;
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -34,9 +37,18 @@ class _LoginFormState extends State<LoginForm> {
             margin: const EdgeInsets.only(bottom: 680, left: 160, right: 160),
           ));
 
-          Navigator.pushReplacementNamed(context, dashBoardScreen);
-          
-           
+          html.window.history.pushState({}, '', '');
+          html.window.onPopState.listen((e) {
+            html.window.history.pushState({}, '', '');
+          });
+
+          // Navigator.pushReplacementNamed(context, dashBoardScreen);
+          GoRouter.of(context).pushReplacementNamed(AppRouter.overView);
+          // Navigator.pushAndRemoveUntil(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => const DesktopDashboard()),
+          //   (route) => false,
+          // );
         }
 
         if (state is LoginErrorState) {

@@ -3,10 +3,12 @@
 import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_cubit.dart';
-import 'package:admin_panel_app/core/logic/navigation_cubit/navigation_cubit.dart';
 import 'package:admin_panel_app/presentation/widgets/add_owner_bar.dart';
+import 'package:admin_panel_app/presentation/widgets/selecting_num_of_board.dart';
+import 'package:admin_panel_app/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class InfoFields extends StatefulWidget {
   const InfoFields({super.key});
@@ -405,7 +407,8 @@ class InfoFieldsState extends State<InfoFields> {
                       if (!userInformationKey.currentState!.validate()) {
                         return;
                       } else {
-                        context.read<NavigationCubit>().navigateTo(8);
+                        // context.read<NavigationCubit>().navigateTo(8);
+                          Navigator.push(context, MaterialPageRoute(builder: (context) =>   SelectingNumOfBoard()));
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -796,7 +799,9 @@ class InfoFieldsState extends State<InfoFields> {
                       if (!userInformationKey.currentState!.validate()) {
                         return;
                       } else {
-                        context.read<NavigationCubit>().navigateTo(8);
+                        // context.read<NavigationCubit>().navigateTo(8);
+                          // Navigator.push(context, MaterialPageRoute(builder: (context) =>  const SelectingNumOfBoard()));
+                          GoRouter.of(context).pushReplacementNamed(AppRouter.numOfBoard);
                       }
                     },
                     style: ElevatedButton.styleFrom(

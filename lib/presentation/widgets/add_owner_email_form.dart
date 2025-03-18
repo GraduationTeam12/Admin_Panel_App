@@ -2,11 +2,13 @@ import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_cubit.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_state.dart';
-import 'package:admin_panel_app/core/logic/navigation_cubit/navigation_cubit.dart';
 import 'package:admin_panel_app/presentation/widgets/add_owner_bar.dart';
 import 'package:admin_panel_app/presentation/widgets/dialog_animation.dart';
+import 'package:admin_panel_app/presentation/widgets/otp_owner.dart';
+import 'package:admin_panel_app/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class AddOwnerEmailForm extends StatefulWidget {
   const AddOwnerEmailForm({
@@ -30,7 +32,9 @@ class AddOwnerEmailFormState extends State<AddOwnerEmailForm> {
 
         if (state is SendCodeSucess) {
           Navigator.pop(context);
-          context.read<NavigationCubit>().navigateTo(6);
+          // context.read<NavigationCubit>().navigateTo(6);
+          // Navigator.push(context, MaterialPageRoute(builder: (context) => const OtpOwner()));
+          GoRouter.of(context).pushReplacementNamed(AppRouter.otpOwner);
         }
 
         if (state is SendCodeError) {
@@ -53,36 +57,39 @@ class AddOwnerEmailFormState extends State<AddOwnerEmailForm> {
             Text(
               "Add Owner to System",
               style: AppStyle.styleBold25(context).copyWith(
-                  fontSize:  MediaQuery.of(context).size.width < 800 ? 26 : 47,
+                  fontSize: MediaQuery.of(context).size.width < 800 ? 26 : 47,
                   fontFamily: 'Roboto',
                   color: MyColors.premiumColor),
             ),
             const SizedBox(
               height: 8,
             ),
-
-            MediaQuery.sizeOf(context).width < 800 ? Text('Make sure to write the required information and all the agreed-upon details , Please enter Valid Email', 
-            style: AppStyle.styleRegular17(context)
-                  .copyWith(fontSize: 17, fontFamily: 'Roboto'),
-            ) :
-            Text(
-              "Make sure to write the required information and all the",
-              style: AppStyle.styleRegular17(context)
-                  .copyWith(fontSize: 17, fontFamily: 'Roboto'),
-            ),
-              MediaQuery.sizeOf(context).width < 800 ? const Text('') :
-            Text(
-              " agreed-upon details , Please enter Valid Email ",
-              style: AppStyle.styleRegular17(context).copyWith(
-                fontSize: 17,
-                fontFamily: 'Roboto',
-              ),
-            ),
+            MediaQuery.sizeOf(context).width < 800
+                ? Text(
+                    'Make sure to write the required information and all the agreed-upon details , Please enter Valid Email',
+                    style: AppStyle.styleRegular17(context)
+                        .copyWith(fontSize: 17, fontFamily: 'Roboto'),
+                  )
+                : Text(
+                    "Make sure to write the required information and all the",
+                    style: AppStyle.styleRegular17(context)
+                        .copyWith(fontSize: 17, fontFamily: 'Roboto'),
+                  ),
+            MediaQuery.sizeOf(context).width < 800
+                ? const Text('')
+                : Text(
+                    " agreed-upon details , Please enter Valid Email ",
+                    style: AppStyle.styleRegular17(context).copyWith(
+                      fontSize: 17,
+                      fontFamily: 'Roboto',
+                    ),
+                  ),
             const SizedBox(
               height: 20,
             ),
             Form(
-                key: BlocProvider.of<AddOwnerAndHospitalCubit>(context).sendOtpKey,
+                key: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                    .sendOtpKey,
                 child: Column(
                   children: [
                     SizedBox(
@@ -92,8 +99,9 @@ class AddOwnerEmailFormState extends State<AddOwnerEmailForm> {
                             .copyWith(color: Colors.black),
                         keyboardType: TextInputType.text,
                         textInputAction: TextInputAction.done,
-                        controller: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
-                            .emailController,
+                        controller:
+                            BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                                .emailController,
                         //     BlocProvider.of<LoginCubit>(context).signInEmail,
                         decoration: InputDecoration(
                           errorStyle: AppStyle.styleRegular16(context)
@@ -147,14 +155,16 @@ class AddOwnerEmailFormState extends State<AddOwnerEmailForm> {
                       height: 47,
                       child: ElevatedButton(
                         onPressed: () {
-                          if (!BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                          if (!BlocProvider.of<AddOwnerAndHospitalCubit>(
+                                  context)
                               .sendOtpKey
                               .currentState!
                               .validate()) {
                             return;
                           } else {
                             // showLoadingDialog(context);
-                            BlocProvider.of<AddOwnerAndHospitalCubit>(context).sendCode();
+                            BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                                .sendCode();
                           }
                         },
                         style: ElevatedButton.styleFrom(

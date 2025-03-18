@@ -1,10 +1,11 @@
 import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_cubit.dart';
-import 'package:admin_panel_app/core/logic/navigation_cubit/navigation_cubit.dart';
 import 'package:admin_panel_app/presentation/widgets/add_owner_bar.dart';
+import 'package:admin_panel_app/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class SelectingNumOfBoardField extends StatefulWidget {
   const SelectingNumOfBoardField({super.key});
@@ -127,7 +128,9 @@ class SelectingNumOfBoardFieldState extends State<SelectingNumOfBoardField> {
                             // BlocProvider.of<AddOwnerCubit>(context)
                             //     .getUserData();
 
-                            context.read<NavigationCubit>().navigateTo(9);
+                            // context.read<NavigationCubit>().navigateTo(9);
+                              // Navigator.push(context, MaterialPageRoute(builder: (context) => ConfirmingInfo()));
+                              GoRouter.of(context).pushReplacementNamed(AppRouter.confirmingInfo);
                           }
                         },
                         style: ElevatedButton.styleFrom(

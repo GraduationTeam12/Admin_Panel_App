@@ -1,4 +1,4 @@
-import 'package:admin_panel_app/constants/pages_name.dart';
+ 
 import 'package:admin_panel_app/core/api/dio_consumer.dart';
 import 'package:admin_panel_app/core/api/end_points.dart';
 import 'package:admin_panel_app/core/cache/cache_helper.dart';
@@ -8,7 +8,9 @@ import 'package:admin_panel_app/core/logic/analysis_cubit/analysis_cubit.dart';
 import 'package:admin_panel_app/core/logic/logout_cubit/logout_cubit.dart';
 import 'package:admin_panel_app/core/logic/navigation_cubit/navigation_cubit.dart';
 import 'package:admin_panel_app/firebase_options.dart';
-import 'package:admin_panel_app/routing.dart';
+import 'package:admin_panel_app/presentation/widgets/router_controller_stream.dart';
+import 'package:admin_panel_app/routing/app_router.dart' show AppRouter;
+import 'package:admin_panel_app/routing/router_generator.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
@@ -30,9 +32,9 @@ Future<void> main() async {
   );
   runApp(MultiBlocProvider(
     providers: [
-      BlocProvider(
-        create: (context) => NavigationCubit(),
-      ),
+      // BlocProvider(
+      //   create: (context) => NavigationCubit(),
+      // ),
       BlocProvider(
         create: (context) => AddOwnerAndHospitalCubit(
             RepositoryImplementation(apiConsumer: DioConsumer(dio: Dio()))),
@@ -45,27 +47,28 @@ Future<void> main() async {
         create: (context) => LogoutCubit(),
       ),
     ],
-    child: MyApp(
-      appRouter: AppRouter(),
-    ),
+    child: MyApp(),
   ));
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key, required this.appRouter});
-  final AppRouter appRouter;
+  MyApp({
+    super.key,
+  });
+
   final token = CacheHelper().getData(key: ApiKeys.token);
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Admin App',
+      routerConfig: RouterGenerator.mainRouting,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      onGenerateRoute: appRouter.generationRoute,
-      initialRoute: token == null ? splashScreen : dashBoardScreen,
+      // onGenerateRoute: appRouter.generationRoute,
+      // initialRoute: token == null ? splashScreen : dashBoardScreen,
       // home:  const ConfirmingInfo(),
     );
   }

@@ -1,8 +1,7 @@
 import 'package:admin_panel_app/constants/app_images.dart';
-import 'package:admin_panel_app/core/logic/navigation_cubit/navigation_cubit.dart';
 import 'package:admin_panel_app/presentation/widgets/dialog_info_admin.dart';
+import 'package:admin_panel_app/presentation/widgets/survey_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 class AdminInfo extends StatelessWidget {
@@ -21,7 +20,8 @@ class AdminInfo extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            context.read<NavigationCubit>().navigateTo(3);
+            // context.read<NavigationCubit>().navigateTo(3);
+              Navigator.push(context, MaterialPageRoute(builder: (context) =>   SurveyPage()));
           },
           child: SvgPicture.asset(
             Assets.imagesAuthImagesClarityFormLine,

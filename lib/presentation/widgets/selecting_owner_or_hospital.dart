@@ -1,7 +1,13 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/core/logic/navigation_cubit/navigation_cubit.dart';
+import 'package:admin_panel_app/presentation/dash_board/hospital_report.dart';
+import 'package:admin_panel_app/presentation/dash_board/owner_reports.dart';
+import 'package:admin_panel_app/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class SelectingOwnerOrHospital extends StatefulWidget {
   const SelectingOwnerOrHospital({super.key, required this.selectedIndex});
@@ -83,7 +89,8 @@ class _SelectingOwnerOrHospitalState extends State<SelectingOwnerOrHospital> {
                         children: [
               InkWell(
                   onTap: () {
-                    context.read<NavigationCubit>().navigateTo(10);
+                    // context.read<NavigationCubit>().navigateTo(10);
+                     GoRouter.of(context).pushReplacementNamed(AppRouter.ownerReports);
                   },
                   child: Text(
                     "Owner",
@@ -101,9 +108,11 @@ class _SelectingOwnerOrHospitalState extends State<SelectingOwnerOrHospital> {
               ),
               InkWell(
                   onTap: () {
-                      context.read<NavigationCubit>().navigateTo(11);
+                      // context.read<NavigationCubit>().navigateTo(11);
                     // Navigator.pushNamed(context, hospialReportsScreen);
                     // context.go(hospialReportsScreen);
+                      // Navigator.push(context, MaterialPageRoute(builder: (context) => HospitalReport()));
+                      GoRouter.of(context).pushReplacementNamed(AppRouter.hospitalReports);
                   },
                   child: Text(
                     "Hospital",
@@ -168,7 +177,14 @@ class _SelectingOwnerOrHospitalState extends State<SelectingOwnerOrHospital> {
           children: [
             InkWell(
                 onTap: () {
-                  context.read<NavigationCubit>().navigateTo(10);
+                  // context.read<NavigationCubit>().navigateTo(10);
+                  // Navigator.pushNamed(context, hospialReportsScreen);
+                  // context.go(hospialReportsScreen);
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) => OwnerReports()));
+                  if (widget.selectedIndex != 0) {
+                    GoRouter.of(context).pushReplacementNamed(AppRouter.ownerReports);
+                  }
+                  
                 },
                 child: Text(
                   "Owner",
@@ -186,9 +202,14 @@ class _SelectingOwnerOrHospitalState extends State<SelectingOwnerOrHospital> {
             ),
             InkWell(
                 onTap: () {
-                    context.read<NavigationCubit>().navigateTo(11);
+                    // context.read<NavigationCubit>().navigateTo(11);
+                      // Navigator.push(context, MaterialPageRoute(builder: (context) => HospitalReport()));
                   // Navigator.pushNamed(context, hospialReportsScreen);
                   // context.go(hospialReportsScreen);
+                  if (widget.selectedIndex != 1) {
+                    GoRouter.of(context).pushReplacementNamed(AppRouter.hospitalReports);
+                  }
+                  
                 },
                 child: Text(
                   "Hospital",

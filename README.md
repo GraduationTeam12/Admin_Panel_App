@@ -6,9 +6,9 @@ solving users problems .
 
 ##
 
-!(assets/images/auth_images/screenshot_overview.png)
-!(assets/images/auth_images/screenshot_reports.png)
-!(assets/images/auth_images/screenshot_add_owner.png)
+![Overview ](assets/images/auth_images/screenshot_overview.png)
+![Reports ](assets/images/auth_images/screenshot_reports.png)
+![Add Owner ](assets/images/auth_images/screenshot_add_owner.png)
 
 ## Getting Started
 

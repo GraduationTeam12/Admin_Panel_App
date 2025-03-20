@@ -35,8 +35,8 @@ class AuthNotifier extends ChangeNotifier {
 
   String? get token => _token;
 
-  Future<void> _initToken() async {
-    _token = await CacheHelper().getData(key: ApiKeys.token);
+  _initToken() {
+    _token = CacheHelper().getData(key: ApiKeys.token);
     notifyListeners();
   }
 
@@ -46,6 +46,7 @@ class AuthNotifier extends ChangeNotifier {
       await CacheHelper().saveData(key: ApiKeys.token, value: token);
     } else {
       await CacheHelper().removeData(key: ApiKeys.token);
+      await CacheHelper().removeData(key: ApiKeys.id);
     }
     notifyListeners();
   }
@@ -54,13 +55,10 @@ class AuthNotifier extends ChangeNotifier {
 class RouterGenerator {
   static final AuthNotifier authNotifier = AuthNotifier();
   static GoRouter mainRouting = GoRouter(
-      refreshListenable: authNotifier,
+      refreshListenable: authNotifier._initToken(),
+       
       // debugLogDiagnostics: true,
       redirect: (context, state) {
-        if (state.uri.toString() == AppRouter.splashScreen) {
-          return null;
-        }
-
         final token = authNotifier.token;
 
         if (token == null &&
@@ -82,8 +80,9 @@ class RouterGenerator {
           ),
         );
       },
-      // initialLocation:
-      //     authNotifier._token == null ? AppRouter.splashScreen : AppRouter.dashBoardScreen,
+      initialLocation: CacheHelper().getData(key: ApiKeys.token) == null
+          ? AppRouter.splashScreen
+          : AppRouter.dashBoardScreen,
       routes: [
         GoRoute(
           path: AppRouter.loginPageScreen,
@@ -161,8 +160,7 @@ class RouterGenerator {
             }),
 
         GoRoute(
-            path:
-                '${AppRouter.updateHospitalInfo}:id',  
+            path: '${AppRouter.updateHospitalInfo}:id',
             name: AppRouter.updateHospitalInfo,
             builder: (context, state) {
               // final extra = state.extra as Map<String, dynamic>?;

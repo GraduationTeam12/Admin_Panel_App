@@ -1,1 +1,54 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"smart-accident-system","appId":"1:782758238451:android:60259ef88c96a70636bf86","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"smart-accident-system","configurations":{"android":"1:782758238451:android:60259ef88c96a70636bf86","ios":"1:782758238451:ios:55a1327bba36268e36bf86","macos":"1:782758238451:ios:55a1327bba36268e36bf86","web":"1:782758238451:web:636179fe408bc12036bf86","windows":"1:782758238451:web:a459eddf02ac0dde36bf86"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "smart-accident-system",
+          "appId": "1:782758238451:android:60259ef88c96a70636bf86",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "smart-accident-system",
+          "configurations": {
+            "android": "1:782758238451:android:60259ef88c96a70636bf86",
+            "ios": "1:782758238451:ios:55a1327bba36268e36bf86",
+            "macos": "1:782758238451:ios:55a1327bba36268e36bf86",
+            "web": "1:782758238451:web:636179fe408bc12036bf86",
+            "windows": "1:782758238451:web:a459eddf02ac0dde36bf86"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/Satars/Dashboard/**",
+        "destination": "/index.html"
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -30,7 +30,7 @@ class OwnerReports extends StatelessWidget {
     const OwnerReportsMobile()
      :
      Scaffold(
-      backgroundColor:  const Color.fromRGBO(217, 217, 217, 0.7),
+      backgroundColor: const Color.fromRGBO(217, 217, 217, 0.7),
       
       body: Row(
         children: [

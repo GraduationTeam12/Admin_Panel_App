@@ -1,12 +1,11 @@
-import 'package:admin_panel_app/constants/pages_name.dart';
+ 
 import 'package:admin_panel_app/core/logic/logout_cubit/logout_cubit.dart';
 import 'package:admin_panel_app/core/logic/logout_cubit/logout_state.dart';
 import 'package:admin_panel_app/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'dart:ui_web' as ui_web;
-import 'dart:html' as html;
+ 
 
 void showLogOutDialog(BuildContext context) {
   showDialog(
@@ -17,10 +16,7 @@ void showLogOutDialog(BuildContext context) {
       child: BlocConsumer<LogoutCubit, LogoutState>(
         listener: (context, state) {
           if (state is LogoutSuccessState) {
-            html.window.history.pushState({}, '', '');
-          html.window.onPopState.listen((e) {
-            html.window.history.pushState({}, '', '');
-          });
+         
            GoRouter.of(context).pushReplacementNamed(AppRouter.loginPageScreen);
           }
         },

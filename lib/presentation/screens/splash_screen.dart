@@ -5,8 +5,7 @@ import 'package:admin_panel_app/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
-import 'dart:ui_web' as ui_web;
-import 'dart:html' as html;
+ 
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

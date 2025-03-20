@@ -1,16 +1,19 @@
-# admin_panel_app
+# Admin_panel_dashboard
 
-A new Flutter project.
+Admin dashboard to manage SATARS's system , add users or emergencies , update informations,
+solving users problems .
+
+
+##
+
+(assets/images/auth_images/screenshot_overview.png)
+(assets/images/auth_images/screenshot_reports.png)
+(assets/images/auth_images/screenshot_add_owner.png)
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+If you are an admin in SATARS system you can use the following link :
 
-A few resources to get you started if this is your first Flutter project:
+- [Dashboard link](https://smart-accident-system.web.app/)
+ 
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

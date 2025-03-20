@@ -73,7 +73,7 @@ class _ReportHospitalEditingInformationState
             : const Color(0xB1D9D9D9),
         body: Row(
           children: [
-            Expanded(
+              MediaQuery.sizeOf(context).width < 1201? Container() :  Expanded(
               flex: 1,
               child: CustomDrawer(
                   activeIndex: 4,
@@ -86,7 +86,7 @@ class _ReportHospitalEditingInformationState
                     // }
                   })),
             Expanded(
-              flex: 4,
+              flex: MediaQuery.sizeOf(context).width < 1201? 1 : 4,
               child: BlocConsumer<AddOwnerAndHospitalCubit, AddOwnerAndHospitalState>(
                 listener: (context, state) {
                   // if (state is GetAllEmergenciesError) {

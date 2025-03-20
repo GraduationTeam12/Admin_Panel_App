@@ -13,6 +13,7 @@ import 'package:admin_panel_app/presentation/widgets/add_hospital.dart';
 import 'package:admin_panel_app/presentation/widgets/add_owner.dart';
 import 'package:admin_panel_app/presentation/widgets/confirming_info.dart';
 import 'package:admin_panel_app/presentation/widgets/otp_owner.dart';
+import 'package:admin_panel_app/presentation/widgets/report_hospital_editing_information.dart';
 import 'package:admin_panel_app/presentation/widgets/report_owner_editing_information.dart';
 import 'package:admin_panel_app/presentation/widgets/selecting_num_of_board.dart';
 import 'package:admin_panel_app/presentation/widgets/survey_page.dart';
@@ -155,6 +156,18 @@ class RouterGenerator {
               // final extra = state.extra as Map<String, dynamic>?;
               final id = state.pathParameters['id']!;
               return ReportOwnerEditingInformation(
+                id: id,
+              );
+            }),
+
+        GoRoute(
+            path:
+                '${AppRouter.updateHospitalInfo}:id',  
+            name: AppRouter.updateHospitalInfo,
+            builder: (context, state) {
+              // final extra = state.extra as Map<String, dynamic>?;
+              final id = state.pathParameters['id']!;
+              return ReportHospitalEditingInformation(
                 id: id,
               );
             })

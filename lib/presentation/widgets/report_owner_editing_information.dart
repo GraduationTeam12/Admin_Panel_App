@@ -1,4 +1,4 @@
- import 'dart:developer';
+import 'dart:developer';
 
 import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/core/data/model/user_model.dart';
@@ -12,7 +12,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ReportOwnerEditingInformation extends StatefulWidget {
-  const ReportOwnerEditingInformation({super.key, required this.id,  });
+  const ReportOwnerEditingInformation({
+    super.key,
+    required this.id,
+  });
 
   final String id;
 
@@ -66,7 +69,7 @@ class _ReportOwnerEditingInformationState
           : const Color.fromRGBO(217, 217, 217, 0.7),
       body: Row(
         children: [
-            Expanded(
+            MediaQuery.sizeOf(context).width < 1201? Container() : Expanded(
               flex: 1,
               child: CustomDrawer(
                   activeIndex: 1,
@@ -79,8 +82,9 @@ class _ReportOwnerEditingInformationState
                     // }
                   })),
           Expanded(
-            flex: 4,
-            child: BlocConsumer<AddOwnerAndHospitalCubit, AddOwnerAndHospitalState>(
+            flex:   MediaQuery.sizeOf(context).width < 1201?  1 : 4,
+            child: BlocConsumer<AddOwnerAndHospitalCubit,
+                AddOwnerAndHospitalState>(
               listener: (context, state) {
                 if (state is GetUserSuccess) {
                   user = state.user;
@@ -88,35 +92,31 @@ class _ReportOwnerEditingInformationState
                 }
               },
               builder: (context, state) {
-                return BlocBuilder<AddOwnerAndHospitalCubit, AddOwnerAndHospitalState>(
-                    builder: (context, state) {
-                   
-            
+                return BlocBuilder<AddOwnerAndHospitalCubit,
+                    AddOwnerAndHospitalState>(builder: (context, state) {
                   if (state is GetUserLoading) {
                     WidgetsBinding.instance.addPostFrameCallback((_) {
                       showLoadingDialog(context);
                     });
                   }
-            
-                    
-            
+
                   if (user.isEmpty) {
                     return Center(
                       child: Text(
                         "",
-                        style:
-                            AppStyle.styleSemiBold25(context).copyWith(fontSize: 30),
+                        style: AppStyle.styleSemiBold25(context)
+                            .copyWith(fontSize: 30),
                       ),
                     );
                   }
-            
+
                   userNameController.text = user[0].username;
                   emailController.text = user[0].email;
                   addressController.text = user[0].address;
                   ageController.text = user[0].age.toString();
                   phoneController.text = user[0].phone;
                   nationalIdController.text = user[0].nationalId.toString();
-            
+
                   return MediaQuery.sizeOf(context).width < 800
                       ? SingleChildScrollView(
                           child: Padding(
@@ -131,7 +131,10 @@ class _ReportOwnerEditingInformationState
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     image: DecorationImage(
-                                      image: user[0].avatarUrl == null ? const AssetImage('assets/images/auth_images/person_image.jpeg') : NetworkImage(user[0].avatarUrl!),
+                                      image: user[0].avatarUrl == null
+                                          ? const AssetImage(
+                                              'assets/images/auth_images/person_image.jpeg')
+                                          : NetworkImage(user[0].avatarUrl!),
                                       fit: BoxFit.cover,
                                     ),
                                     borderRadius: BorderRadius.circular(50),
@@ -165,7 +168,9 @@ class _ReportOwnerEditingInformationState
                           child: Padding(
                             padding: EdgeInsets.symmetric(
                                 horizontal:
-                                    MediaQuery.sizeOf(context).width < 800 ? 0 : 90,
+                                    MediaQuery.sizeOf(context).width < 800
+                                        ? 0
+                                        : 90,
                                 vertical: 30),
                             child: SingleChildScrollView(
                               child: Column(
@@ -178,7 +183,10 @@ class _ReportOwnerEditingInformationState
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       image: DecorationImage(
-                                        image: user[0].avatarUrl == null ? const AssetImage('assets/images/auth_images/person_image.jpeg') : NetworkImage(user[0].avatarUrl!),
+                                        image: user[0].avatarUrl == null
+                                            ? const AssetImage(
+                                                'assets/images/auth_images/person_image.jpeg')
+                                            : NetworkImage(user[0].avatarUrl!),
                                         fit: BoxFit.cover,
                                       ),
                                       borderRadius: BorderRadius.circular(50),
@@ -209,7 +217,7 @@ class _ReportOwnerEditingInformationState
                             ),
                           ),
                         );
-            
+
                   // return const Text('');
                 });
               },

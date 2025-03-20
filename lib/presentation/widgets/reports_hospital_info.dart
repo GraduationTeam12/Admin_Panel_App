@@ -6,7 +6,6 @@ import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospita
 import 'package:admin_panel_app/presentation/dash_board/hospital_report.dart';
 import 'package:admin_panel_app/presentation/widgets/dialog_animation.dart';
 import 'package:admin_panel_app/presentation/widgets/repoert_dialog_hospital.dart';
-import 'package:admin_panel_app/presentation/widgets/report_hospital_editing_information.dart';
 import 'package:admin_panel_app/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -321,13 +320,20 @@ class _ReportsHospitalInfoState extends State<ReportsHospitalInfo> {
                                   ),
                                   InkWell(
                                     onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  ReportHospitalEditingInformation(
-                                                    id: emergencies[index].id,
-                                                  )));
+                                      // Navigator.push(
+                                      //     context,
+                                      //     MaterialPageRoute(
+                                      //         builder: (context) =>
+                                      //             ReportHospitalEditingInformation(
+                                      //               id: emergencies[index].id,
+                                      //             )));
+
+                                      context.goNamed(
+                                        AppRouter.updateHospitalInfo,
+                                        pathParameters: {'id': emergencies[index].id},
+                                      );
+
+
                                     },
                                     child: Container(
                                       width: 30,

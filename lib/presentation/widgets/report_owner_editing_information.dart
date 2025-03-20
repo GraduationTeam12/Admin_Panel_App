@@ -1,6 +1,9 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:developer';
 
 import 'package:admin_panel_app/constants/app_style.dart';
+import 'package:admin_panel_app/constants/colors.dart';
 import 'package:admin_panel_app/core/data/model/user_model.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_cubit.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_state.dart';
@@ -69,35 +72,62 @@ class _ReportOwnerEditingInformationState
           : const Color.fromRGBO(217, 217, 217, 0.7),
       body: Row(
         children: [
-            MediaQuery.sizeOf(context).width < 1201? Container() : Expanded(
-              flex: 1,
-              child: CustomDrawer(
-                  activeIndex: 1,
-                  onTap: (index) {
-                    log(index.toString());
-                    // if (activeIndex != index) {
-                    //   setState(() {
-                    //     activeIndex = index;
-                    //   });
-                    // }
-                  })),
+          MediaQuery.sizeOf(context).width < 1201
+              ? Container()
+              : Expanded(
+                  flex: 1,
+                  child: CustomDrawer(
+                      activeIndex: 1,
+                      onTap: (index) {
+                        log(index.toString());
+                        // if (activeIndex != index) {
+                        //   setState(() {
+                        //     activeIndex = index;
+                        //   });
+                        // }
+                      })),
           Expanded(
-            flex:   MediaQuery.sizeOf(context).width < 1201?  1 : 4,
+            flex: MediaQuery.sizeOf(context).width < 1201 ? 1 : 4,
             child: BlocConsumer<AddOwnerAndHospitalCubit,
                 AddOwnerAndHospitalState>(
-              listener: (context, state) {
-                if (state is GetUserSuccess) {
-                  user = state.user;
-                  Navigator.pop(context);
-                }
-              },
+              listener: (context, state) {},
               builder: (context, state) {
                 return BlocBuilder<AddOwnerAndHospitalCubit,
                     AddOwnerAndHospitalState>(builder: (context, state) {
                   if (state is GetUserLoading) {
-                    WidgetsBinding.instance.addPostFrameCallback((_) {
-                      showLoadingDialog(context);
-                    });
+                    // WidgetsBinding.instance.addPostFrameCallback((_) {
+                    //   // showLoadingDialog(context);
+
+                    // });
+                    return Center(
+                      child: Dialog(
+                        backgroundColor: Colors.transparent,
+                        child: Container(
+                          width: 200,
+                          height: 200,
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 39, 76, 124)
+                                .withOpacity(0.7),
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                          child: const SingleChildScrollView(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                SizedBox(height: 40),
+                                SizedBox(height: 40),
+                                ThreeDotsAnimation(),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  }
+
+                  if (state is GetUserSuccess) {
+                    user = state.user;
+                    // Navigator.pop(context);
                   }
 
                   if (user.isEmpty) {

@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:developer';
 
 import 'package:admin_panel_app/constants/app_style.dart';
@@ -73,21 +75,24 @@ class _ReportHospitalEditingInformationState
             : const Color(0xB1D9D9D9),
         body: Row(
           children: [
-              MediaQuery.sizeOf(context).width < 1201? Container() :  Expanded(
-              flex: 1,
-              child: CustomDrawer(
-                  activeIndex: 4,
-                  onTap: (index) {
-                    log(index.toString());
-                    // if (activeIndex != index) {
-                    //   setState(() {
-                    //     activeIndex = index;
-                    //   });
-                    // }
-                  })),
+            MediaQuery.sizeOf(context).width < 1201
+                ? Container()
+                : Expanded(
+                    flex: 1,
+                    child: CustomDrawer(
+                        activeIndex: 4,
+                        onTap: (index) {
+                          log(index.toString());
+                          // if (activeIndex != index) {
+                          //   setState(() {
+                          //     activeIndex = index;
+                          //   });
+                          // }
+                        })),
             Expanded(
-              flex: MediaQuery.sizeOf(context).width < 1201? 1 : 4,
-              child: BlocConsumer<AddOwnerAndHospitalCubit, AddOwnerAndHospitalState>(
+              flex: MediaQuery.sizeOf(context).width < 1201 ? 1 : 4,
+              child: BlocConsumer<AddOwnerAndHospitalCubit,
+                  AddOwnerAndHospitalState>(
                 listener: (context, state) {
                   // if (state is GetAllEmergenciesError) {
                   //   showDialog(
@@ -112,22 +117,47 @@ class _ReportHospitalEditingInformationState
                       AddOwnerAndHospitalState>(
                     builder: (context, state) {
                       if (state is GetEmergencyLoading) {
-                        WidgetsBinding.instance.addPostFrameCallback((_) {
-                          showLoadingDialog(context);
-                        });
+                        // WidgetsBinding.instance.addPostFrameCallback((_) {
+                        //   showLoadingDialog(context);
+                        // });
+
+                        return Center(
+                          child: Dialog(
+                            backgroundColor: Colors.transparent,
+                            child: Container(
+                              width: 200,
+                              height: 200,
+                              decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 39, 76, 124)
+                                    .withOpacity(0.7),
+                                borderRadius: BorderRadius.circular(25),
+                              ),
+                              child: const SingleChildScrollView(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    SizedBox(height: 40),
+                                    SizedBox(height: 40),
+                                    ThreeDotsAnimation(),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
                       }
-              
+
                       if (state is GetEmergencySuccess) {
                         emergency = state.emergency;
-              
+
                         Navigator.pop(context);
                       }
-              
+
                       // if (state is GetEmergencySuccess) {
                       // Navigator.pop(context);
-              
+
                       // emergency = state.emergency;
-              
+
                       if (emergency.isEmpty) {
                         return Center(
                           child: Text(
@@ -143,9 +173,11 @@ class _ReportHospitalEditingInformationState
                       addressController.text = emergency[0].address;
                       numberController.text = emergency[0].number.toString();
                       phoneController.text = emergency[0].phone;
-                      longitudeController.text = emergency[0].longitude.toString();
-                      latitudeController.text = emergency[0].latitude.toString();
-              
+                      longitudeController.text =
+                          emergency[0].longitude.toString();
+                      latitudeController.text =
+                          emergency[0].latitude.toString();
+
                       return MediaQuery.sizeOf(context).width < 800
                           ? SingleChildScrollView(
                               child: Padding(

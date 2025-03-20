@@ -321,14 +321,21 @@ class _ReportsHospitalInfoMobileState extends State<ReportsHospitalInfoMobile> {
                                       ),
                                       InkWell(
                                         onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ReportHospitalEditingInformation(
-                                                        id: emergencies[index]
-                                                            .id,
-                                                      )));
+                                          // Navigator.push(
+                                          //     context,
+                                          //     MaterialPageRoute(
+                                          //         builder: (context) =>
+                                          //             ReportHospitalEditingInformation(
+                                          //               id: emergencies[index]
+                                          //                   .id,
+                                          //             )));
+
+                                          context.goNamed(
+                                            AppRouter.updateHospitalInfo,
+                                            pathParameters: {
+                                              'id': emergencies[index].id
+                                            },
+                                          );
                                         },
                                         child: Container(
                                           width: 30,

@@ -12,7 +12,6 @@ import 'package:admin_panel_app/presentation/screens/splash_screen.dart';
 import 'package:admin_panel_app/presentation/widgets/add_hospital.dart';
 import 'package:admin_panel_app/presentation/widgets/add_owner.dart';
 import 'package:admin_panel_app/presentation/widgets/confirming_info.dart';
-import 'package:admin_panel_app/presentation/widgets/desktop_dashboard.dart';
 import 'package:admin_panel_app/presentation/widgets/otp_owner.dart';
 import 'package:admin_panel_app/presentation/widgets/report_owner_editing_information.dart';
 import 'package:admin_panel_app/presentation/widgets/selecting_num_of_board.dart';
@@ -24,10 +23,57 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-final token = CacheHelper().getData(key: ApiKeys.token);
+// final token = CacheHelper().getData(key: ApiKeys.token);
+
+class AuthNotifier extends ChangeNotifier {
+  String? _token;
+
+  AuthNotifier() {
+    _initToken();
+  }
+
+  String? get token => _token;
+
+  Future<void> _initToken() async {
+    _token = await CacheHelper().getData(key: ApiKeys.token);
+    notifyListeners();
+  }
+
+  Future<void> setToken(String? token) async {
+    _token = token;
+    if (token != null) {
+      await CacheHelper().saveData(key: ApiKeys.token, value: token);
+    } else {
+      await CacheHelper().removeData(key: ApiKeys.token);
+    }
+    notifyListeners();
+  }
+}
 
 class RouterGenerator {
+  static final AuthNotifier authNotifier = AuthNotifier();
   static GoRouter mainRouting = GoRouter(
+      refreshListenable: authNotifier,
+      // debugLogDiagnostics: true,
+      redirect: (context, state) {
+        if (state.uri.toString() == AppRouter.splashScreen) {
+          return null;
+        }
+
+        final token = authNotifier.token;
+
+        if (token == null &&
+            state.uri.toString() != AppRouter.loginPageScreen) {
+          return AppRouter.loginPageScreen;
+        }
+
+        if (token != null &&
+            state.uri.toString() == AppRouter.loginPageScreen) {
+          return AppRouter.dashBoardScreen;
+        }
+
+        return null;
+      },
       errorBuilder: (context, state) {
         return Scaffold(
           body: Center(
@@ -35,8 +81,8 @@ class RouterGenerator {
           ),
         );
       },
-      initialLocation:
-          token == null ? AppRouter.splashScreen : AppRouter.dashBoardScreen,
+      // initialLocation:
+      //     authNotifier._token == null ? AppRouter.splashScreen : AppRouter.dashBoardScreen,
       routes: [
         GoRoute(
           path: AppRouter.loginPageScreen,
@@ -57,10 +103,11 @@ class RouterGenerator {
           name: AppRouter.dashBoardScreen,
           builder: (context, state) => const DashBoard(),
         ),
-        GoRoute(
-            path: AppRouter.overView,
-            name: AppRouter.overView,
-            builder: (context, state) => const DesktopDashboard()),
+        // GoRoute(
+        //     path: AppRouter.overView,
+        //     name: AppRouter.overView,
+        //     builder: (context, state) => const DesktopDashboard()),
+
         GoRoute(
             path: AppRouter.ownerReports,
             name: AppRouter.ownerReports,
@@ -72,43 +119,44 @@ class RouterGenerator {
         GoRoute(
             path: AppRouter.support,
             name: AppRouter.support,
-            builder: (context, state) =>   SupportPage()),
+            builder: (context, state) => SupportPage()),
         GoRoute(
             path: AppRouter.addOwner,
             name: AppRouter.addOwner,
-            builder: (context, state) =>   AddOwner()),
+            builder: (context, state) => AddOwner()),
         GoRoute(
             path: AppRouter.otpOwner,
             name: AppRouter.otpOwner,
-            builder: (context, state) =>   OtpOwner()),
+            builder: (context, state) => OtpOwner()),
         GoRoute(
             path: AppRouter.userInfo,
             name: AppRouter.userInfo,
-            builder: (context, state) =>   UserInformation()),
+            builder: (context, state) => UserInformation()),
         GoRoute(
             path: AppRouter.numOfBoard,
             name: AppRouter.numOfBoard,
-            builder: (context, state) =>   SelectingNumOfBoard()),
+            builder: (context, state) => SelectingNumOfBoard()),
         GoRoute(
             path: AppRouter.confirmingInfo,
             name: AppRouter.confirmingInfo,
-            builder: (context, state) =>   ConfirmingInfo()),
+            builder: (context, state) => ConfirmingInfo()),
         GoRoute(
             path: AppRouter.addHospital,
             name: AppRouter.addHospital,
-            builder: (context, state) =>   AddHospital()),
+            builder: (context, state) => AddHospital()),
         GoRoute(
             path: AppRouter.surveyPage,
             name: AppRouter.surveyPage,
-            builder: (context, state) =>   SurveyPage()),
+            builder: (context, state) => SurveyPage()),
         GoRoute(
-            path: AppRouter.updateUserInfo,
+            path: '${AppRouter.updateUserInfo}:id', //AppRouter.updateUserInfo,
             name: AppRouter.updateUserInfo,
             builder: (context, state) {
-              final extra = state.extra as Map<String, dynamic>?;
+              // final extra = state.extra as Map<String, dynamic>?;
+              final id = state.pathParameters['id']!;
               return ReportOwnerEditingInformation(
-                id: extra!['id'],
+                id: id,
               );
-            }),
+            })
       ]);
 }

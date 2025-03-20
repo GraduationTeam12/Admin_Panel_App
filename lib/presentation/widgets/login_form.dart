@@ -37,13 +37,13 @@ class _LoginFormState extends State<LoginForm> {
             margin: const EdgeInsets.only(bottom: 680, left: 160, right: 160),
           ));
 
-          html.window.history.pushState({}, '', '');
-          html.window.onPopState.listen((e) {
-            html.window.history.pushState({}, '', '');
-          });
+          // html.window.history.pushState({}, '', '');
+          // html.window.onPopState.listen((e) {
+          //   html.window.history.pushState({}, '', '');
+          // });
 
           // Navigator.pushReplacementNamed(context, dashBoardScreen);
-          GoRouter.of(context).pushReplacementNamed(AppRouter.overView);
+          GoRouter.of(context).pushReplacementNamed(AppRouter.dashBoardScreen);
           // Navigator.pushAndRemoveUntil(
           //   context,
           //   MaterialPageRoute(builder: (context) => const DesktopDashboard()),

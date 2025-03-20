@@ -31,7 +31,7 @@ class _DrawerItemListviewState extends State<DrawerItemListview> {
           image: Assets.imagesAuthImagesOverviewDrawer,
           imageActive: Assets.imagesAuthImagesHomeW,
           onTap: () {
-            GoRouter.of(context).goNamed(AppRouter.overView);
+            GoRouter.of(context).goNamed(AppRouter.dashBoardScreen);
           }),
       DrawerItemModel(
           title: "Reports",

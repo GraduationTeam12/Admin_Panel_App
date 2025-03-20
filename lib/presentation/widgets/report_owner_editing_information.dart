@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ReportOwnerEditingInformation extends StatefulWidget {
-  const ReportOwnerEditingInformation({super.key, required this.id});
+  const ReportOwnerEditingInformation({super.key, required this.id,  });
 
   final String id;
 
@@ -69,7 +69,7 @@ class _ReportOwnerEditingInformationState
             Expanded(
               flex: 1,
               child: CustomDrawer(
-                  activeIndex: 4,
+                  activeIndex: 1,
                   onTap: (index) {
                     log(index.toString());
                     // if (activeIndex != index) {

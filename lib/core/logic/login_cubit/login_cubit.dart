@@ -2,6 +2,7 @@ import 'package:admin_panel_app/core/api/end_points.dart';
 import 'package:admin_panel_app/core/cache/cache_helper.dart';
 import 'package:admin_panel_app/core/data/model/login_model.dart';
 import 'package:admin_panel_app/core/data/repo/repo_implementation.dart';
+import 'package:admin_panel_app/routing/router_generator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
@@ -31,6 +32,7 @@ class LoginCubit extends Cubit<LoginState> {
       await CacheHelper()
           .saveData(key: ApiKeys.id, value: decodedToken[ApiKeys.id]);
 
+          RouterGenerator.authNotifier.setToken(r.token);
       loginModel = r;
       emit(LoginSuccessState(message: r.msg));
     });

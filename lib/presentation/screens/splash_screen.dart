@@ -21,10 +21,10 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(const Duration(seconds: 2), () {
         GoRouter.of(context).pushReplacementNamed(AppRouter.loginPageScreen);
-        html.window.history.pushState({}, '', '');
-          html.window.onPopState.listen((e) {
-            html.window.history.pushState({}, '', '');
-          });
+        // html.window.history.pushState({}, '', '');
+        //   html.window.onPopState.listen((e) {
+        //     html.window.history.pushState({}, '', '');
+        //   });
     });
   }
 

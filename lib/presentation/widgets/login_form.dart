@@ -5,8 +5,7 @@ import 'package:admin_panel_app/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'dart:ui_web' as ui_web;
-import 'dart:html' as html;
+ 
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -37,13 +36,13 @@ class _LoginFormState extends State<LoginForm> {
             margin: const EdgeInsets.only(bottom: 680, left: 160, right: 160),
           ));
 
-          html.window.history.pushState({}, '', '');
-          html.window.onPopState.listen((e) {
-            html.window.history.pushState({}, '', '');
-          });
+          // html.window.history.pushState({}, '', '');
+          // html.window.onPopState.listen((e) {
+          //   html.window.history.pushState({}, '', '');
+          // });
 
           // Navigator.pushReplacementNamed(context, dashBoardScreen);
-          GoRouter.of(context).pushReplacementNamed(AppRouter.overView);
+          GoRouter.of(context).pushReplacementNamed(AppRouter.dashBoardScreen);
           // Navigator.pushAndRemoveUntil(
           //   context,
           //   MaterialPageRoute(builder: (context) => const DesktopDashboard()),

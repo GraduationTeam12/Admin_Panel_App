@@ -38,7 +38,7 @@ class _ReportOwnerInfoMobileState extends State<ReportOwnerInfoMobile> {
         if (state is DeleteUserSuccess) {
           // Navigator.pop(context);
           // users.removeWhere((user) => user.id == users[0].id);
-          // 
+          //
           GoRouter.of(context).pushNamed(AppRouter.loginPageScreen);
           String message = state.message;
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -302,17 +302,12 @@ class _ReportOwnerInfoMobileState extends State<ReportOwnerInfoMobile> {
                                         ),
                                         InkWell(
                                           onTap: () {
-                                            // context
-                                            //     .read<NavigationCubit>()
-                                            //     .navigateTo(12);
-
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ReportOwnerEditingInformation(
-                                                          id: users[index].id),
-                                                ));
+                                            context.goNamed(
+                                              AppRouter.updateUserInfo,
+                                              pathParameters: {
+                                                'id': users[index].id
+                                              },
+                                            );
                                           },
                                           child: Container(
                                             width: 30,

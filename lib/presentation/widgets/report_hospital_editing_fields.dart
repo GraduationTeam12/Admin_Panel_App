@@ -4,8 +4,10 @@ import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospita
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_state.dart';
 import 'package:admin_panel_app/presentation/dash_board/hospital_report.dart';
 import 'package:admin_panel_app/presentation/widgets/dialog_animation.dart';
+import 'package:admin_panel_app/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
  
 
 class ReportHospitalInformationEditingFields extends StatefulWidget {
@@ -107,8 +109,10 @@ class _ReportHospitalInformationEditingFieldsState
           // Navigator.pushReplacementNamed(context, dashBoardScreen,
           //     arguments: HospitalReport());
           // GoRouter.of(context).pushNamed(AppRouter.hospitalReports);
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => HospitalReport()));
+          // Navigator.push(context,
+          //     MaterialPageRoute(builder: (context) => HospitalReport()));
+
+          GoRouter.of(context).pushReplacementNamed(AppRouter.ownerReports);
           String message = state.message;
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(message),

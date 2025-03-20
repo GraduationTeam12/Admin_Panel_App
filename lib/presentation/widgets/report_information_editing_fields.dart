@@ -5,12 +5,13 @@ import 'package:admin_panel_app/core/api/end_points.dart';
 import 'package:admin_panel_app/core/data/repo/repo_implementation.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_cubit.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_state.dart';
-import 'package:admin_panel_app/presentation/dash_board/owner_reports.dart';
 import 'package:admin_panel_app/presentation/widgets/dialog_animation.dart';
 import 'package:admin_panel_app/presentation/widgets/update_email_otp.dart';
+import 'package:admin_panel_app/routing/app_router.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class ReportInformationEditingFields extends StatefulWidget {
   const ReportInformationEditingFields({
@@ -100,8 +101,9 @@ class _ReportInformationEditingFieldsState
 
           // Navigator.pushReplacementNamed(context, dashBoardScreen,
           //     arguments: OwnerReports());
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> OwnerReports()));
-          // GoRouter.of(context).pushReplacementNamed(AppRouter.ownerReports);
+          // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> OwnerReports()));
+
+          GoRouter.of(context).pushReplacementNamed(AppRouter.ownerReports);
           // context.read<NavigationCubit>().navigateTo(10);
           String message = state.message;
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(

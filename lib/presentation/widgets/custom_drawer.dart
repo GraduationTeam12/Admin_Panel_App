@@ -35,7 +35,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width < 1201
-          ? MediaQuery.of(context).size.width * 0.5
+          ? MediaQuery.of(context).size.width * 0.6
           : MediaQuery.of(context).size.width * .7,
       color: Colors.white,
       child: CustomScrollView(

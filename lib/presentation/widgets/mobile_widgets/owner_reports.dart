@@ -302,15 +302,16 @@ class _ReportOwnerInfoMobileState extends State<ReportOwnerInfoMobile> {
                                         ),
                                         InkWell(
                                           onTap: () {
-                                            // context.goNamed(
-                                            //   AppRouter.updateUserInfo,
-                                            //   pathParameters: {
-                                            //     'id': users[index].id
-                                            //   },
-                                            // );
-                                            Navigator.push(context, MaterialPageRoute(builder: (context)=> 
-                                            ReportOwnerEditingInformation(id: users[index].id)
-                                            ));
+                                            context.canPop();
+                                            context.goNamed(
+                                              AppRouter.updateUserInfo,
+                                              pathParameters: {
+                                                'id': users[index].id
+                                              },
+                                            );
+                                            // Navigator.push(context, MaterialPageRoute(builder: (context)=>
+                                            // ReportOwnerEditingInformation(id: users[index].id)
+                                            // ));
                                           },
                                           child: Container(
                                             width: 30,

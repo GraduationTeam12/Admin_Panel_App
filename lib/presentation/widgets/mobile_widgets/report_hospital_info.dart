@@ -328,8 +328,8 @@ class _ReportsHospitalInfoMobileState extends State<ReportsHospitalInfoMobile> {
                                           //               id: emergencies[index]
                                           //                   .id,
                                           //             )));
-                                          context.canPop();
-                                          context.goNamed(
+                                           
+                                          context.pushNamed(
                                             AppRouter.updateHospitalInfo,
                                             pathParameters: {
                                               'id': emergencies[index].id

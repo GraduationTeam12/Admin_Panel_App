@@ -302,8 +302,8 @@ class _ReportOwnerInfoMobileState extends State<ReportOwnerInfoMobile> {
                                         ),
                                         InkWell(
                                           onTap: () {
-                                            context.canPop();
-                                            context.goNamed(
+                                             
+                                            context.pushNamed(
                                               AppRouter.updateUserInfo,
                                               pathParameters: {
                                                 'id': users[index].id

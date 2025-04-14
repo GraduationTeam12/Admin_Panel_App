@@ -34,7 +34,7 @@ class DesktopLogin extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(25)),
                     color: Color(0xFFFFFFFF)),
                 child: Padding(
-                  padding: const EdgeInsets.all(25.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: ScrollConfiguration(
                     behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
                     child: CustomScrollView(slivers: [
@@ -42,19 +42,25 @@ class DesktopLogin extends StatelessWidget {
                         child: Column(
                           children: [
                             FittedBox(
-                              child: Text(
-                                "Welcome back!",
-                                style: AppStyle.styleRegular40(context),
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 25.0,right: 25,left: 25),
+                                child: Text(
+                                  "Welcome back!",
+                                  style: AppStyle.styleRegular40(context),
+                                ),
                               ),
                             ),
                             Padding(
                               padding:
-                                  const EdgeInsets.fromLTRB(68.0, 30, 68.0, 0),
+                                  const EdgeInsets.fromLTRB(93.0, 30, 93.0, 0),
                               child: SvgPicture.asset(
                                 Assets.imagesAuthImagesLogin,
                               ),
                             ),
-                            const LoginForm()
+                            const Padding(
+                              padding:  EdgeInsets.only(bottom: 25.0,right: 25,left: 25),
+                              child:  LoginForm(),
+                            )
                           ],
                         ),
                       ),

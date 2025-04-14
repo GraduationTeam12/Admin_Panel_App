@@ -1,6 +1,7 @@
 import 'package:admin_panel_app/core/data/model/analysis_model/analysis_model.dart';
 import 'package:admin_panel_app/presentation/widgets/part_digram_year_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 class DiagramNewUser extends StatelessWidget {
   const DiagramNewUser({super.key, required this.analysisModel});
@@ -18,11 +19,54 @@ class DiagramNewUser extends StatelessWidget {
             BoxShadow(
                 color: Colors.black26, blurRadius: 4, offset: Offset(0, 4))
           ]),
-      child: analysisModel == null ? const Center(
-        child: CircularProgressIndicator(
-                color: Colors.black,
+      child:  analysisModel == null
+          ? Shimmer.fromColors(
+              baseColor: Colors.grey.shade300,
+              highlightColor: Colors.grey.shade100,
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Title placeholder (Users)
+                    Container(
+                      height: 24,
+                      width: 140,
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+
+                    // Number placeholder (Users count)
+                    Container(
+                      height: 38,
+                      width: 80,
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    const SizedBox(height: 60),
+
+
+                    // Chart placeholder (Fake chart bar)
+                  Center(
+                    child: Container(
+                                    height: 100,
+                                    width: 100,
+                                    decoration: BoxDecoration(
+                    color: Colors.grey,
+                    shape: BoxShape.circle,
+                                    ),
+                                  ),
+                  )
+                  ],
+                ),
               ),
-      ) : Column(
+            )
+    : Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Padding(

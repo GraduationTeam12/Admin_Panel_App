@@ -1,6 +1,7 @@
 import 'package:admin_panel_app/core/data/model/analysis_model/analysis_model.dart';
 import 'package:admin_panel_app/presentation/widgets/part_digram_year_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 class DiagramYearsDash extends StatefulWidget {
   const DiagramYearsDash({super.key, required this.analysisModel});
@@ -28,7 +29,61 @@ class _DiagramYearsDashState extends State<DiagramYearsDash> {
             BoxShadow(
                 color: Colors.black26, blurRadius: 4, offset: Offset(0, 4))
           ]),
-      child:   Column(
+      child:widget.analysisModel == null
+  ? Shimmer.fromColors(
+      baseColor: Colors.grey.shade300,
+      highlightColor: Colors.grey.shade100,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Title placeholder
+          Container(
+            height: 25,
+            width: 120,
+            margin: const EdgeInsets.only(bottom: 10),
+            decoration: BoxDecoration(
+              color: Colors.grey,
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+          // Sub-title placeholder
+          Container(
+            height: 20,
+            width: 150,
+            margin: const EdgeInsets.only(bottom: 10),
+            decoration: BoxDecoration(
+              color: Colors.grey,
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+          // Description placeholder
+          Container(
+            height: 40,
+            width: double.infinity,
+            margin:  EdgeInsets.only(bottom: 20,right:Directionality.of(context) == TextDirection.ltr ?20:0,left:Directionality.of(context) == TextDirection.rtl ?20:0),
+            decoration: BoxDecoration(
+              color: Colors.grey,
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+          // Chart circles placeholder
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: List.generate(3, (index) {
+              return Container(
+                height: 100,
+                width: 100,
+                decoration: BoxDecoration(
+                  color: Colors.grey,
+                  shape: BoxShape.circle,
+                ),
+              );
+            }),
+          ),
+        ],
+      ),
+    )
+:   Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(

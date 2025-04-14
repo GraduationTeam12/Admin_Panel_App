@@ -145,11 +145,11 @@ class _OverviewState extends State<Overview> {
                                 DiagramYearsDash(
                                   analysisModel: analysisModel,
                                 ),
-                                const DiagramNewMessage(),
+                                 DiagramNewMessage(analysisModel: analysisModel,),
                                 DiagramNewUser(
                                   analysisModel: analysisModel,
                                 ),
-                                const DiagramAnalytic()
+                                DiagramAnalytic(  analysisModel: analysisModel,)
                               ];
                               return SizedBox(
                                   width: MediaQuery.sizeOf(context).width * 0.8,
@@ -163,16 +163,16 @@ class _OverviewState extends State<Overview> {
                               child: DiagramYearsDash(
                                 analysisModel: analysisModel,
                               )),
-                          const Expanded(flex: 7, child: DiagramNewMessage()),
+                           Expanded(flex: 7, child: DiagramNewMessage(analysisModel:analysisModel)),
                           Expanded(
                               flex: 6,
                               child: DiagramNewUser(
                                 analysisModel: analysisModel,
                               )),
-                          const Expanded(flex: 5, child: DiagramAnalytic())
+                           Expanded(flex: 5, child: DiagramAnalytic(analysisModel: analysisModel,))
                         ],
                       ),
-                const StackedColumnChart()
+                 StackedColumnChart(analysisModel: analysisModel,)
               ],
             ),
           );

@@ -1,6 +1,7 @@
 import 'package:admin_panel_app/core/data/model/analysis_model/analysis_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shimmer/shimmer.dart';
 
 class DiagramCustom extends StatefulWidget {
   const DiagramCustom(
@@ -47,7 +48,53 @@ class _DiagramCustomState extends State<DiagramCustom> {
             BoxShadow(
                 color: Colors.black26, blurRadius: 4, offset: Offset(0, 4))
           ]),
-      child: Stack(
+      child:  widget.analysisModel == null?Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: 18,
+              width: 150,
+              margin: const EdgeInsets.only(bottom: 7),
+              decoration: BoxDecoration(
+                color: Colors.grey,
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+            Container(
+              height: 15,
+              width: 100,
+              margin: const EdgeInsets.only(bottom: 16),
+              decoration: BoxDecoration(
+                color: Colors.grey,
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+            Container(
+              height: 34,
+              width: 80,
+              margin: const EdgeInsets.only(bottom: 16),
+              decoration: BoxDecoration(
+                color: Colors.grey,
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+            Container(
+              height: 16,
+              width: 200,
+              margin: const EdgeInsets.only(bottom: 7),
+              decoration: BoxDecoration(
+                color: Colors.grey,
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+          ],
+        ),
+      )
+    
+    :Stack(
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

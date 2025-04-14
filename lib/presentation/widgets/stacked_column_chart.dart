@@ -1,13 +1,18 @@
 
+import 'package:admin_panel_app/core/data/model/analysis_model/analysis_model.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class StackedColumnChart extends StatelessWidget {
-  const StackedColumnChart({super.key});
+  const StackedColumnChart({super.key, required this.analysisModel});
+  final AnalysisModel? analysisModel;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return analysisModel==null?Shimmer.fromColors(child: SizedBox(),
+              baseColor: Colors.grey.shade300,
+              highlightColor: Colors.grey.shade100): Container(
       height:MediaQuery.sizeOf(context).width<1201?400: 310,
       margin: const EdgeInsets.only(left: 10),
       padding: const EdgeInsets.only(

@@ -110,7 +110,7 @@ class _DiagramCustomState extends State<DiagramCustom> {
                 ),
               ),
               const Text(
-                "Analytic This Mount",
+                "Analytics This Month",
                 style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w400,

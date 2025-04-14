@@ -58,26 +58,29 @@ class DesktopDashboard extends StatelessWidget {
                   })),
           Expanded(
               flex: 4,
-              child: CustomScrollView(slivers: [
-                SliverToBoxAdapter(
-                  child: Column(
-                    children: [
-                      const HeaderDesktop(
-                        title:
-                            'Overview'
-                            // _pagesTitle[activeIndex],
-                      ),
-                      Container(
-                        height: MediaQuery.sizeOf(context).height -
-                            MediaQuery.sizeOf(context).height * .11,
-                        width: MediaQuery.of(context).size.width,
-                        color: const Color.fromRGBO(217, 217, 217, 0.7),
-                        child: const Overview(),
-                      )
-                    ],
+              child: ScrollConfiguration(
+                behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+                child: CustomScrollView(slivers: [
+                  SliverToBoxAdapter(
+                    child: Column(
+                      children: [
+                        const HeaderDesktop(
+                          title:
+                              'Overview'
+                              // _pagesTitle[activeIndex],
+                        ),
+                        Container(
+                          height: MediaQuery.sizeOf(context).height -
+                              MediaQuery.sizeOf(context).height * .11,
+                          width: MediaQuery.of(context).size.width,
+                          color: const Color.fromRGBO(217, 217, 217, 0.7),
+                          child: const Overview(),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ]))
+                ]),
+              ))
         ],
       ),
     );

@@ -35,28 +35,31 @@ class DesktopLogin extends StatelessWidget {
                     color: Color(0xFFFFFFFF)),
                 child: Padding(
                   padding: const EdgeInsets.all(25.0),
-                  child: CustomScrollView(slivers: [
-                    SliverToBoxAdapter(
-                      child: Column(
-                        children: [
-                          FittedBox(
-                            child: Text(
-                              "Welcome back!",
-                              style: AppStyle.styleRegular40(context),
+                  child: ScrollConfiguration(
+                    behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+                    child: CustomScrollView(slivers: [
+                      SliverToBoxAdapter(
+                        child: Column(
+                          children: [
+                            FittedBox(
+                              child: Text(
+                                "Welcome back!",
+                                style: AppStyle.styleRegular40(context),
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.fromLTRB(68.0, 30, 68.0, 0),
-                            child: SvgPicture.asset(
-                              Assets.imagesAuthImagesLogin,
+                            Padding(
+                              padding:
+                                  const EdgeInsets.fromLTRB(68.0, 30, 68.0, 0),
+                              child: SvgPicture.asset(
+                                Assets.imagesAuthImagesLogin,
+                              ),
                             ),
-                          ),
-                          const LoginForm()
-                        ],
+                            const LoginForm()
+                          ],
+                        ),
                       ),
-                    ),
-                  ]),
+                    ]),
+                  ),
                 ),
               ),
             ),

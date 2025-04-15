@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:admin_panel_app/core/api/api_consumer.dart';
 import 'package:admin_panel_app/core/api/end_points.dart';
 import 'package:admin_panel_app/core/data/model/all_emergencies_model.dart';
@@ -90,6 +92,9 @@ class RepositoryImplementation {
         },
         headers: {'authorization': 'Bearer $token'},
       );
+       if (response.containsKey('errors')) {
+      return Left(jsonEncode(response['errors'])); 
+    }
       return Right(response[ApiKeys.message]);
     } on ServerException catch (error) {
       return Left(error.errorModel.errorMessage);

@@ -7,6 +7,7 @@ import 'package:admin_panel_app/presentation/widgets/header_desktop.dart';
 import 'package:admin_panel_app/presentation/widgets/info_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class UserInformation extends StatelessWidget {
     UserInformation({super.key});

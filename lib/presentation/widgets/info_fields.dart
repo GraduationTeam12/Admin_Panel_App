@@ -159,7 +159,9 @@ class InfoFieldsState extends State<InfoFields> {
                         ),
                         validator: (age) {
                           if (age!.isEmpty) {
-                            return "Please enter your Age";
+                            return "Please enter your age";
+                          }else if (!RegExp(r'^[0-9]+$').hasMatch(age)) {
+                            return 'Age must be a valid number';
                           }
                           return null;
                         },
@@ -217,7 +219,10 @@ class InfoFieldsState extends State<InfoFields> {
                         validator: (email) {
                           if (email!.isEmpty) {
                             return "Please enter your email";
+                          }else if (!RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$').hasMatch(email)) {
+                            return 'Please enter a valid email address';
                           }
+                          
                           return null;
                         },
 
@@ -274,6 +279,8 @@ class InfoFieldsState extends State<InfoFields> {
                         validator: (phone) {
                           if (phone!.isEmpty) {
                             return "Please enter your phone number";
+                          } else if (!RegExp(r'^(01)[0-9]{9}$').hasMatch(phone)) {
+                            return 'Phone must be a valid Egyptian phone number';
                           }
                           return null;
                         },
@@ -387,6 +394,8 @@ class InfoFieldsState extends State<InfoFields> {
                         validator: (id) {
                           if (id!.isEmpty) {
                             return "Please enter your Id";
+                          }else if (!RegExp(r'^\d{14}$').hasMatch(id)) {
+                            return 'National ID must be a 14-digit number';
                           }
                           return null;
                         },
@@ -538,7 +547,9 @@ class InfoFieldsState extends State<InfoFields> {
                         ),
                         validator: (age) {
                           if (age!.isEmpty) {
-                            return "Please enter your Age";
+                            return "Please enter your age";
+                          }else if (!RegExp(r'^[0-9]+$').hasMatch(age)) {
+                            return 'Age must be a valid number';
                           }
                           return null;
                         },
@@ -601,6 +612,9 @@ class InfoFieldsState extends State<InfoFields> {
                         validator: (email) {
                           if (email!.isEmpty) {
                             return "Please enter your email";
+                            
+                          }else if (!RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$').hasMatch(email)) {
+                            return 'Please enter a valid email address';
                           }
                           return null;
                         },
@@ -659,6 +673,8 @@ class InfoFieldsState extends State<InfoFields> {
                         validator: (phone) {
                           if (phone!.isEmpty) {
                             return "Please enter your phone number";
+                          }else if (!RegExp(r'^(01)[0-9]{9}$').hasMatch(phone)) {
+                            return 'Phone must be a valid Egyptian phone number';
                           }
                           return null;
                         },
@@ -777,6 +793,8 @@ class InfoFieldsState extends State<InfoFields> {
                         validator: (id) {
                           if (id!.isEmpty) {
                             return "Please enter your Id";
+                          }else if (!RegExp(r'^\d{14}$').hasMatch(id)) {
+                            return 'National ID must be a 14-digit number';
                           }
                           return null;
                         },

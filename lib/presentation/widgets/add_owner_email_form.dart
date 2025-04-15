@@ -44,7 +44,7 @@ class AddOwnerEmailFormState extends State<AddOwnerEmailForm> {
               content: Text(message),
               behavior: SnackBarBehavior.floating,
               margin:
-                  const EdgeInsets.only(bottom: 680, left: 160, right: 160)));
+                   EdgeInsets.only( left:MediaQuery.of(context).size.width> 1200?320: 30, right: 30,bottom: 10)));
         }
       },
       builder: (context, state) {
@@ -137,7 +137,11 @@ class AddOwnerEmailFormState extends State<AddOwnerEmailForm> {
                         ),
                         validator: (email) {
                           if (email!.isEmpty) {
-                            return "Please enter your email";
+                            return "Please enter email address";
+                          } else if (!RegExp(
+                                  r"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$")
+                              .hasMatch(email)) {
+                            return "Please enter a valid email address";
                           }
                           return null;
                         },

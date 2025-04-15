@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_cubit.dart';
@@ -39,12 +41,57 @@ void showOwnerFormDialog(BuildContext context) {
               // context.read<NavigationCubit>().navigateTo(7);
                 // Navigator.push(context, MaterialPageRoute(builder: (context) => const UserInformation()));
                 GoRouter.of(context).pushReplacementNamed(AppRouter.userInfo);
-              String message = state.errMessage;
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: Text(message),
-                  behavior: SnackBarBehavior.floating,
-                  margin: const EdgeInsets.only(
-                      bottom: 680, left: 160, right: 160)));
+                try {
+                    final errorData = jsonDecode(state.errMessage); 
+                    if (errorData['errors'] != null && errorData['errors'] is List) {
+                        final errorMessages = (errorData['errors'] as List).map((e) => e['msg'].toString()).join(', ');
+
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(errorMessages),
+                        behavior: SnackBarBehavior.floating,
+                        margin: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.width > 1200 ? 320 : 30,
+                          right: 30,
+                          bottom: 10,
+                        ),
+                      ),
+                                      );
+                    } else {
+                      // fallback لعرض رسالة وحدة فقط
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(state.errMessage),
+                          behavior: SnackBarBehavior.floating,
+                          margin: EdgeInsets.only(
+                            left: MediaQuery.of(context).size.width > 1200 ? 320 : 30,
+                            right: 30,
+                            bottom: 10,
+                          ),
+                        ),
+                      );
+                    }
+                  } catch (e) {
+                    // في حالة الـ errMessage مش JSON
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(state.errMessage),
+                        behavior: SnackBarBehavior.floating,
+                        margin: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.width > 1200 ? 320 : 30,
+                          right: 30,
+                          bottom: 10,
+                        ),
+                      ),
+                    );
+                  }
+
+              // String message = state.errMessage;
+              // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              //     content: Text(message),
+              //     behavior: SnackBarBehavior.floating,
+              //     margin:  EdgeInsets.only(
+              //          left:MediaQuery.of(context).size.width> 1200?320: 30, right: 30,bottom: 10)));
             }
           },
           builder: (context, state) {
@@ -328,6 +375,14 @@ void showOwnerFormDialog(BuildContext context) {
                               .copyWith(color: Colors.black),
                           keyboardType: TextInputType.number,
                           textInputAction: TextInputAction.done,
+                                                  
+                          validator: (value) {
+                            final age = int.tryParse(value!);
+                            if (age == null) {
+                              return 'Age must be a valid number';
+                            }
+                            return null; 
+                          },
                           decoration: InputDecoration(
                               errorStyle: AppStyle.styleRegular16(context)
                                   .copyWith(color: Colors.red),

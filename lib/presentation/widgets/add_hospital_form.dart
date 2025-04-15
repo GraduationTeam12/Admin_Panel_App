@@ -716,6 +716,8 @@ class AddHospitalForm extends StatelessWidget {
                     validator: (email) {
                       if (email!.isEmpty) {
                         return "Please enter the hospital's email";
+                      }else if (!RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$').hasMatch(email)) {
+                        return 'Please enter a valid email address';
                       }
                       return null;
                     },

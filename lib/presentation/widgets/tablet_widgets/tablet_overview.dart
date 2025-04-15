@@ -86,7 +86,7 @@ class _TabletOverviewState extends State<TabletOverview> {
                         child: DiagramNewUser(
                           analysisModel: analysisModel,
                         )),
-                    const Expanded(flex: 1, child: DiagramAnalytic())
+                     Expanded(flex: 1, child: DiagramAnalytic(analysisModel: analysisModel,))
                   ],
                 ),
                 Row(
@@ -96,10 +96,10 @@ class _TabletOverviewState extends State<TabletOverview> {
                         child: DiagramYearsDash(
                           analysisModel: analysisModel,
                         )),
-                    const Expanded(flex: 1, child: DiagramNewMessage()),
+                     Expanded(flex: 1, child: DiagramNewMessage(analysisModel: analysisModel,)),
                   ],
                 ),
-                const StackedColumnChart()
+                 StackedColumnChart(analysisModel: analysisModel,)
               ],
             ),
           );

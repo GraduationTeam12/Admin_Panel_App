@@ -105,6 +105,8 @@ class SelectingNumOfBoardFieldState extends State<SelectingNumOfBoardField> {
                         validator: (boardNum) {
                           if (boardNum!.isEmpty) {
                             return "Please enter the number of board";
+                          }else if (boardNum.length != 12) {
+                            return "Board ID must be exactly 12 characters";
                           }
                           return null;
                         },

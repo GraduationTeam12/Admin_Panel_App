@@ -22,19 +22,28 @@ class _LoginFormState extends State<LoginForm> {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state is LoginLoadingState) {
-          const Center(
-            child: CircularProgressIndicator(),
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext context) {
+              return const Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(MyColors.premiumColor),));
+            },
           );
+          // const Center(
+          //   child: CircularProgressIndicator(),
+          // );
         }
 
         if (state is LoginSuccessState) {
-          String message = state.message;
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(message),
-            duration: const Duration(seconds: 5),
-            behavior: SnackBarBehavior.floating,
-            margin: const EdgeInsets.only(bottom: 680, left: 160, right: 160),
-          ));
+          // String message = state.message;
+          Navigator.of(context).pop();
+          ScaffoldMessenger.of(context).clearSnackBars();
+          // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          //   content: Text(message),
+          //   duration: const Duration(seconds: 5),
+          //   behavior: SnackBarBehavior.floating,
+          //   // margin: const EdgeInsets.only(bottom: 680, left: 160, right: 160),
+          // ));
 
           // html.window.history.pushState({}, '', '');
           // html.window.onPopState.listen((e) {
@@ -52,10 +61,12 @@ class _LoginFormState extends State<LoginForm> {
 
         if (state is LoginErrorState) {
           String message = state.errMsg;
+          Navigator.of(context).pop();
+          ScaffoldMessenger.of(context).clearSnackBars();
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(message),
             behavior: SnackBarBehavior.floating,
-            margin: const EdgeInsets.only(bottom: 680, left: 160, right: 160),
+            // margin: const EdgeInsets.only(bottom: 680, left: 160, right: 160),
           ));
         }
       },

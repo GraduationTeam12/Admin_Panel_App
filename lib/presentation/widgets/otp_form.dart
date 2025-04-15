@@ -19,6 +19,7 @@ class OtpForm extends StatefulWidget {
 
 class _OtpFormState extends State<OtpForm> {
   int index = 1;
+  bool hasError = false;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AddOwnerAndHospitalCubit, AddOwnerAndHospitalState>(
@@ -29,19 +30,32 @@ class _OtpFormState extends State<OtpForm> {
 
         if (state is VerifyCodeSuccess) {
           Navigator.pop(context);
+          setState(() {
+            hasError = false; 
+          });
           // context.read<NavigationCubit>().navigateTo(7);
-            // Navigator.push(context, MaterialPageRoute(builder: (context) => UserInformation()));
-            GoRouter.of(context).pushReplacementNamed(AppRouter.userInfo);
+          // Navigator.push(context, MaterialPageRoute(builder: (context) => UserInformation()));
+          GoRouter.of(context).pushReplacementNamed(AppRouter.userInfo);
         }
 
         if (state is VerifyCodeError) {
           Navigator.pop(context);
+          setState(() {
+            hasError = true; 
+          });
           String message = state.errMessage;
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(message),
               behavior: SnackBarBehavior.floating,
-              margin:
-                  const EdgeInsets.only(bottom: 680, left: 160, right: 160)));
+              margin: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.width > 1200 ? 320 : 30,
+                  right: 30,
+                  bottom: 10)));
+
+          BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+              .verifyOtpKey
+              .currentState!
+              .validate();
         }
       },
       builder: (context, state) {
@@ -79,7 +93,10 @@ class _OtpFormState extends State<OtpForm> {
                             fontFamily: 'Roboto'),
                         children: <TextSpan>[
                       TextSpan(
-                          text: BlocProvider.of<AddOwnerAndHospitalCubit>(context).emailController.text,
+                          text:
+                              BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                                  .emailController
+                                  .text,
                           style: AppStyle.styleRegular17(context).copyWith(
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
@@ -91,42 +108,66 @@ class _OtpFormState extends State<OtpForm> {
               height: 20,
             ),
             Form(
-                key: BlocProvider.of<AddOwnerAndHospitalCubit>(context).verifyOtpKey,
+                key: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                    .verifyOtpKey,
                 child: Column(
                   children: [
                     Pinput(
-                      controller: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
-                          .codeController,
+                      controller:
+                          BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                              .codeController,
+                              onChanged: (value) {
+                      if (hasError) {
+                        setState(() {
+                          hasError = false; 
+                        });
+                      }
+                    },
                       submittedPinTheme: PinTheme(
                         margin: const EdgeInsets.symmetric(horizontal: 7),
                         height: 70,
                         width: 70,
-                        textStyle: AppStyle.styleRegular16(context)
-                            .copyWith(color: Colors.black,
+                        textStyle: AppStyle.styleRegular16(context).copyWith(
+                            color: Colors.black,
                             fontSize: 19,
-                            fontWeight: FontWeight.w600
-                            ),
+                            fontWeight: FontWeight.w600),
                         decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 225, 239, 247),
+                          color: hasError ? Colors.red.shade100 : const Color.fromARGB(255, 225, 239, 247),
                           borderRadius: BorderRadius.circular(15),
                           boxShadow: makeShadowBox,
                           border: Border.all(
-                              color: MyColors.premiumColor, width: 2),
+                              color:hasError ? Colors.red: MyColors.premiumColor, width: 2),
                         ),
                       ),
                       errorTextStyle: AppStyle.styleRegular16(context)
                           .copyWith(color: Colors.red),
                       length: 4,
                       focusNode: FocusNode(),
+                      errorPinTheme: PinTheme(
+                        margin: const EdgeInsets.symmetric(horizontal: 7),
+                        height: 70,
+                        width: 70,
+                        textStyle: AppStyle.styleRegular16(context).copyWith(
+                          color: Colors.black,
+                          fontSize: 19,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.red.shade100,
+                          borderRadius: BorderRadius.circular(15),
+                          boxShadow: makeShadowBox,
+                          border: Border.all(
+                              color: Colors.red, width: 2), 
+                        ),
+                      ),
                       defaultPinTheme: PinTheme(
                         margin: const EdgeInsets.symmetric(horizontal: 7),
                         height: 70,
                         width: 70,
-                        textStyle: AppStyle.styleRegular16(context)
-                            .copyWith(color: Colors.black,
+                        textStyle: AppStyle.styleRegular16(context).copyWith(
+                            color: Colors.black,
                             fontSize: 19,
-                            fontWeight: FontWeight.w600
-                            ),
+                            fontWeight: FontWeight.w600),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(15),
@@ -136,7 +177,7 @@ class _OtpFormState extends State<OtpForm> {
                         ),
                       ),
                       validator: (value) {
-                        if (value!.isEmpty) {
+                        if (value!.isEmpty||value.length < 4) {
                           return "Please enter 4 digit code to you";
                         }
                         return null;
@@ -150,7 +191,8 @@ class _OtpFormState extends State<OtpForm> {
                       height: 47,
                       child: ElevatedButton(
                         onPressed: () {
-                          if (!BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                          if (!BlocProvider.of<AddOwnerAndHospitalCubit>(
+                                  context)
                               .verifyOtpKey
                               .currentState!
                               .validate()) {

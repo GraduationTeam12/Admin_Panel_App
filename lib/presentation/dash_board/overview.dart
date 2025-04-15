@@ -10,6 +10,7 @@ import 'package:admin_panel_app/presentation/widgets/diagram_new_user.dart';
 import 'package:admin_panel_app/presentation/widgets/diagram_years_dash.dart';
 import 'package:admin_panel_app/presentation/widgets/stacked_column_chart.dart';
 import 'package:flutter/material.dart';
+import 'dart:convert';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Overview extends StatefulWidget {
@@ -20,13 +21,30 @@ class Overview extends StatefulWidget {
 }
 
 class _OverviewState extends State<Overview> {
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   BlocProvider.of<AnalysisCubit>(context).getAnalysis(
+  //     CacheHelper().getData(key: ApiKeys.token),
+  //   );
+  // }
   @override
-  void initState() {
-    super.initState();
-    BlocProvider.of<AnalysisCubit>(context).getAnalysis(
-      CacheHelper().getData(key: ApiKeys.token),
-    );
+void initState() {
+  super.initState();
+
+  // Load cached data first
+  final cached = CacheHelper().getData(key: 'cached_analysis');
+  if (cached != null) {
+    final cachedModel = AnalysisModel.fromJson(jsonDecode(cached));
+    BlocProvider.of<AnalysisCubit>(context).emit(AnalysisSuccess(cachedModel));
   }
+
+  // Fetch latest data from API
+  BlocProvider.of<AnalysisCubit>(context).getAnalysis(
+    CacheHelper().getData(key: ApiKeys.token),
+  );
+}
+
 
   AnalysisModel? analysisModel;
 
@@ -145,11 +163,11 @@ class _OverviewState extends State<Overview> {
                                 DiagramYearsDash(
                                   analysisModel: analysisModel,
                                 ),
-                                const DiagramNewMessage(),
+                                 DiagramNewMessage(analysisModel: analysisModel,),
                                 DiagramNewUser(
                                   analysisModel: analysisModel,
                                 ),
-                                const DiagramAnalytic()
+                                DiagramAnalytic(  analysisModel: analysisModel,)
                               ];
                               return SizedBox(
                                   width: MediaQuery.sizeOf(context).width * 0.8,
@@ -163,16 +181,16 @@ class _OverviewState extends State<Overview> {
                               child: DiagramYearsDash(
                                 analysisModel: analysisModel,
                               )),
-                          const Expanded(flex: 7, child: DiagramNewMessage()),
+                           Expanded(flex: 7, child: DiagramNewMessage(analysisModel:analysisModel)),
                           Expanded(
                               flex: 6,
                               child: DiagramNewUser(
                                 analysisModel: analysisModel,
                               )),
-                          const Expanded(flex: 5, child: DiagramAnalytic())
+                           Expanded(flex: 5, child: DiagramAnalytic(analysisModel: analysisModel,))
                         ],
                       ),
-                const StackedColumnChart()
+                 StackedColumnChart(analysisModel: analysisModel,)
               ],
             ),
           );

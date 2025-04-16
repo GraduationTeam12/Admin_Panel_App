@@ -92,7 +92,7 @@ class AddHospital extends StatelessWidget {
                   child:  HeaderDesktop(title: 'Add Hospital'),
               ),
               body: Container(
-                padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
                 color: const Color.fromARGB(255, 232, 226, 226),
                 child: const CustomContainer(
                   child: Padding(

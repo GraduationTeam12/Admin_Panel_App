@@ -17,7 +17,7 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 70,
+      height: 60,
       // height: MediaQuery.of(context).size.height * .11,
       decoration:   ShapeDecoration(
           shape: const RoundedRectangleBorder(),

@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:admin_panel_app/presentation/models/report_model.dart';
 import 'package:admin_panel_app/presentation/widgets/custom_drawer.dart';
+import 'package:admin_panel_app/presentation/widgets/header_desktop.dart';
 import 'package:admin_panel_app/presentation/widgets/mobile_widgets/hospital_reports.dart';
 import 'package:admin_panel_app/presentation/widgets/mobile_widgets/report_hospital_info.dart';
 import 'package:admin_panel_app/presentation/widgets/report_hospital_bar.dart';
@@ -47,16 +48,23 @@ class HospitalReport extends StatelessWidget {
                     )),
                 Expanded(
                   flex: 4,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        const ReportsHospitalChart(),
-                        const SelectingOwnerOrHospital(
-                          selectedIndex: 1,
-                        ),
-                        ReportHospitalBar(reportModel: navBar[0]),
-                        const ReportsHospitalInfo()
-                      ],
+                  child: Scaffold(
+                  backgroundColor: const Color.fromRGBO(217, 217, 217, 0.7),
+                  appBar: const PreferredSize(
+                          preferredSize: Size.fromHeight(60),
+                          child:  HeaderDesktop(title: 'Reports'),
+                      ),
+                    body: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          const ReportsHospitalChart(),
+                          const SelectingOwnerOrHospital(
+                            selectedIndex: 1,
+                          ),
+                          ReportHospitalBar(reportModel: navBar[0]),
+                          const ReportsHospitalInfo()
+                        ],
+                      ),
                     ),
                   ),
                 ),

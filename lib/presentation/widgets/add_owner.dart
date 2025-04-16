@@ -44,6 +44,7 @@ class AddOwner extends StatelessWidget {
             )
           : null,
           body: Container(
+            padding: EdgeInsets.fromLTRB(7, 7, 7, 7),
             color: const Color.fromARGB(255, 232, 226, 226),
             child: const CustomContainer(
               child: Padding(
@@ -88,28 +89,35 @@ class AddOwner extends StatelessWidget {
                 })),
         Expanded(
           flex: 4,
-          child: Container(
-            color: const Color.fromARGB(255, 232, 226, 226),
-            child: const CustomContainer(
-              child: Padding(
-                padding: EdgeInsets.only(top: 50),
-                child: CustomScrollView(
-                  slivers: [
-                    SliverToBoxAdapter(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          // const AddOwnerBar(),
-
-                          AddOwnerEmailForm(),
-
-                          SizedBox(
-                            height: 20,
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
+          child: Scaffold(
+              appBar:const PreferredSize(
+              preferredSize: Size.fromHeight(60), 
+              child:  HeaderDesktop(title: 'Add Owner'),
+            ),
+            body: Container(
+              padding: MediaQuery.sizeOf(context).height<660?EdgeInsets.fromLTRB(0, 15, 0, 15):EdgeInsets.fromLTRB(0, 15, 0, 15),
+              color: const Color.fromARGB(255, 232, 226, 226),
+              child: const CustomContainer(
+                child: Padding(
+                  padding: EdgeInsets.only(top: 50),
+                  child: CustomScrollView(
+                    slivers: [
+                      SliverToBoxAdapter(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            // const AddOwnerBar(),
+            
+                            AddOwnerEmailForm(),
+            
+                            SizedBox(
+                              height: 20,
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),

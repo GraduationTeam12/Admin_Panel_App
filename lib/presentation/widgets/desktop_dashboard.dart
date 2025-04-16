@@ -71,7 +71,7 @@ class DesktopDashboard extends StatelessWidget {
                         ),
                         Container(
                           height: MediaQuery.sizeOf(context).height -
-                              MediaQuery.sizeOf(context).height * .11,
+                            60,
                           width: MediaQuery.of(context).size.width,
                           color: const Color.fromRGBO(217, 217, 217, 0.7),
                           child: const Overview(),

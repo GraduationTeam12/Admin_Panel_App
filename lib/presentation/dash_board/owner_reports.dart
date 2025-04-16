@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:admin_panel_app/presentation/models/report_model.dart';
 import 'package:admin_panel_app/presentation/widgets/custom_drawer.dart';
+import 'package:admin_panel_app/presentation/widgets/header_desktop.dart';
 import 'package:admin_panel_app/presentation/widgets/mobile_widgets/reports_owner.dart';
 import 'package:admin_panel_app/presentation/widgets/report_owner_bar.dart';
 import 'package:admin_panel_app/presentation/widgets/report_owner_info.dart';
@@ -48,16 +49,23 @@ class OwnerReports extends StatelessWidget {
                   })),
           Expanded(
             flex: 4,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  const ReportsOwnerChart(),
-                      const SelectingOwnerOrHospital(
-                    selectedIndex: 0,
-                  ),
-                  ReportOwnerBar(reportModel: navBar[0]),
-                  const ReportOwnerInfo(),
-                ],
+            child: Scaffold(
+              backgroundColor: const Color.fromRGBO(217, 217, 217, 0.7),
+              appBar: const PreferredSize(
+                  preferredSize: Size.fromHeight(60),
+                  child:  HeaderDesktop(title: 'Reports'),
+              ),
+              body: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const ReportsOwnerChart(),
+                        const SelectingOwnerOrHospital(
+                      selectedIndex: 0,
+                    ),
+                    ReportOwnerBar(reportModel: navBar[0]),
+                    const ReportOwnerInfo(),
+                  ],
+                ),
               ),
             ),
           ),

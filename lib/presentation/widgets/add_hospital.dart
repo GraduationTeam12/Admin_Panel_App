@@ -44,6 +44,7 @@ class AddHospital extends StatelessWidget {
           : null,
 
           body:  Container(
+            padding:const EdgeInsets.fromLTRB(7, 7, 7, 7),
               color: const Color.fromARGB(255, 232, 226, 226),
               child: const CustomContainer(
                 child: Padding(
@@ -85,25 +86,32 @@ class AddHospital extends StatelessWidget {
                   })),
           Expanded(
             flex: 4,
-            child: Container(
-              color: const Color.fromARGB(255, 232, 226, 226),
-              child: const CustomContainer(
-                child: Padding(
-                  padding: EdgeInsets.only(top: 50),
-                  child: CustomScrollView(
-                    slivers: [
-                      SliverToBoxAdapter(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            AddHospitalForm(),
-                            SizedBox(
-                              height: 20,
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
+            child: Scaffold(
+              appBar:const PreferredSize(
+                  preferredSize: Size.fromHeight(60),
+                  child:  HeaderDesktop(title: 'Add Hospital'),
+              ),
+              body: Container(
+                padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+                color: const Color.fromARGB(255, 232, 226, 226),
+                child: const CustomContainer(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 50),
+                    child: CustomScrollView(
+                      slivers: [
+                        SliverToBoxAdapter(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              AddHospitalForm(),
+                              SizedBox(
+                                height: 20,
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),

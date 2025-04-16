@@ -30,6 +30,7 @@ environment:
 dependencies:
   amazon_cognito_identity_dart_2: ^3.7.0
   contactus: ^1.2.3
+  csv: ^6.0.0
   cupertino_icons: ^1.0.8
   dartz: ^0.10.1
   device_preview: ^1.2.0
@@ -49,6 +50,7 @@ dependencies:
   mailer: ^6.2.0
   path_provider: ^2.1.5
   percent_indicator: ^4.2.3
+  permission_handler: ^12.0.0+1
   pinput: ^5.0.0
   shared_preferences: ^2.5.2
   shimmer: ^3.0.0

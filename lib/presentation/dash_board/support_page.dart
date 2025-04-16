@@ -61,7 +61,13 @@ class SupportPage extends StatelessWidget {
                   })),
           const Expanded(
             flex: 4,
-            child: SelectingReadedOrInreaded(),
+            child: Scaffold(
+              backgroundColor:  Color.fromRGBO(217, 217, 217, 0.7),
+              appBar: PreferredSize(
+              preferredSize: Size.fromHeight(60), 
+              child:  HeaderDesktop(title: 'Support'),
+            ),
+             body: SelectingReadedOrInreaded()),
           ),
         ],
       ),

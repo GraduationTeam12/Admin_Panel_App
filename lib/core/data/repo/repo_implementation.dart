@@ -109,7 +109,7 @@ class RepositoryImplementation {
     try {
       final response = await apiConsumer.get(
         EndPoint.users,
-        headers: {'Authorization': 'Bearer $token'},
+        headers: {'Authorization': 'Bearer $token', 'Content-Type': 'application/json; charset=utf-8',},
       );
 
       final List<Users> users = (response['data'] as List)
@@ -130,7 +130,10 @@ class RepositoryImplementation {
     try {
       final response = await apiConsumer.get(
         EndPoint.getUser(id),
-        headers: {'Authorization': 'Bearer $token'},
+        headers: {
+          'Authorization': 'Bearer $token',
+         'Content-Type': 'application/json; charset=utf-8',
+        },
       );
 
       if (response['data'] is List) {
@@ -240,7 +243,7 @@ class RepositoryImplementation {
     try {
       final response = await apiConsumer.get(
         EndPoint.getAllEmergencies,
-        headers: {'Authorization': 'Bearer $token'},
+        headers: {'Authorization': 'Bearer $token', 'Content-Type': 'application/json; charset=utf-8',},
       );
 
       final List<AllEmergenciesModel> emergencies = (response['data'] as List)
@@ -263,7 +266,10 @@ class RepositoryImplementation {
     try {
       final response = await apiConsumer.get(
         EndPoint.getEmergency(id),
-        headers: {'Authorization': 'Bearer $token'},
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Content-Type': 'application/json; charset=utf-8',
+        },
       );
 
       if (response['data'] is List) {
@@ -320,7 +326,7 @@ class RepositoryImplementation {
     try {
       final response = await apiConsumer.get(
         EndPoint.analysis,
-        headers: {'Authorization': 'Bearer $token'},
+        headers: {'Authorization': 'Bearer $token', 'Content-Type': 'application/json; charset=utf-8',},
       );
       return Right(AnalysisModel.fromJson(response));
     } catch (e) {

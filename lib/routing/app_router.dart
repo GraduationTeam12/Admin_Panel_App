@@ -14,6 +14,7 @@ class AppRouter {
   static const String updateHospitalInfo = '/Satars/Dashboard/Emergencies-Reports/Emergency-id=';
   static const String addHospital = '/Satars/Dashboard/Add-Emergency';
   static const String support = '/Satars/Dashboard/Support';
+  static const String dangerZones = '/Satars/Dashboard/danger-zones';
   static const String splashScreen = '/Satars/Dashboard/splash';
   // static const String desktopBoardScreen = '/desktop';
   

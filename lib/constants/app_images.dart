@@ -9,6 +9,13 @@ class Assets {
   /// Assets for imagesAuthImagesAddButton
   /// assets/images/auth_images/add_button.svg
   static const String imagesAuthImagesAddButton = "assets/images/auth_images/add_button.svg";
+ 
+  /// Assets for imagesAuthImagesIconDangerZonesActive
+  /// 
+  static const String imagesAuthImagesIconDangerZonesActive = "assets/images/auth_images/danger_zones_active.svg";
+   /// Assets for imagesAuthImagesIconDangerZonesActive
+  /// 
+  static const String imagesAuthImagesIconDangerZonesNotActive = "assets/images/auth_images/danger_zones_not_active.svg";
 
   /// Assets for imagesAuthImagesAhmed
   /// assets/images/auth_images/ahmed.jpg

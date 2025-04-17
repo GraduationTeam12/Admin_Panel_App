@@ -36,7 +36,7 @@ class SupportPage extends StatelessWidget {
           : null,
       drawer: MediaQuery.of(context).size.width < 1201
           ? CustomDrawer(
-              activeIndex: 2,
+              activeIndex: 3,
               onTap: (index) {},
             )
           : null,
@@ -50,7 +50,7 @@ class SupportPage extends StatelessWidget {
           Expanded(
               flex: 1,
               child: CustomDrawer(
-                  activeIndex: 2,
+                  activeIndex: 3,
                   onTap: (index) {
                     log(index.toString());
                     // if (activeIndex != index) {

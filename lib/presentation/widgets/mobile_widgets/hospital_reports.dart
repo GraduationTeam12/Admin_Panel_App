@@ -81,7 +81,7 @@ class _HospitalReportMobileState extends State<HospitalReportMobile> {
           : null,
       drawer: MediaQuery.of(context).size.width < 1201
           ? CustomDrawer(
-              activeIndex: 1,
+              activeIndex: 2,
               onTap: (index) {},
             )
           : null,

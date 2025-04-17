@@ -50,7 +50,7 @@ class _OwnerReportsMobileState extends State<OwnerReportsMobile> {
             )),
       ),
       drawer: CustomDrawer(
-        activeIndex: 1,
+        activeIndex: 2,
         onTap: (index) {},
       ),
       backgroundColor: const Color.fromRGBO(217, 217, 217, 0.7),

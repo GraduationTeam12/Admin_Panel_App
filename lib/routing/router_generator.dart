@@ -3,6 +3,7 @@ import 'package:admin_panel_app/core/api/end_points.dart';
 import 'package:admin_panel_app/core/cache/cache_helper.dart';
 import 'package:admin_panel_app/core/data/repo/repo_implementation.dart';
 import 'package:admin_panel_app/core/logic/login_cubit/login_cubit.dart';
+import 'package:admin_panel_app/presentation/dash_board/danger_zones.dart';
 import 'package:admin_panel_app/presentation/dash_board/dash_board.dart';
 import 'package:admin_panel_app/presentation/dash_board/hospital_report.dart';
 import 'package:admin_panel_app/presentation/dash_board/login_page.dart';
@@ -102,6 +103,11 @@ class RouterGenerator {
           path: AppRouter.dashBoardScreen,
           name: AppRouter.dashBoardScreen,
           builder: (context, state) => const DashBoard(),
+        ),
+        GoRoute(
+          path: AppRouter.dangerZones,
+          name: AppRouter.dangerZones,
+          builder: (context, state) => const DangerZones(),
         ),
         // GoRoute(
         //     path: AppRouter.overView,

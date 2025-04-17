@@ -33,6 +33,13 @@ class _DrawerItemListviewState extends State<DrawerItemListview> {
           onTap: () {
             GoRouter.of(context).goNamed(AppRouter.dashBoardScreen);
           }),
+          DrawerItemModel(
+          title: "Danger Zones",
+          image: Assets.imagesAuthImagesIconDangerZonesNotActive,
+          imageActive: Assets.imagesAuthImagesIconDangerZonesActive,
+          onTap: () {
+            GoRouter.of(context).goNamed(AppRouter.dangerZones);
+          }),
       DrawerItemModel(
           title: "Reports",
           image: Assets.imagesAuthImagesReportsDrawer,

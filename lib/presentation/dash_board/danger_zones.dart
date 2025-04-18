@@ -6,8 +6,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:latlong2/latlong.dart' as latLng2;
 import 'package:url_launcher/url_launcher.dart';
 
 class DangerZones extends StatefulWidget {
@@ -19,58 +20,57 @@ class DangerZones extends StatefulWidget {
 
 class _DangerZonesState extends State<DangerZones> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
-  GoogleMapController? _mapController;
+  final MapController flutterMapController = MapController();
 
   final List<Map<String, dynamic>> dangerZones = [
     {
       'name': 'Arish International Road',
-      'location': LatLng(31.1325, 33.7985),
+      'location': latLng2.LatLng(31.1325, 33.7985),
       'accidents': 25,
     },
     {
       'name': 'Suez – Ismailia Road',
-      'location': LatLng(30.5852, 32.2654),
+      'location': latLng2.LatLng(30.5852, 32.2654),
       'accidents': 18,
     },
     {
       'name': 'Arish International Road',
-      'location': LatLng(31.1325, 33.7985),
+      'location': latLng2.LatLng(31.1325, 33.7985),
       'accidents': 25,
     },
     {
       'name': 'Suez – Ismailia Road',
-      'location': LatLng(30.5852, 32.2654),
+      'location': latLng2.LatLng(30.5852, 32.2654),
       'accidents': 18,
     },
     {
       'name': 'Arish International Road',
-      'location': LatLng(31.1325, 33.7985),
+      'location': latLng2.LatLng(31.1325, 33.7985),
       'accidents': 25,
     },
     {
       'name': 'Suez – Ismailia Road',
-      'location': LatLng(30.5852, 32.2654),
+      'location': latLng2.LatLng(30.5852, 32.2654),
       'accidents': 18,
     },
     {
       'name': 'Arish International Road',
-      'location': LatLng(31.1325, 33.7985),
+      'location': latLng2.LatLng(31.1325, 33.7985),
       'accidents': 25,
     },
     {
       'name': 'Suez – Ismailia Road',
-      'location': LatLng(30.5852, 32.2654),
+      'location': latLng2.LatLng(30.5852, 32.2654),
       'accidents': 18,
     },
     {
       'name': 'Nuweiba – Taba Road',
-      'location': LatLng(29.5, 34.5),
+      'location': latLng2.LatLng(29.5, 34.5),
       'accidents': 12,
     },
   ];
   List<bool> copiedList = [];
 
-  // دالة للمشاركة عبر الويب باستخدام url_launcher
   void copyToClipboard(String text) {
     Clipboard.setData(ClipboardData(text: text));
     // ممكن تضيف SnackBar أو Toast هنا
@@ -83,19 +83,40 @@ class _DangerZonesState extends State<DangerZones> {
     copiedList = List<bool>.filled(dangerZones.length, false);
   }
 
-  Set<Marker> _buildMarkers() {
-    return dangerZones.map((zone) {
-      return Marker(
-        markerId: MarkerId(zone['name']),
-        position: zone['location'],
-        infoWindow: InfoWindow(
-          title: zone['name'],
-          snippet: 'Accidents: ${zone['accidents']}',
+  List<Marker> _buildMarkers() {
+  return dangerZones.map((zone) {
+    return Marker(
+      width: 40.0,
+      height: 40.0,
+      point: zone['location'],
+      child:  InkWell(
+        onTap: () {
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              backgroundColor: Colors.white,
+              title: Text(zone['name']),
+              content: Text(
+                'Accidents: ${zone['accidents']}',
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text('Close'),
+                ),
+              ],
+            ),
+          );
+        },
+        child: Icon(
+          Icons.location_on,
+          color: Colors.red,
+          size: 30,
         ),
-        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
-      );
-    }).toSet();
-  }
+      ),
+    );
+  }).toList();
+}
 
   @override
   Widget build(BuildContext context) {
@@ -129,112 +150,115 @@ class _DangerZonesState extends State<DangerZones> {
             )
           : null,
       body: isMobile
-    ? Stack(
-        children: [
-          GoogleMap(
-            initialCameraPosition: CameraPosition(
-              target: dangerZones[0]['location'],
-              zoom: 10,
-            ),
-            markers: _buildMarkers(),
-            gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
-              Factory<PanGestureRecognizer>(() => PanGestureRecognizer()),
-            },
-            onMapCreated: (controller) {
-              _mapController = controller;
-            },
-            minMaxZoomPreference: const MinMaxZoomPreference(14, 14),
-          ),
-
-          // قائمة الأماكن في أسفل الشاشة
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              height: 250,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 10,
-                    offset: Offset(0, -2),
-                  )
-                ],
-              ),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Text(
-                      'Danger Zones',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+          ? Stack(
+              children: [
+                FlutterMap(
+                  mapController: flutterMapController,
+                  options: MapOptions(
+                    initialCenter: dangerZones[0]['location'],
+                    initialZoom: 16.0,
+                    maxZoom: 16.0,
+                    minZoom: 16.0,
                   ),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: dangerZones.length,
-                      itemBuilder: (context, index) {
-                        final zone = dangerZones[index];
-                        return ListTile(
-                          leading: Icon(Icons.warning, color: Colors.red),
-                          title: Text(zone['name']),
-                          subtitle:
-                              Text('Accidents: ${zone['accidents']}'),
-                          onTap: () {
-                            _mapController?.animateCamera(
-                              CameraUpdate.newLatLngZoom(
-                                zone['location'],
-                                18,
-                              ),
-                            );
-                          },
-                          trailing: IconButton(
-                            icon: AnimatedSwitcher(
-                              duration: Duration(milliseconds: 300),
-                              child: copiedList[index]
-                                  ? Icon(Icons.check,
-                                      key: ValueKey('check$index'),
-                                      size: 18,
-                                      color: Colors.green)
-                                  : Icon(Icons.copy,
-                                      key: ValueKey('copy$index'),
-                                      size: 18,
-                                      color: Colors.black),
+                  children: [
+                    TileLayer(
+                      urlTemplate:
+                          'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                      subdomains: ['a', 'b', 'c'],
+                    ),
+                    MarkerLayer(
+                      markers: _buildMarkers(),
+                    ),
+                  ],
+                ),
+                // قائمة الأماكن في أسفل الشاشة
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Container(
+                    height: 250,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(20)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 10,
+                          offset: Offset(0, -2),
+                        )
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Text(
+                            'Danger Zones',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
                             ),
-                            onPressed: () {
-                              final String locationUrl =
-                                  'https://www.google.com/maps?q=${zone['location'].latitude},${zone['location'].longitude}';
+                          ),
+                        ),
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: dangerZones.length,
+                            itemBuilder: (context, index) {
+                              final zone = dangerZones[index];
+                              return ListTile(
+                                leading: Icon(Icons.warning, color: Colors.red),
+                                title: Text(zone['name']),
+                                subtitle:
+                                    Text('Accidents: ${zone['accidents']}'),
+                                onTap: () {
+                                  
+                                                final location =
+                                                    zone['location'] as latLng2.LatLng;
+                                                flutterMapController.move(
+                                                    location, 18);
+                                },
+                                trailing: IconButton(
+                                  icon: AnimatedSwitcher(
+                                    duration: Duration(milliseconds: 300),
+                                    child: copiedList[index]
+                                        ? Icon(Icons.check,
+                                            key: ValueKey('check$index'),
+                                            size: 18,
+                                            color: Colors.green)
+                                        : Icon(Icons.copy,
+                                            key: ValueKey('copy$index'),
+                                            size: 18,
+                                            color: Colors.black),
+                                  ),
+                                  onPressed: () {
+                                    final String locationUrl =
+                                        'https://www.google.com/maps?q=${zone['location'].latitude},${zone['location'].longitude}';
 
-                              copyToClipboard(locationUrl);
+                                    copyToClipboard(locationUrl);
 
-                              setState(() {
-                                copiedList[index] = true;
-                              });
+                                    setState(() {
+                                      copiedList[index] = true;
+                                    });
 
-                              Future.delayed(Duration(seconds: 2), () {
-                                setState(() {
-                                  copiedList[index] = false;
-                                });
-                              });
+                                    Future.delayed(Duration(seconds: 2), () {
+                                      setState(() {
+                                        copiedList[index] = false;
+                                      });
+                                    });
+                                  },
+                                ),
+                              );
                             },
                           ),
-                        );
-                      },
+                        )
+                      ],
                     ),
-                  )
-                ],
-              ),
-            ),
-          ),
-        ],
-      )
-
+                  ),
+                ),
+              ],
+            )
           : Row(
               children: [
                 Expanded(
@@ -257,25 +281,26 @@ class _DangerZonesState extends State<DangerZones> {
                     body: Stack(
                       children: [
                         // خريطة جوجل
-                        GoogleMap(
-                          initialCameraPosition: CameraPosition(
-                            target: dangerZones[0]
-                                ['location'], // تعيين الموقع الأول في القائمة
-                            zoom: 10,
+                        FlutterMap(
+                          mapController: flutterMapController,
+                          options: MapOptions(
+                            initialCenter: dangerZones[0]
+                                ['location'], // لازم تكون LatLng من latlong2
+                            initialZoom: 14.0, // زي minMaxZoomPreference
+                            maxZoom: 14.0,
+                            minZoom: 14.0,
                           ),
-                          markers: _buildMarkers(),
-                          gestureRecognizers: <Factory<
-                              OneSequenceGestureRecognizer>>{
-                            Factory<PanGestureRecognizer>(
-                                () => PanGestureRecognizer()),
-                          },
-                          onMapCreated: (controller) {
-                            _mapController = controller;
-                          },
-                          minMaxZoomPreference:
-                              const MinMaxZoomPreference(14, 14),
+                          children: [
+                            TileLayer(
+                              urlTemplate:
+                                  'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                              subdomains: ['a', 'b', 'c'],
+                            ),
+                            MarkerLayer(
+                              markers: _buildMarkers(),
+                            ),
+                          ],
                         ),
-
                         // الكارد اللي فوق الخريطة
                         Positioned(
                           top: 10,
@@ -352,12 +377,10 @@ class _DangerZonesState extends State<DangerZones> {
                                               subtitle: Text(
                                                   'Accidents: ${zone['accidents']}'),
                                               onTap: () {
-                                                _mapController?.animateCamera(
-                                                  CameraUpdate.newLatLngZoom(
-                                                    zone['location'],
-                                                    18, // مستوى التكبير
-                                                  ),
-                                                );
+                                                final location =
+                                                    zone['location'] as latLng2.LatLng;
+                                                flutterMapController.move(
+                                                    location, 18);
                                               },
                                               trailing: IconButton(
                                                 icon: AnimatedSwitcher(
@@ -367,7 +390,7 @@ class _DangerZonesState extends State<DangerZones> {
                                                       ? Icon(Icons.check,
                                                           key:
                                                               ValueKey('check'),
-                                                              size: 18,
+                                                          size: 18,
                                                           color: Colors.green)
                                                       : Icon(Icons.copy,
                                                           key: ValueKey('copy'),

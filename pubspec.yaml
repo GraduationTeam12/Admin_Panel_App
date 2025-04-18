@@ -41,6 +41,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
+  flutter_map: ^8.1.1
   flutter_svg: ^2.0.10+1
   go_router: ^14.6.2
   google_maps_flutter: ^2.12.1
@@ -48,6 +49,7 @@ dependencies:
   hydrated_bloc: ^9.1.5
   js: ^0.6.3
   jwt_decoder: ^2.0.1
+  latlong2: ^0.9.1
   lottie: ^3.1.3
   mailer: ^6.2.0
   path_provider: ^2.1.5

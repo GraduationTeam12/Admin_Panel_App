@@ -28,6 +28,34 @@ void showHospitalFormDialog(BuildContext context) {
             Navigator.pop(context);
             Navigator.pop(context);
             showHospitalCheckDialog(context);
+            BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                .hospitalTypeController
+                .text = "";
+            BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                .hospitalAddressController
+                .text = "";
+            BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                .hospitalEmailController
+                .text = "";
+            BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                .hospitalNameController
+                .text = "";
+            BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                .hospitalNumberController
+                .text = "";
+            BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                .hospitalPasswordController
+                .text = "";
+            BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                .hospitalPhoneController
+                .text = "";
+            BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                .hospitalLatitudeController
+                .text = "";
+            BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                .hospitalLongitudeController
+                .text = "";
+                
             // context.read<NavigationCubit>().navigateTo(1);
           }
 

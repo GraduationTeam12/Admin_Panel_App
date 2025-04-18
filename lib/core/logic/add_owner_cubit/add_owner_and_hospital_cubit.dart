@@ -35,7 +35,7 @@ class AddOwnerAndHospitalCubit extends Cubit<AddOwnerAndHospitalState> {
         (l) => emit(VerifyCodeError(l)), (r) => emit(VerifyCodeSuccess(r)));
   }
 
-  TextEditingController userEmailController = TextEditingController();
+  // TextEditingController userEmailController = TextEditingController();
   TextEditingController userNameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController ageController = TextEditingController();
@@ -50,7 +50,7 @@ class AddOwnerAndHospitalCubit extends Cubit<AddOwnerAndHospitalState> {
     int nationalId = int.parse(nationalIdController.text);
 
     final res = await authRepository.sendUserData(
-        userEmailController.text,
+        emailController.text,
         userNameController.text,
         phoneController.text,
         age,

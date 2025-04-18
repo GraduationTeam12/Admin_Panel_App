@@ -162,7 +162,14 @@ class InfoFieldsState extends State<InfoFields> {
                             return "Please enter your age";
                           }else if (!RegExp(r'^[0-9]+$').hasMatch(age)) {
                             return 'Age must be a valid number';
+                          } else {
+                          final ageValue = int.tryParse(age);
+                          if (ageValue == null) {
+                            return 'Age must be a valid number';
+                          } else if (ageValue < 18 || ageValue > 90) {
+                            return 'Age must be between 18 and 90 years old';
                           }
+                        }
                           return null;
                         },
 
@@ -177,12 +184,13 @@ class InfoFieldsState extends State<InfoFields> {
                     SizedBox(
                       width: 340,
                       child: TextFormField(
+                        readOnly: true,
                         style: AppStyle.styleRegular16(context)
                             .copyWith(color: Colors.black),
                         keyboardType: TextInputType.text,
                         textInputAction: TextInputAction.done,
                         controller: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
-                            .userEmailController,
+                            .emailController,
                         //     BlocProvider.of<LoginCubit>(context).signInEmail,
                         decoration: InputDecoration(
                           errorStyle: AppStyle.styleRegular16(context)
@@ -279,9 +287,9 @@ class InfoFieldsState extends State<InfoFields> {
                         validator: (phone) {
                           if (phone!.isEmpty) {
                             return "Please enter your phone number";
-                          } else if (!RegExp(r'^(01)[0-9]{9}$').hasMatch(phone)) {
-                            return 'Phone must be a valid Egyptian phone number';
-                          }
+                          } else if (!RegExp(r'^01[0-2,5]{1}[0-9]{8}$').hasMatch(phone)) {
+                              return 'Phone must be a valid Egyptian number';
+                            }
                           return null;
                         },
                         onSaved: (value) {
@@ -551,6 +559,13 @@ class InfoFieldsState extends State<InfoFields> {
                           }else if (!RegExp(r'^[0-9]+$').hasMatch(age)) {
                             return 'Age must be a valid number';
                           }
+                            final ageValue = int.tryParse(age);
+                          if (ageValue == null) {
+                            return 'Age must be a valid number';
+                          } else if (ageValue < 18 || ageValue > 90) {
+                            return 'Age must be between 18 and 90 years old';
+                          }
+                        
                           return null;
                         },
 
@@ -570,12 +585,13 @@ class InfoFieldsState extends State<InfoFields> {
                     SizedBox(
                       width: 340,
                       child: TextFormField(
+                        readOnly: true,
                         style: AppStyle.styleRegular16(context)
                             .copyWith(color: Colors.black),
                         keyboardType: TextInputType.text,
                         textInputAction: TextInputAction.done,
                         controller: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
-                            .userEmailController,
+                            .emailController,
                         //     BlocProvider.of<LoginCubit>(context).signInEmail,
                         decoration: InputDecoration(
                           errorStyle: AppStyle.styleRegular16(context)
@@ -673,9 +689,9 @@ class InfoFieldsState extends State<InfoFields> {
                         validator: (phone) {
                           if (phone!.isEmpty) {
                             return "Please enter your phone number";
-                          }else if (!RegExp(r'^(01)[0-9]{9}$').hasMatch(phone)) {
-                            return 'Phone must be a valid Egyptian phone number';
-                          }
+                          } else if (!RegExp(r'^01[0-2,5]{1}[0-9]{8}$').hasMatch(phone)) {
+                              return 'Phone must be a valid Egyptian number';
+                            }
                           return null;
                         },
                         onSaved: (value) {

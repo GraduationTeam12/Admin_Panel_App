@@ -77,7 +77,7 @@ class _ReportOwnerEditingInformationState
               : Expanded(
                   flex: 1,
                   child: CustomDrawer(
-                      activeIndex: 1,
+                      activeIndex: 2,
                       onTap: (index) {
                         log(index.toString());
                         // if (activeIndex != index) {

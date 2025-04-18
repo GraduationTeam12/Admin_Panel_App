@@ -101,7 +101,7 @@ class InfoFieldsState extends State<InfoFields> {
                         ),
                         validator: (name) {
                           if (name!.isEmpty) {
-                            return "Please enter your full name";
+                            return "Please enter user's full name";
                           }
                           return null;
                         },
@@ -159,7 +159,7 @@ class InfoFieldsState extends State<InfoFields> {
                         ),
                         validator: (age) {
                           if (age!.isEmpty) {
-                            return "Please enter your age";
+                            return "Please enter user's age";
                           }else if (!RegExp(r'^[0-9]+$').hasMatch(age)) {
                             return 'Age must be a valid number';
                           } else {
@@ -226,7 +226,7 @@ class InfoFieldsState extends State<InfoFields> {
                         ),
                         validator: (email) {
                           if (email!.isEmpty) {
-                            return "Please enter your email";
+                            return "Please enter user's email";
                           }else if (!RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$').hasMatch(email)) {
                             return 'Please enter a valid email address';
                           }
@@ -286,7 +286,7 @@ class InfoFieldsState extends State<InfoFields> {
                         ),
                         validator: (phone) {
                           if (phone!.isEmpty) {
-                            return "Please enter your phone number";
+                            return "Please enter user's phone number";
                           } else if (!RegExp(r'^01[0-2,5]{1}[0-9]{8}$').hasMatch(phone)) {
                               return 'Phone must be a valid Egyptian number';
                             }
@@ -344,7 +344,7 @@ class InfoFieldsState extends State<InfoFields> {
                         ),
                         validator: (location) {
                           if (location!.isEmpty) {
-                            return "Please enter your Location";
+                            return "Please enter user's Location";
                           }
                           return null;
                         },
@@ -401,7 +401,7 @@ class InfoFieldsState extends State<InfoFields> {
                         ),
                         validator: (id) {
                           if (id!.isEmpty) {
-                            return "Please enter your Id";
+                            return "Please enter user's Id";
                           }else if (!RegExp(r'^\d{14}$').hasMatch(id)) {
                             return 'National ID must be a 14-digit number';
                           }
@@ -497,7 +497,7 @@ class InfoFieldsState extends State<InfoFields> {
                         ),
                         validator: (name) {
                           if (name!.isEmpty) {
-                            return "Please enter your full name";
+                            return "Please enter user's full name";
                           }
                           return null;
                         },
@@ -555,7 +555,7 @@ class InfoFieldsState extends State<InfoFields> {
                         ),
                         validator: (age) {
                           if (age!.isEmpty) {
-                            return "Please enter your age";
+                            return "Please enter user's age";
                           }else if (!RegExp(r'^[0-9]+$').hasMatch(age)) {
                             return 'Age must be a valid number';
                           }
@@ -627,7 +627,7 @@ class InfoFieldsState extends State<InfoFields> {
                         ),
                         validator: (email) {
                           if (email!.isEmpty) {
-                            return "Please enter your email";
+                            return "Please enter user's email";
                             
                           }else if (!RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$').hasMatch(email)) {
                             return 'Please enter a valid email address';
@@ -688,7 +688,7 @@ class InfoFieldsState extends State<InfoFields> {
                         ),
                         validator: (phone) {
                           if (phone!.isEmpty) {
-                            return "Please enter your phone number";
+                            return "Please enter user's phone number";
                           } else if (!RegExp(r'^01[0-2,5]{1}[0-9]{8}$').hasMatch(phone)) {
                               return 'Phone must be a valid Egyptian number';
                             }
@@ -751,7 +751,7 @@ class InfoFieldsState extends State<InfoFields> {
                         ),
                         validator: (location) {
                           if (location!.isEmpty) {
-                            return "Please enter your Location";
+                            return "Please enter user's Location";
                           }
                           return null;
                         },
@@ -808,7 +808,7 @@ class InfoFieldsState extends State<InfoFields> {
                         ),
                         validator: (id) {
                           if (id!.isEmpty) {
-                            return "Please enter your Id";
+                            return "Please enter user's Id";
                           }else if (!RegExp(r'^\d{14}$').hasMatch(id)) {
                             return 'National ID must be a 14-digit number';
                           }

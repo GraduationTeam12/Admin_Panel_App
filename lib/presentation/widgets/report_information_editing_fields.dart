@@ -112,7 +112,10 @@ class _ReportInformationEditingFieldsState
             behavior: SnackBarBehavior.floating,
             margin: MediaQuery.sizeOf(context).width < 800
                 ? null
-                : const EdgeInsets.only(bottom: 680, left: 160, right: 160),
+                : EdgeInsets.only(
+                  left: MediaQuery.of(context).size.width > 1200 ? 320 : 30,
+                  right: 30,
+                  bottom: 10),
           ));
         }
 
@@ -137,7 +140,10 @@ class _ReportInformationEditingFieldsState
             content: Text(message),
             duration: const Duration(seconds: 5),
             behavior: SnackBarBehavior.floating,
-            margin: const EdgeInsets.only(bottom: 680, left: 160, right: 160),
+            margin: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.width > 1200 ? 320 : 30,
+                  right: 30,
+                  bottom: 10),
           ));
         }
 
@@ -147,7 +153,10 @@ class _ReportInformationEditingFieldsState
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(message),
             behavior: SnackBarBehavior.floating,
-            margin: const EdgeInsets.only(bottom: 680, left: 160, right: 160),
+            margin:EdgeInsets.only(
+                  left: MediaQuery.of(context).size.width > 1200 ? 320 : 30,
+                  right: 30,
+                  bottom: 10),
           ));
         }
       },
@@ -169,7 +178,7 @@ class _ReportInformationEditingFieldsState
                               height: 8,
                             ),
                             SizedBox(
-                              width:  double.infinity,
+                              width: double.infinity,
                               child: TextFormField(
                                 // initialValue: "Ahmed Samy",
                                 style: AppStyle.styleRegular16(context)
@@ -211,7 +220,7 @@ class _ReportInformationEditingFieldsState
                                 ),
                                 validator: (name) {
                                   if (name!.isEmpty) {
-                                    return "Please enter your full name";
+                                    return "Please enter user's full name";
                                   }
                                   return null;
                                 },
@@ -228,7 +237,7 @@ class _ReportInformationEditingFieldsState
                               height: 8,
                             ),
                             SizedBox(
-                              width:  double.infinity,
+                              width: double.infinity,
                               child: TextFormField(
                                 // initialValue: "20",
                                 style: AppStyle.styleRegular16(context)
@@ -270,7 +279,17 @@ class _ReportInformationEditingFieldsState
                                 ),
                                 validator: (age) {
                                   if (age!.isEmpty) {
-                                    return "Please enter your Age";
+                                    return "Please enter user's Age";
+                                  } else if (!RegExp(r'^[0-9]+$')
+                                      .hasMatch(age)) {
+                                    return 'Age must be a valid number';
+                                  } else {
+                                    final ageValue = int.tryParse(age);
+                                    if (ageValue == null) {
+                                      return 'Age must be a valid number';
+                                    } else if (ageValue < 18 || ageValue > 90) {
+                                      return 'Age must be between 18 and 90 years old';
+                                    }
                                   }
                                   return null;
                                 },
@@ -287,7 +306,7 @@ class _ReportInformationEditingFieldsState
                               height: 8,
                             ),
                             SizedBox(
-                              width:  double.infinity,
+                              width: double.infinity,
                               child: TextFormField(
                                 // initialValue: "Ahmed SAMY994@gmail.com",
                                 style: AppStyle.styleRegular16(context)
@@ -329,7 +348,11 @@ class _ReportInformationEditingFieldsState
                                 ),
                                 validator: (email) {
                                   if (email!.isEmpty) {
-                                    return "Please enter your email";
+                                    return "Please enter user's email";
+                                  } else if (!RegExp(
+                                          r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
+                                      .hasMatch(email)) {
+                                    return 'Please enter a valid email address';
                                   }
                                   return null;
                                 },
@@ -348,7 +371,7 @@ class _ReportInformationEditingFieldsState
                               height: 8,
                             ),
                             SizedBox(
-                              width:  double.infinity,
+                              width: double.infinity,
                               child: TextFormField(
                                 // initialValue: "3011120004587",
                                 style: AppStyle.styleRegular16(context)
@@ -390,7 +413,10 @@ class _ReportInformationEditingFieldsState
                                 ),
                                 validator: (id) {
                                   if (id!.isEmpty) {
-                                    return "Please enter your id";
+                                    return "Please enter user's id";
+                                  } else if (!RegExp(r'^\d{14}$')
+                                      .hasMatch(id)) {
+                                    return 'National ID must be a 14-digit number';
                                   }
                                   return null;
                                 },
@@ -407,7 +433,7 @@ class _ReportInformationEditingFieldsState
                               height: 8,
                             ),
                             SizedBox(
-                              width:  double.infinity,
+                              width: double.infinity,
                               child: TextFormField(
                                 // initialValue: "Elzagazag,elzraha",
                                 style: AppStyle.styleRegular16(context)
@@ -449,7 +475,7 @@ class _ReportInformationEditingFieldsState
                                 ),
                                 validator: (location) {
                                   if (location!.isEmpty) {
-                                    return "Please enter your Location";
+                                    return "Please enter user's Location";
                                   }
                                   return null;
                                 },
@@ -466,7 +492,7 @@ class _ReportInformationEditingFieldsState
                               height: 8,
                             ),
                             SizedBox(
-                              width:  double.infinity,
+                              width: double.infinity,
                               child: TextFormField(
                                 // initialValue: "01207619792",
                                 style: AppStyle.styleRegular16(context)
@@ -509,6 +535,9 @@ class _ReportInformationEditingFieldsState
                                 validator: (phone) {
                                   if (phone!.isEmpty) {
                                     return "Please enter the phone number";
+                                  } else if (!RegExp(r'^01[0-2,5]{1}[0-9]{8}$')
+                                      .hasMatch(phone)) {
+                                    return 'Phone must be a valid Egyptian number';
                                   }
                                   return null;
                                 },
@@ -518,7 +547,7 @@ class _ReportInformationEditingFieldsState
                               height: 30,
                             ),
                             SizedBox(
-                              width:  double.infinity,
+                              width: double.infinity,
                               height: 47,
                               child: ElevatedButton(
                                 onPressed: () {
@@ -536,6 +565,7 @@ class _ReportInformationEditingFieldsState
                                         content: Text("No changes detected."),
                                         behavior: SnackBarBehavior.floating,
                                         duration: Duration(seconds: 5),
+                                        margin: EdgeInsets.all(10),
                                       ));
                                     }
                                   }
@@ -594,8 +624,9 @@ class _ReportInformationEditingFieldsState
                                             Icons.person,
                                             color: Colors.black,
                                           ),
-                                
-                                          focusedErrorBorder: OutlineInputBorder(
+
+                                          focusedErrorBorder:
+                                              OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(15),
                                             borderSide: const BorderSide(
@@ -608,7 +639,8 @@ class _ReportInformationEditingFieldsState
                                             color: MyColors.premiumColor,
                                             fontWeight: FontWeight.w600,
                                           ),
-                                          contentPadding: const EdgeInsets.all(8),
+                                          contentPadding:
+                                              const EdgeInsets.all(8),
                                           // enabledBorder: buildBorder(),
                                           focusedBorder: OutlineInputBorder(
                                             borderRadius:
@@ -626,7 +658,7 @@ class _ReportInformationEditingFieldsState
                                         ),
                                         validator: (name) {
                                           if (name!.isEmpty) {
-                                            return "Please enter your full name";
+                                            return "Please enter user's full name";
                                           }
                                           return null;
                                         },
@@ -667,8 +699,9 @@ class _ReportInformationEditingFieldsState
                                             Icons.numbers_outlined,
                                             color: Colors.black,
                                           ),
-                                
-                                          focusedErrorBorder: OutlineInputBorder(
+
+                                          focusedErrorBorder:
+                                              OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(15),
                                             borderSide: const BorderSide(
@@ -681,7 +714,8 @@ class _ReportInformationEditingFieldsState
                                             color: MyColors.premiumColor,
                                             fontWeight: FontWeight.w600,
                                           ),
-                                          contentPadding: const EdgeInsets.all(8),
+                                          contentPadding:
+                                              const EdgeInsets.all(8),
                                           // enabledBorder: buildBorder(),
                                           focusedBorder: OutlineInputBorder(
                                             borderRadius:
@@ -699,7 +733,18 @@ class _ReportInformationEditingFieldsState
                                         ),
                                         validator: (age) {
                                           if (age!.isEmpty) {
-                                            return "Please enter your Age";
+                                            return "Please enter user's Age";
+                                          } else if (!RegExp(r'^[0-9]+$')
+                                              .hasMatch(age)) {
+                                            return 'Age must be a valid number';
+                                          } else {
+                                            final ageValue = int.tryParse(age);
+                                            if (ageValue == null) {
+                                              return 'Age must be a valid number';
+                                            } else if (ageValue < 18 ||
+                                                ageValue > 90) {
+                                              return 'Age must be between 18 and 90 years old';
+                                            }
                                           }
                                           return null;
                                         },
@@ -745,8 +790,9 @@ class _ReportInformationEditingFieldsState
                                             Icons.email_outlined,
                                             color: Colors.black,
                                           ),
-                                
-                                          focusedErrorBorder: OutlineInputBorder(
+
+                                          focusedErrorBorder:
+                                              OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(15),
                                             borderSide: const BorderSide(
@@ -759,7 +805,8 @@ class _ReportInformationEditingFieldsState
                                             color: MyColors.premiumColor,
                                             fontWeight: FontWeight.w600,
                                           ),
-                                          contentPadding: const EdgeInsets.all(8),
+                                          contentPadding:
+                                              const EdgeInsets.all(8),
                                           // enabledBorder: buildBorder(),
                                           focusedBorder: OutlineInputBorder(
                                             borderRadius:
@@ -777,11 +824,15 @@ class _ReportInformationEditingFieldsState
                                         ),
                                         validator: (email) {
                                           if (email!.isEmpty) {
-                                            return "Please enter your email";
+                                            return "Please enter user's email";
+                                          } else if (!RegExp(
+                                                  r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
+                                              .hasMatch(email)) {
+                                            return 'Please enter a valid email address';
                                           }
                                           return null;
                                         },
-                                
+
                                         onChanged: (value) {},
                                       ),
                                     ),
@@ -820,8 +871,9 @@ class _ReportInformationEditingFieldsState
                                             Icons.credit_card,
                                             color: Colors.black,
                                           ),
-                                
-                                          focusedErrorBorder: OutlineInputBorder(
+
+                                          focusedErrorBorder:
+                                              OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(15),
                                             borderSide: const BorderSide(
@@ -834,7 +886,8 @@ class _ReportInformationEditingFieldsState
                                             color: MyColors.premiumColor,
                                             fontWeight: FontWeight.w600,
                                           ),
-                                          contentPadding: const EdgeInsets.all(8),
+                                          contentPadding:
+                                              const EdgeInsets.all(8),
                                           // enabledBorder: buildBorder(),
                                           focusedBorder: OutlineInputBorder(
                                             borderRadius:
@@ -852,7 +905,10 @@ class _ReportInformationEditingFieldsState
                                         ),
                                         validator: (id) {
                                           if (id!.isEmpty) {
-                                            return "Please enter your id";
+                                            return "Please enter user's id";
+                                          } else if (!RegExp(r'^\d{14}$')
+                                              .hasMatch(id)) {
+                                            return 'National ID must be a 14-digit number';
                                           }
                                           return null;
                                         },
@@ -898,8 +954,9 @@ class _ReportInformationEditingFieldsState
                                             Icons.location_on,
                                             color: Colors.black,
                                           ),
-                                
-                                          focusedErrorBorder: OutlineInputBorder(
+
+                                          focusedErrorBorder:
+                                              OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(15),
                                             borderSide: const BorderSide(
@@ -912,7 +969,8 @@ class _ReportInformationEditingFieldsState
                                             color: MyColors.premiumColor,
                                             fontWeight: FontWeight.w600,
                                           ),
-                                          contentPadding: const EdgeInsets.all(8),
+                                          contentPadding:
+                                              const EdgeInsets.all(8),
                                           // enabledBorder: buildBorder(),
                                           focusedBorder: OutlineInputBorder(
                                             borderRadius:
@@ -930,7 +988,7 @@ class _ReportInformationEditingFieldsState
                                         ),
                                         validator: (location) {
                                           if (location!.isEmpty) {
-                                            return "Please enter your Location";
+                                            return "Please enter user's Location";
                                           }
                                           return null;
                                         },
@@ -971,8 +1029,9 @@ class _ReportInformationEditingFieldsState
                                             Icons.phone_iphone,
                                             color: Colors.black,
                                           ),
-                                
-                                          focusedErrorBorder: OutlineInputBorder(
+
+                                          focusedErrorBorder:
+                                              OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(15),
                                             borderSide: const BorderSide(
@@ -985,7 +1044,8 @@ class _ReportInformationEditingFieldsState
                                             color: MyColors.premiumColor,
                                             fontWeight: FontWeight.w600,
                                           ),
-                                          contentPadding: const EdgeInsets.all(8),
+                                          contentPadding:
+                                              const EdgeInsets.all(8),
                                           // enabledBorder: buildBorder(),
                                           focusedBorder: OutlineInputBorder(
                                             borderRadius:
@@ -1004,6 +1064,10 @@ class _ReportInformationEditingFieldsState
                                         validator: (phone) {
                                           if (phone!.isEmpty) {
                                             return "Please enter the phone number";
+                                          } else if (!RegExp(
+                                                  r'^01[0-2,5]{1}[0-9]{8}$')
+                                              .hasMatch(phone)) {
+                                            return 'Phone must be a valid Egyptian number';
                                           }
                                           return null;
                                         },
@@ -1037,7 +1101,7 @@ class _ReportInformationEditingFieldsState
                                       behavior: SnackBarBehavior.floating,
                                       duration: Duration(seconds: 5),
                                       margin: EdgeInsets.only(
-                                          bottom: 680, left: 160, right: 160),
+                                          left: 10, right: 10, bottom: 10),
                                     ));
                                   }
                                 }

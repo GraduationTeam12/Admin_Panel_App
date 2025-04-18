@@ -86,7 +86,7 @@ class AddOwnerAndHospitalCubit extends Cubit<AddOwnerAndHospitalState> {
     res.fold(
         (l) => emit(UpdateUserError(l)),
         (r) => r.msg == 'OTP sent successfully to your email'
-            ? emit(UpdateUserEmailPending(r.msg , r.email ))
+            ? emit(UpdateUserEmailPending(r.msg, r.email))
             : emit(UpdateUserSuccess(r.msg)));
   }
 
@@ -126,15 +126,16 @@ class AddOwnerAndHospitalCubit extends Cubit<AddOwnerAndHospitalState> {
         hospitalNameController.text,
         hospitalPhoneController.text,
         hospitalAddressController.text,
-        hospitalNumberController.text,
-        hospitalLatitudeController.text,
-        hospitalLongitudeController.text,
+        num.parse(hospitalNumberController.text),
+        double.parse(hospitalLatitudeController.text),
+        double.parse(hospitalLongitudeController.text),
         hospitalPasswordController.text,
         hospitalEmailController.text,
         token);
 
-    res.fold(
-        (l) => emit(AddHospitalError(l)), (r) => emit(AddHospitalSuccess(r)));
+    res.fold((l) {
+      emit(AddHospitalError(l));
+    }, (r) => emit(AddHospitalSuccess(r)));
   }
 
   void getAllEmergencies() async {
@@ -164,26 +165,27 @@ class AddOwnerAndHospitalCubit extends Cubit<AddOwnerAndHospitalState> {
   //       (r) => emit(DeleteEmergencySuccess(r)));
   // }
   void deleteEmergency(id) async {
-  emit(DeleteEmergencyLoading());
-  final res = await authRepository.deleteEmergency(id, token);
-  
-  res.fold(
-    (error) {
-      debugPrint("Delete failed for id: $id. Error: $error");
-      emit(DeleteEmergencyError(error));
-    },
-    (message) {
-      debugPrint("Successfully deleted id: $id");
-      emit(DeleteEmergencySuccess(message));
-    },
-  );
-}
+    emit(DeleteEmergencyLoading());
+    final res = await authRepository.deleteEmergency(id, token);
+
+    res.fold(
+      (error) {
+        debugPrint("Delete failed for id: $id. Error: $error");
+        emit(DeleteEmergencyError(error));
+      },
+      (message) {
+        debugPrint("Successfully deleted id: $id");
+        emit(DeleteEmergencySuccess(message));
+      },
+    );
+  }
 
   void updateEmergency(Map<String, dynamic> updatedData, id) async {
     emit(UpdateEmergencyLoading());
 
     final res = await authRepository.updateEmergency(updatedData, id, token);
 
-    res.fold((l) => emit(UpdateEmergencyError(l)), (r)=> emit(UpdateEmergencySuccess(r)));
+    res.fold((l) => emit(UpdateEmergencyError(l)),
+        (r) => emit(UpdateEmergencySuccess(r)));
   }
 }

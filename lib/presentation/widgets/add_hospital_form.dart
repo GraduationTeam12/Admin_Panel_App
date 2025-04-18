@@ -98,6 +98,11 @@ class AddHospitalForm extends StatelessWidget {
                       if (type!.isEmpty) {
                         return "Please enter type";
                       }
+                      const allowedTypes = ['hospital', 'fireBrigade', 'cranes'];
+
+                      if (!allowedTypes.contains(type)) {
+                        return "Allowed types: hospital, fireBrigade, cranes";
+                      }
                       return null;
                     },
                   ),
@@ -254,6 +259,10 @@ class AddHospitalForm extends StatelessWidget {
                   if (password!.isEmpty) {
                     return "Please enter the hospital's password";
                   }
+                                  
+                  if (password.length < 8 || password.length > 24) {
+                    return "Password must be between 8 and 24 characters";
+                  }
                   return null;
                 },
               ),
@@ -307,6 +316,10 @@ class AddHospitalForm extends StatelessWidget {
                       if (id!.isEmpty) {
                         return "Please enter the id number";
                       }
+                      
+                      if (!RegExp(r'^\d+$').hasMatch(id)) {
+                        return "ID number must contain only digits";
+                      }
                       return null;
                     },
                   ),
@@ -358,6 +371,14 @@ class AddHospitalForm extends StatelessWidget {
                 validator: (phone) {
                   if (phone!.isEmpty) {
                     return "Please enter the phone of hospital";
+                  }
+                  
+                  if (!RegExp(r'^\d+$').hasMatch(phone)) {
+                    return "Phone number must contain only digits";
+                  }
+
+                  if (phone.length != 11) {
+                    return "Phone number must be exactly 11 digits";
                   }
                   return null;
                 },
@@ -413,6 +434,14 @@ class AddHospitalForm extends StatelessWidget {
                       if (longitude!.isEmpty) {
                         return "Please enter the longitude";
                       }
+                      final parsed = double.tryParse(longitude);
+                      if (parsed == null) {
+                        return "Longitude must be a valid number";
+                      }
+
+                      if (parsed < -180 || parsed > 180) {
+                        return "Longitude must be between -180 and 180";
+                      }
                       return null;
                     },
                   ),
@@ -466,7 +495,17 @@ class AddHospitalForm extends StatelessWidget {
                     validator: (latitude) {
                       if (latitude!.isEmpty) {
                         return "Please enter the latitude";
+                                          }
+                                          
+                      final parsed = double.tryParse(latitude);
+                      if (parsed == null) {
+                        return "Latitude must be a valid number";
                       }
+
+                      if (parsed < -90 || parsed > 90) {
+                        return "Latitude must be between -90 and 90";
+                      }
+
                       return null;
                     },
                   ),
@@ -605,6 +644,11 @@ class AddHospitalForm extends StatelessWidget {
                     validator: (type) {
                       if (type!.isEmpty) {
                         return "Please enter type";
+                      }
+                      const allowedTypes = ['hospital', 'fireBrigade', 'cranes'];
+
+                      if (!allowedTypes.contains(type)) {
+                        return "Allowed types: hospital, fireBrigade, cranes";
                       }
                       return null;
                     },
@@ -771,6 +815,9 @@ class AddHospitalForm extends StatelessWidget {
                   if (password!.isEmpty) {
                     return "Please enter the hospital's password";
                   }
+                  if (password.length < 8 || password.length > 24) {
+                    return "Password must be between 8 and 24 characters";
+                  }
                   return null;
                 },
               ),
@@ -830,6 +877,10 @@ class AddHospitalForm extends StatelessWidget {
                       if (id!.isEmpty) {
                         return "Please enter the id number";
                       }
+                      
+                      if (!RegExp(r'^\d+$').hasMatch(id)) {
+                        return "ID number must contain only digits";
+                      }
                       return null;
                     },
                   ),
@@ -881,6 +932,14 @@ class AddHospitalForm extends StatelessWidget {
                 validator: (phone) {
                   if (phone!.isEmpty) {
                     return "Please enter the phone of hospital";
+                  }
+                  
+                    if (!RegExp(r'^\d+$').hasMatch(phone)) {
+                    return "Phone number must contain only digits";
+                  }
+
+                  if (phone.length != 11) {
+                    return "Phone number must be exactly 11 digits";
                   }
                   return null;
                 },
@@ -946,6 +1005,14 @@ class AddHospitalForm extends StatelessWidget {
                       if (longitude!.isEmpty) {
                         return "Please enter the longitude";
                       }
+                      final parsed = double.tryParse(longitude);
+                      if (parsed == null) {
+                        return "Longitude must be a valid number";
+                      }
+
+                      if (parsed < -180 || parsed > 180) {
+                        return "Longitude must be between -180 and 180";
+                      }
                       return null;
                     },
                   ),
@@ -1001,6 +1068,16 @@ class AddHospitalForm extends StatelessWidget {
                       if (latitude!.isEmpty) {
                         return "Please enter the latitude";
                       }
+                                          
+                      final parsed = double.tryParse(latitude);
+                      if (parsed == null) {
+                        return "Latitude must be a valid number";
+                      }
+
+                      if (parsed < -90 || parsed > 90) {
+                        return "Latitude must be between -90 and 90";
+                      }
+
                       return null;
                     },
                   ),

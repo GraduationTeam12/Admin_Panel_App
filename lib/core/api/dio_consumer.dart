@@ -107,6 +107,7 @@ class DioConsumer extends ApiConsumer {
   }
 
   @override
+
   Future post(
     String path, {
     Object? data,

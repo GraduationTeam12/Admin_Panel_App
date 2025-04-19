@@ -57,10 +57,7 @@ class ConfirmingInfo extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          AddOwnerBar(index: index),
-                          const SizedBox(
-                            height: 50,
-                          ),
+                        
                           FittedBox(
                             child: Text(
                               "Confirm The Information",
@@ -94,6 +91,11 @@ class ConfirmingInfo extends StatelessWidget {
                               ),
                             ),
                           ),
+                        const SizedBox(
+                            height: 50,
+                          ),
+                        AddOwnerBar(index: index),
+                          
                         ],
                       ),
                     ),
@@ -123,59 +125,68 @@ class ConfirmingInfo extends StatelessWidget {
                   })),
               Expanded(
                 flex: 4,
-                child: Container(
-                  color: const Color.fromARGB(255, 232, 226, 226),
-                  child: CustomContainer(
-                          child: Padding(
-                  padding: const EdgeInsets.only(top: 50),
-                  child: CustomScrollView(
-                    slivers: [SliverToBoxAdapter(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          AddOwnerBar(index: index),
-                          const SizedBox(
-                            height: 50,
-                          ),
-                          FittedBox(
-                            child: Text(
-                              "Confirm The Information",
-                              style: AppStyle.styleBold25(context).copyWith(
-                                  fontSize: 37,
-                                  fontFamily: 'Roboto',
-                                  color: MyColors.premiumColor),
+                child: Scaffold(
+                    appBar:const PreferredSize(
+              preferredSize: Size.fromHeight(60), 
+              child:  HeaderDesktop(title: 'Add Owner'),
+            ),
+                  body: Container(
+                    padding: MediaQuery.sizeOf(context).height<660?EdgeInsets.fromLTRB(0, 15, 0, 15):EdgeInsets.fromLTRB(0, 15, 0, 15),
+                    color: const Color.fromARGB(255, 232, 226, 226),
+                    child: CustomContainer(
+                            child: Padding(
+                    padding: const EdgeInsets.only(top: 50),
+                    child: CustomScrollView(
+                      slivers: [SliverToBoxAdapter(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                          
+                            FittedBox(
+                              child: Text(
+                                "Confirm The Information",
+                                style: AppStyle.styleBold25(context).copyWith(
+                                    fontSize: 37,
+                                    fontFamily: 'Roboto',
+                                    color: MyColors.premiumColor),
+                              ),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 100,
-                          ),
-                          SizedBox(
-                            width: 380,
-                            height: 47,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                showOwnerFormDialog(context);
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: MyColors.premiumColor,
-                                elevation: 6,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15),
+                            const SizedBox(
+                              height: 100,
+                            ),
+                            SizedBox(
+                              width: 380,
+                              height: 47,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  showOwnerFormDialog(context);
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: MyColors.premiumColor,
+                                  elevation: 6,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                ),
+                                child: Text(
+                                  "Continue",
+                                  style: AppStyle.styleRegular25(context).copyWith(
+                                      fontSize: 25, fontFamily: 'Inter', color: Colors.white),
                                 ),
                               ),
-                              child: Text(
-                                "Continue",
-                                style: AppStyle.styleRegular25(context).copyWith(
-                                    fontSize: 25, fontFamily: 'Inter', color: Colors.white),
-                              ),
+                            ),
+                              const SizedBox(
+                              height: 50,
+                            ),
+                              AddOwnerBar(index: index),
+                          
+                          ],
+                        ),
+                      ),
+                    ]),
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                  ]),
-                          ),
-                        ),
+                  ),
                 ),
               ),
             ],

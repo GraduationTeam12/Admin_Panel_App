@@ -38,10 +38,7 @@ class InfoFieldsState extends State<InfoFields> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        AddOwnerBar(index: index),
-        const SizedBox(
-          height: 50,
-        ),
+      
         Text(
           "Add Owner to System",
           style: AppStyle.styleBold25(context).copyWith(
@@ -856,6 +853,12 @@ class InfoFieldsState extends State<InfoFields> {
                 ),
               ],
             ))
+         ,
+         const SizedBox(
+          height: 30,
+        ),
+        AddOwnerBar(index: index),
+        
       ],
     );
   }

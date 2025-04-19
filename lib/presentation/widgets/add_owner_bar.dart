@@ -23,350 +23,353 @@ class _AddOwnerBarState extends State<AddOwnerBar> {
   // int index = 0;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Text(
-                  items[0].number,
-                  style: AppStyle.styleRegular25(context)
-                      .copyWith(fontFamily: 'Inter', color: Colors.black ,
-                      fontSize:  MediaQuery.sizeOf(context).width < 800 ? 13 :  null
-                       
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    items[0].number,
+                    style: AppStyle.styleRegular25(context)
+                        .copyWith(fontFamily: 'Inter', color: Colors.black ,
+                        fontSize:  MediaQuery.sizeOf(context).width < 800 ? 13 :  null
+                         
+                        ),
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        MediaQuery.sizeOf(context).width < 800 ?  'Email' : items[0].title,
+                        style: AppStyle.styleRegular16(context).copyWith(
+                            fontFamily: 'Roboto',
+                            color: MyColors.premiumColor,
+                            fontSize:   MediaQuery.sizeOf(context).width < 800 ? 10 :  15),
                       ),
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                      Text(
+                        MediaQuery.sizeOf(context).width < 800 ?  'Address' : items[0].subtitle,
+                        style: AppStyle.styleRegular16(context).copyWith(
+                            fontFamily: 'Roboto', color: MyColors.premiumColor,
+                            fontSize:  MediaQuery.sizeOf(context).width < 800 ? 10 :  15
+                            ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(
+                width: MediaQuery.sizeOf(context).width < 800 ? MediaQuery.of(context).size.width * 0.23 : MediaQuery.of(context).size.width * 0.15,
+                child: Row(
                   children: [
-                    Text(
-                      MediaQuery.sizeOf(context).width < 800 ?  'Email' : items[0].title,
-                      style: AppStyle.styleRegular16(context).copyWith(
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: const ShapeDecoration(
+                        shape: OvalBorder(),
+                        color: MyColors.premiumColor,
+                      ),
+                      child: widget.index > 0
+                          ? const Icon(
+                              Icons.check,
+                              color: Colors.white,
+                            )
+                          : null,
+                    ),
+                    const SizedBox(width: 1),
+                    Expanded(
+                      child: Container(
+                        height: 2.0,
+                        color: widget.index > 0
+                            ? MyColors.premiumColor
+                            : const Color(0xFFD9D9D9),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    items[1].number,
+                    style: AppStyle.styleRegular25(context)
+                        .copyWith(fontFamily: 'Inter', color: Colors.black,
+                        fontSize:  MediaQuery.sizeOf(context).width < 800 ? 13 :  null
+                        ),
+                        
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        items[1].title,
+                        style: AppStyle.styleRegular16(context)
+                            .copyWith(fontFamily: 'Roboto', fontSize:  MediaQuery.sizeOf(context).width < 800 ? 10 :  15,
+                            color: widget.index >=1 ? MyColors.premiumColor : null
+                            ),
+                      ),
+                      Text(
+                        items[1].subtitle,
+                        style: AppStyle.styleRegular16(context).copyWith(
                           fontFamily: 'Roboto',
-                          color: MyColors.premiumColor,
-                          fontSize:   MediaQuery.sizeOf(context).width < 800 ? 10 :  15),
-                    ),
-                    Text(
-                      MediaQuery.sizeOf(context).width < 800 ?  'Address' : items[0].subtitle,
-                      style: AppStyle.styleRegular16(context).copyWith(
-                          fontFamily: 'Roboto', color: MyColors.premiumColor,
-                          fontSize:  MediaQuery.sizeOf(context).width < 800 ? 10 :  15
-                          ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            SizedBox(
-              width: MediaQuery.sizeOf(context).width < 800 ? MediaQuery.of(context).size.width * 0.23 : MediaQuery.of(context).size.width * 0.15,
-              child: Row(
-                children: [
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: const ShapeDecoration(
-                      shape: OvalBorder(),
-                      color: MyColors.premiumColor,
-                    ),
-                    child: widget.index > 0
-                        ? const Icon(
-                            Icons.check,
-                            color: Colors.white,
-                          )
-                        : null,
-                  ),
-                  const SizedBox(width: 1),
-                  Expanded(
-                    child: Container(
-                      height: 2.0,
-                      color: widget.index > 0
-                          ? MyColors.premiumColor
-                          : const Color(0xFFD9D9D9),
-                    ),
+                          color: widget.index >=1 ? MyColors.premiumColor : null,
+                          fontSize:   MediaQuery.sizeOf(context).width < 800 ? 10 :  15
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            )
-          ],
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Text(
-                  items[1].number,
-                  style: AppStyle.styleRegular25(context)
-                      .copyWith(fontFamily: 'Inter', color: Colors.black,
-                      fontSize:  MediaQuery.sizeOf(context).width < 800 ? 13 :  null
-                      ),
-                      
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              SizedBox(
+                width:  MediaQuery.sizeOf(context).width < 800 ?  MediaQuery.of(context).size.width * 0.23  : MediaQuery.of(context).size.width * 0.15,
+                child: Row(
                   children: [
-                    Text(
-                      items[1].title,
-                      style: AppStyle.styleRegular16(context)
-                          .copyWith(fontFamily: 'Roboto', fontSize:  MediaQuery.sizeOf(context).width < 800 ? 10 :  15,
-                          color: widget.index >=1 ? MyColors.premiumColor : null
-                          ),
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: ShapeDecoration(
+                        shape: const OvalBorder(),
+                        color:
+                            widget.index > 0 ? MyColors.premiumColor : const Color(0xFFD9D9D9),
+                      ),
+                      child: widget.index > 1
+                          ? const Icon(
+                              Icons.check,
+                              color: Colors.white,
+                            )
+                          : null,
                     ),
-                    Text(
-                      items[1].subtitle,
-                      style: AppStyle.styleRegular16(context).copyWith(
-                        fontFamily: 'Roboto',
-                        color: widget.index >=1 ? MyColors.premiumColor : null,
-                        fontSize:   MediaQuery.sizeOf(context).width < 800 ? 10 :  15
+                    const SizedBox(width: 1),
+                    Expanded(
+                      child: Container(
+                        height: 2.0,
+                        color: widget.index > 1
+                            ? MyColors.premiumColor
+                            : const Color(0xFFD9D9D9),
                       ),
                     ),
                   ],
                 ),
-              ],
-            ),
-            SizedBox(
-              width:  MediaQuery.sizeOf(context).width < 800 ?  MediaQuery.of(context).size.width * 0.23  : MediaQuery.of(context).size.width * 0.15,
-              child: Row(
+              )
+            ],
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
                 children: [
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: ShapeDecoration(
-                      shape: const OvalBorder(),
-                      color:
-                          widget.index > 0 ? MyColors.premiumColor : const Color(0xFFD9D9D9),
-                    ),
-                    child: widget.index > 1
-                        ? const Icon(
-                            Icons.check,
-                            color: Colors.white,
-                          )
-                        : null,
+                  Text(
+                    items[2].number,
+                    style: AppStyle.styleRegular25(context)
+                        .copyWith(fontFamily: 'Inter', color: Colors.black,
+                        fontSize:  MediaQuery.sizeOf(context).width < 800 ? 13 :  null
+                        ),
                   ),
-                  const SizedBox(width: 1),
-                  Expanded(
-                    child: Container(
-                      height: 2.0,
-                      color: widget.index > 1
-                          ? MyColors.premiumColor
-                          : const Color(0xFFD9D9D9),
-                    ),
+                  const SizedBox(
+                    width: 5,
                   ),
-                ],
-              ),
-            )
-          ],
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Text(
-                  items[2].number,
-                  style: AppStyle.styleRegular25(context)
-                      .copyWith(fontFamily: 'Inter', color: Colors.black,
-                      fontSize:  MediaQuery.sizeOf(context).width < 800 ? 13 :  null
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        items[2].title,
+                        style: AppStyle.styleRegular16(context)
+                            .copyWith(fontFamily: 'Roboto', fontSize:  MediaQuery.sizeOf(context).width < 800 ? 10 :  15,
+                            color: widget.index >=2 ? MyColors.premiumColor : null
+                            ),
                       ),
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      items[2].title,
-                      style: AppStyle.styleRegular16(context)
-                          .copyWith(fontFamily: 'Roboto', fontSize:  MediaQuery.sizeOf(context).width < 800 ? 10 :  15,
+                      Text(
+                        items[2].subtitle,
+                        style: AppStyle.styleRegular16(context).copyWith(
+                          fontFamily: 'Roboto',
+                          fontSize:  MediaQuery.sizeOf(context).width < 800 ? 10 :  15,
                           color: widget.index >=2 ? MyColors.premiumColor : null
-                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(
+                width:  MediaQuery.sizeOf(context).width < 800 ?  MediaQuery.of(context).size.width * 0.23 : MediaQuery.of(context).size.width * 0.15,
+                child: Row(
+                  children: [
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: ShapeDecoration(
+                        shape: const OvalBorder(),
+                        color:
+                            widget.index > 1 ? MyColors.premiumColor : const Color(0xFFD9D9D9),
+                      ),
+                      child: widget.index > 2
+                          ? const Icon(
+                              Icons.check,
+                              color: Colors.white,
+                            )
+                          : null,
                     ),
-                    Text(
-                      items[2].subtitle,
-                      style: AppStyle.styleRegular16(context).copyWith(
-                        fontFamily: 'Roboto',
-                        fontSize:  MediaQuery.sizeOf(context).width < 800 ? 10 :  15,
-                        color: widget.index >=2 ? MyColors.premiumColor : null
+                    const SizedBox(width: 1),
+                    Expanded(
+                      child: Container(
+                        height: 2.0,
+                        color: widget.index >= 2
+                            ? MyColors.premiumColor
+                            : const Color(0xFFD9D9D9),
                       ),
                     ),
                   ],
                 ),
-              ],
-            ),
-            SizedBox(
-              width:  MediaQuery.sizeOf(context).width < 800 ?  MediaQuery.of(context).size.width * 0.23 : MediaQuery.of(context).size.width * 0.15,
-              child: Row(
+              ),
+            ],
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    items[3].number,
+                    style: AppStyle.styleRegular25(context)
+                        .copyWith(fontFamily: 'Inter', color: Colors.black,
+                        fontSize:  MediaQuery.sizeOf(context).width < 800 ? 13 :  null
+                        ),
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        items[3].title,
+                        style: AppStyle.styleRegular16(context)
+                            .copyWith(fontFamily: 'Roboto', fontSize:  MediaQuery.sizeOf(context).width < 800 ? 10 :  15,
+                            color: widget.index >=3 ? MyColors.premiumColor : null
+                            ),
+                      ),
+                      Text(
+                        items[3].subtitle,
+                        style: AppStyle.styleRegular16(context).copyWith(
+                          fontFamily: 'Roboto',
+                          fontSize:  MediaQuery.sizeOf(context).width < 800 ? 10 :  15,
+                          color: widget.index >=3 ? MyColors.premiumColor : null
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              Row(
                 children: [
                   Container(
                     width: 40,
                     height: 40,
                     decoration: ShapeDecoration(
                       shape: const OvalBorder(),
-                      color:
-                          widget.index > 1 ? MyColors.premiumColor : const Color(0xFFD9D9D9),
+                      color: widget.index >= 3
+                          ? MyColors.premiumColor
+                          : const Color(0xFFD9D9D9),
                     ),
-                    child: widget.index > 2
+                    child: widget.index > 3
                         ? const Icon(
                             Icons.check,
                             color: Colors.white,
                           )
                         : null,
                   ),
-                  const SizedBox(width: 1),
-                  Expanded(
-                    child: Container(
-                      height: 2.0,
-                      color: widget.index >= 2
-                          ? MyColors.premiumColor
-                          : const Color(0xFFD9D9D9),
-                    ),
-                  ),
+                  // const SizedBox(width: 1),
+                  // Expanded(
+                  //   child: Container(
+                  //     height: 2.0,
+                  //     color: widget.index > 3
+                  //         ? MyColors.premiumColor
+                  //         : const Color(0xFFD9D9D9),
+                  //   ),
+                  // ),
                 ],
-              ),
-            ),
-          ],
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Text(
-                  items[3].number,
-                  style: AppStyle.styleRegular25(context)
-                      .copyWith(fontFamily: 'Inter', color: Colors.black,
-                      fontSize:  MediaQuery.sizeOf(context).width < 800 ? 13 :  null
-                      ),
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      items[3].title,
-                      style: AppStyle.styleRegular16(context)
-                          .copyWith(fontFamily: 'Roboto', fontSize:  MediaQuery.sizeOf(context).width < 800 ? 10 :  15,
-                          color: widget.index >=3 ? MyColors.premiumColor : null
-                          ),
-                    ),
-                    Text(
-                      items[3].subtitle,
-                      style: AppStyle.styleRegular16(context).copyWith(
-                        fontFamily: 'Roboto',
-                        fontSize:  MediaQuery.sizeOf(context).width < 800 ? 10 :  15,
-                        color: widget.index >=3 ? MyColors.premiumColor : null
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Container(
-                  width: 40,
-                  height: 40,
-                  decoration: ShapeDecoration(
-                    shape: const OvalBorder(),
-                    color: widget.index >= 3
-                        ? MyColors.premiumColor
-                        : const Color(0xFFD9D9D9),
-                  ),
-                  child: widget.index > 3
-                      ? const Icon(
-                          Icons.check,
-                          color: Colors.white,
-                        )
-                      : null,
-                ),
-                // const SizedBox(width: 1),
-                // Expanded(
-                //   child: Container(
-                //     height: 2.0,
-                //     color: widget.index > 3
-                //         ? MyColors.premiumColor
-                //         : const Color(0xFFD9D9D9),
-                //   ),
-                // ),
-              ],
-            )
-          ],
-        ),
-        // Column(
-        //   crossAxisAlignment: CrossAxisAlignment.start,
-        //   children: [
-        //     Row(
-        //       children: [
-        //         Text(
-        //           items[4].number,
-        //           style: AppStyle.styleRegular25(context)
-        //               .copyWith(fontFamily: 'Inter', color: Colors.black),
-        //         ),
-        //         const SizedBox(
-        //           width: 5,
-        //         ),
-        //         Column(
-        //           crossAxisAlignment: CrossAxisAlignment.start,
-        //           children: [
-        //             Text(
-        //               items[4].title,
-        //               style: AppStyle.styleRegular16(context)
-        //                   .copyWith(fontFamily: 'Roboto', fontSize: 15,
-        //                   color: widget.index >=4 ? MyColors.premiumColor : null
-        //                   ),
-        //             ),
-        //             Text(
-        //               items[4].subtitle,
-        //               style: AppStyle.styleRegular16(context).copyWith(
-        //                 fontFamily: 'Roboto',
-        //                 color: widget.index >=4 ? MyColors.premiumColor : null
-        //               ),
-        //             ),
-        //           ],
-        //         ),
-        //       ],
-        //     ),
-        //     Row(
-        //       children: [
-        //         Container(
-        //           width: 40,
-        //           height: 40,
-        //           decoration: ShapeDecoration(
-        //             shape: const OvalBorder(),
-        //             color:
-        //                 widget.index >= 4 ? MyColors.premiumColor : Color(0xFFD9D9D9),
-        //           ),
-        //           child: widget.index > 4
-        //               ? const Icon(
-        //                   Icons.check,
-        //                   color: Colors.white,
-        //                 )
-        //               : null,
-        //         ),
-        //         const SizedBox(width: 1),
-        //         // Expanded(
-        //         //   child: Container(
-        //         //     height: 2.0,
-        //         //     color: index >0? MyColors.premiumColor : const Color(0xFFD9D9D9),
-        //         //   ),
-        //         // ),
-        //       ],
-        //     )
-        //   ],
-        // ),
-      ],
+              )
+            ],
+          ),
+          // Column(
+          //   crossAxisAlignment: CrossAxisAlignment.start,
+          //   children: [
+          //     Row(
+          //       children: [
+          //         Text(
+          //           items[4].number,
+          //           style: AppStyle.styleRegular25(context)
+          //               .copyWith(fontFamily: 'Inter', color: Colors.black),
+          //         ),
+          //         const SizedBox(
+          //           width: 5,
+          //         ),
+          //         Column(
+          //           crossAxisAlignment: CrossAxisAlignment.start,
+          //           children: [
+          //             Text(
+          //               items[4].title,
+          //               style: AppStyle.styleRegular16(context)
+          //                   .copyWith(fontFamily: 'Roboto', fontSize: 15,
+          //                   color: widget.index >=4 ? MyColors.premiumColor : null
+          //                   ),
+          //             ),
+          //             Text(
+          //               items[4].subtitle,
+          //               style: AppStyle.styleRegular16(context).copyWith(
+          //                 fontFamily: 'Roboto',
+          //                 color: widget.index >=4 ? MyColors.premiumColor : null
+          //               ),
+          //             ),
+          //           ],
+          //         ),
+          //       ],
+          //     ),
+          //     Row(
+          //       children: [
+          //         Container(
+          //           width: 40,
+          //           height: 40,
+          //           decoration: ShapeDecoration(
+          //             shape: const OvalBorder(),
+          //             color:
+          //                 widget.index >= 4 ? MyColors.premiumColor : Color(0xFFD9D9D9),
+          //           ),
+          //           child: widget.index > 4
+          //               ? const Icon(
+          //                   Icons.check,
+          //                   color: Colors.white,
+          //                 )
+          //               : null,
+          //         ),
+          //         const SizedBox(width: 1),
+          //         // Expanded(
+          //         //   child: Container(
+          //         //     height: 2.0,
+          //         //     color: index >0? MyColors.premiumColor : const Color(0xFFD9D9D9),
+          //         //   ),
+          //         // ),
+          //       ],
+          //     )
+          //   ],
+          // ),
+        ],
+      ),
     );
   }
 }

@@ -24,10 +24,7 @@ class SelectingNumOfBoardFieldState extends State<SelectingNumOfBoardField> {
      
         return Column(
           children: [
-            AddOwnerBar(index: index),
-            const SizedBox(
-              height: 50,
-            ),
+            
             Text(
               "Select Number of Board",
               style: AppStyle.styleBold25(context).copyWith(
@@ -153,6 +150,12 @@ class SelectingNumOfBoardFieldState extends State<SelectingNumOfBoardField> {
                     ),
                   ],
                 ))
+        ,
+        const SizedBox(
+              height: 50,
+            ),
+        AddOwnerBar(index: index),
+            
           ],
         );
       

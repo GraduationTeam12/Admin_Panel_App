@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_cubit.dart';
@@ -26,18 +28,50 @@ void showHospitalFormDialog(BuildContext context) {
             Navigator.pop(context);
             Navigator.pop(context);
             showHospitalCheckDialog(context);
+            BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                .hospitalTypeController
+                .text = "";
+            BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                .hospitalAddressController
+                .text = "";
+            BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                .hospitalEmailController
+                .text = "";
+            BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                .hospitalNameController
+                .text = "";
+            BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                .hospitalNumberController
+                .text = "";
+            BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                .hospitalPasswordController
+                .text = "";
+            BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                .hospitalPhoneController
+                .text = "";
+            BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                .hospitalLatitudeController
+                .text = "";
+            BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                .hospitalLongitudeController
+                .text = "";
+                
             // context.read<NavigationCubit>().navigateTo(1);
           }
 
           if (state is AddHospitalError) {
             Navigator.pop(context);
             Navigator.pop(context);
-            String message = state.errMessage;
+            String msg = state.errMessage;
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text(message),
-                behavior: SnackBarBehavior.floating,
-                margin:
-                    const EdgeInsets.only(bottom: 680, left: 160, right: 160)));
+              content: Text(msg),
+              behavior: SnackBarBehavior.floating,
+              margin: EdgeInsets.only(
+                left: MediaQuery.of(context).size.width > 1200 ? 320 : 30,
+                right: 30,
+                bottom: 10,
+              ),
+            ));
           }
         },
         builder: (context, state) {

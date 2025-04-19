@@ -50,10 +50,7 @@ class AddOwnerEmailFormState extends State<AddOwnerEmailForm> {
       builder: (context, state) {
         return Column(
           children: [
-            AddOwnerBar(index: index),
-            const SizedBox(
-              height: 50,
-            ),
+          
             Text(
               "Add Owner to System",
               style: AppStyle.styleBold25(context).copyWith(
@@ -189,6 +186,11 @@ class AddOwnerEmailFormState extends State<AddOwnerEmailForm> {
                     ),
                   ],
                 )),
+            
+            const SizedBox(
+              height: 70,
+            ),
+            AddOwnerBar(index: index), 
           ],
         );
       },

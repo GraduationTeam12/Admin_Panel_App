@@ -61,10 +61,7 @@ class _OtpFormState extends State<OtpForm> {
       builder: (context, state) {
         return Column(
           children: [
-            AddOwnerBar(index: index),
-            const SizedBox(
-              height: 50,
-            ),
+          
             Column(
               children: [
                 Text(
@@ -220,6 +217,11 @@ class _OtpFormState extends State<OtpForm> {
                     ),
                   ],
                 ))
+             ,const SizedBox(
+              height: 50,
+            ),
+            AddOwnerBar(index: index),
+            
           ],
         );
       },

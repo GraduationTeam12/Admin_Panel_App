@@ -12,6 +12,7 @@ import 'package:admin_panel_app/core/data/model/user_model.dart';
 import 'package:admin_panel_app/core/error/exceptions.dart';
 import 'package:admin_panel_app/core/error/exceptions_response.dart';
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 
 class RepositoryImplementation {
   final ApiConsumer apiConsumer;
@@ -92,9 +93,9 @@ class RepositoryImplementation {
         },
         headers: {'authorization': 'Bearer $token'},
       );
-       if (response.containsKey('errors')) {
-      return Left(jsonEncode(response['errors'])); 
-    }
+      if (response.containsKey('errors')) {
+        return Left(jsonEncode(response['errors']));
+      }
       return Right(response[ApiKeys.message]);
     } on ServerException catch (error) {
       return Left(error.errorModel.errorMessage);
@@ -109,7 +110,10 @@ class RepositoryImplementation {
     try {
       final response = await apiConsumer.get(
         EndPoint.users,
-        headers: {'Authorization': 'Bearer $token', 'Content-Type': 'application/json; charset=utf-8',},
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Content-Type': 'application/json; charset=utf-8',
+        },
       );
 
       final List<Users> users = (response['data'] as List)
@@ -132,7 +136,7 @@ class RepositoryImplementation {
         EndPoint.getUser(id),
         headers: {
           'Authorization': 'Bearer $token',
-         'Content-Type': 'application/json; charset=utf-8',
+          'Content-Type': 'application/json; charset=utf-8',
         },
       );
 
@@ -201,49 +205,55 @@ class RepositoryImplementation {
     }
   }
 
-  Future<Either<String, String>> addHospital(
-      String type,
-      String name,
-      String phone,
-      String address,
-      String number,
-      String latitude,
-      String longitude,
-      String password,
-      String email,
-      dynamic token) async {
-    try {
-      final response = await apiConsumer.post(
-        EndPoint.addHospital,
-        data: {
-          'type': type,
-          'name': name,
-          'email': email,
-          'phone': phone,
-          'address': address,
-          'number': number,
-          "location": {
-            "type": "Point",
-            "coordinates": [latitude, longitude]
-          },
-          'password': password,
+Future<Either<String, String>> addHospital(
+  String type,
+  String name,
+  String phone,
+  String address,
+  num number,
+  double latitude,
+  double longitude,
+  String password,
+  String email,
+  dynamic token,
+) async {
+  try {
+        final response = await apiConsumer.post(
+      EndPoint.addHospital,
+      data: {
+        'type': type,
+        'name': name,
+        'email': email,
+        'phone': phone,
+        'address': address,
+        'number': number,
+        "location": {
+          "type": "Point",
+          "coordinates": [latitude, longitude] 
         },
-        headers: {'Authorization': 'Bearer $token'},
-      );
+        "password":password
+      },
+      headers: {'Authorization': 'Bearer $token'},
+    );
+
       return Right(response[ApiKeys.message]);
     } on ServerException catch (error) {
       return Left(error.errorModel.errorMessage);
     } catch (e) {
       return Left(e.toString());
     }
-  }
+  
+}
 
   Future<Either<String, List<AllEmergenciesModel>>> getAllEmergencies(
       dynamic token) async {
     try {
       final response = await apiConsumer.get(
         EndPoint.getAllEmergencies,
-        headers: {'Authorization': 'Bearer $token', 'Content-Type': 'application/json; charset=utf-8',},
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Content-Type': 'application/json; charset=utf-8',
+        },
       );
 
       final List<AllEmergenciesModel> emergencies = (response['data'] as List)
@@ -326,7 +336,10 @@ class RepositoryImplementation {
     try {
       final response = await apiConsumer.get(
         EndPoint.analysis,
-        headers: {'Authorization': 'Bearer $token', 'Content-Type': 'application/json; charset=utf-8',},
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Content-Type': 'application/json; charset=utf-8',
+        },
       );
       return Right(AnalysisModel.fromJson(response));
     } catch (e) {

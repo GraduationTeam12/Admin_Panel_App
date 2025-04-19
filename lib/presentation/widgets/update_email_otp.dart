@@ -20,6 +20,8 @@ class OtpUpdatedEmail extends StatefulWidget {
 
 class _OtpUpdatedEmailState extends State<OtpUpdatedEmail> {
   final GlobalKey<FormState> _formKey = GlobalKey();
+    bool hasError = false;
+
 
   TextEditingController otpController = TextEditingController();
   @override
@@ -44,6 +46,9 @@ class _OtpUpdatedEmailState extends State<OtpUpdatedEmail> {
                       }
 
                       if (state is VerifyUpdatedEmailUserSuccess) {
+                          setState(() {
+            hasError = false; 
+          });
                         Navigator.pop(context);
                         // Navigator.push(
                         //     context,
@@ -64,14 +69,19 @@ class _OtpUpdatedEmailState extends State<OtpUpdatedEmail> {
                       }
 
                       if (state is VerifyUpdatedEmailUserError) {
+                          setState(() {
+            hasError = true; 
+          });
                         // Navigator.pop(context);
                         String message = state.errMessage;
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text(message),
                           duration: const Duration(seconds: 5),
                           behavior: SnackBarBehavior.floating,
-                          margin: const EdgeInsets.only(
-                              bottom: 680, left: 160, right: 160),
+                          margin:  EdgeInsets.only(
+                  left: MediaQuery.of(context).size.width > 1200 ? 320 : 30,
+                  right: 30,
+                  bottom: 10),
                         ));
                       }
                     },
@@ -126,6 +136,13 @@ class _OtpUpdatedEmailState extends State<OtpUpdatedEmail> {
                                 children: [
                                   Pinput(
                                     controller: otpController,
+                                    onChanged: (value) {
+                      if (hasError) {
+                        setState(() {
+                          hasError = false; 
+                        });
+                      }
+                    },
                                     submittedPinTheme: PinTheme(
                                       margin: const EdgeInsets.symmetric(
                                           horizontal: 7),
@@ -137,16 +154,32 @@ class _OtpUpdatedEmailState extends State<OtpUpdatedEmail> {
                                                   color: Colors.black,
                                                   fontSize: 19,
                                                   fontWeight: FontWeight.w600),
-                                      decoration: BoxDecoration(
-                                        color: const Color.fromARGB(
-                                            255, 225, 239, 247),
-                                        borderRadius: BorderRadius.circular(15),
-                                        boxShadow: makeShadowBox,
-                                        border: Border.all(
-                                            color: MyColors.premiumColor,
-                                            width: 2),
-                                      ),
+                                      decoration:  BoxDecoration(
+                          color: hasError ? Colors.red.shade100 : const Color.fromARGB(255, 225, 239, 247),
+                          borderRadius: BorderRadius.circular(15),
+                          boxShadow: makeShadowBox,
+                          border: Border.all(
+                              color:hasError ? Colors.red: MyColors.premiumColor, width: 2),
+                        ),
                                     ),
+                                      errorPinTheme: PinTheme(
+                        margin: const EdgeInsets.symmetric(horizontal: 7),
+                        height: 70,
+                        width: 70,
+                        textStyle: AppStyle.styleRegular16(context).copyWith(
+                          color: Colors.black,
+                          fontSize: 19,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.red.shade100,
+                          borderRadius: BorderRadius.circular(15),
+                          boxShadow: makeShadowBox,
+                          border: Border.all(
+                              color: Colors.red, width: 2), 
+                        ),
+                      ),
+                      
                                     errorTextStyle:
                                         AppStyle.styleRegular16(context)
                                             .copyWith(color: Colors.red),

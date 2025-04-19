@@ -34,57 +34,86 @@ void showOwnerFormDialog(BuildContext context) {
               showCheckDialog(context);
               // context.read<NavigationCubit>().navigateTo(1);
               GoRouter.of(context).pushReplacementNamed(AppRouter.ownerReports);
+              BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                  .emailController
+                  .text = "";
+              BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                  .codeController
+                  .text = "";
+              BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                  .ageController
+                  .text = "";
+              BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                  .userNameController
+                  .text = "";
+              BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                  .boardIdController
+                  .text = "";
+              BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                  .addressController
+                  .text = "";
+              BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                  .nationalIdController
+                  .text = "";
+              BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                  .phoneController
+                  .text = "";
             }
 
             if (state is AddUserError) {
               Navigator.pop(context);
               // context.read<NavigationCubit>().navigateTo(7);
-                // Navigator.push(context, MaterialPageRoute(builder: (context) => const UserInformation()));
-                GoRouter.of(context).pushReplacementNamed(AppRouter.userInfo);
-                try {
-                    final errorData = jsonDecode(state.errMessage); 
-                    if (errorData['errors'] != null && errorData['errors'] is List) {
-                        final errorMessages = (errorData['errors'] as List).map((e) => e['msg'].toString()).join(', ');
+              // Navigator.push(context, MaterialPageRoute(builder: (context) => const UserInformation()));
+              GoRouter.of(context).pushReplacementNamed(AppRouter.userInfo);
+              try {
+                final errorData = jsonDecode(state.errMessage);
+                if (errorData['errors'] != null &&
+                    errorData['errors'] is List) {
+                  final errorMessages = (errorData['errors'] as List)
+                      .map((e) => e['msg'].toString())
+                      .join(', ');
 
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(errorMessages),
-                        behavior: SnackBarBehavior.floating,
-                        margin: EdgeInsets.only(
-                          left: MediaQuery.of(context).size.width > 1200 ? 320 : 30,
-                          right: 30,
-                          bottom: 10,
-                        ),
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(errorMessages),
+                      behavior: SnackBarBehavior.floating,
+                      margin: EdgeInsets.only(
+                        left:
+                            MediaQuery.of(context).size.width > 1200 ? 320 : 30,
+                        right: 30,
+                        bottom: 10,
                       ),
-                                      );
-                    } else {
-                      // fallback لعرض رسالة وحدة فقط
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(state.errMessage),
-                          behavior: SnackBarBehavior.floating,
-                          margin: EdgeInsets.only(
-                            left: MediaQuery.of(context).size.width > 1200 ? 320 : 30,
-                            right: 30,
-                            bottom: 10,
-                          ),
-                        ),
-                      );
-                    }
-                  } catch (e) {
-                    // في حالة الـ errMessage مش JSON
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(state.errMessage),
-                        behavior: SnackBarBehavior.floating,
-                        margin: EdgeInsets.only(
-                          left: MediaQuery.of(context).size.width > 1200 ? 320 : 30,
-                          right: 30,
-                          bottom: 10,
-                        ),
+                    ),
+                  );
+                } else {
+                  // fallback لعرض رسالة وحدة فقط
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(state.errMessage),
+                      behavior: SnackBarBehavior.floating,
+                      margin: EdgeInsets.only(
+                        left:
+                            MediaQuery.of(context).size.width > 1200 ? 320 : 30,
+                        right: 30,
+                        bottom: 10,
                       ),
-                    );
-                  }
+                    ),
+                  );
+                }
+              } catch (e) {
+                // في حالة الـ errMessage مش JSON
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(state.errMessage),
+                    behavior: SnackBarBehavior.floating,
+                    margin: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.width > 1200 ? 320 : 30,
+                      right: 30,
+                      bottom: 10,
+                    ),
+                  ),
+                );
+              }
 
               // String message = state.errMessage;
               // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -138,9 +167,10 @@ void showOwnerFormDialog(BuildContext context) {
                           height: 8,
                         ),
                         TextFormField(
-                          initialValue: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
-                              .userNameController
-                              .text,
+                          initialValue:
+                              BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                                  .userNameController
+                                  .text,
                           style: AppStyle.styleRegular16(context)
                               .copyWith(color: Colors.black),
                           keyboardType: TextInputType.text,
@@ -184,9 +214,10 @@ void showOwnerFormDialog(BuildContext context) {
                           height: 8,
                         ),
                         TextFormField(
-                          initialValue: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
-                              .userEmailController
-                              .text,
+                          initialValue:
+                              BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                                  .emailController
+                                  .text,
                           style: AppStyle.styleRegular16(context)
                               .copyWith(color: Colors.black),
                           keyboardType: TextInputType.text,
@@ -230,9 +261,10 @@ void showOwnerFormDialog(BuildContext context) {
                           height: 8,
                         ),
                         TextFormField(
-                          initialValue: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
-                              .addressController
-                              .text,
+                          initialValue:
+                              BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                                  .addressController
+                                  .text,
                           style: AppStyle.styleRegular16(context)
                               .copyWith(color: Colors.black),
                           keyboardType: TextInputType.text,
@@ -276,9 +308,10 @@ void showOwnerFormDialog(BuildContext context) {
                           height: 8,
                         ),
                         TextFormField(
-                          initialValue: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
-                              .ageController
-                              .text,
+                          initialValue:
+                              BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                                  .ageController
+                                  .text,
                           style: AppStyle.styleRegular16(context)
                               .copyWith(color: Colors.black),
                           keyboardType: TextInputType.text,
@@ -322,9 +355,10 @@ void showOwnerFormDialog(BuildContext context) {
                           height: 8,
                         ),
                         TextFormField(
-                          initialValue: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
-                              .phoneController
-                              .text,
+                          initialValue:
+                              BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                                  .phoneController
+                                  .text,
                           style: AppStyle.styleRegular16(context)
                               .copyWith(color: Colors.black),
                           keyboardType: TextInputType.number,
@@ -368,20 +402,20 @@ void showOwnerFormDialog(BuildContext context) {
                           height: 8,
                         ),
                         TextFormField(
-                          initialValue: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
-                              .nationalIdController
-                              .text,
+                          initialValue:
+                              BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                                  .nationalIdController
+                                  .text,
                           style: AppStyle.styleRegular16(context)
                               .copyWith(color: Colors.black),
                           keyboardType: TextInputType.number,
                           textInputAction: TextInputAction.done,
-                                                  
                           validator: (value) {
                             final age = int.tryParse(value!);
                             if (age == null) {
                               return 'Age must be a valid number';
                             }
-                            return null; 
+                            return null;
                           },
                           decoration: InputDecoration(
                               errorStyle: AppStyle.styleRegular16(context)
@@ -422,9 +456,10 @@ void showOwnerFormDialog(BuildContext context) {
                           height: 8,
                         ),
                         TextFormField(
-                          initialValue: BlocProvider.of<AddOwnerAndHospitalCubit>(context)
-                              .boardIdController
-                              .text,
+                          initialValue:
+                              BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                                  .boardIdController
+                                  .text,
                           style: AppStyle.styleRegular16(context)
                               .copyWith(color: Colors.black),
                           keyboardType: TextInputType.number,
@@ -468,7 +503,8 @@ void showOwnerFormDialog(BuildContext context) {
                     height: 47,
                     child: ElevatedButton(
                       onPressed: () {
-                        BlocProvider.of<AddOwnerAndHospitalCubit>(context).sendUserData();
+                        BlocProvider.of<AddOwnerAndHospitalCubit>(context)
+                            .sendUserData();
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: MyColors.premiumColor,

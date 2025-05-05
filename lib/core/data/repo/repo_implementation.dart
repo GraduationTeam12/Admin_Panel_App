@@ -26,7 +26,7 @@ class RepositoryImplementation {
     try {
       final response = await apiConsumer.post(
         EndPoint.logIn,
-        data: {ApiKeys.email: email, ApiKeys.password: password},
+        data: {ApiKeys.email: email, ApiKeys.password: password,"name":"ahmed hassan"},
       );
       return Right(LoginModel.fromJson(response));
     } on ServerException catch (error) {

@@ -264,7 +264,7 @@ class _ReportHospitalInformationEditingFieldsState
                             height: 20,
                           ),
                           Text(
-                            "Hospital Name",
+                            "Emergency Name",
                             style: AppStyle.styleRegular16(context),
                           ),
                           const SizedBox(
@@ -849,7 +849,7 @@ class _ReportHospitalInformationEditingFieldsState
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "Hospital Name",
+                                      "Emergency Name",
                                       style: AppStyle.styleRegular16(context),
                                     ),
                                     const SizedBox(

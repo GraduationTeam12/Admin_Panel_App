@@ -7,6 +7,7 @@ class UserModel {
   final String nationalId;
   final String boardId;
   final String? avatarUrl;
+   final DateTime createdAt; 
 
   UserModel({
     required this.username,
@@ -17,6 +18,7 @@ class UserModel {
     required this.nationalId,
     required this.boardId,
     required this.avatarUrl,
+        required this.createdAt,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -29,6 +31,7 @@ class UserModel {
       nationalId: json['nationalId'].toString(),
       boardId: json['boardId'],
       avatarUrl: json['avatarUrl'],
+      createdAt: DateTime.parse(json['createdAt']),
     );
   }
 }

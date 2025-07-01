@@ -89,7 +89,7 @@ class AddHospital extends StatelessWidget {
             child: Scaffold(
               appBar:const PreferredSize(
                   preferredSize: Size.fromHeight(60),
-                  child:  HeaderDesktop(title: 'Add Hospital'),
+                  child:  HeaderDesktop(title: 'Add Emergency'),
               ),
               body: Container(
                 padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),

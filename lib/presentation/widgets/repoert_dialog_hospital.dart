@@ -103,7 +103,7 @@ void showReportHospitalFormDialog(
                   ),
 
                   Text(
-                    "Hospital Name",
+                    "Emergency Name",
                     style: AppStyle.styleRegular16(context),
                   ),
                   const SizedBox(

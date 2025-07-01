@@ -1,12 +1,16 @@
 import 'package:admin_panel_app/core/data/model/analysis_model/analysis_model.dart';
+import 'package:admin_panel_app/core/data/model/analysis_model/daily_user_model.dart';
 import 'package:admin_panel_app/presentation/widgets/part_digram_year_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class DiagramNewUser extends StatelessWidget {
-  const DiagramNewUser({super.key, required this.analysisModel});
+  const DiagramNewUser({super.key, required this.analysisModel, required this.dailyUsers});
 
   final AnalysisModel? analysisModel;
+    final List<DailyUserModel>? dailyUsers;
+    
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -99,16 +103,25 @@ class DiagramNewUser extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              PartDiagramYearChart(
-                  title: "Daily",
-                  percent: analysisModel!.users / 100,
-                  myColor: const Color.fromRGBO(61, 100, 152, 1)),
-            ],
-          ),
-        ],
+        Row(
+  mainAxisAlignment: MainAxisAlignment.spaceAround,
+  children: [
+    PartDiagramYearChart(
+      title: "Daily",
+      percent: (dailyUsers
+                  ?.firstWhere(
+                    (u) => u.date ==
+                        "${DateTime.now().year}-${DateTime.now().month.toString().padLeft(2, '0')}-${DateTime.now().day.toString().padLeft(2, '0')}",
+                    orElse: () => DailyUserModel(date: "", count: 0),
+                  )
+                  .count
+                  .toDouble()) ??
+              0,
+      myColor: const Color.fromRGBO(61, 100, 152, 1),
+    ),
+  ],
+),
+      ],
       ),
     );
   }

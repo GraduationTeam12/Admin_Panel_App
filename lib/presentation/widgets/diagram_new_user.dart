@@ -9,6 +9,7 @@ class DiagramNewUser extends StatelessWidget {
 
   final AnalysisModel? analysisModel;
     final List<DailyUserModel>? dailyUsers;
+    
 
   @override
   Widget build(BuildContext context) {

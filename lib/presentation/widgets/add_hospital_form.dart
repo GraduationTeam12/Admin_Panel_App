@@ -13,13 +13,13 @@ class AddHospitalForm extends StatelessWidget {
     return Column(children: [
       MediaQuery.sizeOf(context).width < 800 ? FittedBox(
         child: Text(
-          "Add New Hospital to System",
+          "Add New Emergency to System",
           style: AppStyle.styleBold25(context).copyWith(
               fontSize: 40, fontFamily: 'Roboto', color: MyColors.premiumColor),
         ),
       ) : 
       Text(
-        "Add New Hospital to System",
+        "Add New Emergency to System",
         style: AppStyle.styleBold25(context).copyWith(
             fontSize: 40, fontFamily: 'Roboto', color: MyColors.premiumColor),
       ),
@@ -98,10 +98,10 @@ class AddHospitalForm extends StatelessWidget {
                       if (type!.isEmpty) {
                         return "Please enter type";
                       }
-                      const allowedTypes = ['hospital', 'fireBrigade', 'cranes'];
+                      const allowedTypes = ['hospitals', 'firestations', 'cranes'];
 
                       if (!allowedTypes.contains(type)) {
-                        return "Allowed types: hospital, fireBrigade, cranes";
+                        return "Allowed types: hospitals, firestations, cranes";
                       }
                       return null;
                     },
@@ -129,7 +129,7 @@ class AddHospitalForm extends StatelessWidget {
                     Icons.local_hospital,
                     color: Colors.black,
                   ),
-                  labelText: "Hospital Name",
+                  labelText: "Emergency Name",
                   labelStyle: AppStyle.styleRegular16(context),
                   focusedErrorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
@@ -154,7 +154,7 @@ class AddHospitalForm extends StatelessWidget {
                 ),
                 validator: (name) {
                   if (name!.isEmpty) {
-                    return "Please enter the hospital's name";
+                    return "Please enter the emergency's name";
                   }
                   return null;
                 },
@@ -206,7 +206,7 @@ class AddHospitalForm extends StatelessWidget {
                     ),
                     validator: (email) {
                       if (email!.isEmpty) {
-                        return "Please enter the hospital's email";
+                        return "Please enter the emergency's email";
                       }
                       return null;
                     },
@@ -257,7 +257,7 @@ class AddHospitalForm extends StatelessWidget {
                 ),
                 validator: (password) {
                   if (password!.isEmpty) {
-                    return "Please enter the hospital's password";
+                    return "Please enter the emergency's password";
                   }
                                   
                   if (password.length < 8 || password.length > 24) {
@@ -370,7 +370,7 @@ class AddHospitalForm extends StatelessWidget {
                 ),
                 validator: (phone) {
                   if (phone!.isEmpty) {
-                    return "Please enter the phone of hospital";
+                    return "Please enter the phone of emergency";
                   }
                   
                   if (!RegExp(r'^\d+$').hasMatch(phone)) {
@@ -555,7 +555,7 @@ class AddHospitalForm extends StatelessWidget {
                 ),
                 validator: (address) {
                   if (address!.isEmpty) {
-                    return "Please enter the hospital's address";
+                    return "Please enter the emergency's address";
                   }
                   return null;
                 },
@@ -645,10 +645,10 @@ class AddHospitalForm extends StatelessWidget {
                       if (type!.isEmpty) {
                         return "Please enter type";
                       }
-                      const allowedTypes = ['hospital', 'fireBrigade', 'cranes'];
+                      const allowedTypes = ['hospitals', 'firestations', 'cranes'];
 
                       if (!allowedTypes.contains(type)) {
-                        return "Allowed types: hospital, fireBrigade, cranes";
+                        return "Allowed types: hospitals, firestations, cranes";
                       }
                       return null;
                     },
@@ -677,7 +677,7 @@ class AddHospitalForm extends StatelessWidget {
                     Icons.local_hospital,
                     color: Colors.black,
                   ),
-                  labelText: "Hospital Name",
+                  labelText: "Emergency Name",
                   labelStyle: AppStyle.styleRegular16(context),
                   focusedErrorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
@@ -702,7 +702,7 @@ class AddHospitalForm extends StatelessWidget {
                 ),
                 validator: (name) {
                   if (name!.isEmpty) {
-                    return "Please enter the hospital's name";
+                    return "Please enter the emergency's name";
                   }
                   return null;
                 },
@@ -759,7 +759,7 @@ class AddHospitalForm extends StatelessWidget {
                     ),
                     validator: (email) {
                       if (email!.isEmpty) {
-                        return "Please enter the hospital's email";
+                        return "Please enter the emergency's email";
                       }else if (!RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$').hasMatch(email)) {
                         return 'Please enter a valid email address';
                       }
@@ -813,7 +813,7 @@ class AddHospitalForm extends StatelessWidget {
                 ),
                 validator: (password) {
                   if (password!.isEmpty) {
-                    return "Please enter the hospital's password";
+                    return "Please enter the emergency's password";
                   }
                   if (password.length < 8 || password.length > 24) {
                     return "Password must be between 8 and 24 characters";
@@ -931,7 +931,7 @@ class AddHospitalForm extends StatelessWidget {
                 ),
                 validator: (phone) {
                   if (phone!.isEmpty) {
-                    return "Please enter the phone of hospital";
+                    return "Please enter the phone of emergency";
                   }
                   
                     if (!RegExp(r'^\d+$').hasMatch(phone)) {
@@ -1130,7 +1130,7 @@ class AddHospitalForm extends StatelessWidget {
                 ),
                 validator: (address) {
                   if (address!.isEmpty) {
-                    return "Please enter the hospital's address";
+                    return "Please enter the emergency's address";
                   }
                   return null;
                 },

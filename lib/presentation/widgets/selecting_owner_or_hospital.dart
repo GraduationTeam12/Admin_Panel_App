@@ -343,7 +343,7 @@ class _SelectingOwnerOrHospitalState extends State<SelectingOwnerOrHospital> {
                         }
                       },
                       child: Text(
-                        "Hospital",
+                        "Emergency",
                         style: AppStyle.styleBold25(context).copyWith(
                             fontFamily: 'Roboto',
                             color: widget.selectedIndex == 1

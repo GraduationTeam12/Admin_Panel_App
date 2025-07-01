@@ -7,6 +7,8 @@ class Users{
   final String? address;
   final String? boardId;
   final String? nationalId;
+    final DateTime createdAt;
+
 
   Users({
     required this.id,
@@ -16,6 +18,8 @@ class Users{
     required this.address,
     required this.boardId,
     required this.nationalId,
+        required this.createdAt,
+
   });
 
 
@@ -28,6 +32,8 @@ class Users{
       address: json['address'],
       boardId: json['boardId'],
       nationalId: json['nationalId'],
+            createdAt: DateTime.parse(json['createdAt']),
+
     );
   }
 }

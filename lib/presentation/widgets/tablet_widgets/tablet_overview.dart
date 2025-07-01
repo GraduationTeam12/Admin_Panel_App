@@ -2,6 +2,7 @@ import 'package:admin_panel_app/constants/app_images.dart';
 import 'package:admin_panel_app/core/api/end_points.dart';
 import 'package:admin_panel_app/core/cache/cache_helper.dart';
 import 'package:admin_panel_app/core/data/model/analysis_model/analysis_model.dart';
+import 'package:admin_panel_app/core/data/model/analysis_model/daily_user_model.dart';
 import 'package:admin_panel_app/core/logic/analysis_cubit/analysis_cubit.dart';
 import 'package:admin_panel_app/presentation/widgets/diagram_analytic.dart';
 import 'package:admin_panel_app/presentation/widgets/diagram_custom.dart';
@@ -26,9 +27,17 @@ class _TabletOverviewState extends State<TabletOverview> {
     BlocProvider.of<AnalysisCubit>(context).getAnalysis(
       CacheHelper().getData(key: ApiKeys.token),
     );
+      
+  BlocProvider.of<AnalysisCubit>(context).fetchDailyUsers(CacheHelper().getData(key: ApiKeys.token),).then((value) {
+    setState(() {
+      dailyUsers = value;
+    });
+  });
   }
 
   AnalysisModel? analysisModel;
+   List<DailyUserModel>? dailyUsers;
+
 
   @override
   Widget build(BuildContext context) {
@@ -83,9 +92,11 @@ class _TabletOverviewState extends State<TabletOverview> {
                   children: [
                     Expanded(
                         flex: 1,
-                        child: DiagramNewUser(
-                          analysisModel: analysisModel,
-                        )),
+                        child:DiagramNewUser(
+  analysisModel: analysisModel,
+  dailyUsers: dailyUsers ?? [],
+),
+),
                      Expanded(flex: 1, child: DiagramAnalytic(analysisModel: analysisModel,))
                   ],
                 ),

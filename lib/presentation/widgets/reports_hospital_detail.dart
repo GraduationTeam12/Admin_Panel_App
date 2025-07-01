@@ -51,7 +51,7 @@ class _ReportsHospitalDetailState extends State<ReportsHospitalDetail> {
                 .copyWith(fontSize: 27, color: Colors.black),
           ),
           Text(
-            "All hospitals Added in this system",
+            "All emergencies Added in this system",
             style: AppStyle.styleRegular16(context),
           ),
           const SizedBox(
@@ -107,7 +107,7 @@ class _ReportsHospitalDetailState extends State<ReportsHospitalDetail> {
                     },
                   ),
                   Text(
-                    "Hospitals",
+                    "emergencies",
                     style: AppStyle.styleRegular16(context),
                   )
                 ],

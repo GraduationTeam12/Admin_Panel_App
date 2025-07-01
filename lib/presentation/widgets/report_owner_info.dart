@@ -104,7 +104,7 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
                               SizedBox(
                                 width: 100,
                                 child: TextFormField(
-                                  initialValue: users[index].username,
+                                  initialValue: users[index].username??"",
                                   style: AppStyle.styleRegular16(context)
                                       .copyWith(color: Colors.black),
                                   keyboardType: TextInputType.text,
@@ -132,7 +132,7 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
                                 child: SizedBox(
                                   width: 200,
                                   child: TextFormField(
-                                    initialValue: users[index].email,
+                                    initialValue: users[index].email??"",
                                     style: AppStyle.styleRegular16(context)
                                         .copyWith(color: Colors.black),
                                     keyboardType: TextInputType.text,
@@ -162,7 +162,7 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
                                 child: SizedBox(
                                   width: 250,
                                   child: TextFormField(
-                                    initialValue: users[index].address,
+                                    initialValue: users[index].address??"",
                                     style: AppStyle.styleRegular16(context)
                                         .copyWith(color: Colors.black),
                                     keyboardType: TextInputType.text,
@@ -192,7 +192,7 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
                                 child: SizedBox(
                                   width: 100,
                                   child: TextFormField(
-                                    initialValue: users[index].boardId,
+                                    initialValue: users[index].boardId??"",
                                     style: AppStyle.styleRegular16(context)
                                         .copyWith(color: Colors.black),
                                     keyboardType: TextInputType.text,
@@ -222,7 +222,7 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
                                 child: SizedBox(
                                   width: 150,
                                   child: TextFormField(
-                                    initialValue: users[index].phone,
+                                    initialValue: users[index].phone??"",
                                     style: AppStyle.styleRegular16(context)
                                         .copyWith(color: Colors.black),
                                     keyboardType: TextInputType.text,
@@ -252,7 +252,7 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
                                 child: SizedBox(
                                   width: 200,
                                   child: TextFormField(
-                                    initialValue: users[index].nationalId,
+                                    initialValue: users[index].nationalId??"",
                                     style: AppStyle.styleRegular16(context)
                                         .copyWith(color: Colors.black),
                                     keyboardType: TextInputType.text,
@@ -283,12 +283,12 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
                                     onTap: () {
                                       showReportOwnerFormDialog(
                                           context,
-                                          users[index].username,
-                                          users[index].email,
-                                          users[index].address,
-                                          users[index].phone,
+                                          users[index].username??"",
+                                          users[index].email??"",
+                                          users[index].address??"",
+                                          users[index].phone??"",
                                           users[index].nationalId.toString(),
-                                          users[index].boardId);
+                                          users[index].boardId??"");
                                     },
                                     child: Container(
                                       width: 30,

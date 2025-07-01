@@ -1,5 +1,5 @@
 class EndPoint {
-  static const String baseUrl = 'https://satars.onrender.com/';
+  static const String baseUrl = 'https://api.satars.site/';
   static const String logIn = 'api/v1/dashboard/admins/login';
   static const String sendOtp = 'api/v1/dashboard/users/sendOtp';
   static const String verifyOtp = 'api/v1/dashboard/users/verifyOtp';

@@ -269,14 +269,14 @@ class _ReportOwnerInfoMobileState extends State<ReportOwnerInfoMobile> {
                                           onTap: () {
                                             showReportOwnerFormDialog(
                                                 context,
-                                                users[index].username,
-                                                users[index].email,
-                                                users[index].address,
-                                                users[index].phone,
+                                                users[index].username??"",
+                                                users[index].email??"",
+                                                users[index].address??"",
+                                                users[index].phone??"",
                                                 users[index]
                                                     .nationalId
                                                     .toString(),
-                                                users[index].boardId);
+                                                users[index].boardId??"");
                                           },
                                           child: Container(
                                             width: 30,

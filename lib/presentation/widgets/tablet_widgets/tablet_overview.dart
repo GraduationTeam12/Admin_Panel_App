@@ -1,8 +1,10 @@
 import 'package:admin_panel_app/constants/app_images.dart';
 import 'package:admin_panel_app/core/api/end_points.dart';
 import 'package:admin_panel_app/core/cache/cache_helper.dart';
+import 'package:admin_panel_app/core/data/model/all_emergencies_model.dart';
 import 'package:admin_panel_app/core/data/model/analysis_model/analysis_model.dart';
 import 'package:admin_panel_app/core/data/model/analysis_model/daily_user_model.dart';
+import 'package:admin_panel_app/core/data/model/emergency_model.dart';
 import 'package:admin_panel_app/core/logic/analysis_cubit/analysis_cubit.dart';
 import 'package:admin_panel_app/presentation/widgets/diagram_analytic.dart';
 import 'package:admin_panel_app/presentation/widgets/diagram_custom.dart';
@@ -21,6 +23,10 @@ class TabletOverview extends StatefulWidget {
 }
 
 class _TabletOverviewState extends State<TabletOverview> {
+    List<AllEmergenciesModel>? allEmergencies;
+Map<int, Map<String, int>>? monthlyEmergencyCounts;
+Map<String, int>? totalEmergencyCounts;
+
   @override
   void initState() {
     super.initState();
@@ -33,10 +39,62 @@ class _TabletOverviewState extends State<TabletOverview> {
       dailyUsers = value;
     });
   });
+    BlocProvider.of<AnalysisCubit>(context)
+    .getAllEmergencies(CacheHelper().getData(key: ApiKeys.token))
+    .then((value) {
+  setState(() {
+    allEmergencies = value;
+
+    final emergenciesOnly = value.map((e) => EmergencyModel(
+      type: e.type,
+      name: e.name,
+      email: e.email, 
+      phone: e.phone,
+      address: e.address,
+      number: e.number,
+      latitude: e.latitude,
+      longitude: e.longitude,
+      createdAt: e.createdAt,
+    )).toList();
+
+    monthlyEmergencyCounts = context.read<AnalysisCubit>()
+        .getMonthlyEmergencyCounts(emergenciesOnly);
+  });
+});
+
+  BlocProvider.of<AnalysisCubit>(context)
+  .getAllEmergencies(CacheHelper().getData(key: ApiKeys.token))
+  .then((value) {
+  setState(() {
+    allEmergencies = value;
+
+    final emergenciesOnly = value.map((e) => EmergencyModel(
+      type: e.type,
+      name: e.name,
+      email: e.email, 
+      phone: e.phone,
+      address: e.address,
+      number: e.number,
+      latitude: e.latitude,
+      longitude: e.longitude,
+      createdAt: e.createdAt,
+    )).toList();
+
+    monthlyEmergencyCounts = context.read<AnalysisCubit>()
+        .getMonthlyEmergencyCounts(emergenciesOnly);
+
+    totalEmergencyCounts = context.read<AnalysisCubit>()
+        .getTotalEmergencyCountsThisYear(emergenciesOnly); 
+  });
+});
+
+
+
   }
 
   AnalysisModel? analysisModel;
    List<DailyUserModel>? dailyUsers;
+  Map<int, int>? monthlyCounts;
 
 
   @override
@@ -52,6 +110,8 @@ class _TabletOverviewState extends State<TabletOverview> {
           }
           if (state is AnalysisSuccess) {
             analysisModel = state.analysisModel;
+             monthlyCounts = context.read<AnalysisCubit>().getMonthlyUserCounts(dailyUsers ?? []);
+
           }
           return Container(
             width: MediaQuery.sizeOf(context).width,
@@ -105,12 +165,12 @@ class _TabletOverviewState extends State<TabletOverview> {
                     Expanded(
                         flex: 1,
                         child: DiagramYearsDash(
-                          analysisModel: analysisModel,
+                          analysisModel: analysisModel, totalEmergencyCounts: totalEmergencyCounts,
                         )),
                      Expanded(flex: 1, child: DiagramNewMessage(analysisModel: analysisModel,)),
                   ],
                 ),
-                 StackedColumnChart(analysisModel: analysisModel,)
+                 StackedColumnChart(analysisModel: analysisModel, monthlyUserCounts: monthlyCounts, monthlyEmergencyCounts: monthlyEmergencyCounts,)
               ],
             ),
           );

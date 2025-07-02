@@ -1,6 +1,8 @@
+import 'package:admin_panel_app/core/data/model/all_emergencies_model.dart';
 import 'package:admin_panel_app/core/data/model/all_owners_model.dart';
 import 'package:admin_panel_app/core/data/model/analysis_model/analysis_model.dart';
 import 'package:admin_panel_app/core/data/model/analysis_model/daily_user_model.dart';
+import 'package:admin_panel_app/core/data/model/emergency_model.dart';
 import 'package:admin_panel_app/core/data/model/user_model.dart';
 import 'package:admin_panel_app/core/data/repo/repo_implementation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,6 +39,18 @@ class AnalysisCubit extends Cubit<AnalysisState> {
     },
   );
 }
+Future<List<AllEmergenciesModel>> getAllEmergencies(String token) async {
+  final result = await repo.getAllEmergencies(token);
+  return result.fold(
+    (error) {
+      print("Error in getAllEmergencies: $error");
+      return [];
+    },
+    (data) => data,
+  );
+}
+
+
 Future<List<DailyUserModel>> fetchDailyUsers(String token) async {
   final response = await repo.getAllOwners(token);
 
@@ -61,6 +75,67 @@ List<DailyUserModel> getDailyCounts(List<Users> users) {
       .map((e) => DailyUserModel(date: e.key, count: e.value))
       .toList();
 }
+
+Map<int, int> getMonthlyUserCounts(List<DailyUserModel> dailyUsers) {
+  final currentYear = DateTime.now().year;
+  Map<int, int> monthlyCounts = { for (var i = 1; i <= 12; i++) i: 0 };
+
+  for (var user in dailyUsers) {
+    final dateParts = user.date.split('-');
+    final year = int.tryParse(dateParts[0]);
+    final month = int.tryParse(dateParts[1]);
+
+    if (year == currentYear && month != null) {
+      monthlyCounts[month] = (monthlyCounts[month] ?? 0) + user.count;
+    }
+  }
+
+  return monthlyCounts;
+}
+Map<String, int> getTotalEmergencyCountsThisYear(List<EmergencyModel> emergencies) {
+  final currentYear = DateTime.now().year;
+
+  Map<String, int> totalCounts = {
+    'hospitals': 0,
+    'firestations': 0,
+    'cranes': 0,
+  };
+
+  for (var emergency in emergencies) {
+    if (emergency.createdAt.year == currentYear) {
+      final type = emergency.type.toLowerCase();
+      if (totalCounts.containsKey(type)) {
+        totalCounts[type] = totalCounts[type]! + 1;
+      }
+    }
+  }
+
+  return totalCounts;
+}
+
+Map<int, Map<String, int>> getMonthlyEmergencyCounts(List<EmergencyModel> emergencies) {
+  final Map<int, Map<String, int>> monthlyCounts = {};
+
+  for (var emergency in emergencies) {
+    final month = emergency.createdAt.month;
+
+    monthlyCounts.putIfAbsent(month, () => {
+      'hospitals': 0,
+      'firestations': 0,
+      'cranes': 0,
+    });
+
+    final type = emergency.type.toLowerCase();
+
+    if (monthlyCounts[month]!.containsKey(type)) {
+      monthlyCounts[month]![type] = monthlyCounts[month]![type]! + 1;
+    }
+  }
+
+  return monthlyCounts;
+}
+
+
 
   // Future<void> getAnalysis(String token) async {
   //   emit(AnalysisLoading());

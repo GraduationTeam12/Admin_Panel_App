@@ -8,6 +8,7 @@ class EmergencyModel {
   final int number;
   final double longitude;
   final double latitude;
+  final DateTime createdAt;
   EmergencyModel({
     required this.type,
     required this.name,
@@ -17,6 +18,7 @@ class EmergencyModel {
     required this.number,
     required this.latitude,
     required this.longitude,
+    required this.createdAt
   });
 
 
@@ -30,6 +32,7 @@ class EmergencyModel {
       number: json['number'],
       latitude: json['latitude'],
       longitude: json['longitude'],
+      createdAt: DateTime.parse(json['createdAt']),
     );
   }
 }

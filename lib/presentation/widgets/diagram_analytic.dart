@@ -128,7 +128,7 @@ class DiagramAnalytic extends StatelessWidget {
               PartDiagramYearChart(
                   title: "",
                   percent: 0.92,
-                  myColor: Color.fromRGBO(18, 183, 106, 1)),
+                  myColor:  Color(0xFF00BFFF)),
             ],
           ),
           const SizedBox(
@@ -145,7 +145,7 @@ class DiagramAnalytic extends StatelessWidget {
                     height: 20,
                     width: 20,
                     decoration: BoxDecoration(
-                        color: const Color.fromRGBO(18, 183, 106, 1),
+                        color: const Color(0xFF00BFFF),
                         borderRadius: BorderRadius.circular(5)),
                   ),
                   const SizedBox(

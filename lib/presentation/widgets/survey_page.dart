@@ -23,7 +23,7 @@ class SurveyPage extends StatelessWidget {
               backgroundColor: Colors.white,
               shadowColor: Colors.white,
               surfaceTintColor: Colors.white,
-              title: const HeaderDesktop(title: ''),
+              title: const HeaderDesktop(title: ''), 
               leading: IconButton(
                   onPressed: () {
                     scaffoldKey.currentState!.openDrawer();
@@ -157,7 +157,23 @@ class SurveyPage extends StatelessWidget {
                     })),
           Expanded(
             flex: 4,
-            child: Container(
+            child: ScrollConfiguration(
+                behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+                child: CustomScrollView(slivers: [
+                  SliverToBoxAdapter(
+                    child: Column(
+                      children: [
+                        const HeaderDesktop(
+                          title:
+                              'Survey'
+                              // _pagesTitle[activeIndex],
+                        ),
+                        Container(
+                          height: MediaQuery.sizeOf(context).height -
+                            60,
+                          width: MediaQuery.of(context).size.width,
+                          color: const Color.fromRGBO(217, 217, 217, 0.7),
+                          child: Container(
               padding: MediaQuery.sizeOf(context).width < 800
                   ? const EdgeInsets.symmetric(horizontal: 20)
                   : const EdgeInsets.symmetric(horizontal: 150),
@@ -252,7 +268,14 @@ class SurveyPage extends StatelessWidget {
                 ),
               ]),
             ),
-          ),
+                        
+                        )
+                      ],
+                    ),
+                  ),
+                ]),
+              ))
+      
         ],
       ),
     );

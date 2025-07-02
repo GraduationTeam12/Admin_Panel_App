@@ -126,7 +126,7 @@ final percent = totalCount == 0 ? 0 : dailyCount / totalCount;
     PartDiagramYearChart(
       title: "Daily",
       percent: percent.toDouble(),
-      myColor: const Color.fromRGBO(61, 100, 152, 1),
+      myColor: const Color(0xFF00BFFF),
     ),
   ],
 ),

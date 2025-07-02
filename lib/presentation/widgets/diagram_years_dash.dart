@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class DiagramYearsDash extends StatefulWidget {
-  const DiagramYearsDash({super.key, required this.analysisModel});
+  const DiagramYearsDash({super.key, required this.analysisModel,required this.totalEmergencyCounts});
 
   final AnalysisModel? analysisModel;
+  final Map<String, int>? totalEmergencyCounts;
   @override
   State<DiagramYearsDash> createState() => _DiagramYearsDashState();
 }
@@ -14,6 +15,10 @@ class DiagramYearsDash extends StatefulWidget {
 class _DiagramYearsDashState extends State<DiagramYearsDash> {
   @override
   Widget build(BuildContext context) {
+    final int total = (widget.totalEmergencyCounts?['cranes'] ?? 0) +
+                  (widget.totalEmergencyCounts?['hospitals'] ?? 0) +
+                  (widget.totalEmergencyCounts?['firestations'] ?? 0);
+
     return Container(
       height: 330,
       margin: const EdgeInsets.only(bottom: 10, left: 10),
@@ -118,29 +123,29 @@ class _DiagramYearsDashState extends State<DiagramYearsDash> {
           ),
 
           widget.analysisModel == null ? const Center(child: CircularProgressIndicator(),) :
-          Row(
-            children: [
-              Expanded(
-                  child: PartDiagramYearChart(
-                title: "Cranes",
-                percent: widget.analysisModel!.emergencies.cranes / 100,
-                myColor: const Color.fromRGBO(61, 100, 152, 1),
-              )),
-              Expanded(
-                  child: PartDiagramYearChart(
-                title: "Hospital",
-                percent: widget.analysisModel!.emergencies.hospitals / 100,
-                myColor: const Color.fromRGBO(18, 183, 106, 1),
-              )),
-                Expanded(
-                  child: PartDiagramYearChart(
-                title: "Fire station",
-                percent: widget.analysisModel!.emergencies.fireStations / 100,
-                myColor: const Color.fromRGBO(255, 168, 0, 1),
-              )),
-            ],
-          )
-        ],
+        Row(
+  children: [
+    Expanded(
+      child: PartDiagramYearChart(
+        title: "Cranes",
+        percent:total == 0?0: (widget.totalEmergencyCounts?['cranes'] ?? 0) / total,
+        myColor: const Color.fromRGBO(61, 100, 152, 1),
+      )),
+    Expanded(
+      child: PartDiagramYearChart(
+        title: "Hospital",
+        percent:total == 0?0: (widget.totalEmergencyCounts?['hospitals'] ?? 0) / total,
+        myColor: const Color.fromRGBO(18, 183, 106, 1),
+      )),
+    Expanded(
+      child: PartDiagramYearChart(
+        title: "Fire station",
+        percent: total == 0?0:(widget.totalEmergencyCounts?['firestations'] ?? 0) / total,
+        myColor: const Color.fromRGBO(255, 168, 0, 1),
+      )),
+  ],
+)
+],
       ),
     );
   }

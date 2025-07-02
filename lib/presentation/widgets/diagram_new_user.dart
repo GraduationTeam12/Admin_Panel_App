@@ -13,6 +13,23 @@ class DiagramNewUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final today = "${DateTime.now().year}-${DateTime.now().month.toString().padLeft(2, '0')}-${DateTime.now().day.toString().padLeft(2, '0')}";
+
+final dailyCount = dailyUsers
+    ?.firstWhere(
+      (u) => u.date == today,
+      orElse: () => DailyUserModel(date: "", count: 0),
+    )
+    .count
+    .toDouble() ?? 0;
+
+final totalCount = dailyUsers?.fold<double>(
+      0,
+      (previous, element) => previous + element.count,
+    ) ?? 1; // علشان نتجنب القسمة على صفر
+
+final percent = totalCount == 0 ? 0 : dailyCount / totalCount;
+
     return Container(
       height: 330,
       margin: const EdgeInsets.only(bottom: 10, left: 10),
@@ -108,15 +125,7 @@ class DiagramNewUser extends StatelessWidget {
   children: [
     PartDiagramYearChart(
       title: "Daily",
-      percent: (dailyUsers
-                  ?.firstWhere(
-                    (u) => u.date ==
-                        "${DateTime.now().year}-${DateTime.now().month.toString().padLeft(2, '0')}-${DateTime.now().day.toString().padLeft(2, '0')}",
-                    orElse: () => DailyUserModel(date: "", count: 0),
-                  )
-                  .count
-                  .toDouble()) ??
-              0,
+      percent: percent.toDouble(),
       myColor: const Color.fromRGBO(61, 100, 152, 1),
     ),
   ],

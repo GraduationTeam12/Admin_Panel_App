@@ -1,5 +1,7 @@
 import 'package:admin_panel_app/core/api/end_points.dart';
 import 'package:admin_panel_app/core/cache/cache_helper.dart';
+import 'package:admin_panel_app/core/data/model/all_emergencies_model.dart';
+import 'package:admin_panel_app/core/data/model/all_owners_model.dart';
 import 'package:admin_panel_app/core/data/repo/repo_implementation.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_state.dart';
 import 'package:dio/dio.dart';
@@ -18,6 +20,15 @@ class AddOwnerAndHospitalCubit extends Cubit<AddOwnerAndHospitalState> {
   GlobalKey<FormState> getUserInfoKey2 = GlobalKey();
   final token = CacheHelper().getData(key: ApiKeys.token);
 
+  // لكل نوع بيانات - النسخة الأصلية
+List<Users> allOwners = [];
+List<AllEmergenciesModel> allEmergencies = [];
+
+// النُسخ المفلترة اللي هتعرض في الواجهة
+List<Users> filteredOwners = [];
+List<AllEmergenciesModel> filteredEmergencies = [];
+
+
   void sendCode() async {
     emit(SendCodeLoading());
 
@@ -35,6 +46,26 @@ class AddOwnerAndHospitalCubit extends Cubit<AddOwnerAndHospitalState> {
     res.fold(
         (l) => emit(VerifyCodeError(l)), (r) => emit(VerifyCodeSuccess(r)));
   }
+  void searchOwners(String query) {
+  filteredOwners = allOwners
+      .where((owner) =>
+          owner.username!.toLowerCase().contains(query.toLowerCase()) ||
+          owner.email!.toLowerCase().contains(query.toLowerCase()) ||
+          owner.phone!.toLowerCase().contains(query.toLowerCase()))
+      .toList();
+
+  emit(GetAllOwnerSuccess(filteredOwners));
+}
+void searchEmergencies(String query) {
+  filteredEmergencies = allEmergencies
+      .where((emergency) =>
+          emergency.name.toLowerCase().contains(query.toLowerCase()) ||
+          emergency.type.toLowerCase().contains(query.toLowerCase()))
+      .toList();
+
+  emit(GetAllEmergenciesSuccess(filteredEmergencies));
+}
+
 
   // TextEditingController userEmailController = TextEditingController();
   TextEditingController userNameController = TextEditingController();
@@ -63,13 +94,20 @@ class AddOwnerAndHospitalCubit extends Cubit<AddOwnerAndHospitalState> {
   }
 
   void getAllOwners() async {
-    emit(GetAllOwnerLoading());
+  emit(GetAllOwnerLoading());
 
-    final res = await authRepository.getAllOwners(token);
+  final res = await authRepository.getAllOwners(token);
 
-    res.fold(
-        (l) => emit(GetAllOwnerError(l)), (r) => emit(GetAllOwnerSuccess(r)));
-  }
+  res.fold(
+    (l) => emit(GetAllOwnerError(l)),
+    (r) {
+      allOwners = r; // خزِّن كل المالكين
+      filteredOwners = r; // في البداية الكل ظاهر
+      emit(GetAllOwnerSuccess(filteredOwners));
+    },
+  );
+}
+
 
   void getUser(id) async {
     emit(GetUserLoading());
@@ -152,15 +190,22 @@ void verifyUpdatedEmail(email, code, id) async {
       emit(AddHospitalError(l));
     }, (r) => emit(AddHospitalSuccess(r)));
   }
+  
+void getAllEmergencies() async {
+  emit(GetAllEmergenciesLoading());
 
-  void getAllEmergencies() async {
-    emit(GetAllEmergenciesLoading());
+  final res = await authRepository.getAllEmergencies(token);
 
-    final res = await authRepository.getAllEmergencies(token);
+  res.fold(
+    (l) => emit(GetAllEmergenciesError(l)),
+    (r) {
+      allEmergencies = r;
+      filteredEmergencies = r;
+      emit(GetAllEmergenciesSuccess(filteredEmergencies));
+    },
+  );
+}
 
-    res.fold((l) => emit(GetAllEmergenciesError(l)),
-        (r) => emit(GetAllEmergenciesSuccess(r)));
-  }
 
   void getEmergency(id) async {
     emit(GetEmergencyLoading());

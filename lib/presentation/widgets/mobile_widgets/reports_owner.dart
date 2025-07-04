@@ -21,10 +21,8 @@ class _OwnerReportsMobileState extends State<OwnerReportsMobile> {
     ReportModel(
       name: "Name",
       email: 'E-mail',
-      id: 'Id',
-      location: 'Location',
-      phone: 'Phone',
-      board: 'Board',
+      location: 'Location', id: '',
+    
     )
   ];
 

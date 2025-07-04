@@ -21,10 +21,9 @@ class _HospitalReportMobileState extends State<HospitalReportMobile> {
     ReportModel(
       name: "Name",
       email: 'E-mail',
-      id: 'Id',
-      address: 'Address',
-      longitude: 'Longitude',
-      latitude: 'Latitude',
+    
+      address: 'Address', id: '',
+      
     )
   ];
 

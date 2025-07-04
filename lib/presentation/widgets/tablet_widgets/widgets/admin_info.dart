@@ -47,7 +47,7 @@ class AdminInfo extends StatelessWidget {
             ]),
             child: ClipOval(
                 child: Image.asset(
-              "assets/images/auth_images/person_image.jpeg",
+              "assets/images/auth_images/person_image.png",
               fit: BoxFit.cover,
             )),
           ),

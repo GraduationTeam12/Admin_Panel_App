@@ -1,5 +1,3 @@
- 
-
 import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
 import 'package:admin_panel_app/core/data/model/all_owners_model.dart';
@@ -21,7 +19,6 @@ class ReportOwnerInfo extends StatefulWidget {
 }
 
 class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
-  List<Users> users = [];
   @override
   void initState() {
     BlocProvider.of<AddOwnerAndHospitalCubit>(context).getAllOwners();
@@ -69,8 +66,371 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
           }
 
           if (state is GetAllOwnerSuccess) {
-            // Navigator.pop(context);
-            users = state.users;
+            final users = state.users;
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              child: Container(
+                decoration: ShapeDecoration(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  color: Colors.white,
+                ),
+                child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: users.length,
+                    itemBuilder: (context, index) {
+                      final user = users[index];
+                      return Column(
+                        children: [
+                          SingleChildScrollView(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                SizedBox(
+                                  width: 150,
+                                  child: Container(
+                                    width: 150, // غيري القيمة حسب العرض المطلوب
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 20,horizontal: 20),
+                                    child: Text(
+                                      user.username ?? "",
+                                      style: AppStyle.styleRegular16(context)
+                                          .copyWith(color: Colors.black),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+
+                                Expanded(
+                                  child: SizedBox(
+                                    width: 200,
+                                    child: Container(
+                                      width:
+                                          100, // غيري القيمة حسب العرض المطلوب
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 8),
+                                      child: Text(
+                                        user.email ?? "",
+                                        style: AppStyle.styleRegular16(context)
+                                            .copyWith(color: Colors.black),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                  const SizedBox(
+                                  width: 10,
+                                ),
+                                Expanded(
+                                  child: SizedBox(
+                                    width: 250,
+                                    child: Container(
+                                      width:
+                                          100, // غيري القيمة حسب العرض المطلوب
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 8),
+                                      child: Text(
+                                        user.address ?? "",
+                                        style: AppStyle.styleRegular16(context)
+                                            .copyWith(color: Colors.black),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                  const SizedBox(
+                                  width: 5,
+                                ),
+                                Expanded(
+                                  child: SizedBox(
+                                    width: 100,
+                                    child: Container(
+                                      width:
+                                          100, // غيري القيمة حسب العرض المطلوب
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 8),
+                                      child: Text(
+                                        user.boardId ?? "",
+                                        style: AppStyle.styleRegular16(context)
+                                            .copyWith(color: Colors.black),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                // const SizedBox(
+                                //   width: 30,
+                                // ),
+                                  const SizedBox(
+                                  width: 5,
+                                ),
+                                Expanded(
+                                  child: SizedBox(
+                                    width: 150,
+                                    child: Container(
+                                      width:
+                                          100, // غيري القيمة حسب العرض المطلوب
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 8),
+                                      child: Text(
+                                        user.phone ?? "",
+                                        style: AppStyle.styleRegular16(context)
+                                            .copyWith(color: Colors.black),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                // const SizedBox(
+                                //   width: 30,
+                                // ),
+                                  const SizedBox(
+                                  width: 5,
+                                ),
+                                Expanded(
+                                  child: SizedBox(
+                                    width: 200,
+                                    child: Container(
+                                      width:
+                                          100, // غيري القيمة حسب العرض المطلوب
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 8),
+                                      child: Text(
+                                        user.nationalId ?? "",
+                                        style: AppStyle.styleRegular16(context)
+                                            .copyWith(color: Colors.black),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                // const SizedBox(
+                                //   width: 30,
+                                // ),
+                                  const SizedBox(
+                                  width: 5,
+                                ),
+                                Row(
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        showReportOwnerFormDialog(
+                                            context,
+                                            user.username ?? "",
+                                            user.email ?? "",
+                                            user.address ?? "",
+                                            user.phone ?? "",
+                                            user.nationalId.toString(),
+                                            user.boardId ?? "");
+                                      },
+                                      child: Container(
+                                        width: 30,
+                                        height: 30,
+                                        decoration: ShapeDecoration(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                side: const BorderSide(
+                                                    color:
+                                                        MyColors.premiumColor,
+                                                    width: 0.3)),
+                                            color: Colors.white),
+                                        child: const Center(
+                                            child: Icon(Icons.visibility,
+                                                color: MyColors.premiumColor)),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        context.goNamed(
+                                          AppRouter.updateUserInfo,
+                                          pathParameters: {'id': user.id},
+                                        );
+                                      },
+                                      child: Container(
+                                        width: 30,
+                                        height: 30,
+                                        decoration: ShapeDecoration(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                side: const BorderSide(
+                                                    color: Colors.amber,
+                                                    width: 0.3)),
+                                            color: Colors.white),
+                                        child: const Center(
+                                            child: Icon(Icons.edit,
+                                                color: Colors.amber)),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return BlocProvider.value(
+                                                value: BlocProvider.of<
+                                                        AddOwnerAndHospitalCubit>(
+                                                    context),
+                                                child: AlertDialog(
+                                                  scrollable: true,
+                                                  backgroundColor: Colors.white,
+                                                  title: Column(
+                                                    children: [
+                                                      Text(
+                                                        "Are you sure , You want to delete this account?",
+                                                        style: AppStyle
+                                                                .styleBold20(
+                                                                    context)
+                                                            .copyWith(
+                                                                fontSize: 20,
+                                                                color: MyColors
+                                                                    .premiumColor),
+                                                      ),
+                                                      const SizedBox(
+                                                        height: 16,
+                                                      ),
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          InkWell(
+                                                            onTap: () {
+                                                              Navigator.pop(
+                                                                  context);
+                                                            },
+                                                            child: Container(
+                                                              width: 50,
+                                                              height: 30,
+                                                              decoration:
+                                                                  ShapeDecoration(
+                                                                shape:
+                                                                    RoundedRectangleBorder(
+                                                                  side: const BorderSide(
+                                                                      color: Colors
+                                                                          .amber,
+                                                                      width:
+                                                                          0.3),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8),
+                                                                ),
+                                                                color: Colors
+                                                                    .white,
+                                                              ),
+                                                              child: Center(
+                                                                child: Text(
+                                                                  "No",
+                                                                  style: AppStyle
+                                                                          .styleBold20(
+                                                                              context)
+                                                                      .copyWith(
+                                                                          fontSize:
+                                                                              18,
+                                                                          color:
+                                                                              Colors.black),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          const SizedBox(
+                                                            width: 10,
+                                                          ),
+                                                          InkWell(
+                                                            onTap: () {
+                                                              Navigator.pop(
+                                                                  context);
+                                                              BlocProvider.of<
+                                                                          AddOwnerAndHospitalCubit>(
+                                                                      context)
+                                                                  .deleteUser(
+                                                                      user.id);
+                                                            },
+                                                            child: Container(
+                                                              width: 50,
+                                                              height: 30,
+                                                              decoration:
+                                                                  ShapeDecoration(
+                                                                shape:
+                                                                    RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8),
+                                                                ),
+                                                                color: MyColors
+                                                                    .premiumColor,
+                                                              ),
+                                                              child: Center(
+                                                                child: Text(
+                                                                  "Yes",
+                                                                  style: AppStyle
+                                                                          .styleBold20(
+                                                                              context)
+                                                                      .copyWith(
+                                                                          fontSize:
+                                                                              18,
+                                                                          color:
+                                                                              Colors.white),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
+                                              );
+                                            });
+                                      },
+                                      child: Container(
+                                        width: 30,
+                                        height: 30,
+                                        decoration: ShapeDecoration(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                side: const BorderSide(
+                                                    color: Colors.red,
+                                                    width: 0.3)),
+                                            color: Colors.white),
+                                        child: const Center(
+                                            child: Icon(Icons.delete,
+                                                color: Colors.red)),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    )
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 10.0),
+                            child: Divider(
+                              height: 0,
+                            ),
+                          )
+                        ],
+                      );
+                    }),
+              ),
+            );
           }
 
           if (state is GetAllOwnerError) {
@@ -93,8 +453,10 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
               ),
               child: ListView.builder(
                   shrinkWrap: true,
-                  itemCount: users.length,
+                  itemCount:
+                      (state is GetAllOwnerSuccess) ? state.users.length : 0,
                   itemBuilder: (context, index) {
+                    final user = (state as GetAllOwnerSuccess).users[index];
                     return Column(
                       children: [
                         SingleChildScrollView(
@@ -104,7 +466,7 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
                               SizedBox(
                                 width: 100,
                                 child: TextFormField(
-                                  initialValue: users[index].username??"",
+                                  initialValue: user.username ?? "",
                                   style: AppStyle.styleRegular16(context)
                                       .copyWith(color: Colors.black),
                                   keyboardType: TextInputType.text,
@@ -132,7 +494,7 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
                                 child: SizedBox(
                                   width: 200,
                                   child: TextFormField(
-                                    initialValue: users[index].email??"",
+                                    initialValue: user.email ?? "",
                                     style: AppStyle.styleRegular16(context)
                                         .copyWith(color: Colors.black),
                                     keyboardType: TextInputType.text,
@@ -162,7 +524,7 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
                                 child: SizedBox(
                                   width: 250,
                                   child: TextFormField(
-                                    initialValue: users[index].address??"",
+                                    initialValue: user.address ?? "",
                                     style: AppStyle.styleRegular16(context)
                                         .copyWith(color: Colors.black),
                                     keyboardType: TextInputType.text,
@@ -192,7 +554,7 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
                                 child: SizedBox(
                                   width: 100,
                                   child: TextFormField(
-                                    initialValue: users[index].boardId??"",
+                                    initialValue: user.boardId ?? "",
                                     style: AppStyle.styleRegular16(context)
                                         .copyWith(color: Colors.black),
                                     keyboardType: TextInputType.text,
@@ -222,7 +584,7 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
                                 child: SizedBox(
                                   width: 150,
                                   child: TextFormField(
-                                    initialValue: users[index].phone??"",
+                                    initialValue: user.phone ?? "",
                                     style: AppStyle.styleRegular16(context)
                                         .copyWith(color: Colors.black),
                                     keyboardType: TextInputType.text,
@@ -252,7 +614,7 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
                                 child: SizedBox(
                                   width: 200,
                                   child: TextFormField(
-                                    initialValue: users[index].nationalId??"",
+                                    initialValue: user.nationalId ?? "",
                                     style: AppStyle.styleRegular16(context)
                                         .copyWith(color: Colors.black),
                                     keyboardType: TextInputType.text,
@@ -283,12 +645,12 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
                                     onTap: () {
                                       showReportOwnerFormDialog(
                                           context,
-                                          users[index].username??"",
-                                          users[index].email??"",
-                                          users[index].address??"",
-                                          users[index].phone??"",
-                                          users[index].nationalId.toString(),
-                                          users[index].boardId??"");
+                                          user.username ?? "",
+                                          user.email ?? "",
+                                          user.address ?? "",
+                                          user.phone ?? "",
+                                          user.nationalId.toString(),
+                                          user.boardId ?? "");
                                     },
                                     child: Container(
                                       width: 30,
@@ -313,10 +675,8 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
                                     onTap: () {
                                       context.goNamed(
                                         AppRouter.updateUserInfo,
-                                        pathParameters: {'id': users[index].id},
+                                        pathParameters: {'id': user.id},
                                       );
-
-                                       
                                     },
                                     child: Container(
                                       width: 30,
@@ -419,8 +779,7 @@ class _ReportOwnerInfoState extends State<ReportOwnerInfo> {
                                                                         AddOwnerAndHospitalCubit>(
                                                                     context)
                                                                 .deleteUser(
-                                                                    users[index]
-                                                                        .id);
+                                                                    user.id);
                                                           },
                                                           child: Container(
                                                             width: 50,

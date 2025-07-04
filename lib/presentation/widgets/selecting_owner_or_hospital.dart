@@ -32,22 +32,22 @@ class _SelectingOwnerOrHospitalState extends State<SelectingOwnerOrHospital> {
   //   });
   // }
   String selectedType = "Owners";
-  void downloadReportWeb(List<List<dynamic>> data,String type) {
-      String csv = const ListToCsvConverter().convert(data);
+  void downloadReportWeb(List<List<dynamic>> data, String type) {
+    String csv = const ListToCsvConverter().convert(data);
 
-      final bom = '\uFEFF'; 
-      final fullCsv = bom + csv;
+    final bom = '\uFEFF';
+    final fullCsv = bom + csv;
 
-      final bytes = utf8.encode(fullCsv);
+    final bytes = utf8.encode(fullCsv);
 
-      final blob = html.Blob([bytes]); 
+    final blob = html.Blob([bytes]);
 
-      final url = html.Url.createObjectUrlFromBlob(blob);
-      final anchor = html.AnchorElement(href: url)
-        ..setAttribute("download", "report_$type.csv")
-        ..click();
+    final url = html.Url.createObjectUrlFromBlob(blob);
+    final anchor = html.AnchorElement(href: url)
+      ..setAttribute("download", "report_$type.csv")
+      ..click();
 
-      html.Url.revokeObjectUrl(url);
+    html.Url.revokeObjectUrl(url);
   }
 
   @override
@@ -74,6 +74,17 @@ class _SelectingOwnerOrHospitalState extends State<SelectingOwnerOrHospital> {
                     borderRadius: BorderRadius.circular(15),
                     color: Colors.white,
                     child: TextFormField(
+                      onChanged: (value) {
+                        if (widget.selectedIndex == 0) {
+                          context
+                              .read<AddOwnerAndHospitalCubit>()
+                              .searchOwners(value);
+                        } else if (widget.selectedIndex == 1) {
+                          context
+                              .read<AddOwnerAndHospitalCubit>()
+                              .searchEmergencies(value);
+                        }
+                      },
                       style: AppStyle.styleRegular16(context)
                           .copyWith(color: Colors.black),
                       keyboardType: TextInputType.text,
@@ -137,7 +148,7 @@ class _SelectingOwnerOrHospitalState extends State<SelectingOwnerOrHospital> {
                     ),
                     InkWell(
                         onTap: () {
-                          selectedType = "Hospitals";
+                          selectedType = "emergency";
                           // context.read<NavigationCubit>().navigateTo(11);
                           // Navigator.pushNamed(context, hospialReportsScreen);
                           // context.go(hospialReportsScreen);
@@ -146,7 +157,7 @@ class _SelectingOwnerOrHospitalState extends State<SelectingOwnerOrHospital> {
                               .pushReplacementNamed(AppRouter.hospitalReports);
                         },
                         child: Text(
-                          "Hospital",
+                          "Emergency",
                           style: AppStyle.styleBold25(context).copyWith(
                               fontFamily: 'Roboto',
                               color: widget.selectedIndex == 1
@@ -158,85 +169,106 @@ class _SelectingOwnerOrHospitalState extends State<SelectingOwnerOrHospital> {
                         )),
                     const Spacer(),
                     BlocBuilder<AddOwnerAndHospitalCubit,
-                      AddOwnerAndHospitalState>(
-                    builder: (context, state) {
-                      if (state is GetAllOwnerSuccess) {
-                        final usersList = state.users;
+                        AddOwnerAndHospitalState>(
+                      builder: (context, state) {
+                        if (state is GetAllOwnerSuccess) {
+                          final usersList = state.users;
 
-                        return InkWell(
-                          onTap: () {
-                            final data = [
-                              [
-                                "Username",
-                                "Email",
-                                "Phone",
-                                "Address",
-                                "National Id",
-                                "Board ID"
+                          return InkWell(
+                            onTap: () {
+                              final data = [
+                                [
+                                  "Username",
+                                  "Email",
+                                  "Phone",
+                                  "Address",
+                                  "National Id",
+                                  "Board ID"
+                                ],
+                                ...usersList.map((user) => [
+                                      user.username ?? "",
+                                      user.email ?? "",
+                                      "+2${user.phone}" ?? "",
+                                      user.address ?? "",
+                                      user.nationalId ?? "",
+                                      user.boardId ?? "",
+                                    ]),
+                              ];
+
+                              downloadReportWeb(data, "Owners");
+                            },
+                            child: Row(
+                              children: [
+                                const Icon(
+                                  Icons.download,
+                                  size: 16,
+                                  color: Color(0xFF5C5858),
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  "Download",
+                                  style: AppStyle.styleRegular16(context)
+                                      .copyWith(fontFamily: "Roboto"),
+                                )
                               ],
-                              ...usersList.map((user) => [
-                                    user.username ?? "",
-                                    user.email ?? "",
-                                    "+2${user.phone}" ?? "",
-                                    user.address?? "",
-                                    user.nationalId ?? "", 
-                                    user.boardId ?? "",
-                                  ]),
-                            ];
+                            ),
+                          );
+                        }
+                        if (state is GetAllEmergenciesSuccess) {
+                          final emergenciesList = state.emergencies;
 
-                            downloadReportWeb(data,"Owners");
-                          },
-                          child: Row(
-                            children: [
-                              const Icon(
-                                Icons.download,
-                                size: 16,
-                                color: Color(0xFF5C5858),
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                "Download",
-                                style: AppStyle.styleRegular16(context)
-                                    .copyWith(fontFamily: "Roboto"),
-                              )
-                            ],
-                          ),
-                        );
-                      }
-                      if (state is GetAllEmergenciesSuccess) {
-                        final emergenciesList = state.emergencies;
+                          return InkWell(
+                            onTap: () {
+                              final data = [
+                                [
+                                  "Name",
+                                  "Type",
+                                  "Email",
+                                  "Phone",
+                                  "Address",
+                                  "ID",
+                                  "longitude",
+                                  "latitude",
+                                  "number"
+                                ],
+                                ...emergenciesList.map((emergencies) => [
+                                      emergencies.name,
+                                      emergencies.type,
+                                      emergencies.email,
+                                      emergencies.phone,
+                                      emergencies.address,
+                                      emergencies.id,
+                                      emergencies.longitude,
+                                      emergencies.latitude,
+                                      emergencies.number
+                                    ]),
+                              ];
 
-                        return InkWell(
-                          onTap: () {
-                            final data = [
-                              [
-                                "Name",
-                                "Type",
-                                "Email",
-                                "Phone",
-                                "Address",
-                                "ID",
-                                "longitude",
-                                "latitude",
-                                "number"
+                              downloadReportWeb(data, "Emergency");
+                            },
+                            child: Row(
+                              children: [
+                                const Icon(
+                                  Icons.download,
+                                  size: 16,
+                                  color: Color(0xFF5C5858),
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  "Download",
+                                  style: AppStyle.styleRegular16(context)
+                                      .copyWith(fontFamily: "Roboto"),
+                                )
                               ],
-                              ...emergenciesList.map((emergencies) => [
-                                    emergencies.name ,
-                                    emergencies.type ,
-                                    emergencies.email ,
-                                    emergencies.phone,
-                                    emergencies.address,
-                                    emergencies.id , 
-                                    emergencies.longitude,
-                                    emergencies.latitude,
-                                    emergencies.number
-                                  ]),
-                            ];
-
-                            downloadReportWeb(data,"Hospital");
-                          },
+                            ),
+                          );
+                        }
+                        return InkWell(
+                          onTap: () {},
                           child: Row(
                             children: [
                               const Icon(
@@ -255,31 +287,8 @@ class _SelectingOwnerOrHospitalState extends State<SelectingOwnerOrHospital> {
                             ],
                           ),
                         );
-                      }
-                      return  InkWell(
-                          onTap: () {
-                          },
-                          child: Row(
-                            children: [
-                              const Icon(
-                                Icons.download,
-                                size: 16,
-                                color: Color(0xFF5C5858),
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                "Download",
-                                style: AppStyle.styleRegular16(context)
-                                    .copyWith(fontFamily: "Roboto"),
-                              )
-                            ],
-                          ),
-                        );
-                      
-                    },
-                  ),
+                      },
+                    ),
                     const SizedBox(
                       width: 15,
                     ),
@@ -359,7 +368,7 @@ class _SelectingOwnerOrHospitalState extends State<SelectingOwnerOrHospital> {
                     ),
                   ),
                   Container(
-                    width: 480,
+                    width: 400,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       boxShadow: [
@@ -375,6 +384,17 @@ class _SelectingOwnerOrHospitalState extends State<SelectingOwnerOrHospital> {
                       borderRadius: BorderRadius.circular(15),
                       color: Colors.white,
                       child: TextFormField(
+                        onChanged: (value) {
+                          if (widget.selectedIndex == 0) {
+                            context
+                                .read<AddOwnerAndHospitalCubit>()
+                                .searchOwners(value);
+                          } else if (widget.selectedIndex == 1) {
+                            context
+                                .read<AddOwnerAndHospitalCubit>()
+                                .searchEmergencies(value);
+                          }
+                        },
                         style: AppStyle.styleRegular16(context)
                             .copyWith(color: Colors.black),
                         keyboardType: TextInputType.text,
@@ -420,13 +440,13 @@ class _SelectingOwnerOrHospitalState extends State<SelectingOwnerOrHospital> {
                                     user.username ?? "",
                                     user.email ?? "",
                                     "+2${user.phone}" ?? "",
-                                    user.address?? "",
-                                    user.nationalId ?? "", 
+                                    user.address ?? "",
+                                    user.nationalId ?? "",
                                     user.boardId ?? "",
                                   ]),
                             ];
 
-                            downloadReportWeb(data,"Owners");
+                            downloadReportWeb(data, "Owners");
                           },
                           child: Row(
                             children: [
@@ -447,7 +467,7 @@ class _SelectingOwnerOrHospitalState extends State<SelectingOwnerOrHospital> {
                           ),
                         );
                       }
-                        if (state is GetAllEmergenciesSuccess) {
+                      if (state is GetAllEmergenciesSuccess) {
                         final emergenciesList = state.emergencies;
 
                         return InkWell(
@@ -465,19 +485,19 @@ class _SelectingOwnerOrHospitalState extends State<SelectingOwnerOrHospital> {
                                 "number"
                               ],
                               ...emergenciesList.map((emergencies) => [
-                                    emergencies.name ,
-                                    emergencies.type ,
-                                    emergencies.email ,
+                                    emergencies.name,
+                                    emergencies.type,
+                                    emergencies.email,
                                     emergencies.phone,
                                     emergencies.address,
-                                    emergencies.id , 
+                                    emergencies.id,
                                     emergencies.longitude,
                                     emergencies.latitude,
                                     emergencies.number
                                   ]),
                             ];
 
-                            downloadReportWeb(data,"Hospitals");
+                            downloadReportWeb(data, "emergency");
                           },
                           child: Row(
                             children: [
@@ -498,28 +518,26 @@ class _SelectingOwnerOrHospitalState extends State<SelectingOwnerOrHospital> {
                           ),
                         );
                       }
-                      return  InkWell(
-                          onTap: () {
-                          },
-                          child: Row(
-                            children: [
-                              const Icon(
-                                Icons.download,
-                                size: 16,
-                                color: Color(0xFF5C5858),
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                "Download",
-                                style: AppStyle.styleRegular16(context)
-                                    .copyWith(fontFamily: "Roboto"),
-                              )
-                            ],
-                          ),
-                        );
-                      
+                      return InkWell(
+                        onTap: () {},
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.download,
+                              size: 16,
+                              color: Color(0xFF5C5858),
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              "Download",
+                              style: AppStyle.styleRegular16(context)
+                                  .copyWith(fontFamily: "Roboto"),
+                            )
+                          ],
+                        ),
+                      );
                     },
                   ),
                   const SizedBox(

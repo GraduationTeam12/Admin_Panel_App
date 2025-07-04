@@ -47,18 +47,10 @@ class ReportHospitalBar extends StatelessWidget {
                       ),
 
                     const SizedBox(
-                        width: 150
+                        width: 100
                       ),
 
-                      Text(
-                        reportModel.id,
-                        style: AppStyle.styleBold17(context)
-                            .copyWith(color: const Color(0xFF5C5858)),
-                      ),
-
-                        const SizedBox(
-                        width: 60
-                      ),
+                    
 
                       Text(
                         reportModel.address ?? '',
@@ -67,7 +59,7 @@ class ReportHospitalBar extends StatelessWidget {
                       ),
 
                     const SizedBox(
-                        width: 80
+                        width: 100
                       ),
 
                       Text(
@@ -101,7 +93,7 @@ class ReportHospitalBar extends StatelessWidget {
                   ),
 
                   SizedBox(
-                    width: MediaQuery.sizeOf(context).width * 0.0363,
+                    width: MediaQuery.sizeOf(context).width * 0.065,
                   ),
 
                   Text(
@@ -111,18 +103,10 @@ class ReportHospitalBar extends StatelessWidget {
                   ),
 
                   SizedBox(
-                    width: MediaQuery.sizeOf(context).width * 0.106,
+                    width: MediaQuery.sizeOf(context).width * 0.15,
                   ),
 
-                  Text(
-                    reportModel.id,
-                    style: AppStyle.styleBold17(context)
-                        .copyWith(color: const Color(0xFF5C5858)),
-                  ),
-
-                  SizedBox(
-                    width: MediaQuery.sizeOf(context).width * 0.11,
-                  ),
+              
 
                   Text(
                     reportModel.address ?? '',
@@ -131,7 +115,7 @@ class ReportHospitalBar extends StatelessWidget {
                   ),
 
                   SizedBox(
-                    width: MediaQuery.sizeOf(context).width * 0.08,
+                    width: MediaQuery.sizeOf(context).width * 0.1,
                   ),
 
                   Text(

@@ -318,42 +318,7 @@ class _ReportsHospitalInfoState extends State<ReportsHospitalInfo> {
                                   const SizedBox(
                                     width: 5,
                                   ),
-                                  InkWell(
-                                    onTap: () {
-                                      // Navigator.push(
-                                      //     context,
-                                      //     MaterialPageRoute(
-                                      //         builder: (context) =>
-                                      //             ReportHospitalEditingInformation(
-                                      //               id: emergencies[index].id,
-                                      //             )));
-
-                                      context.goNamed(
-                                        AppRouter.updateHospitalInfo,
-                                        pathParameters: {'id': emergencies[index].id},
-                                      );
-
-
-                                    },
-                                    child: Container(
-                                      width: 30,
-                                      height: 30,
-                                      decoration: ShapeDecoration(
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              side: const BorderSide(
-                                                  color: Colors.amber,
-                                                  width: 0.3)),
-                                          color: Colors.white),
-                                      child: const Center(
-                                          child: Icon(Icons.edit,
-                                              color: Colors.amber)),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
+                                
                                   InkWell(
                                     onTap: () {
                                       showDialog(

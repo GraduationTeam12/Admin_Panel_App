@@ -41,6 +41,8 @@ class EndPoint {
 class ApiKeys {
   static const String id = 'id';
   static const String email = 'email';
+  static const String emailAdmin = 'email';
+  static const String name = 'name';
   static const String password = 'password';
   static const String confirmPassword = 'passwordConfirm';
   static const String username = 'username';

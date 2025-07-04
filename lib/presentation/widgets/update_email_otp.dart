@@ -216,7 +216,7 @@ class _OtpUpdatedEmailState extends State<OtpUpdatedEmail> {
                                     height: 25,
                                   ),
                                   SizedBox(
-                                    width: 380,
+                                    width: 380, 
                                     height: 47,
                                     child: ElevatedButton(
                                       onPressed: () {

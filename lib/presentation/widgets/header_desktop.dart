@@ -84,7 +84,7 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
               ]),
               child: ClipOval(
                   child: Image.asset(
-                "assets/images/auth_images/person_image.jpeg",
+                "assets/images/auth_images/person_image.png",
                 fit: BoxFit.cover,
               )),
             ),

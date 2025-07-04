@@ -2,6 +2,7 @@ import 'package:admin_panel_app/core/api/end_points.dart';
 import 'package:admin_panel_app/core/cache/cache_helper.dart';
 import 'package:admin_panel_app/core/data/repo/repo_implementation.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_state.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -90,13 +91,27 @@ class AddOwnerAndHospitalCubit extends Cubit<AddOwnerAndHospitalState> {
             : emit(UpdateUserSuccess(r.msg)));
   }
 
-  void verifyUpdatedEmail(email, code, id) async {
-    emit(VerifyUpdatedEmailUserLoading());
+void verifyUpdatedEmail(email, code, id) async {
+  emit(VerifyUpdatedEmailUserLoading());
 
-    final res = await authRepository.verifyUpdatedEmail(email, code, id, token);
-    res.fold((l) => emit(VerifyUpdatedEmailUserError(l)),
-        (r) => emit(VerifyUpdatedEmailUserSuccess(r)));
+  try {
+    // Attempt to verify the OTP code for the email update
+    final message = await authRepository.verifyUpdatedEmail(email, code, id, token);
+
+    // If successful, emit success state with the returned message
+    emit(VerifyUpdatedEmailUserSuccess(message as String));
+  } on DioException catch (e) {
+    // If a server-related error occurs (e.g. invalid code, server error)
+    final msg = e.response?.data["msg"] ?? "Failed to verify the code";
+    emit(VerifyUpdatedEmailUserError(msg));
+  } catch (_) {
+    // Catch any unexpected errors (e.g. parsing, network, unknown)
+    emit(VerifyUpdatedEmailUserError("An unexpected error occurred"));
   }
+}
+
+
+
 
   void deleteUser(id) async {
     emit(DeleteUserLoading());

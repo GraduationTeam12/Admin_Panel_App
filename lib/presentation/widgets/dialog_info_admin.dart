@@ -7,8 +7,8 @@ void showInfoAdminDialog(BuildContext context) {
     context: context,
     builder: (BuildContext context) {
       return Padding(
-        padding:  EdgeInsets.only(
-          top: MediaQuery.of(context).size.width<1201?40:55,
+        padding: EdgeInsets.only(
+          top: MediaQuery.of(context).size.width < 1201 ? 40 : 55,
         ),
         child: AlertDialog(
             scrollable: true,
@@ -20,8 +20,8 @@ void showInfoAdminDialog(BuildContext context) {
                 Container(
                   // height: MediaQuery.of(context).size.height * .08,
                   // width: MediaQuery.of(context).size.height * .08,
-                  width:MediaQuery.of(context).size.width<1201?50:65,
-                  height: MediaQuery.of(context).size.width<1201?50:65,
+                  width: MediaQuery.of(context).size.width < 1201 ? 50 : 65,
+                  height: MediaQuery.of(context).size.width < 1201 ? 50 : 65,
                   decoration:
                       const BoxDecoration(shape: BoxShape.circle, boxShadow: [
                     BoxShadow(
@@ -31,7 +31,7 @@ void showInfoAdminDialog(BuildContext context) {
                   ]),
                   child: ClipOval(
                       child: Image.asset(
-                    "assets/images/auth_images/person_image.jpeg",
+                    "assets/images/auth_images/person_image.png",
                     fit: BoxFit.cover,
                   )),
                 ),
@@ -41,16 +41,35 @@ void showInfoAdminDialog(BuildContext context) {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                     Text(
-                      "Ahmed Ayman",
-                      style:  TextStyle(
-                          color:const Color.fromRGBO(0, 0, 0, 1),
-                          fontSize: MediaQuery.of(context).size.width<1201?22: 25,
-                          fontWeight: FontWeight.w400),
-                    ),
                     FutureBuilder<String>(
                       future: Future.value(
-                          CacheHelper().getData(key: ApiKeys.id)),
+                          CacheHelper().getData(key: ApiKeys.name)),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const SizedBox();
+                        } else if (snapshot.hasError) {
+                          return Text('Error: ${snapshot.error}');
+                        } else if (!snapshot.hasData ||
+                            snapshot.data!.isEmpty) {
+                          return const Text('No name found');
+                        } else {
+                          return Text(
+                            snapshot.data!,
+                            style: TextStyle(
+                              color: const Color.fromRGBO(0, 0, 0, 1),
+                              fontSize: MediaQuery.of(context).size.width < 1201
+                                  ? 22
+                                  : 25,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          );
+                        }
+                      },
+                    ),
+                    FutureBuilder<String>(
+                      future:
+                          Future.value(CacheHelper().getData(key: ApiKeys.emailAdmin)),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -66,7 +85,11 @@ void showInfoAdminDialog(BuildContext context) {
                             child: Text(
                               snapshot.data!,
                               style: TextStyle(
-                                  fontSize:MediaQuery.of(context).size.width<1201?18: 20, fontWeight: FontWeight.bold),
+                                  fontSize:
+                                      MediaQuery.of(context).size.width < 1201
+                                          ? 18
+                                          : 20,
+                                  fontWeight: FontWeight.bold),
                             ),
                           );
                         }

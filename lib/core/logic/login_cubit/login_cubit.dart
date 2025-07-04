@@ -19,22 +19,24 @@ class LoginCubit extends Cubit<LoginState> {
 
   LoginModel? loginModel;
 
-  void login() async {
-    emit(LoginLoadingState());
+void login() async {
+  emit(LoginLoadingState());
 
-    final result = await authRepo.login(
-        email: signInEmail.text, password: signInpassword.text);
+  final result = await authRepo.login(
+      email: signInEmail.text, password: signInpassword.text);
 
-    result.fold((l) => emit(LoginErrorState(errMsg: l)),
-     (r) async {
-      Map<String, dynamic> decodedToken = JwtDecoder.decode(r.token);
-      await CacheHelper().saveData(key: ApiKeys.token, value: r.token);
-      await CacheHelper()
-          .saveData(key: ApiKeys.id, value: decodedToken[ApiKeys.id]);
+  result.fold((l) => emit(LoginErrorState(errMsg: l)), (r) async {
+    Map<String, dynamic> decodedToken = JwtDecoder.decode(r.token);
 
-          RouterGenerator.authNotifier.setToken(r.token);
-      loginModel = r;
-      emit(LoginSuccessState(message: r.msg));
-    });
-  }
+    await CacheHelper().saveData(key: ApiKeys.token, value: r.token);
+    await CacheHelper().saveData(key: ApiKeys.id, value: r.id);
+    await CacheHelper().saveData(key: ApiKeys.email, value: r.emailAdmin);
+    await CacheHelper().saveData(key: ApiKeys.name, value: r.name); // ✅ الاسم من الـ data
+
+    RouterGenerator.authNotifier.setToken(r.token);
+    loginModel = r;
+    emit(LoginSuccessState(message: r.msg));
+  });
+}
+
 }

@@ -41,9 +41,10 @@ void showInfoAdminDialog(BuildContext context) {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    FutureBuilder<String>(
+                    FutureBuilder<String?>(
                       future: Future.value(
-                          CacheHelper().getData(key: ApiKeys.name)),
+                        CacheHelper().getData(key: ApiKeys.name)?.toString(),
+                      ),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -67,34 +68,34 @@ void showInfoAdminDialog(BuildContext context) {
                         }
                       },
                     ),
-                    FutureBuilder<String>(
-                      future:
-                          Future.value(CacheHelper().getData(key: ApiKeys.emailAdmin)),
+                    FutureBuilder<String?>(
+                      future: Future.value(
+                        CacheHelper()
+                            .getData(key: ApiKeys.emailAdmin)
+                            ?.toString(),
+                      ),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
                           return const SizedBox();
                         } else if (snapshot.hasError) {
-                          return Center(
-                              child: Text('Error: ${snapshot.error}'));
+                          return Text('Error: ${snapshot.error}');
                         } else if (!snapshot.hasData ||
                             snapshot.data!.isEmpty) {
-                          return const Center(child: Text('No id Found'));
+                          return const Text('No email found');
                         } else {
-                          return Center(
-                            child: Text(
-                              snapshot.data!,
-                              style: TextStyle(
-                                  fontSize:
-                                      MediaQuery.of(context).size.width < 1201
-                                          ? 18
-                                          : 20,
-                                  fontWeight: FontWeight.bold),
+                          return Text(
+                            snapshot.data!,
+                            style: TextStyle(
+                              fontSize: MediaQuery.of(context).size.width < 1201
+                                  ? 18
+                                  : 20,
+                              fontWeight: FontWeight.bold,
                             ),
                           );
                         }
                       },
-                    )
+                    ),
                   ],
                 )
               ],

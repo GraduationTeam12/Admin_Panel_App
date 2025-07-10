@@ -132,20 +132,16 @@ void searchEmergencies(String query) {
 void verifyUpdatedEmail(email, code, id) async {
   emit(VerifyUpdatedEmailUserLoading());
 
-  try {
-    // Attempt to verify the OTP code for the email update
-    final message = await authRepository.verifyUpdatedEmail(email, code, id, token);
+  final result = await authRepository.verifyUpdatedEmail(email, code, id, token);
 
-    // If successful, emit success state with the returned message
-    emit(VerifyUpdatedEmailUserSuccess(message as String));
-  } on DioException catch (e) {
-    // If a server-related error occurs (e.g. invalid code, server error)
-    final msg = e.response?.data["msg"] ?? "Failed to verify the code";
-    emit(VerifyUpdatedEmailUserError(msg));
-  } catch (_) {
-    // Catch any unexpected errors (e.g. parsing, network, unknown)
-    emit(VerifyUpdatedEmailUserError("An unexpected error occurred"));
-  }
+  result.fold(
+    (failureMessage) {
+      emit(VerifyUpdatedEmailUserError(failureMessage));
+    },
+    (successMessage) {
+      emit(VerifyUpdatedEmailUserSuccess(successMessage));
+    },
+  );
 }
 
 

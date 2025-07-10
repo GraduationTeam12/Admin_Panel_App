@@ -1,9 +1,12 @@
 import 'package:admin_panel_app/constants/app_style.dart';
 import 'package:admin_panel_app/constants/colors.dart';
+import 'package:admin_panel_app/core/api/dio_consumer.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_cubit.dart';
 import 'package:admin_panel_app/core/logic/add_owner_cubit/add_owner_and_hospital_state.dart';
 import 'package:admin_panel_app/presentation/widgets/custom_container.dart';
 import 'package:admin_panel_app/presentation/widgets/otp_form.dart';
+import 'package:admin_panel_app/presentation/widgets/report_owner_editing_information.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pinput.dart';
@@ -49,23 +52,28 @@ class _OtpUpdatedEmailState extends State<OtpUpdatedEmail> {
                           setState(() {
             hasError = false; 
           });
-                        Navigator.pop(context);
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => BlocProvider(
-                        //               create: (context) => AddOwnerCubit(AuthRepository(apiConsumer: DioConsumer(dio: Dio()))),
-                        //               child: ReportOwnerEditingInformation(
-                        //                   id: widget.id),
-                        //             )));
+                        // Navigator.pop(context);
+                      
                         String message = state.message;
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text(message),
-                          duration: const Duration(seconds: 5),
+                          duration: const Duration(seconds: 2),
                           behavior: SnackBarBehavior.floating,
                           margin: const EdgeInsets.only(
                               bottom: 680, left: 160, right: 160),
                         ));
+                        
+  Future.delayed(const Duration(seconds: 2), () {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => BlocProvider.value(
+          value: BlocProvider.of<AddOwnerAndHospitalCubit>(context),
+          child: ReportOwnerEditingInformation(id: widget.id),
+        ),
+      ),
+    );
+  });
                       }
 
                       if (state is VerifyUpdatedEmailUserError) {
